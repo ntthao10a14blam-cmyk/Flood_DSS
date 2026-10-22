@@ -1,0 +1,12 @@
+WATER DISTANCE ETL QUALITY REPORT
+Water rows: 425
+Flood rows: 425
+Integrated rows: 425
+Water missing distances: 0
+Water negative distances: 0
+Distance min (m): 0.000000
+Distance mean (m): 364.345313
+Distance max (m): 16789.386617
+Distinct nearest Water IDs: 136
+Output: D:\Kho_du_lieu\Flood_DSS\02_Staging_CSV\Integrated\Flood_With_Water.csv
+Note: Large distances may reflect Water layer coverage; do not delete automatically.

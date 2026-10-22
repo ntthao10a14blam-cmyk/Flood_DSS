@@ -1,0 +1,12 @@
+POPULATION INTEGRATION QUALITY REPORT
+Flood input rows: 425
+Spatial Join rows: 425
+Population rows: 24
+Integrated rows: 425
+Matched 2019: 417
+Outside 2019 polygon: 8
+Missing population data: 0
+Unmatched OBJECTIDs: [11, 12, 13, 33, 96, 97, 184, 243]
+Note: Population values refer to 2019, not the flood event year.
+Note: OBJECTID 184 requires separate spatial review.
+Output: D:\Kho_du_lieu\Flood_DSS\02_Staging_CSV\Integrated\Flood_Water_Population.csv

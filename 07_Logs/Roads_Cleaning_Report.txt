@@ -1,0 +1,10 @@
+ROADS CLEANING QUALITY REPORT
+Input rows: 9
+Output rows: 9
+Missing values: 0
+Duplicate Road_ID: 0
+Duplicate road names: 0
+Min Mentioned_Years: 5
+Max Mentioned_Years: 10
+Note: Mentioned_Years is not equivalent to FloodCount.
+Output: D:\Kho_du_lieu\Flood_DSS\02_Staging_CSV\Roads\Roads_Clean.csv

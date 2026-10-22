@@ -1,0 +1,19 @@
+ROADS INTEGRATION REPORT
+Input Flood: 425
+Input Road Nearest: 425
+Output: 425
+Unique OBJECTID: 425
+Missing road distances: 0
+
+DISTANCE DISTRIBUTION
+Road_Distance_Band
+Over_5000m    139
+1000-5000m    107
+0-50m          83
+100-500m       41
+500-1000m      36
+50-100m        19
+
+Nearest road is NOT a confirmed flooded road.
+Mentioned_Years is NOT FloodCount.
+Output file: D:\Kho_du_lieu\Flood_DSS\02_Staging_CSV\Integrated\Flood_Water_Population_Roads.csv
