@@ -1,0 +1,8 @@
+﻿Dataset,File,Status,Rows,Columns,MissingCells,DuplicateRows
+Flood_New,02_Staging_CSV/Flood/Flood_Events_Staging.csv,Found,425,33,2286,0
+Flood_Old,02_Staging_CSV/Flood/Flood_Staging_Final.csv,Found,425,32,2284,0
+Population,02_Staging_CSV/Population/Population_Clean.csv,Found,24,9,0,0
+Roads,02_Staging_CSV/Roads/Roads_Clean.csv,Found,9,4,0,0
+Water_Distance,02_Staging_CSV/Water/Flood_Water_Distance.csv,Found,425,3,0,0
+Flood_Population,02_Staging_CSV/Population/Flood_Population_Join.csv,Found,425,2,8,0
+Flood_Integrated,02_Staging_CSV/Integrated/Flood_Water_Population_Roads.csv,Found,425,51,3612,0

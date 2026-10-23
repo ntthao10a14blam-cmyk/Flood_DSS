@@ -1,0 +1,193 @@
+{
+  "source": "NASA GES DISC",
+  "product": "GPM_3IMERGDF",
+  "version": "07",
+  "temporal": "2023-09-01T00:00:00.000Z,2023-09-30T23:59:59.999Z",
+  "bounding_box": "106.3,10.3,107.3,11.3",
+  "download_directory": "D:\\Kho_du_lieu\\Flood_DSS\\01_Raw\\Rainfall\\NASA_IMERG_Final_V07",
+  "success": 0,
+  "failed": 30,
+  "existing_review": 0,
+  "files": [
+    {
+      "filename": "3B-DAY.MS.MRG.3IMERG.20230901-S000000-E235959.V07B.nc4",
+      "status": "failed",
+      "size_bytes": 0,
+      "error": "Chua cau hinh EARTHDATA_TOKEN"
+    },
+    {
+      "filename": "3B-DAY.MS.MRG.3IMERG.20230902-S000000-E235959.V07B.nc4",
+      "status": "failed",
+      "size_bytes": 0,
+      "error": "Chua cau hinh EARTHDATA_TOKEN"
+    },
+    {
+      "filename": "3B-DAY.MS.MRG.3IMERG.20230904-S000000-E235959.V07B.nc4",
+      "status": "failed",
+      "size_bytes": 0,
+      "error": "Chua cau hinh EARTHDATA_TOKEN"
+    },
+    {
+      "filename": "3B-DAY.MS.MRG.3IMERG.20230903-S000000-E235959.V07B.nc4",
+      "status": "failed",
+      "size_bytes": 0,
+      "error": "Chua cau hinh EARTHDATA_TOKEN"
+    },
+    {
+      "filename": "3B-DAY.MS.MRG.3IMERG.20230905-S000000-E235959.V07B.nc4",
+      "status": "failed",
+      "size_bytes": 0,
+      "error": "Chua cau hinh EARTHDATA_TOKEN"
+    },
+    {
+      "filename": "3B-DAY.MS.MRG.3IMERG.20230906-S000000-E235959.V07B.nc4",
+      "status": "failed",
+      "size_bytes": 0,
+      "error": "Chua cau hinh EARTHDATA_TOKEN"
+    },
+    {
+      "filename": "3B-DAY.MS.MRG.3IMERG.20230907-S000000-E235959.V07B.nc4",
+      "status": "failed",
+      "size_bytes": 0,
+      "error": "Chua cau hinh EARTHDATA_TOKEN"
+    },
+    {
+      "filename": "3B-DAY.MS.MRG.3IMERG.20230908-S000000-E235959.V07B.nc4",
+      "status": "failed",
+      "size_bytes": 0,
+      "error": "Chua cau hinh EARTHDATA_TOKEN"
+    },
+    {
+      "filename": "3B-DAY.MS.MRG.3IMERG.20230909-S000000-E235959.V07B.nc4",
+      "status": "failed",
+      "size_bytes": 0,
+      "error": "Chua cau hinh EARTHDATA_TOKEN"
+    },
+    {
+      "filename": "3B-DAY.MS.MRG.3IMERG.20230910-S000000-E235959.V07B.nc4",
+      "status": "failed",
+      "size_bytes": 0,
+      "error": "Chua cau hinh EARTHDATA_TOKEN"
+    },
+    {
+      "filename": "3B-DAY.MS.MRG.3IMERG.20230911-S000000-E235959.V07B.nc4",
+      "status": "failed",
+      "size_bytes": 0,
+      "error": "Chua cau hinh EARTHDATA_TOKEN"
+    },
+    {
+      "filename": "3B-DAY.MS.MRG.3IMERG.20230912-S000000-E235959.V07B.nc4",
+      "status": "failed",
+      "size_bytes": 0,
+      "error": "Chua cau hinh EARTHDATA_TOKEN"
+    },
+    {
+      "filename": "3B-DAY.MS.MRG.3IMERG.20230913-S000000-E235959.V07B.nc4",
+      "status": "failed",
+      "size_bytes": 0,
+      "error": "Chua cau hinh EARTHDATA_TOKEN"
+    },
+    {
+      "filename": "3B-DAY.MS.MRG.3IMERG.20230914-S000000-E235959.V07B.nc4",
+      "status": "failed",
+      "size_bytes": 0,
+      "error": "Chua cau hinh EARTHDATA_TOKEN"
+    },
+    {
+      "filename": "3B-DAY.MS.MRG.3IMERG.20230916-S000000-E235959.V07B.nc4",
+      "status": "failed",
+      "size_bytes": 0,
+      "error": "Chua cau hinh EARTHDATA_TOKEN"
+    },
+    {
+      "filename": "3B-DAY.MS.MRG.3IMERG.20230915-S000000-E235959.V07B.nc4",
+      "status": "failed",
+      "size_bytes": 0,
+      "error": "Chua cau hinh EARTHDATA_TOKEN"
+    },
+    {
+      "filename": "3B-DAY.MS.MRG.3IMERG.20230917-S000000-E235959.V07B.nc4",
+      "status": "failed",
+      "size_bytes": 0,
+      "error": "Chua cau hinh EARTHDATA_TOKEN"
+    },
+    {
+      "filename": "3B-DAY.MS.MRG.3IMERG.20230918-S000000-E235959.V07B.nc4",
+      "status": "failed",
+      "size_bytes": 0,
+      "error": "Chua cau hinh EARTHDATA_TOKEN"
+    },
+    {
+      "filename": "3B-DAY.MS.MRG.3IMERG.20230920-S000000-E235959.V07B.nc4",
+      "status": "failed",
+      "size_bytes": 0,
+      "error": "Chua cau hinh EARTHDATA_TOKEN"
+    },
+    {
+      "filename": "3B-DAY.MS.MRG.3IMERG.20230919-S000000-E235959.V07B.nc4",
+      "status": "failed",
+      "size_bytes": 0,
+      "error": "Chua cau hinh EARTHDATA_TOKEN"
+    },
+    {
+      "filename": "3B-DAY.MS.MRG.3IMERG.20230921-S000000-E235959.V07B.nc4",
+      "status": "failed",
+      "size_bytes": 0,
+      "error": "Chua cau hinh EARTHDATA_TOKEN"
+    },
+    {
+      "filename": "3B-DAY.MS.MRG.3IMERG.20230922-S000000-E235959.V07B.nc4",
+      "status": "failed",
+      "size_bytes": 0,
+      "error": "Chua cau hinh EARTHDATA_TOKEN"
+    },
+    {
+      "filename": "3B-DAY.MS.MRG.3IMERG.20230923-S000000-E235959.V07B.nc4",
+      "status": "failed",
+      "size_bytes": 0,
+      "error": "Chua cau hinh EARTHDATA_TOKEN"
+    },
+    {
+      "filename": "3B-DAY.MS.MRG.3IMERG.20230924-S000000-E235959.V07B.nc4",
+      "status": "failed",
+      "size_bytes": 0,
+      "error": "Chua cau hinh EARTHDATA_TOKEN"
+    },
+    {
+      "filename": "3B-DAY.MS.MRG.3IMERG.20230925-S000000-E235959.V07B.nc4",
+      "status": "failed",
+      "size_bytes": 0,
+      "error": "Chua cau hinh EARTHDATA_TOKEN"
+    },
+    {
+      "filename": "3B-DAY.MS.MRG.3IMERG.20230926-S000000-E235959.V07B.nc4",
+      "status": "failed",
+      "size_bytes": 0,
+      "error": "Chua cau hinh EARTHDATA_TOKEN"
+    },
+    {
+      "filename": "3B-DAY.MS.MRG.3IMERG.20230928-S000000-E235959.V07B.nc4",
+      "status": "failed",
+      "size_bytes": 0,
+      "error": "Chua cau hinh EARTHDATA_TOKEN"
+    },
+    {
+      "filename": "3B-DAY.MS.MRG.3IMERG.20230927-S000000-E235959.V07B.nc4",
+      "status": "failed",
+      "size_bytes": 0,
+      "error": "Chua cau hinh EARTHDATA_TOKEN"
+    },
+    {
+      "filename": "3B-DAY.MS.MRG.3IMERG.20230930-S000000-E235959.V07B.nc4",
+      "status": "failed",
+      "size_bytes": 0,
+      "error": "Chua cau hinh EARTHDATA_TOKEN"
+    },
+    {
+      "filename": "3B-DAY.MS.MRG.3IMERG.20230929-S000000-E235959.V07B.nc4",
+      "status": "failed",
+      "size_bytes": 0,
+      "error": "Chua cau hinh EARTHDATA_TOKEN"
+    }
+  ]
+}

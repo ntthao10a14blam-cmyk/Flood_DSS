@@ -1,0 +1,426 @@
+﻿OBJECTID_New,EventKey,Obs_ID,Year,Location_Name,OBJECTID_Old,_merge,OBJECTID_Match
+150,obs_100|2011|đường nguyễn hữu cảnh,Obs_100,2011,Đường Nguyễn Hữu Cảnh,100,both,False
+151,obs_101|2011|đường bùi hữu nghĩa,Obs_101,2011,Đường Bùi Hữu Nghĩa,101,both,False
+152,obs_102|2011|đinh tiên hoàng,Obs_102,2011,Đinh Tiên Hoàng,102,both,False
+153,obs_103|2011|đường lương định của,Obs_103,2011,Đường Lương Định Của,103,both,False
+154,obs_104|2011|đường quốc hương,Obs_104,2011,Đường Quốc Hương,104,both,False
+155,obs_105|2011|đường phú định,Obs_105,2011,Đường Phú Định,105,both,False
+156,obs_106|2011|đường lò gốm,Obs_106,2011,Đường Lò Gốm,106,both,False
+159,obs_107|2011|đường hồ học lãm,Obs_107,2011,Đường Hồ Học Lãm,107,both,False
+160,obs_108|2011|đường lý phục man,Obs_108,2011,Đường Lý Phục Man,108,both,False
+161,obs_109|2011|đường huỳnh tấn phát,Obs_109,2011,Đường Huỳnh Tấn Phát,109,both,False
+16,obs_10|2025|đường thich quang duc,Obs_10,2025,Đường Thich Quang Duc,10,both,False
+165,obs_110|2011|đường nguyễn thị thập,Obs_110,2011,Đường Nguyễn Thị Thập,110,both,False
+166,obs_111|2011|đường trần xuân soạn,Obs_111,2011,Đường Trần Xuân Soạn,111,both,False
+167,obs_112|2011|đường số 10,Obs_112,2011,Đường Số 10,112,both,False
+168,obs_113|2008|đường nguyễn văn luông,Obs_113,2008,Đường Nguyễn Văn Luông,113,both,False
+169,obs_114|2008|đường bình đông,Obs_114,2008,Đường Bình Đông,114,both,False
+170,obs_115|2019|đường nguyễn hữu cảnh,Obs_115,2019,Đường Nguyễn Hữu Cảnh,115,both,False
+171,obs_116|2019|quốc hương & tống hữu định,Obs_116,2019,Quốc Hương & Tống Hữu Định,116,both,False
+172,obs_117|2019|đường lê văn miến,Obs_117,2019,Đường Lê Văn Miến,117,both,False
+173,obs_118|2019|đường số 46,Obs_118,2019,Đường số 46,118,both,False
+174,obs_119|2019|đường số 48,Obs_119,2019,Đường số 48,119,both,False
+18,obs_11|2025|đường hồ văn cống,Obs_11,2025,Đường Hồ Văn Cống,11,both,False
+175,obs_120|2019|đường số 41,Obs_120,2019,Đường số 41,120,both,False
+176,obs_121|2019|đường cây trâm,Obs_121,2019,Đường Cây Trâm,121,both,False
+177,obs_122|2019|đường phạm văn chiêu,Obs_122,2019,Đường Phạm Văn Chiêu,122,both,False
+178,obs_123|2019|đường nguyễn bỉnh khiêm,Obs_123,2019,Đường Nguyễn Bỉnh Khiêm,123,both,False
+179,obs_124|2019|đường mễ cốc,Obs_124,2019,Đường Mễ Cốc,124,both,False
+180,obs_125|2019|đường trần xuân soạn,Obs_125,2019,Đường Trần Xuân Soạn,125,both,False
+181,obs_126|2024|đường nguyễn hữu cảnh,Obs_126,2024,Đường Nguyễn Hữu Cảnh,126,both,False
+182,obs_127|2024|đường võ văn ngân,Obs_127,2024,Đường Võ Văn Ngân,127,both,False
+183,obs_128|2024|đường lê văn việt,Obs_128,2024,Đường Lê Văn Việt,128,both,False
+184,obs_129|2024|đường dương đình hội,Obs_129,2024,Đường Dương Đình Hội,129,both,False
+19,obs_12|2025|đường hẻm 646 đ. 30 tháng 4,Obs_12,2025,Đường Hẻm 646 Đ. 30 Tháng 4,12,both,False
+185,obs_130|2024|đường bạch đằng,Obs_130,2024,Đường Bạch Đằng,130,both,False
+188,obs_131|2008|kênh nhiêu lộc - thị nghè,Obs_131,2008,Kênh Nhiêu Lộc - Thị Nghè,131,both,False
+189,obs_132|2008|kênh hàng bàng,Obs_132,2008,Kênh Hàng Bàng,132,both,False
+190,obs_133|2008|kênh tàu hủ,Obs_133,2008,Kênh Tàu Hủ,133,both,False
+191,obs_134|2008|rạch bến nghé,Obs_134,2008,Rạch Bến Nghé,134,both,False
+193,obs_135|2008|kênh đôi,Obs_135,2008,Kênh Đôi,135,both,False
+194,obs_136|2008|kênh tẻ,Obs_136,2008,Kênh Tẻ,136,both,False
+195,obs_137|2008|cây gõ,Obs_137,2008,Cây Gõ,137,both,False
+196,obs_138|2018|đường phan huy ích,Obs_138,2018,Đường Phan Huy Ích,138,both,False
+197,obs_139|2002|đường bùi đình túy,Obs_139,2002,Đường Bùi Đình Túy,139,both,False
+21,obs_13|2025|đường 842 bình giã,Obs_13,2025,Đường 842 Bình Giã,13,both,False
+198,obs_140|2002|đường xô viết nghệ tĩnh,Obs_140,2002,Đường Xô Viết Nghệ Tĩnh,140,both,False
+199,obs_141|2002|phường 25,Obs_141,2002,Phường 25,141,both,False
+202,obs_142|2002|phường 26,Obs_142,2002,Phường 26,142,both,False
+204,obs_143|2002|đường đinh bộ lĩnh,Obs_143,2002,Đường Đinh Bộ Lĩnh,143,both,False
+205,obs_144|2002|đường bùi đình túy,Obs_144,2002,Đường Bùi Đình Túy,144,both,False
+207,obs_145|2002|đường nguyễn xí,Obs_145,2002,Đường Nguyễn Xí,145,both,False
+208,obs_146|2002|đường đinh tiên hoàng,Obs_146,2002,Đường Đinh Tiên Hoàng,146,both,False
+210,obs_147|2002|cầu vượt hàng xanh,Obs_147,2002,Cầu vượt Hàng Xanh,147,both,False
+211,obs_148|2008|cầu vượt hàng xanh,Obs_148,2008,Cầu vượt Hàng Xanh,148,both,False
+212,obs_149|2002|đường đinh bộ lĩnh,Obs_149,2002,Đường Đinh Bộ Lĩnh,149,both,False
+22,obs_14|2016|hầm thủ thiên,Obs_14,2016,Hầm Thủ Thiên,14,both,False
+213,obs_150|2002|đường bạch đằng,Obs_150,2002,Đường Bạch Đằng,150,both,False
+214,obs_151|2002|đường xô viết nghệ tĩnh,Obs_151,2002,Đường Xô Viết Nghệ Tĩnh,151,both,False
+215,obs_152|2002|cầu bình triệu,Obs_152,2002,Cầu Bình Triệu,152,both,False
+217,obs_153|2002|phường hiệp bình,Obs_153,2002,Phường Hiệp Bình,153,both,False
+218,obs_154|2002|xã bình lợi,Obs_154,2002,Xã Bình Lợi,154,both,False
+219,obs_155|2002|xã đa phước,Obs_155,2002,Xã Đa Phước,155,both,False
+220,obs_156|2002|xã an phú tây,Obs_156,2002,Xã An Phú Tây,156,both,False
+221,"obs_157|2002|xã tân quý tây, huyện bình chánh, thành phố",Obs_157,2002,"Xã Tân Quý Tây, Huyện Bình Chánh, Thành Phố",157,both,False
+222,obs_158|2002|xã quy đức,Obs_158,2002,Xã Quy Đức,158,both,False
+223,obs_159|2002|xã tân kiên,Obs_159,2002,Xã Tân Kiên,159,both,False
+31,obs_15|2016|sân bay,Obs_15,2016,Sân bay,15,both,False
+224,obs_160|2002|xã tân nhựt,Obs_160,2002,Xã Tân Nhựt,160,both,False
+225,obs_161|2002|xã phong phú,Obs_161,2002,Xã Phong Phú,161,both,False
+226,obs_162|2002|rạch bà hồng,Obs_162,2002,Rạch Bà Hồng,162,both,False
+227,obs_163|2002|rạch cây điệp,Obs_163,2002,Rạch Cây Điệp,163,both,False
+228,obs_164|2002|đường lý thường kiệt,Obs_164,2002,Đường Lý Thường Kiệt,164,both,False
+229,obs_165|2002|đường nguyễn huệ,Obs_165,2002,Đường Nguyễn Huệ,165,both,False
+230,obs_166|2002|đường nguyễn đình chiểu,Obs_166,2002,Đường Nguyễn Đình Chiểu,166,both,False
+231,obs_167|2002|đường nguyễn văn tạo,Obs_167,2002,Đường Nguyễn Văn Tạo,167,both,False
+234,obs_168|2002|xã tân nhựt,Obs_168,2002,Xã Tân Nhựt,168,both,False
+236,obs_169|2002|xã nhị bình,Obs_169,2002,Xã Nhị Bình,169,both,False
+34,obs_16|2020|đường quốc hương,Obs_16,2020,Đường Quốc Hương,16,both,False
+237,obs_170|2002|đường thạnh lộc,Obs_170,2002,Đường Thạnh Lộc,170,both,False
+238,obs_171|2002|phường 17,Obs_171,2002,Phường 17,171,both,False
+240,obs_172|2002|đường nơ trang long,Obs_172,2002,Đường Nơ Trang Long,172,both,False
+242,obs_173|2002|đường nguyễn xí,Obs_173,2002,Đường Nguyễn Xí,173,both,False
+243,obs_174|2002|đường ung văn khiêm,Obs_174,2002,Đường Ung Văn Khiêm,174,both,False
+244,obs_175|2002|đường bình qưới,Obs_175,2002,Đường Bình Qưới,175,both,False
+245,obs_176|2002|đường huỳnh tấn phát,Obs_176,2002,Đường Huỳnh Tấn Phát,176,both,False
+247,obs_177|2002|đường bến mễ cốc,Obs_177,2002,Đường Bến Mễ Cốc,177,both,False
+248,obs_178|2002|đường bình đông,Obs_178,2002,Đường Bình Đông,178,both,False
+249,obs_179|2002|đường nguyễn duy,Obs_179,2002,Đường Nguyễn Duy,179,both,False
+36,obs_17|2020|đường nguyễn hữu cảnh,Obs_17,2020,Đường Nguyễn Hữu Cảnh,17,both,False
+250,obs_180|2002|đường rạch cát,Obs_180,2002,Đường Rạch Cát,180,both,False
+252,obs_181|2002|đường nguyễn nhược thị,Obs_181,2002,Đường Nguyễn Nhược Thị,181,both,False
+253,obs_182|2002|đường võ thị sáu,Obs_182,2002,Đường Võ Thị Sáu,182,both,False
+255,obs_183|2002|cầu chữ y,Obs_183,2002,Cầu Chữ Y,183,both,False
+257,obs_184|2002|phường 12,Obs_184,2002,Phường 12,184,both,False
+258,obs_185|2002|đường huỳnh tấn phát,Obs_185,2002,Đường Huỳnh Tấn Phát,185,both,False
+260,obs_186|2007|rạch văn thánh,Obs_186,2007,Rạch Văn Thánh,186,both,False
+261,obs_187|2007|chợ thanh đa,Obs_187,2007,Chợ Thanh Đa,187,both,False
+262,obs_188|2007|đường ngô tất tố,Obs_188,2007,Đường Ngô Tất Tố,188,both,False
+264,obs_189|2007|tổ 47 kp3,Obs_189,2007,Tổ 47 KP3,189,both,False
+39,obs_18|2020|đường ung văn khiêm,Obs_18,2020,Đường Ung Văn Khiêm,18,both,False
+265,obs_190|2007|tổ 46 kp3,Obs_190,2007,Tổ 46 KP3,190,both,False
+267,obs_191|2005|chợ thanh đa,Obs_191,2005,Chợ Thanh Đa,191,both,False
+268,obs_192|2005|đường võ văn ngân,Obs_192,2005,Đường Võ Văn Ngân,192,both,False
+269,obs_193|2005|đường số 2,Obs_193,2005,Đường Số 2,193,both,False
+270,obs_194|2025|đường phạm hữu lầu,Obs_194,2025,Đường Phạm Hữu Lầu,194,both,False
+271,obs_195|2025|đường trần xuân soạn,Obs_195,2025,Đường Trần Xuân Soạn,195,both,False
+272,obs_196|2025|đường lương định của,Obs_196,2025,Đường Lương Định Của,196,both,False
+273,obs_197|2025|đường quốc hương,Obs_197,2025,Đường Quốc Hương,197,both,False
+274,obs_198|2025|đường nguyễn văn hưởng,Obs_198,2025,Đường Nguyễn Văn Hưởng,198,both,False
+275,obs_199|2025|đường phạm thế hiển,Obs_199,2025,Đường Phạm Thế Hiển,199,both,False
+41,obs_19|2020|đường tô ngọc vân,Obs_19,2020,Đường Tô Ngọc Vân,19,both,False
+4,obs_1|2025|đường bình quới,Obs_1,2025,Đường Bình quới,1,both,False
+276,obs_200|2025|đường bình quới,Obs_200,2025,Đường Bình Quới,200,both,False
+277,obs_201|2006|đường bình quới,Obs_201,2006,Đường Bình Quới,201,both,False
+278,obs_202|2006|phường hiệp bình phước,Obs_202,2006,Phường Hiệp Bình Phước,202,both,False
+279,obs_203|2006|phường linh đông,Obs_203,2006,Phường Linh Đông,203,both,False
+280,obs_204|2006|xã an phú tây,Obs_204,2006,Xã An Phú Tây,204,both,False
+281,obs_205|2007|tiểu học hiệp bình phước,Obs_205,2007,Tiểu học Hiệp Bình Phước,205,both,False
+282,"obs_206|2007|phường hiệp bình phước, khu phố 6",Obs_206,2007,"Phường Hiệp Bình Phước, khu phố 6",206,both,False
+283,"obs_207|2007|phường hiệp bình chánh, khu phố 5",Obs_207,2007,"Phường Hiệp Bình Chánh, khu phố 5",207,both,False
+285,"obs_208|2007|phường hiệp bình chánh, khu phố 3",Obs_208,2007,"Phường Hiệp Bình Chánh, khu phố 3",208,both,False
+286,"obs_209|2007|phường hiệp bình chánh, khu phố 4",Obs_209,2007,"Phường Hiệp Bình Chánh, khu phố 4",209,both,False
+43,obs_20|2020|đường võ văn ngân,Obs_20,2020,Đường Võ Văn Ngân,20,both,False
+289,obs_210|2007|khu villa an phú đông 12,Obs_210,2007,Khu Villa An Phú Đông 12,210,both,False
+291,obs_211|2007|ubnd phường 28 quận bình thạnh,Obs_211,2007,UBND Phường 28 Quận Bình Thạnh,211,both,False
+293,"obs_212|2007|khu b, xã bình lợi",Obs_212,2007,"Khu B, Xã Bình Lợi",212,both,False
+294,obs_213|2007|quốc lộ 13,Obs_213,2007,Quốc lộ 13,213,both,False
+295,"obs_214|2006|khu b, xã bình lợi",Obs_214,2006,"Khu B, Xã Bình Lợi",214,both,False
+296,obs_215|2006|xã đa phước,Obs_215,2006,Xã Đa Phước,215,both,False
+298,obs_216|2006|xã tân nhựt,Obs_216,2006,Xã Tân Nhựt,216,both,False
+299,obs_217|2006|quốc lộ 50,Obs_217,2006,Quốc Lộ 50,217,both,False
+301,obs_218|2006|đường thanh niên xung phong,Obs_218,2006,Đường Thanh Niên Xung Phong,218,both,False
+302,obs_219|2006|đường mương lớn,Obs_219,2006,Đường Mương Lớn,219,both,False
+44,obs_21|2020|phường thảo điền,Obs_21,2020,Phường Thảo Điền,21,both,False
+303,obs_220|2006|đường gò me,Obs_220,2006,Đường Gò Me,220,both,False
+304,obs_221|2006|rạch mường đình,Obs_221,2006,Rạch Mường Đình,221,both,False
+305,obs_222|2006|đường liên ấp 3-4,Obs_222,2006,Đường Liên Ấp 3-4,222,both,False
+306,obs_223|2006|rạch lùng,Obs_223,2006,Rạch Lùng,223,both,False
+308,obs_224|2006|đường số 7,Obs_224,2006,Đường Số 7,224,both,False
+309,"obs_225|2007|khu phố 4, phường bình chiểu",Obs_225,2007,"Khu phố 4, phường Bình Chiểu",225,both,False
+311,obs_226|2012|phường thạnh lộc,Obs_226,2012,Phường Thạnh Lộc,226,both,False
+312,obs_227|2012|đường phạm văn chí,Obs_227,2012,Đường Phạm Văn Chí,227,both,False
+313,obs_228|2012|đường hồng bàng,Obs_228,2012,Đường Hồng Bàng,228,both,False
+45,obs_22|2023|đường số 17a,Obs_22,2023,Đường Số 17A,22,both,False
+315,obs_230|2012|đường bùi hữu nghĩa,Obs_230,2012,Đường Bùi Hữu Nghĩa,230,both,False
+316,obs_231|2012|đường nguyễn xuân ôn,Obs_231,2012,Đường Nguyễn Xuân Ôn,231,both,False
+317,obs_232|2012|đường điện biên phủ,Obs_232,2012,Đường Điện Biên Phủ,232,both,False
+318,obs_233|2012|đường nam kỳ khởi nghĩa,Obs_233,2012,Đường Nam Kỳ Khởi Nghĩa,233,both,False
+319,obs_234|2012|đường lương định của,Obs_234,2012,Đường Lương Định Của,234,both,False
+320,obs_235|2012|đường kha vạn cân,Obs_235,2012,Đường Kha Vạn Cân,235,both,False
+323,obs_236|2023|đường trần xuân soạn,Obs_236,2023,Đường Trần Xuân Soạn,236,both,False
+324,obs_237|2023|đường huỳnh tấn phát,Obs_237,2023,Đường Huỳnh Tấn Phát,237,both,False
+325,obs_238|2023|đường nguyễn thị thập,Obs_238,2023,Đường Nguyễn Thị Thập,238,both,False
+314,obs_239|2012|đường vũ tùng,Obs_239,2012,Đường Vũ Tùng,229,both,False
+326,obs_239|2023|đường nguyễn ngọc cung,Obs_239,2023,Đường Nguyễn Ngọc Cung,239,both,False
+46,obs_23|2023|đường hồ học lãm,Obs_23,2023,Đường Hồ Học Lãm,23,both,False
+327,obs_240|2023|quốc lộ 50,Obs_240,2023,Quốc Lộ 50,240,both,False
+328,obs_241|2023|đường quốc hương,Obs_241,2023,Đường Quốc Hương,241,both,False
+329,obs_242|2023|đường thảo điền,Obs_242,2023,Đường Thảo Điền,242,both,False
+330,obs_243|2023|phường an thạnh,Obs_243,2023,Phường An Thạnh,243,both,False
+331,obs_244|2011|đường số 7,Obs_244,2011,Đường Số 7,244,both,False
+333,obs_245|2016|đường nguyễn siêu,Obs_245,2016,Đường Nguyễn Siêu,245,both,False
+334,obs_246|2016|đường nơ trang long,Obs_246,2016,Đường Nơ Trang Long,246,both,False
+336,obs_247|2016|đường nơ trang long,Obs_247,2016,Đường Nơ Trang Long,247,both,False
+337,obs_248|2016|đường bạch đằng,Obs_248,2016,Đường Bạch Đằng,248,both,False
+338,obs_249|2016|đường đinh bộ lĩnh,Obs_249,2016,Đường Đinh Bộ Lĩnh,249,both,False
+47,obs_24|2023|kinh dương vương,Obs_24,2023,Kinh Dương Vương,24,both,False
+339,obs_250|2016|đường cao thắng,Obs_250,2016,Đường Cao Thắng,250,both,False
+340,obs_251|2016|đường lữ gia,Obs_251,2016,Đường Lữ Gia,251,both,False
+341,obs_252|2016|đường hòa hưng,Obs_252,2016,Đường Hòa Hưng,252,both,False
+342,obs_253|2018|đường nguyễn hữu cảnh,Obs_253,2018,Đường Nguyễn Hữu Cảnh,253,both,False
+343,obs_254|2023|đường văn cam,Obs_254,2023,Đường Văn Cam,254,both,False
+344,obs_255|2023|đường hồ văn tư,Obs_255,2023,Đường Hồ Văn Tư,255,both,False
+345,obs_256|2023|đường đặng thị rành,Obs_256,2023,Đường Đặng Thị Rành,256,both,False
+346,obs_257|2023|đường lê đức thọ,Obs_257,2023,Đường Lê Đức Thọ,257,both,False
+347,obs_258|2023|đường nguyễn văn khối,Obs_258,2023,Đường Nguyễn Văn Khối,258,both,False
+350,obs_259|2023|đường phạm văn chiêu,Obs_259,2023,Đường Phạm Văn Chiêu,259,both,False
+48,obs_25|2023|đường lê cơ,Obs_25,2023,Đường Lê Cơ,25,both,False
+351,obs_260|2023|đường thảo điền,Obs_260,2023,Đường Thảo Điền,260,both,False
+352,obs_261|2023|đường quốc hương,Obs_261,2023,Đường Quốc Hương,261,both,False
+353,obs_262|2023|đường lã xuân oai,Obs_262,2023,Đường Lã Xuân Oai,262,both,False
+355,obs_263|2025|đường đặng thị rành,Obs_263,2025,Đường Đặng Thị Rành,263,both,False
+356,obs_264|2025|đường văn cam,Obs_264,2025,Đường Văn Cam,264,both,False
+357,obs_265|2025|đường hồ văn tư,Obs_265,2025,Đường Hồ Văn Tư,265,both,False
+358,obs_266|2026|đường trương văn ngư,Obs_266,2026,Đường Trương Văn Ngư,266,both,False
+359,obs_267|2026|đường kha vạn cân,Obs_267,2026,Đường Kha Vạn Cân,267,both,False
+360,obs_268|2026|đường đặng thị rành,Obs_268,2026,Đường Đặng Thị Rành,268,both,False
+361,obs_269|2018|đường quốc hương,Obs_269,2018,Đường Quốc Hương,269,both,False
+49,"obs_26|2023|quốc lộ 1, đoạn qua công ty tnhh pouyuen việt nam",Obs_26,2023,"Quốc lộ 1, đoạn qua Công ty TNHH PouYuen Việt Nam",26,both,False
+362,obs_270|2018|đường thảo điền,Obs_270,2018,Đường Thảo Điền,270,both,False
+363,obs_271|2018|đường lương định của,Obs_271,2018,Đường Lương Định Của,271,both,False
+365,obs_272|2018|đường nguyễn duy trinh,Obs_272,2018,Đường Nguyễn Duy Trinh,272,both,False
+366,obs_273|2018|đường nguyễn thị định,Obs_273,2018,Đường Nguyễn Thị Định,273,both,False
+368,obs_274|2018|đường phạm văn đồng,Obs_274,2018,Đường Phạm Văn Đồng,274,both,False
+369,obs_275|2018|đường kha vạn cân,Obs_275,2018,Đường Kha Vạn Cân,275,both,False
+370,obs_276|2018|đường đỗ xuân hợp,Obs_276,2018,Đường Đỗ Xuân Hợp,276,both,False
+371,obs_277|2018|đường quốc hương,Obs_277,2018,Đường Quốc Hương,277,both,False
+373,obs_278|2018|đường nguyễn văn hưởng,Obs_278,2018,Đường Nguyễn Văn Hưởng,278,both,False
+376,obs_279|2018|đường quốc hương,Obs_279,2018,Đường Quốc Hương,279,both,False
+51,obs_27|2023|đường sinco,Obs_27,2023,Đường Sinco,27,both,False
+377,obs_280|2018|đường quốc hương,Obs_280,2018,Đường Quốc Hương,280,both,False
+378,obs_281|2018|đường quốc hương,Obs_281,2018,Đường Quốc Hương,281,both,False
+379,obs_282|2018|đường thảo điền,Obs_282,2018,Đường Thảo Điền,282,both,False
+380,obs_283|2018|đường quốc hương,Obs_283,2018,Đường Quốc Hương,283,both,False
+381,obs_284|2018|đường quốc hương,Obs_284,2018,Đường Quốc Hương,284,both,False
+383,obs_285|2018|đường quốc hương,Obs_285,2018,Đường Quốc Hương,285,both,False
+384,obs_286|2018|đường nguyễn văn hưởng,Obs_286,2018,Đường Nguyễn Văn Hưởng,286,both,False
+387,obs_287|2018|đường thảo điền,Obs_287,2018,Đường Thảo Điền,287,both,False
+389,obs_288|2018|đường quốc hương,Obs_288,2018,Đường Quốc Hương,288,both,False
+390,obs_289|2018|đường nguyễn văn hưởng,Obs_289,2018,Đường Nguyễn Văn Hưởng,289,both,False
+52,obs_28|2023|ngã tư an sương,Obs_28,2023,Ngã tư An Sương,28,both,False
+391,obs_290|2018|đường thảo điền,Obs_290,2018,Đường Thảo Điền,290,both,False
+392,obs_291|2018|đường quốc hương,Obs_291,2018,Đường Quốc Hương,291,both,False
+393,obs_292|2019|đường quốc hương,Obs_292,2019,Đường Quốc Hương,292,both,False
+394,obs_293|2019|đường nguyễn duy trinh,Obs_293,2019,Đường Nguyễn Duy Trinh,293,both,False
+396,obs_294|2019|đường nguyễn duy trinh,Obs_294,2019,Đường Nguyễn Duy Trinh,294,both,False
+397,obs_295|2019|đường nguyễn văn hưởng,Obs_295,2019,Đường Nguyễn Văn Hưởng,295,both,False
+398,obs_296|2019|đường phạm văn đồng,Obs_296,2019,Đường Phạm Văn Đồng,296,both,False
+399,obs_297|2019|đường đỗ xuân hợp,Obs_297,2019,Đường Đỗ Xuân Hợp,297,both,False
+400,obs_298|2019|đường nguyễn văn hưởng,Obs_298,2019,Đường Nguyễn Văn Hưởng,298,both,False
+401,obs_299|2020|đường thảo điền,Obs_299,2020,Đường Thảo Điền,299,both,False
+53,obs_29|2023|đường phạm đức sơn,Obs_29,2023,Đường Phạm Đức Sơn,29,both,False
+6,obs_2|2025|đường trần xuân soạn,Obs_2,2025,Đường Trần Xuân Soạn,2,both,False
+402,obs_300|2020|đường quốc hương,Obs_300,2020,Đường Quốc Hương,300,both,False
+403,obs_301|2020|đường nguyễn văn hưởng,Obs_301,2020,Đường Nguyễn Văn Hưởng,301,both,False
+404,obs_302|2020|đường thảo điền,Obs_302,2020,Đường Thảo Điền,302,both,False
+405,obs_303|2020|đường nguyễn duy trinh,Obs_303,2020,Đường Nguyễn Duy Trinh,303,both,False
+406,obs_304|2024|đường nguyễn văn hưởng,Obs_304,2024,Đường Nguyễn Văn Hưởng,304,both,False
+407,obs_305|2024|đường nguyễn duy trinh,Obs_305,2024,Đường Nguyễn Duy Trinh,305,both,False
+409,obs_306|2024|đường lã xuân oai,Obs_306,2024,Đường Lã Xuân Oai,306,both,False
+411,obs_307|2024|đường lê văn việt,Obs_307,2024,Đường Lê Văn Việt,307,both,False
+412,obs_308|2024|đường dương văn cam,Obs_308,2024,Đường Dương Văn Cam,308,both,False
+413,obs_309|2024|đường đặng thị rành,Obs_309,2024,Đường Đặng Thị Rành,309,both,False
+54,obs_30|2023|đường nguyễn văn khối,Obs_30,2023,Đường Nguyễn Văn Khối,30,both,False
+414,obs_310|2024|đường hiệp bình,Obs_310,2024,Đường Hiệp Bình,310,both,False
+415,obs_311|2024|tỉnh lộ 43,Obs_311,2024,Tỉnh Lộ 43,311,both,False
+416,obs_312|2024|đường hồ văn tư,Obs_312,2024,Đường Hồ Văn Tư,312,both,False
+417,obs_313|2024|quốc lộ 13,Obs_313,2024,Quốc Lộ 13,313,both,False
+418,obs_314|2024|đường kha vạn câm,Obs_314,2024,Đường Kha Vạn Câm,314,both,False
+419,obs_315|2024|đường tô ngọc vân,Obs_315,2024,Đường Tô Ngọc Vân,315,both,False
+420,obs_316|2024|đường võ văn ngân,Obs_316,2024,Đường Võ Văn Ngân,316,both,False
+422,obs_317|2016|sân bay tân sơn nhất,Obs_317,2016,Sân bay Tân Sơn Nhất,317,both,False
+423,obs_318|2019|(đtck) khu biệt thự thảo điền,Obs_318,2019,(ĐTCK) Khu biệt thự Thảo Điền,318,both,False
+424,obs_319|2019|biệt thự dân cư trên đường nguyễn văn hương,Obs_319,2019,Biệt thự dân cư trên đường Nguyễn Văn Hương,319,both,False
+55,obs_31|2023|đường lê văn thọ,Obs_31,2023,Đường Lê Văn Thọ,31,both,False
+425,obs_320|2019|đường nguyễn hữu cảnh,Obs_320,2019,Đường Nguyễn Hữu Cảnh,320,both,False
+426,obs_321|2019|khu đô thị thảo thiểm,Obs_321,2019,Khu đô thị Thảo Thiểm,321,both,False
+427,obs_322|2019|khu phố him lam,Obs_322,2019,Khu phố Him Lam,322,both,False
+428,obs_323|2019|khu dân cư trung sơn,Obs_323,2019,Khu Dân Cư Trung Sơn,323,both,False
+429,obs_324|2019|khu hoàng diệu,Obs_324,2019,Khu Hoàng Diệu,324,both,False
+430,obs_325|2019|đường thảo điền,Obs_325,2019,Đường Thảo Điền,325,both,False
+431,obs_326|2019|đường lê văn lương,Obs_326,2019,Đường Lê Văn Lương,326,both,False
+432,obs_327|2019|ðường gò ô môi,Obs_327,2019,Ðường Gò Ô Môi,327,both,False
+433,obs_328|2019|quốc lộ 13,Obs_328,2019,Quốc Lộ 13,328,both,False
+434,obs_329|2019|cầu ông dầu,Obs_329,2019,Cầu Ông Dầu,329,both,False
+56,obs_32|2025|đường thanh đa,Obs_32,2025,Đường Thanh Đa,32,both,False
+435,obs_330|2019|đường võ văn ngân,Obs_330,2019,Đường Võ Văn Ngân,330,both,False
+436,obs_331|2019|đường tô ngọc vân,Obs_331,2019,Đường Tô Ngọc Vân,331,both,False
+437,obs_332|2019|đường kha vạn cân,Obs_332,2019,Đường Kha Vạn Cân,332,both,False
+438,obs_333|2019|đường song hành ql2,Obs_333,2019,Đường Song Hành QL2,333,both,False
+439,obs_334|2019|đường nguyễn ảnh thủ,Obs_334,2019,Đường Nguyễn Ảnh Thủ,334,both,False
+440,obs_335|2019|quốc lộ 22,Obs_335,2019,Quốc Lộ 22,335,both,False
+441,obs_336|2019|đường nguyễn xí,Obs_336,2019,Đường Nguyễn Xí,336,both,False
+442,obs_337|2019|đường ung văn khiêm,Obs_337,2019,Đường Ung Văn Khiêm,337,both,False
+443,obs_338|2019|đường tân hương,Obs_338,2019,Đường Tân Hương,338,both,False
+445,obs_339|2019|đường nguyễn hữu cảnh,Obs_339,2019,Đường Nguyễn Hữu Cảnh,339,both,False
+57,obs_33|2025|phường long nguyên,Obs_33,2025,Phường Long Nguyên,33,both,False
+446,obs_340|2019|đường nguyễn văn thương,Obs_340,2019,Đường Nguyễn Văn Thương,340,both,False
+447,obs_341|2019|đường hồ học lãm,Obs_341,2019,Đường Hồ Học lãm,341,both,False
+449,obs_342|2019|ấp 3 (quốc lộ 1),Obs_342,2019,Ấp 3 (Quốc Lộ 1),342,both,False
+450,obs_343|2019|xã tân kiên,Obs_343,2019,Xã Tân Kiên,343,both,False
+451,obs_344|2017|đường võ văn ngân,Obs_344,2017,Đường Võ Văn Ngân,344,both,False
+454,obs_345|2017|đường tô ngọc vân,Obs_345,2017,Đường Tô Ngọc Vân,345,both,False
+456,obs_346|2017|đường lê văn việt,Obs_346,2017,Đường Lê Văn Việt,346,both,False
+457,obs_347|2017|cầu rạch chiếc,Obs_347,2017,Cầu Rạch Chiếc,347,both,False
+458,obs_348|2025|đường huỳnh tấn phát,Obs_348,2025,Đường Huỳnh Tấn Phát,348,both,False
+459,obs_349|2025|đường nguyễn lương bằng,Obs_349,2025,Đường Nguyễn Lương Bằng,349,both,False
+58,obs_34|2012|đường lương định của,Obs_34,2012,Đường Lương Định Của,34,both,False
+461,obs_350|2025|đường 15b,Obs_350,2025,Đường 15B,350,both,False
+462,obs_351|2015|đường an dương vương,Obs_351,2015,Đường An Dương Vương,351,both,False
+464,obs_352|2015|đường tô hiệu,Obs_352,2015,Đường Tô Hiệu,352,both,False
+465,obs_353|2015|đường tân hòa đông,Obs_353,2015,Đường Tân Hòa Đông,353,both,False
+466,obs_354|2015|đường kinh dương vương,Obs_354,2015,Đường Kinh Dương Vương,354,both,False
+467,obs_355|2008|đường xô viết nghệ tĩnh,Obs_355,2008,Đường Xô Viết Nghệ Tĩnh,355,both,False
+469,obs_356|2008|đường thảo điền,Obs_356,2008,Đường Thảo Điền,356,both,False
+470,obs_357|2008|đường xa lộ hà nội,Obs_357,2008,Đường Xa Lộ Hà Nội,357,both,False
+471,obs_358|2008|đường ung văn khiêm,Obs_358,2008,Đường Ung Văn Khiêm,358,both,False
+472,obs_359|2008|mũi tàu đài liệt sĩ,Obs_359,2008,Mũi tàu Đài Liệt sĩ,359,both,False
+59,obs_35|2012|đường ngô tất tố,Obs_35,2012,Đường Ngô Tất Tố,35,both,False
+473,obs_360|2008|quốc lộ 1,Obs_360,2008,Quốc Lộ 1,360,both,False
+475,obs_361|2008|đường nguyễn hữu hào,Obs_361,2008,Đường Nguyễn Hữu Hào,361,both,False
+476,obs_362|2008|đường tôn thất thuyết,Obs_362,2008,Đường Tôn Thất Thuyết,362,both,False
+478,obs_363|2008|đường kinh dương vương,Obs_363,2008,Đường Kinh Dương Vương,363,both,False
+479,obs_364|2008|đường phạm thế hiển,Obs_364,2008,Đường Phạm Thế Hiển,364,both,False
+480,obs_365|2008|đường phú mỹ,Obs_365,2008,Đường Phú Mỹ,365,both,False
+482,obs_366|2008|đường nguyễn hữu cảnh,Obs_366,2008,Đường Nguyễn Hữu Cảnh,366,both,False
+483,obs_367|2008|đường nguyễn văn luông,Obs_367,2008,Đường Nguyễn Văn Luông,367,both,False
+484,obs_368|2008|khu phố 4,Obs_368,2008,Khu Phố 4,368,both,False
+485,obs_369|2026|đường quốc hương,Obs_369,2026,Đường Quốc Hương,369,both,False
+60,obs_36|2012|đường ngô tất tố,Obs_36,2012,Đường Ngô Tất Tố,36,both,False
+486,obs_370|2026|đường xuân thủy,Obs_370,2026,Đường Xuân Thủy,370,both,False
+487,obs_371|2026|đường lê văn việt,Obs_371,2026,Đường Lê Văn Việt,371,both,False
+488,obs_372|2026|đường r12,Obs_372,2026,Đường R12,372,both,False
+489,obs_373|2025|đường chu văn an,Obs_373,2025,Đường Chu Văn An,373,both,False
+490,obs_374|2025|đường dương văn cam,Obs_374,2025,Đường Dương Văn Cam,374,both,False
+491,obs_375|2025|đường phan huy ích,Obs_375,2025,Đường Phan Huy Ích,375,both,False
+492,obs_376|2025|đường hồ học lãm,Obs_376,2025,Đường Hồ Học Lãm,376,both,False
+493,obs_377|2025|đường sinco,Obs_377,2025,Đường SinCo,377,both,False
+494,obs_378|2025|đường võ văn kiệt,Obs_378,2025,Đường Võ Văn Kiệt,378,both,False
+495,obs_379|2025|đường số 17a,Obs_379,2025,Đường Số 17A,379,both,False
+61,obs_37|2012|đường ung văn khiêm,Obs_37,2012,Đường Ung Văn Khiêm,37,both,False
+496,obs_380|2025|đường mã lò,Obs_380,2025,Đường Mã Lò,380,both,False
+497,obs_381|2013|đường nguyễn văn quá,Obs_381,2013,Đường Nguyễn Văn Quá,381,both,False
+498,obs_382|2013|đường hòa bình,Obs_382,2013,Đường Hòa Bình,382,both,False
+499,obs_383|2013|đường đặng nguyên cẩn,Obs_383,2013,Đường Đặng Nguyên Cẩn,383,both,False
+500,obs_384|2013|đường tân hóa,Obs_384,2013,Đường Tân Hóa,384,both,False
+501,obs_385|2013|đường kinh dương vương,Obs_385,2013,Đường Kinh Dương Vương,385,both,False
+502,obs_386|2013|đường an dương vương,Obs_386,2013,Đường An Dương Vương,386,both,False
+503,obs_387|2013|bàu cát,Obs_387,2013,Bàu Cát,387,both,False
+504,obs_388|2013|đường âu cơ,Obs_388,2013,Đường Âu Cơ,388,both,False
+505,obs_389|2013|đường lạc long quân,Obs_389,2013,Đường Lạc Long Quân,389,both,False
+62,obs_38|2012|huỳnh tấn phát,Obs_38,2012,Huỳnh Tấn Phát,38,both,False
+506,obs_390|2013|đường cộng hoà,Obs_390,2013,Đường Cộng Hoà,390,both,False
+507,obs_391|2013|đường đinh bộ lĩnh,Obs_391,2013,Đường Đinh Bộ Lĩnh,391,both,False
+508,obs_392|2013|đường tân hóa,Obs_392,2013,Đường Tân Hóa,392,both,False
+509,obs_393|2013|đường hòa bình,Obs_393,2013,Đường Hòa Bình,393,both,False
+510,obs_394|2013|đường khuông việt,Obs_394,2013,Đường Khuông Việt,394,both,False
+511,obs_395|2013|đường bàu cát,Obs_395,2013,Đường Bàu Cát,395,both,False
+512,obs_396|2013|đường đồng đen,Obs_396,2013,Đường Đồng Đen,396,both,False
+513,obs_397|2013|đường nguyễn hữu cảnh,Obs_397,2013,Đường Nguyễn Hữu Cảnh,397,both,False
+514,obs_398|2013|đường ung văn khiêm,Obs_398,2013,Đường Ung Văn Khiêm,398,both,False
+515,obs_399|2013|đường thanh đa,Obs_399,2013,Đường Thanh Đa,399,both,False
+63,obs_39|2012|phường hiệp bình,Obs_39,2012,Phường Hiệp Bình,39,both,False
+7,obs_3|2025|đường huỳnh tấn phát,Obs_3,2025,Đường Huỳnh Tấn Phát,3,both,False
+516,obs_400|2010|đường lê lai,Obs_400,2010,Đường Lê Lai,400,both,False
+517,obs_401|2010|đường lê lợi,Obs_401,2010,Đường Lê Lợi,401,both,False
+518,obs_402|2010|đường nam kỳ khởi nghĩa,Obs_402,2010,Đường Nam Kỳ Khởi Nghĩa,402,both,False
+519,obs_403|2010|đường tôn thất thiệp,Obs_403,2010,Đường Tôn Thất Thiệp,403,both,False
+520,obs_404|2010|đường tôn thất đạm,Obs_404,2010,Đường Tôn Thất Đạm,404,both,False
+521,obs_405|2010|đường lê hồng phong,Obs_405,2010,Đường Lê Hồng Phong,405,both,False
+522,obs_406|2010|đường châu văn liêm,Obs_406,2010,Đường Châu Văn Liêm,406,both,False
+523,obs_407|2010|đường nguyễn văn cừ,Obs_407,2010,Đường Nguyễn Văn Cừ,407,both,False
+524,obs_408|2010|đường huỳnh tấn phát,Obs_408,2010,Đường Huỳnh Tấn Phát,408,both,False
+525,obs_409|2010|đường hòa bình,Obs_409,2010,Đường Hòa Bình,409,both,False
+65,obs_40|2012|hồ ngọc lãm,Obs_40,2012,Hồ Ngọc Lãm,40,both,False
+526,obs_410|2010|hàng xanh,Obs_410,2010,Hàng Xanh,410,both,False
+527,obs_411|2010|đường kha vạn cân,Obs_411,2010,Đường Kha Vạn Cân,411,both,False
+529,obs_412|2010|đường xô viết nghệ tĩnh,Obs_412,2010,Đường Xô Viết Nghệ Tĩnh,412,both,False
+531,obs_413|2010|đường ung văn khiêm,Obs_413,2010,Đường Ung Văn Khiêm,413,both,False
+532,obs_414|2010|đường nguyễn hữu cảnh,Obs_414,2010,Đường Nguyễn Hữu Cảnh,414,both,False
+533,obs_415|2010|đường ngô tất tố,Obs_415,2010,Đường Ngô Tất Tố,415,both,False
+534,obs_416|2010|đường trần khánh dư,Obs_416,2010,Đường Trần Khánh Dư,416,both,False
+535,obs_417|2010|cau cầu sài gòn,Obs_417,2010,Cau Cầu Sài Gòn,417,both,False
+539,obs_418|2010|đường an dương vương,Obs_418,2010,Đường An Dương Vương,418,both,False
+540,obs_419|2010|đường châu văn liêm,Obs_419,2010,Đường Châu Văn Liêm,419,both,False
+66,obs_41|2012|đại lộ võ văn kiệt,Obs_41,2012,Đại lộ Võ Văn Kiệt,41,both,False
+542,obs_420|2010|đường trần đại nghĩa,Obs_420,2010,Đường Trần Đại Nghĩa,420,both,False
+543,obs_421|2010|đường đinh bộ lĩn,Obs_421,2010,Đường Đinh Bộ Lĩn,421,both,False
+544,obs_422|2010|đường bạch đằng,Obs_422,2010,Đường Bạch Đằng,422,both,False
+545,obs_423|2010|đường xô viết nghệ tĩnh,Obs_423,2010,Đường Xô Viết Nghệ Tĩnh,423,both,False
+548,obs_424|2010|đường điện biên phủ,Obs_424,2010,Đường Điện Biên Phủ,424,both,False
+549,obs_425|2010|đường võ thị sáu - dinh tien hoang,Obs_425,2010,Đường Võ Thị Sáu - Dinh Tien Hoang,425,both,False
+67,obs_42|2012|kha vạn cân,Obs_42,2012,Kha Vạn Cân,42,both,False
+68,obs_43|2012|lê văn lương,Obs_43,2012,Lê Văn Lương,43,both,False
+69,obs_44|2012|phường 12,Obs_44,2012,Phường 12,44,both,False
+72,obs_45|2012|phường 13,Obs_45,2012,Phường 13,45,both,False
+73,obs_46|2012|tùng thiện vương,Obs_46,2012,Tùng Thiện Vương,46,both,False
+76,obs_47|2012|hưng phú street,Obs_47,2012,Hưng Phú Street,47,both,False
+77,obs_48|2012|tạ quang bửu,Obs_48,2012,Tạ Quang Bửu,48,both,False
+78,obs_49|2012|phạm thế hiển,Obs_49,2012,Phạm Thế Hiển,49,both,False
+9,obs_4|2025|đường lê văn lương,Obs_4,2025,Đường Lê Văn Lương,4,both,False
+81,obs_50|2016|pasteur-hàm nghị,Obs_50,2016,Pasteur-Hàm Nghị,50,both,False
+83,obs_51|2016|đường nguyễn hữu cảnh,Obs_51,2016,Đường Nguyễn Hữu Cảnh,51,both,False
+84,obs_52|2016|đường nguyễn duy trinh,Obs_52,2016,Đường Nguyễn Duy Trinh,52,both,False
+85,obs_53|2016|đường nam kỳ khởi nghĩa,Obs_53,2016,Đường Nam Kỳ Khởi Nghĩa,53,both,False
+86,obs_54|2016|đường trần hưng đạo,Obs_54,2016,Đường Trần Hưng Đạo,54,both,False
+87,obs_55|2016|đường phan đình giót,Obs_55,2016,Đường Phan Đình Giót,55,both,False
+88,obs_56|2016|đường nguyễn hồng đào,Obs_56,2016,Đường Nguyễn Hồng Đào,56,both,False
+89,obs_57|2016|đường lê đức thọ,Obs_57,2016,Đường Lê Đức Thọ,57,both,False
+90,obs_58|2016|đường quang trung,Obs_58,2016,Đường Quang Trung,58,both,False
+93,obs_59|2016|đường phạm hùng,Obs_59,2016,Đường Phạm Hùng,59,both,False
+10,obs_5|2025|đường phạm hữu lầu,Obs_5,2025,Đường Phạm Hữu Lầu,5,both,False
+94,obs_60|2016|đường huỳnh tấn phát,Obs_60,2016,Đường Huỳnh Tấn Phát,60,both,False
+95,obs_61|2016|đường trường sơn,Obs_61,2016,Đường Trường Sơn,61,both,False
+96,obs_62|2022|đường bùi viện,Obs_62,2022,Đường Bùi Viện,62,both,False
+97,obs_63|2022|đường cống quỳnh,Obs_63,2022,Đường Cống Quỳnh,63,both,False
+98,obs_64|2022|đường lê lai,Obs_64,2022,Đường Lê Lai,64,both,False
+99,obs_65|2022|đường lê lợi,Obs_65,2022,Đường Lê Lợi,65,both,False
+100,obs_66|2022|đường tô ngọc vân,Obs_66,2022,Đường Tô Ngọc Vân,66,both,False
+103,obs_67|2022|đường phan đình phùng,Obs_67,2022,Đường Phan Đình Phùng,67,both,False
+106,obs_68|2023|đường tô ngọc vân,Obs_68,2023,Đường Tô Ngọc Vân,68,both,False
+107,obs_69|2025|đường lê văn lương,Obs_69,2025,Đường Lê Văn Lương,69,both,False
+11,obs_6|2025|đường nguyễn bình,Obs_6,2025,Đường Nguyễn Bình,6,both,False
+108,obs_70|2025|đường trần xuân soạn,Obs_70,2025,Đường Trần Xuân Soạn,70,both,False
+109,obs_71|2025|đường nguyễn văn tạo,Obs_71,2025,Đường Nguyễn Văn Tạo,71,both,False
+110,obs_72|2025|đường trần xuân soạn,Obs_72,2025,Đường Trần Xuân Soạn,72,both,False
+111,obs_73|2025|đường nguyễn hữu cảnh,Obs_73,2025,Đường Nguyễn Hữu Cảnh,73,both,False
+113,obs_74|2025|đường huỳnh tấn phát,Obs_74,2025,Đường Huỳnh Tấn Phát,74,both,False
+114,obs_75|2025|đường lê văn lương,Obs_75,2025,Đường Lê Văn Lương,75,both,False
+116,obs_76|2011|đường lương định của,Obs_76,2011,Đường Lương Định Của,76,both,False
+117,obs_77|2011|đường ngô tất tố,Obs_77,2011,Đường Ngô Tất Tố,77,both,False
+118,obs_78|2011|đường huỳnh tấn phá,Obs_78,2011,Đường Huỳnh Tấn Phá,78,both,False
+119,obs_79|2011|đường nguyễn thị thập,Obs_79,2011,Đường Nguyễn Thị Thập,79,both,False
+12,obs_7|2025|đường nguyễn văn hưởng,Obs_7,2025,Đường Nguyễn Văn Hưởng,7,both,False
+121,obs_80|2011|đường lê văn lương,Obs_80,2011,Đường Lê Văn Lương,80,both,False
+122,obs_81|2011|đường bùi hữu nghĩa,Obs_81,2011,Đường Bùi Hữu Nghĩa,81,both,False
+123,obs_82|2011|đường phú mỹ,Obs_82,2011,Đường Phú Mỹ,82,both,False
+124,obs_83|2011|đường bến bình đông,Obs_83,2011,Đường Bến Bình Đông,83,both,False
+125,obs_84|2011|đường phạm thế hiển,Obs_84,2011,Đường Phạm Thế Hiển,84,both,False
+126,obs_85|2011|đường phan đình phùn,Obs_85,2011,Đường Phan Đình Phùn,85,both,False
+128,obs_86|2012|trường mầm non vành khuyên,Obs_86,2012,Trường Mầm non Vành Khuyên,86,both,False
+130,obs_87|2012|đường bến phú định,Obs_87,2012,Đường Bến Phú Định,87,both,False
+132,obs_88|2012|đường bến bình đông,Obs_88,2012,Đường Bến Bình Đông,88,both,False
+133,obs_89|2012|đường dương tử giang,Obs_89,2012,Đường Dương Tử Giang,89,both,False
+14,obs_8|2025|đường võ nguyên giáp,Obs_8,2025,Đường Võ Nguyên Giáp,8,both,False
+134,obs_90|2012|đường lương định của,Obs_90,2012,Đường Lương Định Của,90,both,False
+135,obs_91|2012|đường kha vạn cân,Obs_91,2012,Đường Kha Vạn Cân,91,both,False
+136,obs_92|2012|đường huỳnh tấn phát,Obs_92,2012,Đường Huỳnh Tấn Phát,92,both,False
+139,obs_93|2012|quốc lộ 1,Obs_93,2012,Quốc lộ 1,93,both,False
+140,obs_94|2012|đường dương đình cúc,Obs_94,2012,Đường Dương Đình Cúc,94,both,False
+143,obs_95|2012|khu vực bến bình đông,Obs_95,2012,Khu vực bến Bình Đông,95,both,False
+144,obs_96|2012|chợ thủ dầu một,Obs_96,2012,Chợ Thủ Dầu Một,96,both,False
+145,obs_97|2012|lái thiêu,Obs_97,2012,Lái Thiêu,97,both,False
+146,obs_98|2011|đường xô viết nghệ,Obs_98,2011,Đường Xô Viết Nghệ,98,both,False
+147,obs_99|2011|đường ngô tất tố,Obs_99,2011,Đường Ngô Tất Tố,99,both,False
+15,obs_9|2025|đường mai chí thọ,Obs_9,2025,Đường Mai Chí Thọ,9,both,False

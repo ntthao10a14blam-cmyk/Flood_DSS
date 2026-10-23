@@ -1,0 +1,12 @@
+INTEGRATED STAGING REPORT
+=========================
+Rows: 425
+Columns: 53
+Missing Water Distance: 0
+Missing Population Area: 8
+Missing Nearest Road: 0
+
+Data Quality Status:
+DataQualityStatus
+Valid     422
+Review      3

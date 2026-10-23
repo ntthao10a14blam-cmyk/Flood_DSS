@@ -1,0 +1,47 @@
+FLOOD EVENT CLEANING REPORT
+Original rows: 425
+Output rows: 425
+Review rows: 3
+
+ISSUE COUNTS:
+DuplicateOBJECTID: 0
+DuplicateObsID: 2
+DateYearMismatch: 1
+InvalidDepthRange: 0
+NegativeDepth: 0
+NegativeDuration: 0
+InvalidNumeric: 0
+InvalidDate: 0
+
+MISSING VALUES:
+OBJECTID                0
+Obs_ID                  0
+Date                   63
+Year                    0
+Location_Name           0
+Location_Type           0
+District_Mentioned      7
+Province              418
+Ward                   47
+Commune               397
+Current_Admin_Unit      5
+MinDepth_cm           314
+MaxDepth_cm           278
+Depth_Class             0
+Cause                   0
+Impact_Type             0
+Source_ID               0
+Source_Type             0
+Spatial_Precision       0
+Geocoding_Method        0
+Duration_hours        398
+Observation_Notes     359
+DuplicateOBJECTID       0
+DuplicateObsID          0
+DateYearMismatch        0
+InvalidDepthRange       0
+NegativeDepth           0
+NegativeDuration        0
+InvalidNumeric          0
+InvalidDate             0
+DataQualityStatus       0
