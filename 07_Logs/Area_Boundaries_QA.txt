@@ -1,0 +1,8 @@
+Nguồn: District_Codes_2019.csv (24 đối tượng)
+Tên quận/huyện: đối chiếu mã hành chính năm 2019 (Quyết định 124/2004/QĐ-TTg; danh sách quận/huyện 2019).
+Area_ID=D_Code; Area_km2=SUM_Dientich_k.
+BoundaryVersion=2019 (nhãn bộ dữ liệu; không phải ngày hiệu lực pháp lý).
+Không có dữ liệu ngày hiệu lực, để trống EffectiveFrom/EffectiveTo.
+24/24 mã đối chiếu; 0 trùng Area_ID+BoundaryVersion; sai khác tối đa mật độ tính lại: 4.3655745685100555e-11
+LƯU Ý: CSV chỉ có thuộc tính, không có hình học; cần giữ GPKG để phân tích GIS. Kiểm tra sự tương thích với địa giới các năm khác trước khi join.
+Nguồn đối chiếu: https://thuvienphapluat.vn/van-ban/Bo-may-hanh-chinh/Quyet-dinh-124-2004-QD-TTg-bang-danh-muc-ma-so-don-vi-hanh-chinh-Viet-Nam-52328.aspx
