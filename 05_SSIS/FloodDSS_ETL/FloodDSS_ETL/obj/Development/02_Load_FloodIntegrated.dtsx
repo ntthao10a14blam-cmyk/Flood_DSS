@@ -1,4 +1,4 @@
-﻿<?xml version="1.0"?>
+<?xml version="1.0"?>
 <DTS:Executable xmlns:DTS="www.microsoft.com/SqlServer/Dts"
   DTS:refId="Package"
   DTS:CreationDate="10/28/2026 7:31:27 PM"
@@ -11,8 +11,8 @@
   DTS:LocaleID="1066"
   DTS:ObjectName="02_Load_FloodIntegrated"
   DTS:PackageType="5"
-  DTS:VersionBuild="78"
-  DTS:VersionGUID="{B4D73ED8-F30B-4CBE-AD8D-EA45AED5B7BD}">
+  DTS:VersionBuild="81"
+  DTS:VersionGUID="{7A6B9DE2-8EE8-475B-8288-C328F7C98A34}">
   <DTS:Property
     DTS:Name="PackageFormatVersion">8</DTS:Property>
   <DTS:ConnectionManagers>
@@ -30,7 +30,7 @@
           DTS:RowDelimiter=""
           DTS:TextQualifier="_x003C_none_x003E_"
           DTS:CodePage="65001"
-          DTS:ConnectionString="D:\TAI_LIEU_BAI_GIANG\Datawarehouse\Flood_DSS\02_Staging_CSV\Integrated\Flood_Water_Population_Roads.csv">
+          DTS:ConnectionString="D:\Kho_du_lieu\Flood-DSS\02_Staging_CSV\Integrated\Flood_Water_Population_Roads.csv">
           <DTS:FlatFileColumns>
             <DTS:FlatFileColumn
               DTS:ColumnType="Delimited"
@@ -39,7 +39,7 @@
               DTS:DataType="129"
               DTS:TextQualified="True"
               DTS:ObjectName="fid"
-              DTS:DTSID="{E3CC0E9B-48B6-4496-AD30-9537CA5F12BC}"
+              DTS:DTSID="{8A9414C8-2FD0-412F-B67A-65DF21CA8DC6}"
               DTS:CreationName="" />
             <DTS:FlatFileColumn
               DTS:ColumnType="Delimited"
@@ -47,7 +47,7 @@
               DTS:DataType="20"
               DTS:TextQualified="True"
               DTS:ObjectName="OBJECTID"
-              DTS:DTSID="{6B500C42-79B1-4CAC-93C3-B63580EE5FEF}"
+              DTS:DTSID="{E1405BF4-218F-46BC-A0DE-BEFAB54304AD}"
               DTS:CreationName="" />
             <DTS:FlatFileColumn
               DTS:ColumnType="Delimited"
@@ -56,7 +56,7 @@
               DTS:DataType="129"
               DTS:TextQualified="True"
               DTS:ObjectName="Obs_id"
-              DTS:DTSID="{788F6542-C7B0-4E78-9BA2-9D81517A1731}"
+              DTS:DTSID="{A0C240BB-FACC-44A4-949F-BFBB1BD20CDC}"
               DTS:CreationName="" />
             <DTS:FlatFileColumn
               DTS:ColumnType="Delimited"
@@ -65,7 +65,7 @@
               DTS:DataType="129"
               DTS:TextQualified="True"
               DTS:ObjectName="Date"
-              DTS:DTSID="{3095F783-2788-439E-8661-29520A3F3744}"
+              DTS:DTSID="{2EB91700-7EA7-48AA-86AD-9BF33C1627EA}"
               DTS:CreationName="" />
             <DTS:FlatFileColumn
               DTS:ColumnType="Delimited"
@@ -74,7 +74,7 @@
               DTS:DataType="129"
               DTS:TextQualified="True"
               DTS:ObjectName="Year"
-              DTS:DTSID="{26B0EE53-385E-4638-BB1D-56D81B6AFB19}"
+              DTS:DTSID="{B80F2477-0DD6-4BFF-8C29-21E949A85D0B}"
               DTS:CreationName="" />
             <DTS:FlatFileColumn
               DTS:ColumnType="Delimited"
@@ -83,7 +83,7 @@
               DTS:DataType="129"
               DTS:TextQualified="True"
               DTS:ObjectName="Location_name"
-              DTS:DTSID="{AEDE7249-85CB-4F55-AFC0-861B95886012}"
+              DTS:DTSID="{7BD49437-2B5A-44F7-8214-F40E9DACBAA8}"
               DTS:CreationName="" />
             <DTS:FlatFileColumn
               DTS:ColumnType="Delimited"
@@ -92,7 +92,7 @@
               DTS:DataType="129"
               DTS:TextQualified="True"
               DTS:ObjectName="Location_type"
-              DTS:DTSID="{1E9D1BD8-0A5D-4810-97B4-1179B06FB731}"
+              DTS:DTSID="{BE55753D-5FE4-41A5-AE11-7983446F1188}"
               DTS:CreationName="" />
             <DTS:FlatFileColumn
               DTS:ColumnType="Delimited"
@@ -101,7 +101,7 @@
               DTS:DataType="129"
               DTS:TextQualified="True"
               DTS:ObjectName="District_mentioned"
-              DTS:DTSID="{0E72A8D9-F00D-4D7B-87BA-3DFCC6DA42DC}"
+              DTS:DTSID="{961201C8-9CAB-4FC8-B5BA-38463BD362C7}"
               DTS:CreationName="" />
             <DTS:FlatFileColumn
               DTS:ColumnType="Delimited"
@@ -110,7 +110,7 @@
               DTS:DataType="129"
               DTS:TextQualified="True"
               DTS:ObjectName="Ward"
-              DTS:DTSID="{97490163-9558-4066-9BBA-E73A3D298195}"
+              DTS:DTSID="{0036B49D-DB5F-43C7-87CC-F0D7782E4B89}"
               DTS:CreationName="" />
             <DTS:FlatFileColumn
               DTS:ColumnType="Delimited"
@@ -119,7 +119,7 @@
               DTS:DataType="129"
               DTS:TextQualified="True"
               DTS:ObjectName="Current_admin_unit"
-              DTS:DTSID="{233BDBC4-DF5E-47BC-8AA9-6252543C0267}"
+              DTS:DTSID="{F819F84F-962B-4154-9405-6139206529E1}"
               DTS:CreationName="" />
             <DTS:FlatFileColumn
               DTS:ColumnType="Delimited"
@@ -128,7 +128,7 @@
               DTS:DataType="129"
               DTS:TextQualified="True"
               DTS:ObjectName="Water_height_max_cm"
-              DTS:DTSID="{8E87B360-0D7E-472E-B8CD-23B346BB3908}"
+              DTS:DTSID="{DEA5A065-8D23-4491-BDA7-93CAE9A8829F}"
               DTS:CreationName="" />
             <DTS:FlatFileColumn
               DTS:ColumnType="Delimited"
@@ -137,7 +137,7 @@
               DTS:DataType="129"
               DTS:TextQualified="True"
               DTS:ObjectName="Depth_class"
-              DTS:DTSID="{254D2A06-924F-4E50-A9B3-5A1DD0CB3168}"
+              DTS:DTSID="{2C0EFF15-2E55-4A29-A3EC-D2F6F9155FA9}"
               DTS:CreationName="" />
             <DTS:FlatFileColumn
               DTS:ColumnType="Delimited"
@@ -146,7 +146,7 @@
               DTS:DataType="129"
               DTS:TextQualified="True"
               DTS:ObjectName="Cause"
-              DTS:DTSID="{2F9AC4C9-64CA-4C82-89C1-EAF578440BB3}"
+              DTS:DTSID="{8F146B44-C910-4F84-A28A-A7690E138493}"
               DTS:CreationName="" />
             <DTS:FlatFileColumn
               DTS:ColumnType="Delimited"
@@ -155,7 +155,7 @@
               DTS:DataType="129"
               DTS:TextQualified="True"
               DTS:ObjectName="Impact_type"
-              DTS:DTSID="{CA14F713-28F0-40F1-A014-9A64F1E952E6}"
+              DTS:DTSID="{A1C2FB67-FC68-44B4-8D2A-19778383BE4A}"
               DTS:CreationName="" />
             <DTS:FlatFileColumn
               DTS:ColumnType="Delimited"
@@ -164,7 +164,7 @@
               DTS:DataType="129"
               DTS:TextQualified="True"
               DTS:ObjectName="Source_id"
-              DTS:DTSID="{40758050-AEE4-46B1-9AE7-B16F267940B3}"
+              DTS:DTSID="{C7F62A50-CA4A-4017-8E56-176FB47487BD}"
               DTS:CreationName="" />
             <DTS:FlatFileColumn
               DTS:ColumnType="Delimited"
@@ -173,7 +173,7 @@
               DTS:DataType="129"
               DTS:TextQualified="True"
               DTS:ObjectName="Source_type"
-              DTS:DTSID="{D69E375D-9BE9-4050-8796-113C1AAAB2E7}"
+              DTS:DTSID="{4FE5EF16-E6D0-4410-BD64-3B44DF2CF8DB}"
               DTS:CreationName="" />
             <DTS:FlatFileColumn
               DTS:ColumnType="Delimited"
@@ -182,7 +182,7 @@
               DTS:DataType="129"
               DTS:TextQualified="True"
               DTS:ObjectName="Spatial_precision"
-              DTS:DTSID="{8FF44BA2-BE12-49C3-9774-388440E7C0BB}"
+              DTS:DTSID="{D4B79124-79FA-4F95-AD38-774C2DA1A574}"
               DTS:CreationName="" />
             <DTS:FlatFileColumn
               DTS:ColumnType="Delimited"
@@ -191,7 +191,7 @@
               DTS:DataType="129"
               DTS:TextQualified="True"
               DTS:ObjectName="Geocoding_method"
-              DTS:DTSID="{EDCB75D0-8DCC-41DB-9353-560CCEAA3155}"
+              DTS:DTSID="{29A83DDA-7BD1-4E5D-96EA-70DF66844313}"
               DTS:CreationName="" />
             <DTS:FlatFileColumn
               DTS:ColumnType="Delimited"
@@ -200,7 +200,7 @@
               DTS:DataType="129"
               DTS:TextQualified="True"
               DTS:ObjectName="Observation_notes"
-              DTS:DTSID="{EEA0FB08-E929-4752-B7A2-2D4B1E1473E9}"
+              DTS:DTSID="{63C62F42-DF38-49D9-964C-9036C83316E9}"
               DTS:CreationName="" />
             <DTS:FlatFileColumn
               DTS:ColumnType="Delimited"
@@ -209,7 +209,7 @@
               DTS:DataType="129"
               DTS:TextQualified="True"
               DTS:ObjectName="Commune"
-              DTS:DTSID="{4E765ECC-AB4A-4FD7-BF18-C3B443191840}"
+              DTS:DTSID="{2D4C094E-84A5-492D-9A11-17A90E107AC2}"
               DTS:CreationName="" />
             <DTS:FlatFileColumn
               DTS:ColumnType="Delimited"
@@ -218,7 +218,7 @@
               DTS:DataType="129"
               DTS:TextQualified="True"
               DTS:ObjectName="Province"
-              DTS:DTSID="{8AE1D511-91F5-4D05-B9CF-B686518B31BA}"
+              DTS:DTSID="{9F5AB498-6223-4FD5-9A2C-51B53D4816E7}"
               DTS:CreationName="" />
             <DTS:FlatFileColumn
               DTS:ColumnType="Delimited"
@@ -227,7 +227,7 @@
               DTS:DataType="129"
               DTS:TextQualified="True"
               DTS:ObjectName="Water_height_min_cm"
-              DTS:DTSID="{AFF7A69E-B55E-49F3-9681-D47C0499C898}"
+              DTS:DTSID="{31FC200E-8813-48C4-B9FA-760EDF02C01F}"
               DTS:CreationName="" />
             <DTS:FlatFileColumn
               DTS:ColumnType="Delimited"
@@ -236,7 +236,7 @@
               DTS:DataType="129"
               DTS:TextQualified="True"
               DTS:ObjectName="Duration_hours"
-              DTS:DTSID="{8C39F694-35D5-47EB-8451-9578DC17D753}"
+              DTS:DTSID="{561BC69A-EAC2-45C6-A8FA-CED8634709BE}"
               DTS:CreationName="" />
             <DTS:FlatFileColumn
               DTS:ColumnType="Delimited"
@@ -245,7 +245,7 @@
               DTS:DataType="129"
               DTS:TextQualified="True"
               DTS:ObjectName="Longitude"
-              DTS:DTSID="{8B8CA646-175A-47EB-B147-72DD4EFBFD8E}"
+              DTS:DTSID="{A7B312BD-2D85-4982-8D3F-245DD8ABD2EE}"
               DTS:CreationName="" />
             <DTS:FlatFileColumn
               DTS:ColumnType="Delimited"
@@ -254,7 +254,7 @@
               DTS:DataType="129"
               DTS:TextQualified="True"
               DTS:ObjectName="Latitude"
-              DTS:DTSID="{51B934E5-ECEF-45DA-B7C9-F8DB79777DD1}"
+              DTS:DTSID="{93AE4AF0-FCF5-49FD-9DDB-314F21C98939}"
               DTS:CreationName="" />
             <DTS:FlatFileColumn
               DTS:ColumnType="Delimited"
@@ -263,7 +263,7 @@
               DTS:DataType="129"
               DTS:TextQualified="True"
               DTS:ObjectName="Missing_Date"
-              DTS:DTSID="{65A20692-563F-4D16-A76F-D9277F0A9587}"
+              DTS:DTSID="{582AC558-5EF9-49C5-A72A-39C34B9E133F}"
               DTS:CreationName="" />
             <DTS:FlatFileColumn
               DTS:ColumnType="Delimited"
@@ -272,7 +272,7 @@
               DTS:DataType="129"
               DTS:TextQualified="True"
               DTS:ObjectName="Missing_Depth"
-              DTS:DTSID="{38829DAA-5298-4C6B-B9AF-1574D4953123}"
+              DTS:DTSID="{99B42657-E435-4035-9C79-202BB2D79740}"
               DTS:CreationName="" />
             <DTS:FlatFileColumn
               DTS:ColumnType="Delimited"
@@ -281,7 +281,7 @@
               DTS:DataType="129"
               DTS:TextQualified="True"
               DTS:ObjectName="Duplicate_Obs_id"
-              DTS:DTSID="{C6F823CB-89DD-4915-AC41-402DE1E0BCA2}"
+              DTS:DTSID="{3E6BF884-FB39-4E59-8225-F09675ED353D}"
               DTS:CreationName="" />
             <DTS:FlatFileColumn
               DTS:ColumnType="Delimited"
@@ -290,7 +290,7 @@
               DTS:DataType="129"
               DTS:TextQualified="True"
               DTS:ObjectName="Invalid_Coordinates"
-              DTS:DTSID="{F3DE87D0-B84D-4B37-B3D0-1F174846E689}"
+              DTS:DTSID="{319BDD9B-8C37-46EE-81A0-8F42476A6C50}"
               DTS:CreationName="" />
             <DTS:FlatFileColumn
               DTS:ColumnType="Delimited"
@@ -299,7 +299,7 @@
               DTS:DataType="129"
               DTS:TextQualified="True"
               DTS:ObjectName="Invalid_Depth_Range"
-              DTS:DTSID="{446EB11F-7D6D-496A-96A0-2E79C20AB7E7}"
+              DTS:DTSID="{3D3BA3F9-2A42-4D02-8C5F-85D41DCADB9E}"
               DTS:CreationName="" />
             <DTS:FlatFileColumn
               DTS:ColumnType="Delimited"
@@ -308,7 +308,7 @@
               DTS:DataType="129"
               DTS:TextQualified="True"
               DTS:ObjectName="Year_Date_Mismatch"
-              DTS:DTSID="{C9650F49-C04E-4999-B392-31AB6ABFCED6}"
+              DTS:DTSID="{889823A2-0A75-44E6-B463-5484C22011CD}"
               DTS:CreationName="" />
             <DTS:FlatFileColumn
               DTS:ColumnType="Delimited"
@@ -317,7 +317,7 @@
               DTS:DataType="129"
               DTS:TextQualified="True"
               DTS:ObjectName="Province_Joined"
-              DTS:DTSID="{74E57979-3F14-4C9D-8978-B0F560E708CB}"
+              DTS:DTSID="{E30BA32F-BEF0-478A-AF4C-6C16A9EFF235}"
               DTS:CreationName="" />
             <DTS:FlatFileColumn
               DTS:ColumnType="Delimited"
@@ -326,7 +326,7 @@
               DTS:DataType="129"
               DTS:TextQualified="True"
               DTS:ObjectName="Water_ID"
-              DTS:DTSID="{6FEB32FE-F0A6-4064-A1F0-69C136E27345}"
+              DTS:DTSID="{33B1F69B-DE43-47D7-84DB-8699AC8C7387}"
               DTS:CreationName="" />
             <DTS:FlatFileColumn
               DTS:ColumnType="Delimited"
@@ -335,7 +335,7 @@
               DTS:DataType="129"
               DTS:TextQualified="True"
               DTS:ObjectName="DistanceToWater_m"
-              DTS:DTSID="{7C07AAD4-39BB-424B-8695-CCE78EE0432A}"
+              DTS:DTSID="{0CFE9237-5868-4559-A072-AF3E9EA693D5}"
               DTS:CreationName="" />
             <DTS:FlatFileColumn
               DTS:ColumnType="Delimited"
@@ -344,7 +344,7 @@
               DTS:DataType="129"
               DTS:TextQualified="True"
               DTS:ObjectName="Population_Area_ID"
-              DTS:DTSID="{AC19B5CC-E336-44AD-853D-DDA7EA705DAB}"
+              DTS:DTSID="{66723DE6-63A5-4905-8AA1-50CCFB5CE0F6}"
               DTS:CreationName="" />
             <DTS:FlatFileColumn
               DTS:ColumnType="Delimited"
@@ -353,7 +353,7 @@
               DTS:DataType="129"
               DTS:TextQualified="True"
               DTS:ObjectName="Population_Area_Name"
-              DTS:DTSID="{8EF25C81-B8C8-4ECD-A5D8-27BCD90FA5FD}"
+              DTS:DTSID="{CE5ACACE-C007-48A1-A665-D3A4E70CC893}"
               DTS:CreationName="" />
             <DTS:FlatFileColumn
               DTS:ColumnType="Delimited"
@@ -362,7 +362,7 @@
               DTS:DataType="129"
               DTS:TextQualified="True"
               DTS:ObjectName="Population_ReferenceYear"
-              DTS:DTSID="{507CC6E5-7BB6-45D8-BBDD-A190FEDB484A}"
+              DTS:DTSID="{1568F34A-A296-407F-A525-9B68C90EAB2C}"
               DTS:CreationName="" />
             <DTS:FlatFileColumn
               DTS:ColumnType="Delimited"
@@ -371,7 +371,7 @@
               DTS:DataType="129"
               DTS:TextQualified="True"
               DTS:ObjectName="Population_BoundaryVersion"
-              DTS:DTSID="{AE266258-80F7-4ECD-A3C5-52910B49A934}"
+              DTS:DTSID="{81EADCE7-0397-4B1E-B39C-5DCEA90CE82B}"
               DTS:CreationName="" />
             <DTS:FlatFileColumn
               DTS:ColumnType="Delimited"
@@ -380,7 +380,7 @@
               DTS:DataType="129"
               DTS:TextQualified="True"
               DTS:ObjectName="Population_2019"
-              DTS:DTSID="{018EECBE-A6E3-4477-B1F3-44E40DD541C1}"
+              DTS:DTSID="{73B0A518-B290-48E0-B0A9-3C89DA68BAFF}"
               DTS:CreationName="" />
             <DTS:FlatFileColumn
               DTS:ColumnType="Delimited"
@@ -389,7 +389,7 @@
               DTS:DataType="129"
               DTS:TextQualified="True"
               DTS:ObjectName="Population_Area_km2"
-              DTS:DTSID="{1143CC21-71D9-4292-96FE-569445204486}"
+              DTS:DTSID="{1FAC5B1A-A3EC-4298-A240-8761B607EB5A}"
               DTS:CreationName="" />
             <DTS:FlatFileColumn
               DTS:ColumnType="Delimited"
@@ -398,7 +398,7 @@
               DTS:DataType="129"
               DTS:TextQualified="True"
               DTS:ObjectName="PopulationDensity_2019"
-              DTS:DTSID="{3B69D3EB-BD1F-400D-8D84-F053C770A823}"
+              DTS:DTSID="{ABA0D902-9DBA-4151-97CC-556862492680}"
               DTS:CreationName="" />
             <DTS:FlatFileColumn
               DTS:ColumnType="Delimited"
@@ -407,7 +407,7 @@
               DTS:DataType="129"
               DTS:TextQualified="True"
               DTS:ObjectName="Population_Join_Status"
-              DTS:DTSID="{49018F73-F1FF-4FCC-94A0-D3BB952BEDEA}"
+              DTS:DTSID="{2F39FAF9-1BC0-4B3C-B750-0E3042F6F536}"
               DTS:CreationName="" />
             <DTS:FlatFileColumn
               DTS:ColumnType="Delimited"
@@ -416,7 +416,7 @@
               DTS:DataType="129"
               DTS:TextQualified="True"
               DTS:ObjectName="Nearest_Area_ID"
-              DTS:DTSID="{4256ADD0-A0AC-4135-BFDF-364F5CAE1282}"
+              DTS:DTSID="{D98C7713-D93C-4903-9DB1-42B9811B06FC}"
               DTS:CreationName="" />
             <DTS:FlatFileColumn
               DTS:ColumnType="Delimited"
@@ -425,7 +425,7 @@
               DTS:DataType="129"
               DTS:TextQualified="True"
               DTS:ObjectName="DistanceToNearestDistrict_m"
-              DTS:DTSID="{FD1ED3AB-A712-4600-B2C7-D7AE4AF217BE}"
+              DTS:DTSID="{56256EEA-8D4F-4C85-9C0D-093C0C0C670B}"
               DTS:CreationName="" />
             <DTS:FlatFileColumn
               DTS:ColumnType="Delimited"
@@ -434,7 +434,7 @@
               DTS:DataType="129"
               DTS:TextQualified="True"
               DTS:ObjectName="Population_Review_Note"
-              DTS:DTSID="{F6401FBB-7D5C-417D-BD03-76329B085F5C}"
+              DTS:DTSID="{D25698D6-6B34-420F-BCB2-F53A5B6E20AC}"
               DTS:CreationName="" />
             <DTS:FlatFileColumn
               DTS:ColumnType="Delimited"
@@ -443,7 +443,7 @@
               DTS:DataType="129"
               DTS:TextQualified="True"
               DTS:ObjectName="Nearest_Road_ID"
-              DTS:DTSID="{11BFA9CA-E109-4734-B253-D80AA74AFFD2}"
+              DTS:DTSID="{41A795A2-9F68-403A-82F6-00BAA426B3A4}"
               DTS:CreationName="" />
             <DTS:FlatFileColumn
               DTS:ColumnType="Delimited"
@@ -452,7 +452,7 @@
               DTS:DataType="129"
               DTS:TextQualified="True"
               DTS:ObjectName="Nearest_Road_Name"
-              DTS:DTSID="{7320E1FF-E87A-4A20-9277-327A0E039179}"
+              DTS:DTSID="{C89BBCC7-8B68-4508-AA68-01084CC8EE04}"
               DTS:CreationName="" />
             <DTS:FlatFileColumn
               DTS:ColumnType="Delimited"
@@ -461,7 +461,7 @@
               DTS:DataType="129"
               DTS:TextQualified="True"
               DTS:ObjectName="Nearest_Road_Mentioned_Years"
-              DTS:DTSID="{B91EEC52-4EC3-42BD-BEAA-2A99EC75FCB1}"
+              DTS:DTSID="{FF7A3B6D-433B-43E2-AF69-EA8791F31F71}"
               DTS:CreationName="" />
             <DTS:FlatFileColumn
               DTS:ColumnType="Delimited"
@@ -470,7 +470,7 @@
               DTS:DataType="129"
               DTS:TextQualified="True"
               DTS:ObjectName="DistanceToNearestRoad_m"
-              DTS:DTSID="{297F3241-E49B-4576-B8AB-78C107818AE2}"
+              DTS:DTSID="{F34BFBF6-CD73-4ABE-B076-32F021107B4A}"
               DTS:CreationName="" />
             <DTS:FlatFileColumn
               DTS:ColumnType="Delimited"
@@ -479,7 +479,7 @@
               DTS:DataType="129"
               DTS:TextQualified="True"
               DTS:ObjectName="Road_Distance_Band"
-              DTS:DTSID="{B071A290-066D-442B-B8D9-3E1228495674}"
+              DTS:DTSID="{50398357-1AD6-4393-A3E5-C22DDB50459F}"
               DTS:CreationName="" />
             <DTS:FlatFileColumn
               DTS:ColumnType="Delimited"
@@ -488,22 +488,22 @@
               DTS:DataType="129"
               DTS:TextQualified="True"
               DTS:ObjectName="Road_Match_Status"
-              DTS:DTSID="{5B5A297B-C728-4A1B-8668-2B9470F3C9B1}"
+              DTS:DTSID="{DC61E44C-64E9-4560-BFD5-9998B244A114}"
               DTS:CreationName="" />
           </DTS:FlatFileColumns>
         </DTS:ConnectionManager>
       </DTS:ObjectData>
     </DTS:ConnectionManager>
     <DTS:ConnectionManager
-      DTS:refId="Package.ConnectionManagers[localhost\MSSQL2022_NHUNG.Flood_DSS]"
+      DTS:refId="Package.ConnectionManagers[localhost-DW2025]"
       DTS:CreationName="OLEDB"
       DTS:DTSID="{F9EBF415-AEB1-4771-9F14-023FE2271E4F}"
-      DTS:ObjectName="localhost\MSSQL2022_NHUNG.Flood_DSS">
+      DTS:ObjectName="localhost-DW2025">
       <DTS:ObjectData>
         <DTS:ConnectionManager
           DTS:ConnectRetryCount="1"
           DTS:ConnectRetryInterval="5"
-          DTS:ConnectionString="Data Source=localhost\MSSQL2022_NHUNG;Initial Catalog=Flood_DSS;Provider=MSOLEDBSQL.1;Integrated Security=SSPI;Auto Translate=False;Application Name=SSIS-02_Load_FloodIntegrated-{F9EBF415-AEB1-4771-9F14-023FE2271E4F}localhost\MSSQL2022_NHUNG.Flood_DSS;" />
+          DTS:ConnectionString="Data Source=localhost\DW2025;Initial Catalog=Flood_DSS;Provider=MSOLEDBSQL.1;Integrated Security=SSPI;Auto Translate=False;Application Name=SSIS-02_Load_FloodIntegrated-{F9EBF415-AEB1-4771-9F14-023FE2271E4F}localhost\MSSQL2022_NHUNG.Flood_DSS;" />
       </DTS:ObjectData>
     </DTS:ConnectionManager>
   </DTS:ConnectionManagers>
@@ -1416,8 +1416,8 @@
               <connections>
                 <connection
                   refId="Package\DFT_LoadIntegrated\DST_FloodIntegrated.Connections[OleDbConnection]"
-                  connectionManagerID="Package.ConnectionManagers[localhost\MSSQL2022_NHUNG.Flood_DSS]"
-                  connectionManagerRefId="Package.ConnectionManagers[localhost\MSSQL2022_NHUNG.Flood_DSS]"
+                  connectionManagerID="Package.ConnectionManagers[localhost-DW2025]"
+                  connectionManagerRefId="Package.ConnectionManagers[localhost-DW2025]"
                   description="The OLE DB runtime connection used to access the database."
                   name="OleDbConnection" />
               </connections>
@@ -2152,8 +2152,8 @@ where [refTable].[OBJECTID] = ?</property>
               <connections>
                 <connection
                   refId="Package\DFT_LoadIntegrated\Lookup.Connections[OleDbConnection]"
-                  connectionManagerID="Package.ConnectionManagers[localhost\MSSQL2022_NHUNG.Flood_DSS]"
-                  connectionManagerRefId="Package.ConnectionManagers[localhost\MSSQL2022_NHUNG.Flood_DSS]"
+                  connectionManagerID="Package.ConnectionManagers[localhost-DW2025]"
+                  connectionManagerRefId="Package.ConnectionManagers[localhost-DW2025]"
                   description="Connection manager used to access lookup data."
                   name="OleDbConnection" />
               </connections>
@@ -8795,25 +8795,25 @@ AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=]]></arrayElement>
           Id="Package\DFT_LoadIntegrated\Sort"
           TopLeft="455.000000968576,202.117646916721" />
         <NodeLayout
-          Size="178.4,41.6"
-          Id="Package\DFT_LoadIntegrated\SRC_FloodIntegrated"
-          TopLeft="66.4285715699805,59.6470587712465" />
+          Size="112.8,41.6"
+          Id="Package\DFT_LoadIntegrated\Lookup"
+          TopLeft="632.628572368257,201.352941035038" />
         <NodeLayout
           Size="162.4,41.6"
           Id="Package\DFT_LoadIntegrated\Script Component"
           TopLeft="201.371428972848,214.917646871141" />
         <NodeLayout
           Size="178.4,41.6"
-          Id="Package\DFT_LoadIntegrated\DST_FloodIntegrated"
-          TopLeft="747.142858733328,51.99999995442" />
-        <NodeLayout
-          Size="112.8,41.6"
-          Id="Package\DFT_LoadIntegrated\Lookup"
-          TopLeft="632.628572368257,201.352941035038" />
+          Id="Package\DFT_LoadIntegrated\SRC_FloodIntegrated"
+          TopLeft="66.4285715699805,59.6470587712465" />
         <NodeLayout
           Size="155.2,41.6"
           Id="Package\DFT_LoadIntegrated\Data Conversion"
           TopLeft="339.285715007965,142.235293992972" />
+        <NodeLayout
+          Size="178.4,41.6"
+          Id="Package\DFT_LoadIntegrated\DST_FloodIntegrated"
+          TopLeft="747.142858733328,51.99999995442" />
         <EdgeLayout
           Id="Package\DFT_LoadIntegrated.Paths[Sort Output]"
           TopLeft="552.600000968576,222.53529397588">
@@ -8972,25 +8972,12 @@ AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=]]></arrayElement>
     </LayoutInfo>
   </TaskHost>
   <PipelineComponentMetadata
-    design-time-name="Package\DFT_LoadIntegrated\DST_FloodIntegrated">
-    <Properties>
-      <Property>
-        <Name>DataSourceViewID</Name>
-      </Property>
-      <Property>
-        <Name>TableInfoObjectType</Name>
-        <Value
-          type="q2:string">Table</Value>
-      </Property>
-    </Properties>
-  </PipelineComponentMetadata>
-  <PipelineComponentMetadata
     design-time-name="Package\DFT_LoadIntegrated\Lookup">
     <Properties>
       <Property>
         <Name>OverwriteParamsSQLProp</Name>
         <Value
-          type="q2:boolean">false</Value>
+          type="q2:string">false</Value>
       </Property>
       <Property>
         <Name>UsedTableName</Name>
@@ -9004,6 +8991,19 @@ AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=]]></arrayElement>
       </Property>
       <Property>
         <Name>DataSourceViewID</Name>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\DFT_LoadIntegrated\DST_FloodIntegrated">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Table</Value>
       </Property>
     </Properties>
   </PipelineComponentMetadata>

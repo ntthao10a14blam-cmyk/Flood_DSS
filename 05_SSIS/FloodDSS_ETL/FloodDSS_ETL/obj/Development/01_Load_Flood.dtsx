@@ -1,4 +1,4 @@
-﻿<?xml version="1.0"?>
+<?xml version="1.0"?>
 <DTS:Executable xmlns:DTS="www.microsoft.com/SqlServer/Dts"
   DTS:refId="Package"
   DTS:CreationDate="10/26/2026 9:18:11 PM"
@@ -11,8 +11,8 @@
   DTS:LocaleID="1066"
   DTS:ObjectName="01_Load_Flood"
   DTS:PackageType="5"
-  DTS:VersionBuild="100"
-  DTS:VersionGUID="{D7081149-7778-4304-AE4C-CE93E72DEAF2}">
+  DTS:VersionBuild="102"
+  DTS:VersionGUID="{E019E263-92AB-4162-BD5A-DA3A8C5AD522}">
   <DTS:Property
     DTS:Name="PackageFormatVersion">8</DTS:Property>
   <DTS:ConnectionManagers>
@@ -354,7 +354,7 @@
           DTS:RowDelimiter=""
           DTS:TextQualifier="_x003C_none_x003E_"
           DTS:CodePage="65001"
-          DTS:ConnectionString="D:\TAI_LIEU_BAI_GIANG\Datawarehouse\Flood_DSS\02_Staging_CSV\Flood\Flood_Staging_Final.csv">
+          DTS:ConnectionString="D:\Kho_du_lieu\Flood-DSS\02_Staging_CSV\Flood\Flood_Staging_Final.csv">
           <DTS:FlatFileColumns>
             <DTS:FlatFileColumn
               DTS:ColumnType="Delimited"
@@ -363,7 +363,7 @@
               DTS:DataType="129"
               DTS:TextQualified="True"
               DTS:ObjectName="fid"
-              DTS:DTSID="{0B73388C-70CE-467C-A2AE-85018F5FA2B6}"
+              DTS:DTSID="{AEA75991-9B48-46B3-8F66-FCC322CA622C}"
               DTS:CreationName="" />
             <DTS:FlatFileColumn
               DTS:ColumnType="Delimited"
@@ -372,7 +372,7 @@
               DTS:DataType="129"
               DTS:TextQualified="True"
               DTS:ObjectName="OBJECTID"
-              DTS:DTSID="{C844FA4C-6D39-4B58-A69E-0DF1EF8DF44E}"
+              DTS:DTSID="{5B3D8B8A-35C0-4367-A66F-9F2FF2045229}"
               DTS:CreationName="" />
             <DTS:FlatFileColumn
               DTS:ColumnType="Delimited"
@@ -381,7 +381,7 @@
               DTS:DataType="130"
               DTS:TextQualified="True"
               DTS:ObjectName="Obs_id"
-              DTS:DTSID="{1A628B6D-E425-4587-834E-5C31FEE38D28}"
+              DTS:DTSID="{F4D752B5-98C2-4DE4-9271-8DA2F1CB2AF9}"
               DTS:CreationName="" />
             <DTS:FlatFileColumn
               DTS:ColumnType="Delimited"
@@ -390,7 +390,7 @@
               DTS:DataType="129"
               DTS:TextQualified="True"
               DTS:ObjectName="Date"
-              DTS:DTSID="{9C5944AC-5FA5-4CE2-922C-39996701BEB8}"
+              DTS:DTSID="{235E3E9D-1E71-4259-AA19-AA1D8E351E95}"
               DTS:CreationName="" />
             <DTS:FlatFileColumn
               DTS:ColumnType="Delimited"
@@ -399,7 +399,7 @@
               DTS:DataType="129"
               DTS:TextQualified="True"
               DTS:ObjectName="Year"
-              DTS:DTSID="{3173DE84-9A24-4ECA-99A0-8605F15B0F81}"
+              DTS:DTSID="{129AE89F-4D3B-488F-A70A-DD43F4F2FA80}"
               DTS:CreationName="" />
             <DTS:FlatFileColumn
               DTS:ColumnType="Delimited"
@@ -408,7 +408,7 @@
               DTS:DataType="130"
               DTS:TextQualified="True"
               DTS:ObjectName="Location_name"
-              DTS:DTSID="{405C22B9-BA32-4571-838C-0D7231120A62}"
+              DTS:DTSID="{ADA95642-A50B-4A70-99F0-BFB30E48DB80}"
               DTS:CreationName="" />
             <DTS:FlatFileColumn
               DTS:ColumnType="Delimited"
@@ -417,7 +417,7 @@
               DTS:DataType="130"
               DTS:TextQualified="True"
               DTS:ObjectName="Location_type"
-              DTS:DTSID="{DF7E86E4-D7BB-48B3-A958-F9471851CE01}"
+              DTS:DTSID="{827D131D-DBF9-4127-9BB0-5CB1A1BB669B}"
               DTS:CreationName="" />
             <DTS:FlatFileColumn
               DTS:ColumnType="Delimited"
@@ -426,7 +426,7 @@
               DTS:DataType="130"
               DTS:TextQualified="True"
               DTS:ObjectName="District_mentioned"
-              DTS:DTSID="{1320C596-A047-4A39-8C7E-81F6694B05AD}"
+              DTS:DTSID="{29569C9A-BF8D-4FA0-8AC9-9B20BA394713}"
               DTS:CreationName="" />
             <DTS:FlatFileColumn
               DTS:ColumnType="Delimited"
@@ -435,7 +435,7 @@
               DTS:DataType="130"
               DTS:TextQualified="True"
               DTS:ObjectName="Ward"
-              DTS:DTSID="{488C8032-C283-4D19-94A9-24754A0AC2B3}"
+              DTS:DTSID="{45A305EB-33DD-484F-B8FF-FEBF67DDC84D}"
               DTS:CreationName="" />
             <DTS:FlatFileColumn
               DTS:ColumnType="Delimited"
@@ -444,7 +444,7 @@
               DTS:DataType="130"
               DTS:TextQualified="True"
               DTS:ObjectName="Current_admin_unit"
-              DTS:DTSID="{5DB29F42-66A4-49D0-AE77-CA0BEEBEAD18}"
+              DTS:DTSID="{7ED857CA-9A62-4E14-AE4B-56AEDA7C71F4}"
               DTS:CreationName="" />
             <DTS:FlatFileColumn
               DTS:ColumnType="Delimited"
@@ -453,7 +453,7 @@
               DTS:DataType="129"
               DTS:TextQualified="True"
               DTS:ObjectName="Water_height_max_cm"
-              DTS:DTSID="{C821CFA9-D36A-430A-9BF9-5C3C27C975F3}"
+              DTS:DTSID="{22B53487-F7BC-4B1D-8A29-A14BB5AFB376}"
               DTS:CreationName="" />
             <DTS:FlatFileColumn
               DTS:ColumnType="Delimited"
@@ -462,7 +462,7 @@
               DTS:DataType="130"
               DTS:TextQualified="True"
               DTS:ObjectName="Depth_class"
-              DTS:DTSID="{5DF6D6D0-EB02-4876-9A47-AF149E392A68}"
+              DTS:DTSID="{9A86F70C-DB89-4F26-A9BB-5785F091104F}"
               DTS:CreationName="" />
             <DTS:FlatFileColumn
               DTS:ColumnType="Delimited"
@@ -471,7 +471,7 @@
               DTS:DataType="130"
               DTS:TextQualified="True"
               DTS:ObjectName="Cause"
-              DTS:DTSID="{ADB2A179-4FC8-408C-A195-79CAF1014C4E}"
+              DTS:DTSID="{49C415DE-63BD-43BF-9669-1CB3D7B0AA90}"
               DTS:CreationName="" />
             <DTS:FlatFileColumn
               DTS:ColumnType="Delimited"
@@ -480,7 +480,7 @@
               DTS:DataType="130"
               DTS:TextQualified="True"
               DTS:ObjectName="Impact_type"
-              DTS:DTSID="{1F81FCAA-BC7A-406B-8EE1-48FE27F124E1}"
+              DTS:DTSID="{50AE7902-F931-4738-BF7B-E0277C15211B}"
               DTS:CreationName="" />
             <DTS:FlatFileColumn
               DTS:ColumnType="Delimited"
@@ -489,7 +489,7 @@
               DTS:DataType="130"
               DTS:TextQualified="True"
               DTS:ObjectName="Source_id"
-              DTS:DTSID="{915C9A85-3F8B-424A-8E0E-D9F54BBE689A}"
+              DTS:DTSID="{A7E93D38-A08F-480E-B084-D6F695CACBBB}"
               DTS:CreationName="" />
             <DTS:FlatFileColumn
               DTS:ColumnType="Delimited"
@@ -498,7 +498,7 @@
               DTS:DataType="130"
               DTS:TextQualified="True"
               DTS:ObjectName="Source_type"
-              DTS:DTSID="{69F49CE2-B25E-40E8-BE42-DFC5922D9FE9}"
+              DTS:DTSID="{51B2D15D-FA22-4CE8-BD75-BA96E8BEA3F1}"
               DTS:CreationName="" />
             <DTS:FlatFileColumn
               DTS:ColumnType="Delimited"
@@ -507,7 +507,7 @@
               DTS:DataType="130"
               DTS:TextQualified="True"
               DTS:ObjectName="Spatial_precision"
-              DTS:DTSID="{7B31DF3E-80EB-4A6F-BB79-5188A104FEF5}"
+              DTS:DTSID="{F0E72CAA-6881-4AB3-B670-701700531167}"
               DTS:CreationName="" />
             <DTS:FlatFileColumn
               DTS:ColumnType="Delimited"
@@ -516,7 +516,7 @@
               DTS:DataType="130"
               DTS:TextQualified="True"
               DTS:ObjectName="Geocoding_method"
-              DTS:DTSID="{A24EF7B0-31E7-4F91-BEFA-7D4F0985CCFD}"
+              DTS:DTSID="{78D887CD-9F4E-417D-A85D-1166A22591B5}"
               DTS:CreationName="" />
             <DTS:FlatFileColumn
               DTS:ColumnType="Delimited"
@@ -525,7 +525,7 @@
               DTS:DataType="130"
               DTS:TextQualified="True"
               DTS:ObjectName="Observation_notes"
-              DTS:DTSID="{4B29022E-D6CF-447C-9B5B-24444BAFF7AB}"
+              DTS:DTSID="{6D235F00-FED1-4781-B759-82CF2592B402}"
               DTS:CreationName="" />
             <DTS:FlatFileColumn
               DTS:ColumnType="Delimited"
@@ -534,7 +534,7 @@
               DTS:DataType="130"
               DTS:TextQualified="True"
               DTS:ObjectName="Commune"
-              DTS:DTSID="{E0C94122-5F5C-4798-A584-AE37B0874073}"
+              DTS:DTSID="{B44D5292-05E2-471F-B68C-4DE8FDF6F9EE}"
               DTS:CreationName="" />
             <DTS:FlatFileColumn
               DTS:ColumnType="Delimited"
@@ -543,7 +543,7 @@
               DTS:DataType="130"
               DTS:TextQualified="True"
               DTS:ObjectName="Province"
-              DTS:DTSID="{FEF939ED-9EE3-477A-B126-31B0C8668AB5}"
+              DTS:DTSID="{249B50EA-4C31-4CC0-9589-82B03C85CCFE}"
               DTS:CreationName="" />
             <DTS:FlatFileColumn
               DTS:ColumnType="Delimited"
@@ -552,7 +552,7 @@
               DTS:DataType="129"
               DTS:TextQualified="True"
               DTS:ObjectName="Water_height_min_cm"
-              DTS:DTSID="{3456F635-1870-4324-A142-CFA017FDA22C}"
+              DTS:DTSID="{A2BB28FB-762F-4E81-90CC-9B5DC6652F6F}"
               DTS:CreationName="" />
             <DTS:FlatFileColumn
               DTS:ColumnType="Delimited"
@@ -561,7 +561,7 @@
               DTS:DataType="129"
               DTS:TextQualified="True"
               DTS:ObjectName="Duration_hours"
-              DTS:DTSID="{B15D72E6-D2C7-4DCE-BD45-071933BA818F}"
+              DTS:DTSID="{19803DB4-3C94-4929-AC81-889BED4D4625}"
               DTS:CreationName="" />
             <DTS:FlatFileColumn
               DTS:ColumnType="Delimited"
@@ -570,7 +570,7 @@
               DTS:DataType="129"
               DTS:TextQualified="True"
               DTS:ObjectName="Longitude"
-              DTS:DTSID="{104BA7BE-90A9-4156-9E65-11E8B0AAC374}"
+              DTS:DTSID="{3DA256C8-E9A5-4018-A554-40FA3847724F}"
               DTS:CreationName="" />
             <DTS:FlatFileColumn
               DTS:ColumnType="Delimited"
@@ -579,7 +579,7 @@
               DTS:DataType="129"
               DTS:TextQualified="True"
               DTS:ObjectName="Latitude"
-              DTS:DTSID="{6C752594-0DF2-4483-A7E9-BE3F85EF2CE2}"
+              DTS:DTSID="{8A78268E-AD0D-440B-AD0C-668B4C3DC936}"
               DTS:CreationName="" />
             <DTS:FlatFileColumn
               DTS:ColumnType="Delimited"
@@ -588,7 +588,7 @@
               DTS:DataType="129"
               DTS:TextQualified="True"
               DTS:ObjectName="Missing_Date"
-              DTS:DTSID="{2EE7EAC1-8565-45E6-9C64-9CAAF4F0C6AB}"
+              DTS:DTSID="{4FA172A2-8879-45A4-878F-A7980A26C5EA}"
               DTS:CreationName="" />
             <DTS:FlatFileColumn
               DTS:ColumnType="Delimited"
@@ -597,7 +597,7 @@
               DTS:DataType="129"
               DTS:TextQualified="True"
               DTS:ObjectName="Missing_Depth"
-              DTS:DTSID="{C9BB35D1-B319-4828-A080-93E834B2685B}"
+              DTS:DTSID="{3C07B26B-D4CF-49FA-A484-34D473A5E179}"
               DTS:CreationName="" />
             <DTS:FlatFileColumn
               DTS:ColumnType="Delimited"
@@ -606,7 +606,7 @@
               DTS:DataType="129"
               DTS:TextQualified="True"
               DTS:ObjectName="Duplicate_Obs_id"
-              DTS:DTSID="{E63845D5-657A-4A09-BB24-E17C9F3C2633}"
+              DTS:DTSID="{5EBD2ADE-7BC8-4D55-B62D-A21ECD3F466C}"
               DTS:CreationName="" />
             <DTS:FlatFileColumn
               DTS:ColumnType="Delimited"
@@ -615,7 +615,7 @@
               DTS:DataType="129"
               DTS:TextQualified="True"
               DTS:ObjectName="Invalid_Coordinates"
-              DTS:DTSID="{9F2903B9-36FC-448A-9C69-98D2958847D8}"
+              DTS:DTSID="{75AF582A-E8E3-4962-8799-2AAE296AA0EB}"
               DTS:CreationName="" />
             <DTS:FlatFileColumn
               DTS:ColumnType="Delimited"
@@ -624,7 +624,7 @@
               DTS:DataType="129"
               DTS:TextQualified="True"
               DTS:ObjectName="Invalid_Depth_Range"
-              DTS:DTSID="{F663CA4E-C018-409C-96F5-6548C562C618}"
+              DTS:DTSID="{6490BC68-563A-46E2-8B6B-5CA5A541B937}"
               DTS:CreationName="" />
             <DTS:FlatFileColumn
               DTS:ColumnType="Delimited"
@@ -633,7 +633,7 @@
               DTS:DataType="129"
               DTS:TextQualified="True"
               DTS:ObjectName="Year_Date_Mismatch"
-              DTS:DTSID="{233F437A-8D2B-411A-9972-1FD996D216ED}"
+              DTS:DTSID="{5C5044D7-47D1-4CB2-85C5-B9F495ABC679}"
               DTS:CreationName="" />
             <DTS:FlatFileColumn
               DTS:ColumnType="Delimited"
@@ -642,7 +642,7 @@
               DTS:DataType="130"
               DTS:TextQualified="True"
               DTS:ObjectName="Province_Joined"
-              DTS:DTSID="{DF30CEDC-6589-411D-B107-F835B5B60CAF}"
+              DTS:DTSID="{2531C9BD-41AD-451A-B9C0-A85B43D286CD}"
               DTS:CreationName="" />
           </DTS:FlatFileColumns>
         </DTS:ConnectionManager>
@@ -990,15 +990,15 @@
       </DTS:ObjectData>
     </DTS:ConnectionManager>
     <DTS:ConnectionManager
-      DTS:refId="Package.ConnectionManagers[localhost\MSSQL2022_NHUNG.Flood_DSS]"
+      DTS:refId="Package.ConnectionManagers[localhost-DW2025]"
       DTS:CreationName="OLEDB"
       DTS:DTSID="{4D1B7516-9AD4-4792-B8EB-F6971979C8C5}"
-      DTS:ObjectName="localhost\MSSQL2022_NHUNG.Flood_DSS">
+      DTS:ObjectName="localhost-DW2025">
       <DTS:ObjectData>
         <DTS:ConnectionManager
           DTS:ConnectRetryCount="1"
           DTS:ConnectRetryInterval="5"
-          DTS:ConnectionString="Data Source=localhost\MSSQL2022_NHUNG;Initial Catalog=Flood_DSS;Provider=MSOLEDBSQL.1;Integrated Security=SSPI;Application Name=SSIS-01_Load_Flood-{4D1B7516-9AD4-4792-B8EB-F6971979C8C5}localhost\MSSQL2022_NHUNG.Flood_DSS;Auto Translate=False;" />
+          DTS:ConnectionString="Data Source=localhost\DW2025;Initial Catalog=Flood_DSS;Provider=MSOLEDBSQL.1;Integrated Security=SSPI;Auto Translate=False;Application Name=SSIS-01_Load_Flood-{4D1B7516-9AD4-4792-B8EB-F6971979C8C5}localhost\MSSQL2022_NHUNG.Flood_DSS;" />
       </DTS:ObjectData>
     </DTS:ConnectionManager>
   </DTS:ConnectionManagers>
@@ -1613,8 +1613,8 @@
               <connections>
                 <connection
                   refId="Package\DFT_Load_Flood\DST_LoadFlood.Connections[OleDbConnection]"
-                  connectionManagerID="Package.ConnectionManagers[localhost\MSSQL2022_NHUNG.Flood_DSS]"
-                  connectionManagerRefId="Package.ConnectionManagers[localhost\MSSQL2022_NHUNG.Flood_DSS]"
+                  connectionManagerID="Package.ConnectionManagers[localhost-DW2025]"
+                  connectionManagerRefId="Package.ConnectionManagers[localhost-DW2025]"
                   description="The OLE DB runtime connection used to access the database."
                   name="OleDbConnection" />
               </connections>
@@ -2121,8 +2121,8 @@ where [refTable].[OBJECTID] = ?</property>
               <connections>
                 <connection
                   refId="Package\DFT_Load_Flood\Lookup.Connections[OleDbConnection]"
-                  connectionManagerID="Package.ConnectionManagers[localhost\MSSQL2022_NHUNG.Flood_DSS]"
-                  connectionManagerRefId="Package.ConnectionManagers[localhost\MSSQL2022_NHUNG.Flood_DSS]"
+                  connectionManagerID="Package.ConnectionManagers[localhost-DW2025]"
+                  connectionManagerRefId="Package.ConnectionManagers[localhost-DW2025]"
                   description="Connection manager used to access lookup data."
                   name="OleDbConnection" />
               </connections>
@@ -6385,13 +6385,9 @@ AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=]]></arrayElement>
       <GraphLayout
         Capacity="16" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mssgm="clr-namespace:Microsoft.SqlServer.Graph.Model;assembly=Microsoft.SqlServer.Graph">
         <NodeLayout
-          Size="112.8,41.6"
-          Id="Package\DFT_Load_Flood\Lookup"
-          TopLeft="675.000001436898,167.4705880885" />
-        <NodeLayout
-          Size="151.2,41.6"
-          Id="Package\DFT_Load_Flood\SRC_LoadFlood"
-          TopLeft="36.4285715061186,55.0588234811506" />
+          Size="162.4,41.6"
+          Id="Package\DFT_Load_Flood\Script Component"
+          TopLeft="147.142857456086,180.964705779128" />
         <NodeLayout
           Size="97.6,41.6"
           Id="Package\DFT_Load_Flood\Sort"
@@ -6401,13 +6397,17 @@ AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=]]></arrayElement>
           Id="Package\DFT_Load_Flood\DST_LoadFlood"
           TopLeft="722.857144395916,47.4117646643235" />
         <NodeLayout
+          Size="151.2,41.6"
+          Id="Package\DFT_Load_Flood\SRC_LoadFlood"
+          TopLeft="36.4285715061186,55.0588234811506" />
+        <NodeLayout
+          Size="112.8,41.6"
+          Id="Package\DFT_Load_Flood\Lookup"
+          TopLeft="675.000001436898,167.4705880885" />
+        <NodeLayout
           Size="155.2,41.6"
           Id="Package\DFT_Load_Flood\Data Conversion"
           TopLeft="373.571429366664,50.4705881910547" />
-        <NodeLayout
-          Size="162.4,41.6"
-          Id="Package\DFT_Load_Flood\Script Component"
-          TopLeft="147.142857456086,180.964705779128" />
         <EdgeLayout
           Id="Package\DFT_Load_Flood.Paths[Sort Output]"
           TopLeft="542.600000947288,192.241176330832">
@@ -6572,6 +6572,19 @@ AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=]]></arrayElement>
     </LayoutInfo>
   </TaskHost>
   <PipelineComponentMetadata
+    design-time-name="Package\DFT_Load_Flood\DST_LoadFlood">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Table</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
     design-time-name="Package\DFT_Load_Flood\Lookup">
     <Properties>
       <Property>
@@ -6591,19 +6604,6 @@ AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=]]></arrayElement>
       </Property>
       <Property>
         <Name>DataSourceViewID</Name>
-      </Property>
-    </Properties>
-  </PipelineComponentMetadata>
-  <PipelineComponentMetadata
-    design-time-name="Package\DFT_Load_Flood\DST_LoadFlood">
-    <Properties>
-      <Property>
-        <Name>DataSourceViewID</Name>
-      </Property>
-      <Property>
-        <Name>TableInfoObjectType</Name>
-        <Value
-          type="q2:string">Table</Value>
       </Property>
     </Properties>
   </PipelineComponentMetadata>

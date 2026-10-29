@@ -1,4 +1,4 @@
-<?xml version="1.0"?>
+﻿<?xml version="1.0"?>
 <DTS:Executable xmlns:DTS="www.microsoft.com/SqlServer/Dts"
   DTS:refId="Package"
   DTS:CreationDate="10/27/2026 11:02:52 PM"
@@ -11,26 +11,21 @@
   DTS:LocaleID="1033"
   DTS:ObjectName="Package"
   DTS:PackageType="5"
-  DTS:VersionBuild="8"
-  DTS:VersionGUID="{2FB3C772-68E2-4269-8462-249B43D6BC14}">
+  DTS:VersionBuild="11"
+  DTS:VersionGUID="{CA79873B-AC6C-4BC3-B917-94A294033326}">
   <DTS:Property
     DTS:Name="PackageFormatVersion">8</DTS:Property>
   <DTS:ConnectionManagers>
     <DTS:ConnectionManager
-      DTS:refId="Package.ConnectionManagers[LAPTOP-522UK8L8.Flood_DSS.sa]"
+      DTS:refId="Package.ConnectionManagers[localhost-DW2025]"
       DTS:CreationName="OLEDB"
       DTS:DTSID="{7BD95AD3-BD5E-4665-895F-0C9585198710}"
-      DTS:ObjectName="LAPTOP-522UK8L8.Flood_DSS.sa">
+      DTS:ObjectName="localhost-DW2025">
       <DTS:ObjectData>
         <DTS:ConnectionManager
           DTS:ConnectRetryCount="1"
           DTS:ConnectRetryInterval="5"
-          DTS:ConnectionString="Data Source=LAPTOP-522UK8L8;User ID=sa;Initial Catalog=Flood_DSS;Provider=SQLOLEDB.1;Persist Security Info=True;Auto Translate=False;Application Name=SSIS-Package-{7BD95AD3-BD5E-4665-895F-0C9585198710}LAPTOP-522UK8L8.Flood_DSS.sa;">
-          <DTS:Password
-            DTS:Name="Password"
-            Sensitive="1"
-            Encrypted="1">AQAAANCMnd8BFdERjHoAwE/Cl+sBAAAA5lp3r9QbFE+avmLbnf+wFgAAAAAIAAAARABUAFMAAAAQZgAAAAEAACAAAABEjTkFJ4zHUlVOEtLH7A5nOYrGgOWBejKmaZsIuatzFAAAAAAOgAAAAAIAACAAAAA7Ru1BXjLSiAkPZtDRNIBrHOOxQvFiv3EqZBtX8fKyMxAAAABW9ag6yQb1YxT7g+n6PQ9RQAAAAFNyyZ33rBvXMRAFZjU6/b+p4hHlt3WfeuQUqSRvFkpFs/oT3Os9R+DjODFUgie+hZpohwdOUWa7EaE5oc3si34</DTS:Password>
-        </DTS:ConnectionManager>
+          DTS:ConnectionString="Data Source=localhost\DW2025;Initial Catalog=Flood_DSS;Provider=SQLOLEDB.1;Integrated Security=SSPI;Auto Translate=False;Application Name=SSIS-Package-{7BD95AD3-BD5E-4665-895F-0C9585198710}LAPTOP-522UK8L8.Flood_DSS.sa;" />
       </DTS:ObjectData>
     </DTS:ConnectionManager>
     <DTS:ConnectionManager
@@ -47,7 +42,7 @@
           DTS:RowDelimiter=""
           DTS:TextQualifier="_x003C_none_x003E_"
           DTS:CodePage="65001"
-          DTS:ConnectionString="D:\HK2_2025_2026\Công_nghệPM\Code\Flood_DSS\02_Staging_CSV\Roads\Roads_Clean.csv">
+          DTS:ConnectionString="D:\Kho_du_lieu\Flood-DSS\02_Staging_CSV\Roads\Roads_Clean.csv">
           <DTS:FlatFileColumns>
             <DTS:FlatFileColumn
               DTS:ColumnType="Delimited"
@@ -56,7 +51,7 @@
               DTS:DataType="129"
               DTS:TextQualified="True"
               DTS:ObjectName="Road_ID"
-              DTS:DTSID="{48C492C9-9469-4E14-9FB6-B804C7158887}"
+              DTS:DTSID="{36A069C3-3119-4CA3-82E9-03A9B90F35C4}"
               DTS:CreationName="" />
             <DTS:FlatFileColumn
               DTS:ColumnType="Delimited"
@@ -65,7 +60,7 @@
               DTS:DataType="129"
               DTS:TextQualified="True"
               DTS:ObjectName="Road_Name"
-              DTS:DTSID="{A1EC73EF-78D5-4EF4-AB7C-9602DCF6B616}"
+              DTS:DTSID="{631B4012-D767-4BEE-8A98-93B3BF40209F}"
               DTS:CreationName="" />
             <DTS:FlatFileColumn
               DTS:ColumnType="Delimited"
@@ -74,7 +69,7 @@
               DTS:DataType="129"
               DTS:TextQualified="True"
               DTS:ObjectName="Mentioned_Years"
-              DTS:DTSID="{F8F447A8-4102-4A07-8FDD-CFFEEAF73DEF}"
+              DTS:DTSID="{89C31404-EAF1-40CC-83EF-8DFC6783467E}"
               DTS:CreationName="" />
             <DTS:FlatFileColumn
               DTS:ColumnType="Delimited"
@@ -83,7 +78,7 @@
               DTS:DataType="129"
               DTS:TextQualified="True"
               DTS:ObjectName="Source_ID"
-              DTS:DTSID="{2F43174B-DF8D-4DA6-B0DF-83034AC468B2}"
+              DTS:DTSID="{38754571-1104-4B5A-A9EA-2D059923A222}"
               DTS:CreationName="" />
           </DTS:FlatFileColumns>
         </DTS:ConnectionManager>
@@ -476,8 +471,8 @@
               <connections>
                 <connection
                   refId="Package\Data Flow Task\OLE DB Destination.Connections[OleDbConnection]"
-                  connectionManagerID="Package.ConnectionManagers[LAPTOP-522UK8L8.Flood_DSS.sa]"
-                  connectionManagerRefId="Package.ConnectionManagers[LAPTOP-522UK8L8.Flood_DSS.sa]"
+                  connectionManagerID="Package.ConnectionManagers[localhost-DW2025]"
+                  connectionManagerRefId="Package.ConnectionManagers[localhost-DW2025]"
                   description="The OLE DB runtime connection used to access the database."
                   name="OleDbConnection" />
               </connections>

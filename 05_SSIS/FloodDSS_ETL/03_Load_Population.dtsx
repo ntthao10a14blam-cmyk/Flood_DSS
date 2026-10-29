@@ -1,4 +1,4 @@
-<?xml version="1.0"?>
+﻿<?xml version="1.0"?>
 <DTS:Executable xmlns:DTS="www.microsoft.com/SqlServer/Dts"
   DTS:refId="Package"
   DTS:CreationDate="10/27/2026 10:18:24 PM"
@@ -11,8 +11,8 @@
   DTS:LocaleID="1033"
   DTS:ObjectName="03_Load_Population"
   DTS:PackageType="5"
-  DTS:VersionBuild="4"
-  DTS:VersionGUID="{0AAFC5DF-3541-43FF-B344-6529B4DF16D5}">
+  DTS:VersionBuild="7"
+  DTS:VersionGUID="{C116871A-C1D5-4FBF-8311-B11BDD8618E2}">
   <DTS:Property
     DTS:Name="PackageFormatVersion">8</DTS:Property>
   <DTS:ConnectionManagers>
@@ -30,7 +30,7 @@
           DTS:RowDelimiter=""
           DTS:TextQualifier="_x003C_none_x003E_"
           DTS:CodePage="65001"
-          DTS:ConnectionString="D:\HK2_2025_2026\Công_nghệPM\Code\Flood_DSS\02_Staging_CSV\Population\Population_Clean.csv">
+          DTS:ConnectionString="D:\Kho_du_lieu\Flood-DSS\02_Staging_CSV\Population\Population_Clean.csv">
           <DTS:FlatFileColumns>
             <DTS:FlatFileColumn
               DTS:ColumnType="Delimited"
@@ -39,7 +39,7 @@
               DTS:DataType="129"
               DTS:TextQualified="True"
               DTS:ObjectName="OBJECTID"
-              DTS:DTSID="{5C6180CA-4F40-4E63-9235-B56BCC5433C9}"
+              DTS:DTSID="{927248EC-3CA9-4C17-9D61-34865D55D97D}"
               DTS:CreationName="" />
             <DTS:FlatFileColumn
               DTS:ColumnType="Delimited"
@@ -48,7 +48,7 @@
               DTS:DataType="129"
               DTS:TextQualified="True"
               DTS:ObjectName="Area_ID"
-              DTS:DTSID="{51B1E950-03A6-468E-B031-8AC9D98C0789}"
+              DTS:DTSID="{36C0EC83-0525-4510-B8CE-F4D392CFBB1D}"
               DTS:CreationName="" />
             <DTS:FlatFileColumn
               DTS:ColumnType="Delimited"
@@ -57,7 +57,7 @@
               DTS:DataType="129"
               DTS:TextQualified="True"
               DTS:ObjectName="Area_Name"
-              DTS:DTSID="{C1BC56BD-B313-4572-828D-602A0E74083C}"
+              DTS:DTSID="{EE482491-B811-4146-A3E1-B6C4966357EB}"
               DTS:CreationName="" />
             <DTS:FlatFileColumn
               DTS:ColumnType="Delimited"
@@ -66,7 +66,7 @@
               DTS:DataType="129"
               DTS:TextQualified="True"
               DTS:ObjectName="Year"
-              DTS:DTSID="{B617A3E7-91D3-49AF-BA9B-C96D5518BEFB}"
+              DTS:DTSID="{C9F42C11-163A-4CA4-8C8E-C2023967CF9B}"
               DTS:CreationName="" />
             <DTS:FlatFileColumn
               DTS:ColumnType="Delimited"
@@ -75,7 +75,7 @@
               DTS:DataType="129"
               DTS:TextQualified="True"
               DTS:ObjectName="BoundaryVersion"
-              DTS:DTSID="{BED074BB-995A-4AF9-B132-653D3D1160B8}"
+              DTS:DTSID="{B303E0D4-E69E-46DD-8F66-AA42C385EBC6}"
               DTS:CreationName="" />
             <DTS:FlatFileColumn
               DTS:ColumnType="Delimited"
@@ -84,7 +84,7 @@
               DTS:DataType="129"
               DTS:TextQualified="True"
               DTS:ObjectName="Population"
-              DTS:DTSID="{1901D12C-D84D-496C-B7E9-BB48C5BEA9CF}"
+              DTS:DTSID="{0998E626-D182-4252-9EE6-83F98DBDFA12}"
               DTS:CreationName="" />
             <DTS:FlatFileColumn
               DTS:ColumnType="Delimited"
@@ -93,7 +93,7 @@
               DTS:DataType="129"
               DTS:TextQualified="True"
               DTS:ObjectName="Area_km2"
-              DTS:DTSID="{D6DDF0CC-53EE-4EB9-9638-464A57211A34}"
+              DTS:DTSID="{3A7725BE-E6A1-4EBD-A3A2-24F10E1F6479}"
               DTS:CreationName="" />
             <DTS:FlatFileColumn
               DTS:ColumnType="Delimited"
@@ -102,7 +102,7 @@
               DTS:DataType="129"
               DTS:TextQualified="True"
               DTS:ObjectName="PopulationDensity"
-              DTS:DTSID="{97CDEDD6-2120-42E5-996A-E60F1F3594EA}"
+              DTS:DTSID="{8779D1E6-98BC-4E91-AB2A-ED013D2CDD62}"
               DTS:CreationName="" />
             <DTS:FlatFileColumn
               DTS:ColumnType="Delimited"
@@ -111,27 +111,22 @@
               DTS:DataType="129"
               DTS:TextQualified="True"
               DTS:ObjectName="Source_ID"
-              DTS:DTSID="{5028F8B0-0D56-4FEE-AA3C-4A95CCF8B8B0}"
+              DTS:DTSID="{653418C6-6810-4EE4-ABD5-5D7D87187378}"
               DTS:CreationName="" />
           </DTS:FlatFileColumns>
         </DTS:ConnectionManager>
       </DTS:ObjectData>
     </DTS:ConnectionManager>
     <DTS:ConnectionManager
-      DTS:refId="Package.ConnectionManagers[LAPTOP-522UK8L8.Flood_DSS.sa]"
+      DTS:refId="Package.ConnectionManagers[localhost-DW2025]"
       DTS:CreationName="OLEDB"
       DTS:DTSID="{35EDB2FC-5D52-483F-9A6A-1BAEC83394AF}"
-      DTS:ObjectName="LAPTOP-522UK8L8.Flood_DSS.sa">
+      DTS:ObjectName="localhost-DW2025">
       <DTS:ObjectData>
         <DTS:ConnectionManager
           DTS:ConnectRetryCount="1"
           DTS:ConnectRetryInterval="5"
-          DTS:ConnectionString="Data Source=LAPTOP-522UK8L8;User ID=sa;Initial Catalog=Flood_DSS;Provider=SQLOLEDB.1;Persist Security Info=True;Application Name=SSIS-03_Load_Population-{35EDB2FC-5D52-483F-9A6A-1BAEC83394AF}LAPTOP-522UK8L8.Flood_DSS.sa;Auto Translate=False;">
-          <DTS:Password
-            DTS:Name="Password"
-            Sensitive="1"
-            Encrypted="1">AQAAANCMnd8BFdERjHoAwE/Cl+sBAAAA5lp3r9QbFE+avmLbnf+wFgAAAAAIAAAARABUAFMAAAAQZgAAAAEAACAAAACGTW4dBpXMFFnnjhtyQlXLqvQqqYAaEVZzy9Vfua4WowAAAAAOgAAAAAIAACAAAAC0N9MiGPVDOzB8T/AF6ShiKpEqiENXP3YyCaDlVmVgIBAAAABvgUKxU4kWkhdd3Sqqm0MDQAAAAM8h/xqwXRxfmpF7qYyRlUpF+pTKZjP6kQvjJjjiPNkzYq4myHinnIJTKS1OURC+LYYJwphI6twgFxLy7gobfqY</DTS:Password>
-        </DTS:ConnectionManager>
+          DTS:ConnectionString="Data Source=localhost\DW2025;Initial Catalog=Flood_DSS;Provider=SQLOLEDB.1;Integrated Security=SSPI;Auto Translate=False;Application Name=SSIS-03_Load_Population-{35EDB2FC-5D52-483F-9A6A-1BAEC83394AF}LAPTOP-522UK8L8.Flood_DSS.sa;" />
       </DTS:ObjectData>
     </DTS:ConnectionManager>
   </DTS:ConnectionManagers>
@@ -689,8 +684,8 @@
               <connections>
                 <connection
                   refId="Package\Data Flow Task\OLE DB Destination.Connections[OleDbConnection]"
-                  connectionManagerID="Package.ConnectionManagers[LAPTOP-522UK8L8.Flood_DSS.sa]"
-                  connectionManagerRefId="Package.ConnectionManagers[LAPTOP-522UK8L8.Flood_DSS.sa]"
+                  connectionManagerID="Package.ConnectionManagers[localhost-DW2025]"
+                  connectionManagerRefId="Package.ConnectionManagers[localhost-DW2025]"
                   description="The OLE DB runtime connection used to access the database."
                   name="OleDbConnection" />
               </connections>
@@ -845,29 +840,6 @@
                 </output>
               </outputs>
             </component>
-            <component
-              refId="Package\Data Flow Task\Union All"
-              componentClassID="Microsoft.UnionAll"
-              contactInfo="Union All;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;1"
-              description="Combines rows from multiple data flows without sorting. For example, add rows back to a data flow after correction of errors. If sorting is important, we recommend using the Merge transformation."
-              name="Union All"
-              version="1">
-              <inputs>
-                <input
-                  refId="Package\Data Flow Task\Union All.Inputs[Union All Input 1]"
-                  dangling="true"
-                  name="Union All Input 1">
-                  <externalMetadataColumns />
-                </input>
-              </inputs>
-              <outputs>
-                <output
-                  refId="Package\Data Flow Task\Union All.Outputs[Union All Output 1]"
-                  name="Union All Output 1">
-                  <externalMetadataColumns />
-                </output>
-              </outputs>
-            </component>
           </components>
           <paths>
             <path
@@ -910,13 +882,13 @@
       <GraphLayout
         Capacity="8" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
         <NodeLayout
-          Size="150.4,41.6"
-          Id="Package\Data Flow Task\Flat File Source"
-          TopLeft="49.2857143906306,48.9411764276894" />
-        <NodeLayout
           Size="170.4,41.6"
           Id="Package\Data Flow Task\OLE DB Destination"
           TopLeft="509.28571536985,157.529411626625" />
+        <NodeLayout
+          Size="150.4,41.6"
+          Id="Package\Data Flow Task\Flat File Source"
+          TopLeft="49.2857143906306,48.9411764276894" />
         <NodeLayout
           Size="155.2,41.6"
           Id="Package\Data Flow Task\Data Conversion"
@@ -989,10 +961,6 @@
             <EdgeLabelCollection />
           </EdgeLayout.Labels>
         </EdgeLayout>
-        <NodeLayout
-          Size="120,41.6"
-          Id="Package\Data Flow Task\Union All"
-          TopLeft="5.5,5.5" />
       </GraphLayout>
     </LayoutInfo>
   </TaskHost>
