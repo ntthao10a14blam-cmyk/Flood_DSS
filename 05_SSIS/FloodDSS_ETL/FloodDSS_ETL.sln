@@ -1,0 +1,22 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.14.37411.7 d17.14
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{C9674DCB-5085-4A16-B785-4C70DD1589BD}") = "FloodDSS_ETL", "FloodDSS_ETL\FloodDSS_ETL.dtproj", "{ECFAA5FF-F010-54CA-2D89-AB2118C7B81C}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Development|Default = Development|Default
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{ECFAA5FF-F010-54CA-2D89-AB2118C7B81C}.Development|Default.ActiveCfg = Development
+		{ECFAA5FF-F010-54CA-2D89-AB2118C7B81C}.Development|Default.Build.0 = Development
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {00659F8A-A1BD-4178-9152-9FE709E8B888}
+	EndGlobalSection
+EndGlobal
