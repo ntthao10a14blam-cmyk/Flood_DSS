@@ -1,31 +1,149 @@
-﻿<?xml version="1.0"?>
+<?xml version="1.0"?>
 <DTS:Executable xmlns:DTS="www.microsoft.com/SqlServer/Dts"
   DTS:refId="Package"
   DTS:CreationDate="10/29/2026 4:26:52 PM"
   DTS:CreationName="Microsoft.Package"
   DTS:CreatorComputerName="DESKTOP-MK23IU5"
   DTS:CreatorName="DESKTOP-MK23IU5\Admin"
-  DTS:DTSID="{8C1E0C7F-87E5-4C69-ADC5-F409109FA82F}"
+  DTS:DTSID="{C4437495-0B6B-48FD-B5E1-7B1F0E135D03}"
   DTS:ExecutableType="Microsoft.Package"
   DTS:LastModifiedProductVersion="17.0.1016.0"
   DTS:LocaleID="1066"
   DTS:ObjectName="06_Load_Dimensions"
   DTS:PackageType="5"
-  DTS:VersionBuild="18"
-  DTS:VersionGUID="{122FC83E-A76B-47FD-B0B4-1A9F6D58437F}">
+  DTS:VersionBuild="28"
+  DTS:VersionGUID="{C1901C91-7B58-4A90-AF7B-7991F0805E96}">
   <DTS:Property
     DTS:Name="PackageFormatVersion">8</DTS:Property>
   <DTS:ConnectionManagers>
     <DTS:ConnectionManager
       DTS:refId="Package.ConnectionManagers[Conn_Flood_DSS]"
       DTS:CreationName="OLEDB"
-      DTS:DTSID="{E7DAD6C9-E83A-47C6-AF21-83206F87D928}"
+      DTS:DTSID="{20BD284E-5341-4D1A-876D-A42D6B4A7E28}"
       DTS:ObjectName="Conn_Flood_DSS">
       <DTS:ObjectData>
         <DTS:ConnectionManager
           DTS:ConnectRetryCount="1"
           DTS:ConnectRetryInterval="5"
-          DTS:ConnectionString="Data Source=DESKTOP-MK23IU5\SQLEXPRESS;Initial Catalog=Flood_DSS;Provider=SQLOLEDB.1;Integrated Security=SSPI;Application Name=SSIS-06_Load_Dimensions-{E7DAD6C9-E83A-47C6-AF21-83206F87D928}DESKTOP-MK23IU5\SQLEXPRESS.Flood_DSS;Auto Translate=False;" />
+          DTS:ConnectionString="Data Source=localhost\DW2025;Initial Catalog=Flood_DSS;Provider=SQLOLEDB.1;Integrated Security=SSPI;Auto Translate=False;Application Name=SSIS-06_Load_Dimensions-{20BD284E-5341-4D1A-876D-A42D6B4A7E28}DESKTOP-MK23IU5\SQLEXPRESS.Flood_DSS;" />
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[FCM_Dim_Area_Error]"
+      DTS:CreationName="FLATFILE"
+      DTS:DTSID="{F9FA1EC2-DE3F-44BA-B142-0C161F3055BB}"
+      DTS:ObjectName="FCM_Dim_Area_Error">
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:Format="Delimited"
+          DTS:LocaleID="2057"
+          DTS:Unicode="True"
+          DTS:HeaderRowDelimiter="_x000D__x000A_"
+          DTS:RowDelimiter=""
+          DTS:TextQualifier="_x0022_"
+          DTS:CodePage="1252"
+          DTS:ConnectionString="D:\Kho_du_lieu\Flood-DSS\07_Logs\Dim_Area_Errors.csv">
+          <DTS:FlatFileColumns>
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x002C_"
+              DTS:MaximumWidth="50"
+              DTS:DataType="130"
+              DTS:TextQualified="True"
+              DTS:ObjectName="Area_ID"
+              DTS:DTSID="{7AFAC3A6-9758-49FF-8734-F7185E7F7838}"
+              DTS:CreationName="" />
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x002C_"
+              DTS:MaximumWidth="150"
+              DTS:DataType="130"
+              DTS:TextQualified="True"
+              DTS:ObjectName="Area_Name"
+              DTS:DTSID="{C954E7A6-8B5A-44A8-A82F-7E7E08A180FA}"
+              DTS:CreationName="" />
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x002C_"
+              DTS:MaximumWidth="30"
+              DTS:DataType="130"
+              DTS:TextQualified="True"
+              DTS:ObjectName="Area_Level"
+              DTS:DTSID="{B0FF6EE9-4B88-478B-852B-80E85FF3D594}"
+              DTS:CreationName="" />
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x002C_"
+              DTS:MaximumWidth="50"
+              DTS:DataType="130"
+              DTS:TextQualified="True"
+              DTS:ObjectName="ParentArea_ID"
+              DTS:DTSID="{8CFB2CC3-266D-481E-BB90-FE675F22E99B}"
+              DTS:CreationName="" />
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x002C_"
+              DTS:MaximumWidth="150"
+              DTS:DataType="130"
+              DTS:TextQualified="True"
+              DTS:ObjectName="ParentArea_Name"
+              DTS:DTSID="{4BC2F847-A7C3-41FB-9E4D-1A1A3FEADA4E}"
+              DTS:CreationName="" />
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x002C_"
+              DTS:MaximumWidth="30"
+              DTS:DataType="130"
+              DTS:TextQualified="True"
+              DTS:ObjectName="BoundaryVersion"
+              DTS:DTSID="{06CAE130-74B7-4994-AD2E-2F5EE8202060}"
+              DTS:CreationName="" />
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x002C_"
+              DTS:DataType="131"
+              DTS:DataPrecision="18"
+              DTS:DataScale="4"
+              DTS:TextQualified="True"
+              DTS:ObjectName="Area_km2"
+              DTS:DTSID="{E3939920-B226-4EE5-87F4-0093200DD5E7}"
+              DTS:CreationName="" />
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x002C_"
+              DTS:MaximumWidth="10"
+              DTS:DataType="130"
+              DTS:TextQualified="True"
+              DTS:ObjectName="EffectiveFrom"
+              DTS:DTSID="{98073A9B-6D6D-4FD1-AB36-E143E82BFB9C}"
+              DTS:CreationName="" />
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x002C_"
+              DTS:MaximumWidth="10"
+              DTS:DataType="130"
+              DTS:TextQualified="True"
+              DTS:ObjectName="EffectiveTo"
+              DTS:DTSID="{7D316524-F979-4678-8614-82CFE54F01A1}"
+              DTS:CreationName="" />
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x002C_"
+              DTS:DataType="3"
+              DTS:TextQualified="True"
+              DTS:ObjectName="ErrorCode"
+              DTS:DTSID="{1DFF57A4-CD40-4798-9181-BD16A412131F}"
+              DTS:CreationName="" />
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x000D__x000A_"
+              DTS:DataType="3"
+              DTS:TextQualified="True"
+              DTS:ObjectName="ErrorColumn"
+              DTS:DTSID="{889C518B-64B7-47B0-ABE3-5DD3461C8B4A}"
+              DTS:CreationName="" />
+          </DTS:FlatFileColumns>
+        </DTS:ConnectionManager>
       </DTS:ObjectData>
     </DTS:ConnectionManager>
   </DTS:ConnectionManagers>
@@ -35,7 +153,7 @@
       DTS:refId="Package\DFT_Load_Dim_Area"
       DTS:CreationName="Microsoft.Pipeline"
       DTS:Description="Data Flow Task"
-      DTS:DTSID="{D007B2BF-C5F9-42ED-99CD-5C849460EEB9}"
+      DTS:DTSID="{CD7F6B85-B9D4-422A-AC3B-49123C6560A3}"
       DTS:ExecutableType="Microsoft.Pipeline"
       DTS:LocaleID="-1"
       DTS:ObjectName="DFT_Load_Dim_Area"
@@ -113,7 +231,7 @@
                 <input
                   refId="Package\DFT_Load_Dim_Area\DEST_dw_Dim_Area.Inputs[OLE DB Destination Input]"
                   errorOrTruncationOperation="Insert"
-                  errorRowDisposition="FailComponent"
+                  errorRowDisposition="RedirectRow"
                   hasSideEffects="true"
                   name="OLE DB Destination Input">
                   <inputColumns>
@@ -134,7 +252,7 @@
                     <inputColumn
                       refId="Package\DFT_Load_Dim_Area\DEST_dw_Dim_Area.Inputs[OLE DB Destination Input].Columns[Area_Level]"
                       cachedDataType="wstr"
-                      cachedLength="50"
+                      cachedLength="30"
                       cachedName="Area_Level"
                       externalMetadataColumnId="Package\DFT_Load_Dim_Area\DEST_dw_Dim_Area.Inputs[OLE DB Destination Input].ExternalColumns[Area_Level]"
                       lineageId="Package\DFT_Load_Dim_Area\SRC_stg_Area.Outputs[OLE DB Source Output].Columns[Area_Level]" />
@@ -265,6 +383,179 @@
                   <externalMetadataColumns />
                 </output>
               </outputs>
+            </component>
+            <component
+              refId="Package\DFT_Load_Dim_Area\Flat File Destination"
+              componentClassID="Microsoft.FlatFileDestination"
+              contactInfo="Flat File Destination;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;1"
+              description="Flat File Destination"
+              localeId="2057"
+              name="Flat File Destination"
+              version="1">
+              <properties>
+                <property
+                  dataType="System.Boolean"
+                  description="Specifies whether the data will overwrite or append to the destination file."
+                  name="Overwrite">true</property>
+                <property
+                  dataType="System.Null"
+                  description="Specifies the text to write to the destination file before any data is written."
+                  expressionType="Notify"
+                  name="Header" />
+                <property
+                  dataType="System.Boolean"
+                  description="When text qualifier is enabled, specifies whether the text qualifier in the data written to the destination file will be escaped or not."
+                  name="EscapeQualifier">false</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\DFT_Load_Dim_Area\Flat File Destination.Connections[FlatFileConnection]"
+                  connectionManagerID="Package.ConnectionManagers[FCM_Dim_Area_Error]"
+                  connectionManagerRefId="Package.ConnectionManagers[FCM_Dim_Area_Error]"
+                  name="FlatFileConnection" />
+              </connections>
+              <inputs>
+                <input
+                  refId="Package\DFT_Load_Dim_Area\Flat File Destination.Inputs[Flat File Destination Input]"
+                  hasSideEffects="true"
+                  name="Flat File Destination Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\DFT_Load_Dim_Area\Flat File Destination.Inputs[Flat File Destination Input].Columns[Area_ID]"
+                      cachedDataType="wstr"
+                      cachedLength="50"
+                      cachedName="Area_ID"
+                      externalMetadataColumnId="Package\DFT_Load_Dim_Area\Flat File Destination.Inputs[Flat File Destination Input].ExternalColumns[Area_ID]"
+                      lineageId="Package\DFT_Load_Dim_Area\SRC_stg_Area.Outputs[OLE DB Source Output].Columns[Area_ID]" />
+                    <inputColumn
+                      refId="Package\DFT_Load_Dim_Area\Flat File Destination.Inputs[Flat File Destination Input].Columns[Area_Name]"
+                      cachedDataType="wstr"
+                      cachedLength="150"
+                      cachedName="Area_Name"
+                      externalMetadataColumnId="Package\DFT_Load_Dim_Area\Flat File Destination.Inputs[Flat File Destination Input].ExternalColumns[Area_Name]"
+                      lineageId="Package\DFT_Load_Dim_Area\SRC_stg_Area.Outputs[OLE DB Source Output].Columns[Area_Name]" />
+                    <inputColumn
+                      refId="Package\DFT_Load_Dim_Area\Flat File Destination.Inputs[Flat File Destination Input].Columns[Area_Level]"
+                      cachedDataType="wstr"
+                      cachedLength="30"
+                      cachedName="Area_Level"
+                      externalMetadataColumnId="Package\DFT_Load_Dim_Area\Flat File Destination.Inputs[Flat File Destination Input].ExternalColumns[Area_Level]"
+                      lineageId="Package\DFT_Load_Dim_Area\SRC_stg_Area.Outputs[OLE DB Source Output].Columns[Area_Level]" />
+                    <inputColumn
+                      refId="Package\DFT_Load_Dim_Area\Flat File Destination.Inputs[Flat File Destination Input].Columns[ParentArea_ID]"
+                      cachedDataType="wstr"
+                      cachedLength="50"
+                      cachedName="ParentArea_ID"
+                      externalMetadataColumnId="Package\DFT_Load_Dim_Area\Flat File Destination.Inputs[Flat File Destination Input].ExternalColumns[ParentArea_ID]"
+                      lineageId="Package\DFT_Load_Dim_Area\SRC_stg_Area.Outputs[OLE DB Source Output].Columns[ParentArea_ID]" />
+                    <inputColumn
+                      refId="Package\DFT_Load_Dim_Area\Flat File Destination.Inputs[Flat File Destination Input].Columns[ParentArea_Name]"
+                      cachedDataType="wstr"
+                      cachedLength="150"
+                      cachedName="ParentArea_Name"
+                      externalMetadataColumnId="Package\DFT_Load_Dim_Area\Flat File Destination.Inputs[Flat File Destination Input].ExternalColumns[ParentArea_Name]"
+                      lineageId="Package\DFT_Load_Dim_Area\SRC_stg_Area.Outputs[OLE DB Source Output].Columns[ParentArea_Name]" />
+                    <inputColumn
+                      refId="Package\DFT_Load_Dim_Area\Flat File Destination.Inputs[Flat File Destination Input].Columns[BoundaryVersion]"
+                      cachedDataType="wstr"
+                      cachedLength="30"
+                      cachedName="BoundaryVersion"
+                      externalMetadataColumnId="Package\DFT_Load_Dim_Area\Flat File Destination.Inputs[Flat File Destination Input].ExternalColumns[BoundaryVersion]"
+                      lineageId="Package\DFT_Load_Dim_Area\SRC_stg_Area.Outputs[OLE DB Source Output].Columns[BoundaryVersion]" />
+                    <inputColumn
+                      refId="Package\DFT_Load_Dim_Area\Flat File Destination.Inputs[Flat File Destination Input].Columns[Area_km2]"
+                      cachedDataType="numeric"
+                      cachedName="Area_km2"
+                      cachedPrecision="18"
+                      cachedScale="4"
+                      externalMetadataColumnId="Package\DFT_Load_Dim_Area\Flat File Destination.Inputs[Flat File Destination Input].ExternalColumns[Area_km2]"
+                      lineageId="Package\DFT_Load_Dim_Area\SRC_stg_Area.Outputs[OLE DB Source Output].Columns[Area_km2]" />
+                    <inputColumn
+                      refId="Package\DFT_Load_Dim_Area\Flat File Destination.Inputs[Flat File Destination Input].Columns[EffectiveFrom]"
+                      cachedDataType="wstr"
+                      cachedLength="10"
+                      cachedName="EffectiveFrom"
+                      externalMetadataColumnId="Package\DFT_Load_Dim_Area\Flat File Destination.Inputs[Flat File Destination Input].ExternalColumns[EffectiveFrom]"
+                      lineageId="Package\DFT_Load_Dim_Area\SRC_stg_Area.Outputs[OLE DB Source Output].Columns[EffectiveFrom]" />
+                    <inputColumn
+                      refId="Package\DFT_Load_Dim_Area\Flat File Destination.Inputs[Flat File Destination Input].Columns[EffectiveTo]"
+                      cachedDataType="wstr"
+                      cachedLength="10"
+                      cachedName="EffectiveTo"
+                      externalMetadataColumnId="Package\DFT_Load_Dim_Area\Flat File Destination.Inputs[Flat File Destination Input].ExternalColumns[EffectiveTo]"
+                      lineageId="Package\DFT_Load_Dim_Area\SRC_stg_Area.Outputs[OLE DB Source Output].Columns[EffectiveTo]" />
+                    <inputColumn
+                      refId="Package\DFT_Load_Dim_Area\Flat File Destination.Inputs[Flat File Destination Input].Columns[ErrorCode]"
+                      cachedDataType="i4"
+                      cachedName="ErrorCode"
+                      externalMetadataColumnId="Package\DFT_Load_Dim_Area\Flat File Destination.Inputs[Flat File Destination Input].ExternalColumns[ErrorCode]"
+                      lineageId="Package\DFT_Load_Dim_Area\DEST_dw_Dim_Area.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]" />
+                    <inputColumn
+                      refId="Package\DFT_Load_Dim_Area\Flat File Destination.Inputs[Flat File Destination Input].Columns[ErrorColumn]"
+                      cachedDataType="i4"
+                      cachedName="ErrorColumn"
+                      externalMetadataColumnId="Package\DFT_Load_Dim_Area\Flat File Destination.Inputs[Flat File Destination Input].ExternalColumns[ErrorColumn]"
+                      lineageId="Package\DFT_Load_Dim_Area\DEST_dw_Dim_Area.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]" />
+                  </inputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\DFT_Load_Dim_Area\Flat File Destination.Inputs[Flat File Destination Input].ExternalColumns[Area_ID]"
+                      dataType="wstr"
+                      length="50"
+                      name="Area_ID" />
+                    <externalMetadataColumn
+                      refId="Package\DFT_Load_Dim_Area\Flat File Destination.Inputs[Flat File Destination Input].ExternalColumns[Area_Name]"
+                      dataType="wstr"
+                      length="150"
+                      name="Area_Name" />
+                    <externalMetadataColumn
+                      refId="Package\DFT_Load_Dim_Area\Flat File Destination.Inputs[Flat File Destination Input].ExternalColumns[Area_Level]"
+                      dataType="wstr"
+                      length="30"
+                      name="Area_Level" />
+                    <externalMetadataColumn
+                      refId="Package\DFT_Load_Dim_Area\Flat File Destination.Inputs[Flat File Destination Input].ExternalColumns[ParentArea_ID]"
+                      dataType="wstr"
+                      length="50"
+                      name="ParentArea_ID" />
+                    <externalMetadataColumn
+                      refId="Package\DFT_Load_Dim_Area\Flat File Destination.Inputs[Flat File Destination Input].ExternalColumns[ParentArea_Name]"
+                      dataType="wstr"
+                      length="150"
+                      name="ParentArea_Name" />
+                    <externalMetadataColumn
+                      refId="Package\DFT_Load_Dim_Area\Flat File Destination.Inputs[Flat File Destination Input].ExternalColumns[BoundaryVersion]"
+                      dataType="wstr"
+                      length="30"
+                      name="BoundaryVersion" />
+                    <externalMetadataColumn
+                      refId="Package\DFT_Load_Dim_Area\Flat File Destination.Inputs[Flat File Destination Input].ExternalColumns[Area_km2]"
+                      dataType="numeric"
+                      name="Area_km2"
+                      precision="18"
+                      scale="4" />
+                    <externalMetadataColumn
+                      refId="Package\DFT_Load_Dim_Area\Flat File Destination.Inputs[Flat File Destination Input].ExternalColumns[EffectiveFrom]"
+                      dataType="wstr"
+                      length="10"
+                      name="EffectiveFrom" />
+                    <externalMetadataColumn
+                      refId="Package\DFT_Load_Dim_Area\Flat File Destination.Inputs[Flat File Destination Input].ExternalColumns[EffectiveTo]"
+                      dataType="wstr"
+                      length="10"
+                      name="EffectiveTo" />
+                    <externalMetadataColumn
+                      refId="Package\DFT_Load_Dim_Area\Flat File Destination.Inputs[Flat File Destination Input].ExternalColumns[ErrorCode]"
+                      dataType="i4"
+                      name="ErrorCode" />
+                    <externalMetadataColumn
+                      refId="Package\DFT_Load_Dim_Area\Flat File Destination.Inputs[Flat File Destination Input].ExternalColumns[ErrorColumn]"
+                      dataType="i4"
+                      name="ErrorColumn" />
+                  </externalMetadataColumns>
+                </input>
+              </inputs>
             </component>
             <component
               refId="Package\DFT_Load_Dim_Area\LKP_Check_Existing"
@@ -450,7 +741,19 @@ where [refTable].[Area_ID] = ? and [refTable].[BoundaryVersion] = ?</property>
                   dataType="System.String"
                   description="The SQL command to be executed."
                   name="SqlCommand"
-                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor"></property>
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">SELECT
+    Area_ID,
+    Area_Name,
+    Area_Level,
+    ParentArea_ID,
+    ParentArea_Name,
+    BoundaryVersion,
+    Area_km2,
+    EffectiveFrom,
+    EffectiveTo
+FROM stg.Area
+WHERE Area_ID IS NOT NULL
+  AND BoundaryVersion IS NOT NULL;</property>
                 <property
                   dataType="System.String"
                   description="The variable that contains the SQL command to be executed."
@@ -467,7 +770,7 @@ where [refTable].[Area_ID] = ? and [refTable].[BoundaryVersion] = ?</property>
                   dataType="System.Int32"
                   description="Specifies the mode used to access the database."
                   name="AccessMode"
-                  typeConverter="AccessMode">0</property>
+                  typeConverter="AccessMode">2</property>
                 <property
                   dataType="System.String"
                   description="The mappings between the parameters in the SQL command and variables."
@@ -512,7 +815,7 @@ where [refTable].[Area_ID] = ? and [refTable].[BoundaryVersion] = ?</property>
                       errorOrTruncationOperation="Conversion"
                       errorRowDisposition="FailComponent"
                       externalMetadataColumnId="Package\DFT_Load_Dim_Area\SRC_stg_Area.Outputs[OLE DB Source Output].ExternalColumns[Area_Level]"
-                      length="50"
+                      length="30"
                       lineageId="Package\DFT_Load_Dim_Area\SRC_stg_Area.Outputs[OLE DB Source Output].Columns[Area_Level]"
                       name="Area_Level"
                       truncationRowDisposition="FailComponent" />
@@ -593,7 +896,7 @@ where [refTable].[Area_ID] = ? and [refTable].[BoundaryVersion] = ?</property>
                     <externalMetadataColumn
                       refId="Package\DFT_Load_Dim_Area\SRC_stg_Area.Outputs[OLE DB Source Output].ExternalColumns[Area_Level]"
                       dataType="wstr"
-                      length="50"
+                      length="30"
                       name="Area_Level" />
                     <externalMetadataColumn
                       refId="Package\DFT_Load_Dim_Area\SRC_stg_Area.Outputs[OLE DB Source Output].ExternalColumns[ParentArea_ID]"
@@ -648,7 +951,7 @@ where [refTable].[Area_ID] = ? and [refTable].[BoundaryVersion] = ?</property>
                     <outputColumn
                       refId="Package\DFT_Load_Dim_Area\SRC_stg_Area.Outputs[OLE DB Source Error Output].Columns[Area_Level]"
                       dataType="wstr"
-                      length="50"
+                      length="30"
                       lineageId="Package\DFT_Load_Dim_Area\SRC_stg_Area.Outputs[OLE DB Source Error Output].Columns[Area_Level]"
                       name="Area_Level" />
                     <outputColumn
@@ -713,6 +1016,11 @@ where [refTable].[Area_ID] = ? and [refTable].[BoundaryVersion] = ?</property>
               name="Lookup No Match Output"
               startId="Package\DFT_Load_Dim_Area\LKP_Check_Existing.Outputs[Lookup No Match Output]" />
             <path
+              refId="Package\DFT_Load_Dim_Area.Paths[OLE DB Destination Error Output]"
+              endId="Package\DFT_Load_Dim_Area\Flat File Destination.Inputs[Flat File Destination Input]"
+              name="OLE DB Destination Error Output"
+              startId="Package\DFT_Load_Dim_Area\DEST_dw_Dim_Area.Outputs[OLE DB Destination Error Output]" />
+            <path
               refId="Package\DFT_Load_Dim_Area.Paths[OLE DB Source Output]"
               endId="Package\DFT_Load_Dim_Area\LKP_Check_Existing.Inputs[Lookup Input]"
               name="OLE DB Source Output"
@@ -725,7 +1033,7 @@ where [refTable].[Area_ID] = ? and [refTable].[BoundaryVersion] = ?</property>
       DTS:refId="Package\DFT_Load_Dim_Cause"
       DTS:CreationName="Microsoft.Pipeline"
       DTS:Description="Data Flow Task"
-      DTS:DTSID="{E4729031-034C-4436-B260-67A17FA81CCB}"
+      DTS:DTSID="{4E4496F1-8617-4910-8D97-4AFE6D2CF58D}"
       DTS:ExecutableType="Microsoft.Pipeline"
       DTS:LocaleID="-1"
       DTS:ObjectName="DFT_Load_Dim_Cause"
@@ -1162,7 +1470,7 @@ WHERE Cause IS NOT NULL;</property>
       DTS:refId="Package\DFT_Load_Dim_Location"
       DTS:CreationName="Microsoft.Pipeline"
       DTS:Description="Data Flow Task"
-      DTS:DTSID="{97831726-7D4C-4690-8B1A-96CC6BF2341B}"
+      DTS:DTSID="{88EC4DA1-C6DD-4565-859F-7EC80FF6216B}"
       DTS:ExecutableType="Microsoft.Pipeline"
       DTS:LocaleID="-1"
       DTS:ObjectName="DFT_Load_Dim_Location"
@@ -1254,7 +1562,7 @@ WHERE Cause IS NOT NULL;</property>
                     <inputColumn
                       refId="Package\DFT_Load_Dim_Location\DEST_dw_Dim_Location.Inputs[OLE DB Destination Input].Columns[Location_Name]"
                       cachedDataType="wstr"
-                      cachedLength="255"
+                      cachedLength="500"
                       cachedName="Location_Name"
                       externalMetadataColumnId="Package\DFT_Load_Dim_Location\DEST_dw_Dim_Location.Inputs[OLE DB Destination Input].ExternalColumns[Location_Name]"
                       lineageId="Package\DFT_Load_Dim_Location\SRC_stg_FloodIntegrated.Outputs[OLE DB Source Output].Columns[Location_Name]" />
@@ -1269,22 +1577,22 @@ WHERE Cause IS NOT NULL;</property>
                       refId="Package\DFT_Load_Dim_Location\DEST_dw_Dim_Location.Inputs[OLE DB Destination Input].Columns[Longitude]"
                       cachedDataType="numeric"
                       cachedName="Longitude"
-                      cachedPrecision="10"
-                      cachedScale="7"
+                      cachedPrecision="15"
+                      cachedScale="12"
                       externalMetadataColumnId="Package\DFT_Load_Dim_Location\DEST_dw_Dim_Location.Inputs[OLE DB Destination Input].ExternalColumns[Longitude]"
                       lineageId="Package\DFT_Load_Dim_Location\SRC_stg_FloodIntegrated.Outputs[OLE DB Source Output].Columns[Longitude]" />
                     <inputColumn
                       refId="Package\DFT_Load_Dim_Location\DEST_dw_Dim_Location.Inputs[OLE DB Destination Input].Columns[Latitude]"
                       cachedDataType="numeric"
                       cachedName="Latitude"
-                      cachedPrecision="10"
-                      cachedScale="7"
+                      cachedPrecision="15"
+                      cachedScale="12"
                       externalMetadataColumnId="Package\DFT_Load_Dim_Location\DEST_dw_Dim_Location.Inputs[OLE DB Destination Input].ExternalColumns[Latitude]"
                       lineageId="Package\DFT_Load_Dim_Location\SRC_stg_FloodIntegrated.Outputs[OLE DB Source Output].Columns[Latitude]" />
                     <inputColumn
                       refId="Package\DFT_Load_Dim_Location\DEST_dw_Dim_Location.Inputs[OLE DB Destination Input].Columns[SpatialPrecision]"
                       cachedDataType="wstr"
-                      cachedLength="50"
+                      cachedLength="100"
                       cachedName="SpatialPrecision"
                       externalMetadataColumnId="Package\DFT_Load_Dim_Location\DEST_dw_Dim_Location.Inputs[OLE DB Destination Input].ExternalColumns[SpatialPrecision]"
                       lineageId="Package\DFT_Load_Dim_Location\SRC_stg_FloodIntegrated.Outputs[OLE DB Source Output].Columns[SpatialPrecision]" />
@@ -1299,8 +1607,8 @@ WHERE Cause IS NOT NULL;</property>
                       refId="Package\DFT_Load_Dim_Location\DEST_dw_Dim_Location.Inputs[OLE DB Destination Input].Columns[DistanceToWater_m]"
                       cachedDataType="numeric"
                       cachedName="DistanceToWater_m"
-                      cachedPrecision="14"
-                      cachedScale="3"
+                      cachedPrecision="18"
+                      cachedScale="6"
                       externalMetadataColumnId="Package\DFT_Load_Dim_Location\DEST_dw_Dim_Location.Inputs[OLE DB Destination Input].ExternalColumns[DistanceToWater_m]"
                       lineageId="Package\DFT_Load_Dim_Location\SRC_stg_FloodIntegrated.Outputs[OLE DB Source Output].Columns[DistanceToWater_m]" />
                     <inputColumn
@@ -1321,8 +1629,8 @@ WHERE Cause IS NOT NULL;</property>
                       refId="Package\DFT_Load_Dim_Location\DEST_dw_Dim_Location.Inputs[OLE DB Destination Input].Columns[DistanceToRoad_m]"
                       cachedDataType="numeric"
                       cachedName="DistanceToRoad_m"
-                      cachedPrecision="14"
-                      cachedScale="3"
+                      cachedPrecision="18"
+                      cachedScale="6"
                       externalMetadataColumnId="Package\DFT_Load_Dim_Location\DEST_dw_Dim_Location.Inputs[OLE DB Destination Input].ExternalColumns[DistanceToRoad_m]"
                       lineageId="Package\DFT_Load_Dim_Location\SRC_stg_FloodIntegrated.Outputs[OLE DB Source Output].Columns[DistanceToRoad_m]" />
                     <inputColumn
@@ -1346,7 +1654,7 @@ WHERE Cause IS NOT NULL;</property>
                     <externalMetadataColumn
                       refId="Package\DFT_Load_Dim_Location\DEST_dw_Dim_Location.Inputs[OLE DB Destination Input].ExternalColumns[Location_Name]"
                       dataType="wstr"
-                      length="500"
+                      length="255"
                       name="Location_Name" />
                     <externalMetadataColumn
                       refId="Package\DFT_Load_Dim_Location\DEST_dw_Dim_Location.Inputs[OLE DB Destination Input].ExternalColumns[Location_Type]"
@@ -1361,14 +1669,14 @@ WHERE Cause IS NOT NULL;</property>
                       refId="Package\DFT_Load_Dim_Location\DEST_dw_Dim_Location.Inputs[OLE DB Destination Input].ExternalColumns[Longitude]"
                       dataType="numeric"
                       name="Longitude"
-                      precision="15"
-                      scale="12" />
+                      precision="10"
+                      scale="7" />
                     <externalMetadataColumn
                       refId="Package\DFT_Load_Dim_Location\DEST_dw_Dim_Location.Inputs[OLE DB Destination Input].ExternalColumns[Latitude]"
                       dataType="numeric"
                       name="Latitude"
-                      precision="15"
-                      scale="12" />
+                      precision="10"
+                      scale="7" />
                     <externalMetadataColumn
                       refId="Package\DFT_Load_Dim_Location\DEST_dw_Dim_Location.Inputs[OLE DB Destination Input].ExternalColumns[SpatialPrecision]"
                       dataType="wstr"
@@ -1383,24 +1691,24 @@ WHERE Cause IS NOT NULL;</property>
                       refId="Package\DFT_Load_Dim_Location\DEST_dw_Dim_Location.Inputs[OLE DB Destination Input].ExternalColumns[DistanceToWater_m]"
                       dataType="numeric"
                       name="DistanceToWater_m"
-                      precision="18"
-                      scale="6" />
+                      precision="14"
+                      scale="3" />
                     <externalMetadataColumn
                       refId="Package\DFT_Load_Dim_Location\DEST_dw_Dim_Location.Inputs[OLE DB Destination Input].ExternalColumns[NearestWater_ID]"
                       dataType="wstr"
-                      length="100"
+                      length="50"
                       name="NearestWater_ID" />
                     <externalMetadataColumn
                       refId="Package\DFT_Load_Dim_Location\DEST_dw_Dim_Location.Inputs[OLE DB Destination Input].ExternalColumns[NearestRoad_Name]"
                       dataType="wstr"
-                      length="255"
+                      length="150"
                       name="NearestRoad_Name" />
                     <externalMetadataColumn
                       refId="Package\DFT_Load_Dim_Location\DEST_dw_Dim_Location.Inputs[OLE DB Destination Input].ExternalColumns[DistanceToRoad_m]"
                       dataType="numeric"
                       name="DistanceToRoad_m"
-                      precision="18"
-                      scale="6" />
+                      precision="14"
+                      scale="3" />
                   </externalMetadataColumns>
                 </input>
               </inputs>
@@ -1616,8 +1924,16 @@ FROM (
     WHERE Obs_id IS NOT NULL
 ) f
 LEFT JOIN dw.Dim_Area a
-    ON f.Population_Area_ID = a.Area_ID
-    AND a.IsCurrent = 1;</property>
+    ON TRY_CONVERT(
+       INT,
+       TRY_CONVERT(DECIMAL(18,2), f.Population_Area_ID)
+   ) = TRY_CONVERT(INT, a.Area_ID)
+
+AND REPLACE(
+    f.Population_BoundaryVersion,
+    'District_',
+    ''
+) = a.BoundaryVersion</property>
                 <property
                   dataType="System.String"
                   description="The variable that contains the SQL command to be executed."
@@ -1669,7 +1985,7 @@ LEFT JOIN dw.Dim_Area a
                       errorOrTruncationOperation="Conversion"
                       errorRowDisposition="FailComponent"
                       externalMetadataColumnId="Package\DFT_Load_Dim_Location\SRC_stg_FloodIntegrated.Outputs[OLE DB Source Output].ExternalColumns[Location_Name]"
-                      length="255"
+                      length="500"
                       lineageId="Package\DFT_Load_Dim_Location\SRC_stg_FloodIntegrated.Outputs[OLE DB Source Output].Columns[Location_Name]"
                       name="Location_Name"
                       truncationRowDisposition="FailComponent" />
@@ -1691,8 +2007,8 @@ LEFT JOIN dw.Dim_Area a
                       externalMetadataColumnId="Package\DFT_Load_Dim_Location\SRC_stg_FloodIntegrated.Outputs[OLE DB Source Output].ExternalColumns[Longitude]"
                       lineageId="Package\DFT_Load_Dim_Location\SRC_stg_FloodIntegrated.Outputs[OLE DB Source Output].Columns[Longitude]"
                       name="Longitude"
-                      precision="10"
-                      scale="7"
+                      precision="15"
+                      scale="12"
                       truncationRowDisposition="FailComponent" />
                     <outputColumn
                       refId="Package\DFT_Load_Dim_Location\SRC_stg_FloodIntegrated.Outputs[OLE DB Source Output].Columns[Latitude]"
@@ -1702,8 +2018,8 @@ LEFT JOIN dw.Dim_Area a
                       externalMetadataColumnId="Package\DFT_Load_Dim_Location\SRC_stg_FloodIntegrated.Outputs[OLE DB Source Output].ExternalColumns[Latitude]"
                       lineageId="Package\DFT_Load_Dim_Location\SRC_stg_FloodIntegrated.Outputs[OLE DB Source Output].Columns[Latitude]"
                       name="Latitude"
-                      precision="10"
-                      scale="7"
+                      precision="15"
+                      scale="12"
                       truncationRowDisposition="FailComponent" />
                     <outputColumn
                       refId="Package\DFT_Load_Dim_Location\SRC_stg_FloodIntegrated.Outputs[OLE DB Source Output].Columns[SpatialPrecision]"
@@ -1711,7 +2027,7 @@ LEFT JOIN dw.Dim_Area a
                       errorOrTruncationOperation="Conversion"
                       errorRowDisposition="FailComponent"
                       externalMetadataColumnId="Package\DFT_Load_Dim_Location\SRC_stg_FloodIntegrated.Outputs[OLE DB Source Output].ExternalColumns[SpatialPrecision]"
-                      length="50"
+                      length="100"
                       lineageId="Package\DFT_Load_Dim_Location\SRC_stg_FloodIntegrated.Outputs[OLE DB Source Output].Columns[SpatialPrecision]"
                       name="SpatialPrecision"
                       truncationRowDisposition="FailComponent" />
@@ -1733,8 +2049,8 @@ LEFT JOIN dw.Dim_Area a
                       externalMetadataColumnId="Package\DFT_Load_Dim_Location\SRC_stg_FloodIntegrated.Outputs[OLE DB Source Output].ExternalColumns[DistanceToWater_m]"
                       lineageId="Package\DFT_Load_Dim_Location\SRC_stg_FloodIntegrated.Outputs[OLE DB Source Output].Columns[DistanceToWater_m]"
                       name="DistanceToWater_m"
-                      precision="14"
-                      scale="3"
+                      precision="18"
+                      scale="6"
                       truncationRowDisposition="FailComponent" />
                     <outputColumn
                       refId="Package\DFT_Load_Dim_Location\SRC_stg_FloodIntegrated.Outputs[OLE DB Source Output].Columns[NearestWater_ID]"
@@ -1764,8 +2080,8 @@ LEFT JOIN dw.Dim_Area a
                       externalMetadataColumnId="Package\DFT_Load_Dim_Location\SRC_stg_FloodIntegrated.Outputs[OLE DB Source Output].ExternalColumns[DistanceToRoad_m]"
                       lineageId="Package\DFT_Load_Dim_Location\SRC_stg_FloodIntegrated.Outputs[OLE DB Source Output].Columns[DistanceToRoad_m]"
                       name="DistanceToRoad_m"
-                      precision="14"
-                      scale="3"
+                      precision="18"
+                      scale="6"
                       truncationRowDisposition="FailComponent" />
                     <outputColumn
                       refId="Package\DFT_Load_Dim_Location\SRC_stg_FloodIntegrated.Outputs[OLE DB Source Output].Columns[AreaKey]"
@@ -1787,7 +2103,7 @@ LEFT JOIN dw.Dim_Area a
                     <externalMetadataColumn
                       refId="Package\DFT_Load_Dim_Location\SRC_stg_FloodIntegrated.Outputs[OLE DB Source Output].ExternalColumns[Location_Name]"
                       dataType="wstr"
-                      length="255"
+                      length="500"
                       name="Location_Name" />
                     <externalMetadataColumn
                       refId="Package\DFT_Load_Dim_Location\SRC_stg_FloodIntegrated.Outputs[OLE DB Source Output].ExternalColumns[Location_Type]"
@@ -1798,18 +2114,18 @@ LEFT JOIN dw.Dim_Area a
                       refId="Package\DFT_Load_Dim_Location\SRC_stg_FloodIntegrated.Outputs[OLE DB Source Output].ExternalColumns[Longitude]"
                       dataType="numeric"
                       name="Longitude"
-                      precision="10"
-                      scale="7" />
+                      precision="15"
+                      scale="12" />
                     <externalMetadataColumn
                       refId="Package\DFT_Load_Dim_Location\SRC_stg_FloodIntegrated.Outputs[OLE DB Source Output].ExternalColumns[Latitude]"
                       dataType="numeric"
                       name="Latitude"
-                      precision="10"
-                      scale="7" />
+                      precision="15"
+                      scale="12" />
                     <externalMetadataColumn
                       refId="Package\DFT_Load_Dim_Location\SRC_stg_FloodIntegrated.Outputs[OLE DB Source Output].ExternalColumns[SpatialPrecision]"
                       dataType="wstr"
-                      length="50"
+                      length="100"
                       name="SpatialPrecision" />
                     <externalMetadataColumn
                       refId="Package\DFT_Load_Dim_Location\SRC_stg_FloodIntegrated.Outputs[OLE DB Source Output].ExternalColumns[GeocodingMethod]"
@@ -1820,8 +2136,8 @@ LEFT JOIN dw.Dim_Area a
                       refId="Package\DFT_Load_Dim_Location\SRC_stg_FloodIntegrated.Outputs[OLE DB Source Output].ExternalColumns[DistanceToWater_m]"
                       dataType="numeric"
                       name="DistanceToWater_m"
-                      precision="14"
-                      scale="3" />
+                      precision="18"
+                      scale="6" />
                     <externalMetadataColumn
                       refId="Package\DFT_Load_Dim_Location\SRC_stg_FloodIntegrated.Outputs[OLE DB Source Output].ExternalColumns[NearestWater_ID]"
                       dataType="wstr"
@@ -1836,8 +2152,8 @@ LEFT JOIN dw.Dim_Area a
                       refId="Package\DFT_Load_Dim_Location\SRC_stg_FloodIntegrated.Outputs[OLE DB Source Output].ExternalColumns[DistanceToRoad_m]"
                       dataType="numeric"
                       name="DistanceToRoad_m"
-                      precision="14"
-                      scale="3" />
+                      precision="18"
+                      scale="6" />
                     <externalMetadataColumn
                       refId="Package\DFT_Load_Dim_Location\SRC_stg_FloodIntegrated.Outputs[OLE DB Source Output].ExternalColumns[AreaKey]"
                       dataType="i4"
@@ -1858,7 +2174,7 @@ LEFT JOIN dw.Dim_Area a
                     <outputColumn
                       refId="Package\DFT_Load_Dim_Location\SRC_stg_FloodIntegrated.Outputs[OLE DB Source Error Output].Columns[Location_Name]"
                       dataType="wstr"
-                      length="255"
+                      length="500"
                       lineageId="Package\DFT_Load_Dim_Location\SRC_stg_FloodIntegrated.Outputs[OLE DB Source Error Output].Columns[Location_Name]"
                       name="Location_Name" />
                     <outputColumn
@@ -1877,19 +2193,19 @@ LEFT JOIN dw.Dim_Area a
                       dataType="numeric"
                       lineageId="Package\DFT_Load_Dim_Location\SRC_stg_FloodIntegrated.Outputs[OLE DB Source Error Output].Columns[Longitude]"
                       name="Longitude"
-                      precision="10"
-                      scale="7" />
+                      precision="15"
+                      scale="12" />
                     <outputColumn
                       refId="Package\DFT_Load_Dim_Location\SRC_stg_FloodIntegrated.Outputs[OLE DB Source Error Output].Columns[Latitude]"
                       dataType="numeric"
                       lineageId="Package\DFT_Load_Dim_Location\SRC_stg_FloodIntegrated.Outputs[OLE DB Source Error Output].Columns[Latitude]"
                       name="Latitude"
-                      precision="10"
-                      scale="7" />
+                      precision="15"
+                      scale="12" />
                     <outputColumn
                       refId="Package\DFT_Load_Dim_Location\SRC_stg_FloodIntegrated.Outputs[OLE DB Source Error Output].Columns[SpatialPrecision]"
                       dataType="wstr"
-                      length="50"
+                      length="100"
                       lineageId="Package\DFT_Load_Dim_Location\SRC_stg_FloodIntegrated.Outputs[OLE DB Source Error Output].Columns[SpatialPrecision]"
                       name="SpatialPrecision" />
                     <outputColumn
@@ -1903,8 +2219,8 @@ LEFT JOIN dw.Dim_Area a
                       dataType="numeric"
                       lineageId="Package\DFT_Load_Dim_Location\SRC_stg_FloodIntegrated.Outputs[OLE DB Source Error Output].Columns[DistanceToWater_m]"
                       name="DistanceToWater_m"
-                      precision="14"
-                      scale="3" />
+                      precision="18"
+                      scale="6" />
                     <outputColumn
                       refId="Package\DFT_Load_Dim_Location\SRC_stg_FloodIntegrated.Outputs[OLE DB Source Error Output].Columns[NearestWater_ID]"
                       dataType="wstr"
@@ -1922,8 +2238,8 @@ LEFT JOIN dw.Dim_Area a
                       dataType="numeric"
                       lineageId="Package\DFT_Load_Dim_Location\SRC_stg_FloodIntegrated.Outputs[OLE DB Source Error Output].Columns[DistanceToRoad_m]"
                       name="DistanceToRoad_m"
-                      precision="14"
-                      scale="3" />
+                      precision="18"
+                      scale="6" />
                     <outputColumn
                       refId="Package\DFT_Load_Dim_Location\SRC_stg_FloodIntegrated.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
                       dataType="i4"
@@ -1961,7 +2277,7 @@ LEFT JOIN dw.Dim_Area a
       DTS:refId="Package\DFT_Load_Dim_Source"
       DTS:CreationName="Microsoft.Pipeline"
       DTS:Description="Data Flow Task"
-      DTS:DTSID="{354B2B5F-2630-49A1-B5CC-64B355701946}"
+      DTS:DTSID="{D828312A-5173-4171-97CC-F4B3EE0EBA93}"
       DTS:ExecutableType="Microsoft.Pipeline"
       DTS:LocaleID="-1"
       DTS:ObjectName="DFT_Load_Dim_Source"
@@ -2296,12 +2612,25 @@ where [refTable].[Source_ID] = ?</property>
                   dataType="System.String"
                   description="The SQL command to be executed."
                   name="SqlCommand"
-                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">SELECT DISTINCT
-    Source_id AS Source_ID,
-    Source_id AS Source_Name,
-    Source_type AS Source_Type
-FROM stg.Flood
-WHERE Source_id IS NOT NULL;</property>
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">WITH SourceRanked AS (
+    SELECT
+        LTRIM(RTRIM(Source_id)) AS Source_ID,
+        LTRIM(RTRIM(Source_id)) AS Source_Name,
+        Source_type AS Source_Type,
+        ROW_NUMBER() OVER (
+            PARTITION BY LTRIM(RTRIM(Source_id))
+            ORDER BY Source_type
+        ) AS RowNum
+    FROM stg.Flood
+    WHERE Source_id IS NOT NULL
+      AND LTRIM(RTRIM(Source_id)) &lt;&gt; ''
+)
+SELECT
+    Source_ID,
+    Source_Name,
+    Source_Type
+FROM SourceRanked
+WHERE RowNum = 1;</property>
                 <property
                   dataType="System.String"
                   description="The variable that contains the SQL command to be executed."
@@ -2448,7 +2777,7 @@ WHERE Source_id IS NOT NULL;</property>
     <DTS:PrecedenceConstraint
       DTS:refId="Package.PrecedenceConstraints[Constraint]"
       DTS:CreationName=""
-      DTS:DTSID="{A6CDE213-1432-4E34-8829-5D0247EB1200}"
+      DTS:DTSID="{2095CD23-2622-41D1-9177-43F1E78B3B89}"
       DTS:From="Package\DFT_Load_Dim_Area"
       DTS:LogicalAnd="True"
       DTS:ObjectName="Constraint"
@@ -2456,7 +2785,7 @@ WHERE Source_id IS NOT NULL;</property>
     <DTS:PrecedenceConstraint
       DTS:refId="Package.PrecedenceConstraints[Constraint 1]"
       DTS:CreationName=""
-      DTS:DTSID="{475838F9-BA7D-47DB-B836-09C0A0140F19}"
+      DTS:DTSID="{1BA095CF-2E01-4A4B-8E54-8B1B9731B88A}"
       DTS:From="Package\DFT_Load_Dim_Cause"
       DTS:LogicalAnd="True"
       DTS:ObjectName="Constraint 1"
@@ -2464,7 +2793,7 @@ WHERE Source_id IS NOT NULL;</property>
     <DTS:PrecedenceConstraint
       DTS:refId="Package.PrecedenceConstraints[Constraint 2]"
       DTS:CreationName=""
-      DTS:DTSID="{781842CA-20A6-45A6-9C8D-87365B633B60}"
+      DTS:DTSID="{DBE8C29B-178E-43BA-AF25-DF9FB8478686}"
       DTS:From="Package\DFT_Load_Dim_Source"
       DTS:LogicalAnd="True"
       DTS:ObjectName="Constraint 2"
@@ -2490,6 +2819,14 @@ WHERE Source_id IS NOT NULL;</property>
           Size="187.2,41.6"
           Id="Package\DFT_Load_Dim_Cause"
           TopLeft="150.833325092164,199.333331947194" />
+        <NodeLayout
+          Size="196.8,41.6"
+          Id="Package\DFT_Load_Dim_Location"
+          TopLeft="149.16665851656,378.733330699669" />
+        <NodeLayout
+          Size="190.4,41.6"
+          Id="Package\DFT_Load_Dim_Source"
+          TopLeft="149.16665851656,292.066664635672" />
         <EdgeLayout
           Id="Package.PrecedenceConstraints[Constraint]"
           TopLeft="247.68332495557,135.499999385277">
@@ -2512,10 +2849,6 @@ WHERE Source_id IS NOT NULL;</property>
             <EdgeLabelCollection />
           </EdgeLayout.Labels>
         </EdgeLayout>
-        <NodeLayout
-          Size="190.4,41.6"
-          Id="Package\DFT_Load_Dim_Source"
-          TopLeft="149.16665851656,292.066664635672" />
         <EdgeLayout
           Id="Package.PrecedenceConstraints[Constraint 1]"
           TopLeft="244.399991804362,240.933331947194">
@@ -2538,10 +2871,6 @@ WHERE Source_id IS NOT NULL;</property>
             <EdgeLabelCollection />
           </EdgeLayout.Labels>
         </EdgeLayout>
-        <NodeLayout
-          Size="196.8,41.6"
-          Id="Package\DFT_Load_Dim_Location"
-          TopLeft="149.16665851656,378.733330699669" />
         <EdgeLayout
           Id="Package.PrecedenceConstraints[Constraint 2]"
           TopLeft="245.96665851656,333.666664635672">
@@ -2573,31 +2902,35 @@ WHERE Source_id IS NOT NULL;</property>
       <GraphLayout
         Capacity="8" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mssgm="clr-namespace:Microsoft.SqlServer.Graph.Model;assembly=Microsoft.SqlServer.Graph">
         <NodeLayout
-          Size="148,41.6"
+          Size="144.8,41.6"
           Id="Package\DFT_Load_Dim_Area\SRC_stg_Area"
-          TopLeft="239.999996423721,150.999997749925" />
+          TopLeft="239.285710707915,152.52940951329" />
+        <NodeLayout
+          Size="171.2,41.6"
+          Id="Package\DFT_Load_Dim_Area\Flat File Destination"
+          TopLeft="468.571429568894,387.376470272527" />
         <NodeLayout
           Size="175.2,41.6"
           Id="Package\DFT_Load_Dim_Area\LKP_Check_Existing"
           TopLeft="222.999996677041,261.999996095896" />
         <NodeLayout
-          Size="176.8,41.6"
+          Size="175.2,41.6"
           Id="Package\DFT_Load_Dim_Area\DEST_dw_Dim_Area"
           TopLeft="223.99999666214,382.999994292855" />
         <EdgeLayout
           Id="Package\DFT_Load_Dim_Area.Paths[OLE DB Source Output]"
-          TopLeft="312.299996550381,192.599997749925">
+          TopLeft="311.142853692478,194.12940951329">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
-              EndConnector="0,69.3999983459711"
+              EndConnector="0,67.8705865826057"
               Start="0,0"
-              End="0,61.8999983459711">
+              End="0,60.3705865826057">
               <mssgle:Curve.Segments>
                 <mssgle:SegmentCollection
                   Capacity="5">
                   <mssgle:LineSegment
-                    End="0,61.8999983459711" />
+                    End="0,60.3705865826057" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>
@@ -2607,26 +2940,50 @@ WHERE Source_id IS NOT NULL;</property>
           </EdgeLayout.Labels>
         </EdgeLayout>
         <EdgeLayout
-          Id="Package\DFT_Load_Dim_Area.Paths[Lookup No Match Output]"
-          TopLeft="311.49999666959,303.599996095896">
+          Id="Package\DFT_Load_Dim_Area.Paths[OLE DB Destination Error Output]"
+          TopLeft="399.19999666214,405.988232282691">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
-              EndConnector="0,79.3999981969595"
+              EndConnector="69.371432906754,0"
               Start="0,0"
-              End="0,71.8999981969595">
+              End="61.871432906754,0">
               <mssgle:Curve.Segments>
                 <mssgle:SegmentCollection
                   Capacity="5">
                   <mssgle:LineSegment
-                    End="0,71.8999981969595" />
+                    End="61.871432906754,0" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>
           </EdgeLayout.Curve>
           <EdgeLayout.Labels>
             <mssgm:EdgeLabel
-              BoundingBox="-55.80638671875,30.1453115984797,111.6127734375,11.609375"
+              BoundingBox="-42.273189796623,5,146.4178125,11.43359375"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\DFT_Load_Dim_Area.Paths[Lookup No Match Output]"
+          TopLeft="311.09999666959,303.599996095896">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,79.399998196959"
+              Start="0,0"
+              End="0,71.899998196959">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,71.899998196959" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="-55.80638671875,30.1453115984795,111.6127734375,11.609375"
               RelativePosition="Any" />
           </EdgeLayout.Labels>
         </EdgeLayout>
@@ -2652,7 +3009,7 @@ WHERE Source_id IS NOT NULL;</property>
       <Property>
         <Name>OverwriteParamsSQLProp</Name>
         <Value
-          type="q2:boolean">false</Value>
+          type="q2:string">false</Value>
       </Property>
       <Property>
         <Name>UsedTableName</Name>
@@ -2662,7 +3019,7 @@ WHERE Source_id IS NOT NULL;</property>
       <Property>
         <Name>TableInfoObjectType</Name>
         <Value
-          type="q4:int">0</Value>
+          type="q4:string">0</Value>
       </Property>
       <Property>
         <Name>DataSourceViewID</Name>
@@ -2718,7 +3075,9 @@ WHERE Source_id IS NOT NULL;</property>
             </mssgle:Curve>
           </EdgeLayout.Curve>
           <EdgeLayout.Labels>
-            <EdgeLabelCollection />
+            <mssgm:EdgeLabel
+              BoundingBox="0,0,0,0"
+              RelativePosition="Any" />
           </EdgeLayout.Labels>
         </EdgeLayout>
         <EdgeLayout
@@ -2762,7 +3121,7 @@ WHERE Source_id IS NOT NULL;</property>
       <Property>
         <Name>OverwriteParamsSQLProp</Name>
         <Value
-          type="q2:boolean">false</Value>
+          type="q2:string">false</Value>
       </Property>
       <Property>
         <Name>UsedTableName</Name>
@@ -2772,7 +3131,7 @@ WHERE Source_id IS NOT NULL;</property>
       <Property>
         <Name>TableInfoObjectType</Name>
         <Value
-          type="q4:int">0</Value>
+          type="q4:string">0</Value>
       </Property>
       <Property>
         <Name>DataSourceViewID</Name>
@@ -2781,116 +3140,6 @@ WHERE Source_id IS NOT NULL;</property>
   </PipelineComponentMetadata>
   <PipelineComponentMetadata
     design-time-name="Package\DFT_Load_Dim_Cause\DEST_dw_Dim_Cause">
-    <Properties>
-      <Property>
-        <Name>DataSourceViewID</Name>
-      </Property>
-      <Property>
-        <Name>TableInfoObjectType</Name>
-        <Value
-          type="q2:string">Table</Value>
-      </Property>
-    </Properties>
-  </PipelineComponentMetadata>
-  <TaskHost
-    design-time-name="Package\DFT_Load_Dim_Source">
-    <LayoutInfo>
-      <GraphLayout
-        Capacity="8" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mssgm="clr-namespace:Microsoft.SqlServer.Graph.Model;assembly=Microsoft.SqlServer.Graph">
-        <NodeLayout
-          Size="190.4,41.6"
-          Id="Package\DFT_Load_Dim_Source\SRC_stg_Flood_Source"
-          TopLeft="344.999994859099,77.9999988377094" />
-        <NodeLayout
-          Size="214.4,41.6"
-          Id="Package\DFT_Load_Dim_Source\LKP_Check_Existing_Source"
-          TopLeft="331.999995052814,173.999997407198" />
-        <NodeLayout
-          Size="188,41.6"
-          Id="Package\DFT_Load_Dim_Source\DEST_dw_Dim_Source"
-          TopLeft="343.999994874001,273.999995917082" />
-        <EdgeLayout
-          Id="Package\DFT_Load_Dim_Source.Paths[OLE DB Source Output]"
-          TopLeft="439.699994955957,119.599998837709">
-          <EdgeLayout.Curve>
-            <mssgle:Curve
-              StartConnector="{assembly:Null}"
-              EndConnector="0,54.3999985694885"
-              Start="0,0"
-              End="0,46.8999985694885">
-              <mssgle:Curve.Segments>
-                <mssgle:SegmentCollection
-                  Capacity="5">
-                  <mssgle:LineSegment
-                    End="0,46.8999985694885" />
-                </mssgle:SegmentCollection>
-              </mssgle:Curve.Segments>
-            </mssgle:Curve>
-          </EdgeLayout.Curve>
-          <EdgeLayout.Labels>
-            <EdgeLabelCollection />
-          </EdgeLayout.Labels>
-        </EdgeLayout>
-        <EdgeLayout
-          Id="Package\DFT_Load_Dim_Source.Paths[Lookup No Match Output]"
-          TopLeft="438.599994963407,215.599997407198">
-          <EdgeLayout.Curve>
-            <mssgle:Curve
-              StartConnector="{assembly:Null}"
-              EndConnector="0,58.3999985098839"
-              Start="0,0"
-              End="0,50.8999985098839">
-              <mssgle:Curve.Segments>
-                <mssgle:SegmentCollection
-                  Capacity="5">
-                  <mssgle:LineSegment
-                    End="0,50.8999985098839" />
-                </mssgle:SegmentCollection>
-              </mssgle:Curve.Segments>
-            </mssgle:Curve>
-          </EdgeLayout.Curve>
-          <EdgeLayout.Labels>
-            <mssgm:EdgeLabel
-              BoundingBox="-55.80638671875,19.6453117549419,111.6127734375,11.609375"
-              RelativePosition="Any" />
-          </EdgeLayout.Labels>
-        </EdgeLayout>
-      </GraphLayout>
-    </LayoutInfo>
-  </TaskHost>
-  <PipelineComponentMetadata
-    design-time-name="Package\DFT_Load_Dim_Source\SRC_stg_Flood_Source">
-    <Properties>
-      <Property>
-        <Name>DataSourceViewID</Name>
-      </Property>
-    </Properties>
-  </PipelineComponentMetadata>
-  <PipelineComponentMetadata
-    design-time-name="Package\DFT_Load_Dim_Source\LKP_Check_Existing_Source">
-    <Properties>
-      <Property>
-        <Name>OverwriteParamsSQLProp</Name>
-        <Value
-          type="q2:boolean">false</Value>
-      </Property>
-      <Property>
-        <Name>UsedTableName</Name>
-        <Value
-          type="q3:string">[dw].[Dim_Source]</Value>
-      </Property>
-      <Property>
-        <Name>TableInfoObjectType</Name>
-        <Value
-          type="q4:int">0</Value>
-      </Property>
-      <Property>
-        <Name>DataSourceViewID</Name>
-      </Property>
-    </Properties>
-  </PipelineComponentMetadata>
-  <PipelineComponentMetadata
-    design-time-name="Package\DFT_Load_Dim_Source\DEST_dw_Dim_Source">
     <Properties>
       <Property>
         <Name>DataSourceViewID</Name>
@@ -2916,9 +3165,33 @@ WHERE Source_id IS NOT NULL;</property>
           Id="Package\DFT_Load_Dim_Location\LKP_Check_Existing_Location"
           TopLeft="152.54545227235,153.454543167895" />
         <NodeLayout
-          Size="194.4,41.6"
+          Size="192.8,41.6"
           Id="Package\DFT_Load_Dim_Location\DEST_dw_Dim_Location"
           TopLeft="164.999997541308,326.99999512732" />
+        <EdgeLayout
+          Id="Package\DFT_Load_Dim_Location.Paths[Lookup No Match Output]"
+          TopLeft="262.172724906829,195.054543167895">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,131.945451959425"
+              Start="0,0"
+              End="0,124.445451959425">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,124.445451959425" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="-55.80638671875,56.4180384797125,111.6127734375,11.609375"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
         <EdgeLayout
           Id="Package\DFT_Load_Dim_Location.Paths[OLE DB Source Output]"
           TopLeft="264.572724891928,75.5999994933605">
@@ -2941,30 +3214,6 @@ WHERE Source_id IS NOT NULL;</property>
             <EdgeLabelCollection />
           </EdgeLayout.Labels>
         </EdgeLayout>
-        <EdgeLayout
-          Id="Package\DFT_Load_Dim_Location.Paths[Lookup No Match Output]"
-          TopLeft="262.572724906829,195.054543167895">
-          <EdgeLayout.Curve>
-            <mssgle:Curve
-              StartConnector="{assembly:Null}"
-              EndConnector="0,131.945451959426"
-              Start="0,0"
-              End="0,124.445451959426">
-              <mssgle:Curve.Segments>
-                <mssgle:SegmentCollection
-                  Capacity="5">
-                  <mssgle:LineSegment
-                    End="0,124.445451959426" />
-                </mssgle:SegmentCollection>
-              </mssgle:Curve.Segments>
-            </mssgle:Curve>
-          </EdgeLayout.Curve>
-          <EdgeLayout.Labels>
-            <mssgm:EdgeLabel
-              BoundingBox="-55.80638671875,56.4180384797129,111.6127734375,11.609375"
-              RelativePosition="Any" />
-          </EdgeLayout.Labels>
-        </EdgeLayout>
       </GraphLayout>
     </LayoutInfo>
   </TaskHost>
@@ -2982,7 +3231,7 @@ WHERE Source_id IS NOT NULL;</property>
       <Property>
         <Name>OverwriteParamsSQLProp</Name>
         <Value
-          type="q2:boolean">false</Value>
+          type="q2:string">false</Value>
       </Property>
       <Property>
         <Name>UsedTableName</Name>
@@ -2992,7 +3241,7 @@ WHERE Source_id IS NOT NULL;</property>
       <Property>
         <Name>TableInfoObjectType</Name>
         <Value
-          type="q4:int">0</Value>
+          type="q4:string">0</Value>
       </Property>
       <Property>
         <Name>DataSourceViewID</Name>
@@ -3009,6 +3258,118 @@ WHERE Source_id IS NOT NULL;</property>
         <Name>TableInfoObjectType</Name>
         <Value
           type="q2:string">Table</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <TaskHost
+    design-time-name="Package\DFT_Load_Dim_Source">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="8" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mssgm="clr-namespace:Microsoft.SqlServer.Graph.Model;assembly=Microsoft.SqlServer.Graph">
+        <NodeLayout
+          Size="190.4,41.6"
+          Id="Package\DFT_Load_Dim_Source\SRC_stg_Flood_Source"
+          TopLeft="344.999994859099,77.9999988377094" />
+        <NodeLayout
+          Size="188,41.6"
+          Id="Package\DFT_Load_Dim_Source\DEST_dw_Dim_Source"
+          TopLeft="343.999994874001,273.999995917082" />
+        <NodeLayout
+          Size="214.4,41.6"
+          Id="Package\DFT_Load_Dim_Source\LKP_Check_Existing_Source"
+          TopLeft="331.999995052814,173.999997407198" />
+        <EdgeLayout
+          Id="Package\DFT_Load_Dim_Source.Paths[Lookup No Match Output]"
+          TopLeft="438.599994963407,215.599997407198">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,58.3999985098839"
+              Start="0,0"
+              End="0,50.8999985098839">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,50.8999985098839" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="-55.80638671875,19.645311754942,111.6127734375,11.609375"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\DFT_Load_Dim_Source.Paths[OLE DB Source Output]"
+          TopLeft="439.699994955957,119.599998837709">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,54.3999985694885"
+              Start="0,0"
+              End="0,46.8999985694885">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,46.8999985694885" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="0,0,0,0"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </TaskHost>
+  <PipelineComponentMetadata
+    design-time-name="Package\DFT_Load_Dim_Source\SRC_stg_Flood_Source">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\DFT_Load_Dim_Source\DEST_dw_Dim_Source">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Table</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\DFT_Load_Dim_Source\LKP_Check_Existing_Source">
+    <Properties>
+      <Property>
+        <Name>OverwriteParamsSQLProp</Name>
+        <Value
+          type="q2:string">false</Value>
+      </Property>
+      <Property>
+        <Name>UsedTableName</Name>
+        <Value
+          type="q3:string">[dw].[Dim_Source]</Value>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q4:string">0</Value>
+      </Property>
+      <Property>
+        <Name>DataSourceViewID</Name>
       </Property>
     </Properties>
   </PipelineComponentMetadata>

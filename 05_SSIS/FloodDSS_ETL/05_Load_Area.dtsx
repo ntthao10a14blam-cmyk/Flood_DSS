@@ -1,25 +1,25 @@
-﻿<?xml version="1.0"?>
+<?xml version="1.0"?>
 <DTS:Executable xmlns:DTS="www.microsoft.com/SqlServer/Dts"
   DTS:refId="Package"
   DTS:CreationDate="10/28/2026 12:54:38 AM"
   DTS:CreationName="Microsoft.Package"
   DTS:CreatorComputerName="LAPTOP-522UK8L8"
   DTS:CreatorName="LAPTOP-522UK8L8\acer"
-  DTS:DTSID="{9436BAB8-6DBC-4995-A1B8-CFF86B4C5198}"
+  DTS:DTSID="{4E0176C0-47AE-459D-A8F3-4B919EFC0E35}"
   DTS:ExecutableType="Microsoft.Package"
   DTS:LastModifiedProductVersion="17.0.1016.0"
   DTS:LocaleID="1033"
   DTS:ObjectName="05_Load_Area1"
   DTS:PackageType="5"
   DTS:VersionBuild="4"
-  DTS:VersionGUID="{67F6EEAC-3ADE-4C5A-8C28-E46117282247}">
+  DTS:VersionGUID="{0A235EE3-676E-4090-B7E9-ABC74852EF30}">
   <DTS:Property
     DTS:Name="PackageFormatVersion">8</DTS:Property>
   <DTS:ConnectionManagers>
     <DTS:ConnectionManager
       DTS:refId="Package.ConnectionManagers[Area]"
       DTS:CreationName="FLATFILE"
-      DTS:DTSID="{988B4CF7-DC6B-47FB-B1A5-9F71578C593A}"
+      DTS:DTSID="{5A83AA12-CBA1-4445-BC40-8E32572991F6}"
       DTS:ObjectName="Area">
       <DTS:ObjectData>
         <DTS:ConnectionManager
@@ -39,7 +39,7 @@
               DTS:DataType="129"
               DTS:TextQualified="True"
               DTS:ObjectName="Area_ID"
-              DTS:DTSID="{2F674736-2C74-4457-9321-198D057E49D4}"
+              DTS:DTSID="{1E52A83D-D735-4667-882C-D3788FBC2CBC}"
               DTS:CreationName="" />
             <DTS:FlatFileColumn
               DTS:ColumnType="Delimited"
@@ -48,7 +48,7 @@
               DTS:DataType="129"
               DTS:TextQualified="True"
               DTS:ObjectName="Area_Name"
-              DTS:DTSID="{CBE9E7D3-2659-4E61-8726-AD5872E775C7}"
+              DTS:DTSID="{A580022F-26C3-4969-AF71-340E182047CD}"
               DTS:CreationName="" />
             <DTS:FlatFileColumn
               DTS:ColumnType="Delimited"
@@ -57,7 +57,7 @@
               DTS:DataType="129"
               DTS:TextQualified="True"
               DTS:ObjectName="Area_Level"
-              DTS:DTSID="{D0E91D78-7176-4380-BF11-5E287C0E8771}"
+              DTS:DTSID="{E5A9DE12-38E0-44C5-94B1-150A47DD8067}"
               DTS:CreationName="" />
             <DTS:FlatFileColumn
               DTS:ColumnType="Delimited"
@@ -66,7 +66,7 @@
               DTS:DataType="129"
               DTS:TextQualified="True"
               DTS:ObjectName="ParentArea_ID"
-              DTS:DTSID="{1BEC1B3E-9C27-4784-AA0C-E8A9784F8628}"
+              DTS:DTSID="{8E7198AF-3879-4E20-A5E4-6AE3DF731F9E}"
               DTS:CreationName="" />
             <DTS:FlatFileColumn
               DTS:ColumnType="Delimited"
@@ -75,7 +75,7 @@
               DTS:DataType="129"
               DTS:TextQualified="True"
               DTS:ObjectName="ParentArea_Name"
-              DTS:DTSID="{69DA9A3E-570D-4FCC-B9C6-97DEABF4DDEE}"
+              DTS:DTSID="{B16585B1-E666-4600-9279-E522098FA461}"
               DTS:CreationName="" />
             <DTS:FlatFileColumn
               DTS:ColumnType="Delimited"
@@ -84,7 +84,7 @@
               DTS:DataType="129"
               DTS:TextQualified="True"
               DTS:ObjectName="BoundaryVersion"
-              DTS:DTSID="{170CABCC-045B-4D2E-B575-C3E1D370E81C}"
+              DTS:DTSID="{699E225A-8D9E-467E-876E-4EC7883233F7}"
               DTS:CreationName="" />
             <DTS:FlatFileColumn
               DTS:ColumnType="Delimited"
@@ -93,7 +93,7 @@
               DTS:DataType="129"
               DTS:TextQualified="True"
               DTS:ObjectName="Area_km2"
-              DTS:DTSID="{A81B512E-E8C4-44A8-A71E-AFD19E89C0EA}"
+              DTS:DTSID="{D356FF2D-E1E6-45CA-BEDD-1418808D9A49}"
               DTS:CreationName="" />
             <DTS:FlatFileColumn
               DTS:ColumnType="Delimited"
@@ -102,7 +102,7 @@
               DTS:DataType="129"
               DTS:TextQualified="True"
               DTS:ObjectName="EffectiveFrom"
-              DTS:DTSID="{9780CDD6-B2CB-4EE8-A1BE-48FFE9853510}"
+              DTS:DTSID="{B5DA3777-AD93-406A-9245-382EFBDD012E}"
               DTS:CreationName="" />
             <DTS:FlatFileColumn
               DTS:ColumnType="Delimited"
@@ -111,7 +111,7 @@
               DTS:DataType="129"
               DTS:TextQualified="True"
               DTS:ObjectName="EffectiveTo"
-              DTS:DTSID="{BF3A857E-12D2-49A5-AA86-4E1964232FCB}"
+              DTS:DTSID="{036D2CE8-149F-4114-A598-32A072987B73}"
               DTS:CreationName="" />
           </DTS:FlatFileColumns>
         </DTS:ConnectionManager>
@@ -120,13 +120,13 @@
     <DTS:ConnectionManager
       DTS:refId="Package.ConnectionManagers[localhost-DW2025]"
       DTS:CreationName="OLEDB"
-      DTS:DTSID="{35BA9F81-2E37-4643-A2D2-9673C4DAAFA3}"
+      DTS:DTSID="{B448DDFF-66E6-4F2A-B74C-3143EC340FBE}"
       DTS:ObjectName="localhost-DW2025">
       <DTS:ObjectData>
         <DTS:ConnectionManager
           DTS:ConnectRetryCount="1"
           DTS:ConnectRetryInterval="5"
-          DTS:ConnectionString="Data Source=localhost\DW2025;Initial Catalog=Flood_DSS;Provider=SQLOLEDB.1;Integrated Security=SSPI;Auto Translate=False;Application Name=SSIS-05_Load_Area1-{35BA9F81-2E37-4643-A2D2-9673C4DAAFA3}LAPTOP-522UK8L8.Flood_DSS.sa;" />
+          DTS:ConnectionString="Data Source=localhost\DW2025;Initial Catalog=Flood_DSS;Provider=SQLOLEDB.1;Integrated Security=SSPI;Auto Translate=False;Application Name=SSIS-05_Load_Area1-{B448DDFF-66E6-4F2A-B74C-3143EC340FBE}LAPTOP-522UK8L8.Flood_DSS.sa;" />
       </DTS:ObjectData>
     </DTS:ConnectionManager>
   </DTS:ConnectionManagers>
@@ -136,7 +136,7 @@
       DTS:refId="Package\Data Flow Task"
       DTS:CreationName="Microsoft.Pipeline"
       DTS:Description="Data Flow Task"
-      DTS:DTSID="{052B3732-BA3F-479F-8671-361D695B6D0A}"
+      DTS:DTSID="{B3E783E3-344D-4CFF-8D62-950CEA116C57}"
       DTS:ExecutableType="Microsoft.Pipeline"
       DTS:LocaleID="-1"
       DTS:ObjectName="Data Flow Task"
