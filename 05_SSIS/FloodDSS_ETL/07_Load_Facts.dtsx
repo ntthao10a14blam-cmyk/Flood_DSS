@@ -1,0 +1,1517 @@
+﻿<?xml version="1.0"?>
+<DTS:Executable xmlns:DTS="www.microsoft.com/SqlServer/Dts"
+  DTS:refId="Package"
+  DTS:CreationDate="10/31/2026 2:50:25 PM"
+  DTS:CreationName="Microsoft.Package"
+  DTS:CreatorComputerName="LAPTOP-D8LC6NK9"
+  DTS:CreatorName="LAPTOP-D8LC6NK9\pc"
+  DTS:DTSID="{E28A268B-7949-4948-AC3C-2611F4C63414}"
+  DTS:ExecutableType="Microsoft.Package"
+  DTS:LastModifiedProductVersion="17.0.1016.0"
+  DTS:LocaleID="1033"
+  DTS:ObjectName="07_Load_Facts"
+  DTS:PackageType="5"
+  DTS:VersionBuild="25"
+  DTS:VersionGUID="{A65DDDD7-5CC8-4CD4-9EEB-717B7B5D7182}">
+  <DTS:Property
+    DTS:Name="PackageFormatVersion">8</DTS:Property>
+  <DTS:ConnectionManagers>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[.\SQLEXPRESS.Flood_DSS]"
+      DTS:CreationName="OLEDB"
+      DTS:DTSID="{6E478507-0C7D-439B-9970-A5D0A305799E}"
+      DTS:ObjectName=".\SQLEXPRESS.Flood_DSS">
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:ConnectRetryCount="1"
+          DTS:ConnectRetryInterval="5"
+          DTS:ConnectionString="Data Source=.\SQLEXPRESS;Initial Catalog=Flood_DSS;Provider=MSOLEDBSQL.1;Integrated Security=SSPI;Application Name=SSIS-07_Load_Facts-{6E478507-0C7D-439B-9970-A5D0A305799E}.\SQLEXPRESS.Flood_DSS;Auto Translate=False;" />
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+  </DTS:ConnectionManagers>
+  <DTS:Variables />
+  <DTS:Executables>
+    <DTS:Executable
+      DTS:refId="Package\DFT_Load_Fact_FloodObservation"
+      DTS:CreationName="Microsoft.Pipeline"
+      DTS:Description="Data Flow Task"
+      DTS:DTSID="{DA0A5ECE-3CD1-4E39-AF89-F56595251D89}"
+      DTS:ExecutableType="Microsoft.Pipeline"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="DFT_Load_Fact_FloodObservation"
+      DTS:TaskContact="Performs high-performance data extraction, transformation and loading;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <pipeline
+          version="1">
+          <components>
+            <component
+              refId="Package\DFT_Load_Fact_FloodObservation\Data Conversion"
+              componentClassID="Microsoft.DataConvert"
+              contactInfo="Data Conversion;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;0"
+              description="Data Conversion"
+              name="Data Conversion"
+              usesDispositions="true">
+              <inputs>
+                <input
+                  refId="Package\DFT_Load_Fact_FloodObservation\Data Conversion.Inputs[Data Conversion Input]"
+                  name="Data Conversion Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\DFT_Load_Fact_FloodObservation\Data Conversion.Inputs[Data Conversion Input].Columns[DepthClass]"
+                      cachedDataType="wstr"
+                      cachedLength="100"
+                      cachedName="DepthClass"
+                      lineageId="Package\DFT_Load_Fact_FloodObservation\OLE DB Source.Outputs[OLE DB Source Output].Columns[DepthClass]" />
+                  </inputColumns>
+                  <externalMetadataColumns />
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\DFT_Load_Fact_FloodObservation\Data Conversion.Outputs[Data Conversion Output]"
+                  exclusionGroup="1"
+                  name="Data Conversion Output"
+                  synchronousInputId="Package\DFT_Load_Fact_FloodObservation\Data Conversion.Inputs[Data Conversion Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\DFT_Load_Fact_FloodObservation\Data Conversion.Outputs[Data Conversion Output].Columns[DepthClass_50]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      length="50"
+                      lineageId="Package\DFT_Load_Fact_FloodObservation\Data Conversion.Outputs[Data Conversion Output].Columns[DepthClass_50]"
+                      name="DepthClass_50"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifies the input column used as the source of data for the conversion."
+                          name="SourceInputColumnLineageID">#{Package\DFT_Load_Fact_FloodObservation\OLE DB Source.Outputs[OLE DB Source Output].Columns[DepthClass]}</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                      </properties>
+                    </outputColumn>
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\DFT_Load_Fact_FloodObservation\Data Conversion.Outputs[Data Conversion Error Output]"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="Data Conversion Error Output"
+                  synchronousInputId="Package\DFT_Load_Fact_FloodObservation\Data Conversion.Inputs[Data Conversion Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\DFT_Load_Fact_FloodObservation\Data Conversion.Outputs[Data Conversion Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\DFT_Load_Fact_FloodObservation\Data Conversion.Outputs[Data Conversion Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\DFT_Load_Fact_FloodObservation\Data Conversion.Outputs[Data Conversion Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\DFT_Load_Fact_FloodObservation\Data Conversion.Outputs[Data Conversion Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\DFT_Load_Fact_FloodObservation\OLE DB Destination"
+              componentClassID="Microsoft.OLEDBDestination"
+              contactInfo="OLE DB Destination;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;4"
+              description="OLE DB Destination"
+              name="OLE DB Destination"
+              usesDispositions="true"
+              version="4">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the name of the database object used to open a rowset."
+                  name="OpenRowset">[dw].[Fact_FloodObservation]</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the variable that contains the name of the database object used to open a rowset."
+                  name="OpenRowsetVariable"></property>
+                <property
+                  dataType="System.String"
+                  description="The SQL command to be executed."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Forces the use of the DefaultCodePage property value when describing character data."
+                  name="AlwaysUseDefaultCodePage">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the mode used to access the database."
+                  name="AccessMode"
+                  typeConverter="AccessMode">3</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether the values supplied for identity columns will be copied to the destination. If false, values for identity columns will be auto-generated at the destination. Applies only if fast load is turned on."
+                  name="FastLoadKeepIdentity">false</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether the columns containing null will have null inserted in the destination. If false, columns containing null will have their default values inserted at the destination. Applies only if fast load is turned on."
+                  name="FastLoadKeepNulls">false</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies options to be used with fast load.  Applies only if fast load is turned on."
+                  name="FastLoadOptions">TABLOCK,CHECK_CONSTRAINTS</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies when commits are issued during data insertion.  A value of 0 specifies that one commit will be issued at the end of data insertion.  Applies only if fast load is turned on."
+                  name="FastLoadMaxInsertCommitSize">2147483647</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\DFT_Load_Fact_FloodObservation\OLE DB Destination.Connections[OleDbConnection]"
+                  connectionManagerID="Package.ConnectionManagers[.\SQLEXPRESS.Flood_DSS]"
+                  connectionManagerRefId="Package.ConnectionManagers[.\SQLEXPRESS.Flood_DSS]"
+                  description="The OLE DB runtime connection used to access the database."
+                  name="OleDbConnection" />
+              </connections>
+              <inputs>
+                <input
+                  refId="Package\DFT_Load_Fact_FloodObservation\OLE DB Destination.Inputs[OLE DB Destination Input]"
+                  errorOrTruncationOperation="Insert"
+                  errorRowDisposition="FailComponent"
+                  hasSideEffects="true"
+                  name="OLE DB Destination Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\DFT_Load_Fact_FloodObservation\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[Obs_ID]"
+                      cachedDataType="wstr"
+                      cachedLength="100"
+                      cachedName="Obs_ID"
+                      externalMetadataColumnId="Package\DFT_Load_Fact_FloodObservation\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[Obs_ID]"
+                      lineageId="Package\DFT_Load_Fact_FloodObservation\OLE DB Source.Outputs[OLE DB Source Output].Columns[Obs_ID]" />
+                    <inputColumn
+                      refId="Package\DFT_Load_Fact_FloodObservation\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[TimeKey]"
+                      cachedDataType="i4"
+                      cachedName="TimeKey"
+                      externalMetadataColumnId="Package\DFT_Load_Fact_FloodObservation\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[TimeKey]"
+                      lineageId="Package\DFT_Load_Fact_FloodObservation\OLE DB Source.Outputs[OLE DB Source Output].Columns[TimeKey]" />
+                    <inputColumn
+                      refId="Package\DFT_Load_Fact_FloodObservation\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[AreaKey]"
+                      cachedDataType="i4"
+                      cachedName="AreaKey"
+                      externalMetadataColumnId="Package\DFT_Load_Fact_FloodObservation\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[AreaKey]"
+                      lineageId="Package\DFT_Load_Fact_FloodObservation\OLE DB Source.Outputs[OLE DB Source Output].Columns[AreaKey]" />
+                    <inputColumn
+                      refId="Package\DFT_Load_Fact_FloodObservation\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[LocationKey]"
+                      cachedDataType="i4"
+                      cachedName="LocationKey"
+                      externalMetadataColumnId="Package\DFT_Load_Fact_FloodObservation\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[LocationKey]"
+                      lineageId="Package\DFT_Load_Fact_FloodObservation\OLE DB Source.Outputs[OLE DB Source Output].Columns[LocationKey]" />
+                    <inputColumn
+                      refId="Package\DFT_Load_Fact_FloodObservation\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[CauseKey]"
+                      cachedDataType="i4"
+                      cachedName="CauseKey"
+                      externalMetadataColumnId="Package\DFT_Load_Fact_FloodObservation\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[CauseKey]"
+                      lineageId="Package\DFT_Load_Fact_FloodObservation\OLE DB Source.Outputs[OLE DB Source Output].Columns[CauseKey]" />
+                    <inputColumn
+                      refId="Package\DFT_Load_Fact_FloodObservation\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[SourceKey]"
+                      cachedDataType="i4"
+                      cachedName="SourceKey"
+                      externalMetadataColumnId="Package\DFT_Load_Fact_FloodObservation\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[SourceKey]"
+                      lineageId="Package\DFT_Load_Fact_FloodObservation\OLE DB Source.Outputs[OLE DB Source Output].Columns[SourceKey]" />
+                    <inputColumn
+                      refId="Package\DFT_Load_Fact_FloodObservation\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[MinDepth_cm]"
+                      cachedDataType="numeric"
+                      cachedName="MinDepth_cm"
+                      cachedPrecision="10"
+                      cachedScale="2"
+                      externalMetadataColumnId="Package\DFT_Load_Fact_FloodObservation\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[MinDepth_cm]"
+                      lineageId="Package\DFT_Load_Fact_FloodObservation\OLE DB Source.Outputs[OLE DB Source Output].Columns[MinDepth_cm]" />
+                    <inputColumn
+                      refId="Package\DFT_Load_Fact_FloodObservation\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[MaxDepth_cm]"
+                      cachedDataType="numeric"
+                      cachedName="MaxDepth_cm"
+                      cachedPrecision="10"
+                      cachedScale="2"
+                      externalMetadataColumnId="Package\DFT_Load_Fact_FloodObservation\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[MaxDepth_cm]"
+                      lineageId="Package\DFT_Load_Fact_FloodObservation\OLE DB Source.Outputs[OLE DB Source Output].Columns[MaxDepth_cm]" />
+                    <inputColumn
+                      refId="Package\DFT_Load_Fact_FloodObservation\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[AvgDepth_cm]"
+                      cachedDataType="numeric"
+                      cachedName="AvgDepth_cm"
+                      cachedPrecision="16"
+                      cachedScale="6"
+                      externalMetadataColumnId="Package\DFT_Load_Fact_FloodObservation\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[AvgDepth_cm]"
+                      lineageId="Package\DFT_Load_Fact_FloodObservation\OLE DB Source.Outputs[OLE DB Source Output].Columns[AvgDepth_cm]" />
+                    <inputColumn
+                      refId="Package\DFT_Load_Fact_FloodObservation\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[Duration_hours]"
+                      cachedDataType="numeric"
+                      cachedName="Duration_hours"
+                      cachedPrecision="10"
+                      cachedScale="2"
+                      externalMetadataColumnId="Package\DFT_Load_Fact_FloodObservation\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[Duration_hours]"
+                      lineageId="Package\DFT_Load_Fact_FloodObservation\OLE DB Source.Outputs[OLE DB Source Output].Columns[Duration_hours]" />
+                    <inputColumn
+                      refId="Package\DFT_Load_Fact_FloodObservation\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[ImpactType]"
+                      cachedDataType="wstr"
+                      cachedLength="255"
+                      cachedName="ImpactType"
+                      externalMetadataColumnId="Package\DFT_Load_Fact_FloodObservation\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[ImpactType]"
+                      lineageId="Package\DFT_Load_Fact_FloodObservation\OLE DB Source.Outputs[OLE DB Source Output].Columns[ImpactType]" />
+                    <inputColumn
+                      refId="Package\DFT_Load_Fact_FloodObservation\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[ObservationCount]"
+                      cachedDataType="ui1"
+                      cachedName="ObservationCount"
+                      externalMetadataColumnId="Package\DFT_Load_Fact_FloodObservation\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[ObservationCount]"
+                      lineageId="Package\DFT_Load_Fact_FloodObservation\OLE DB Source.Outputs[OLE DB Source Output].Columns[ObservationCount]" />
+                    <inputColumn
+                      refId="Package\DFT_Load_Fact_FloodObservation\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[DataQualityStatus]"
+                      cachedDataType="wstr"
+                      cachedLength="10"
+                      cachedName="DataQualityStatus"
+                      externalMetadataColumnId="Package\DFT_Load_Fact_FloodObservation\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[DataQualityStatus]"
+                      lineageId="Package\DFT_Load_Fact_FloodObservation\OLE DB Source.Outputs[OLE DB Source Output].Columns[DataQualityStatus]" />
+                    <inputColumn
+                      refId="Package\DFT_Load_Fact_FloodObservation\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[DepthClass_50]"
+                      cachedDataType="wstr"
+                      cachedLength="50"
+                      cachedName="DepthClass_50"
+                      externalMetadataColumnId="Package\DFT_Load_Fact_FloodObservation\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[DepthClass]"
+                      lineageId="Package\DFT_Load_Fact_FloodObservation\Data Conversion.Outputs[Data Conversion Output].Columns[DepthClass_50]" />
+                  </inputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\DFT_Load_Fact_FloodObservation\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[FloodObservationKey]"
+                      dataType="i8"
+                      name="FloodObservationKey" />
+                    <externalMetadataColumn
+                      refId="Package\DFT_Load_Fact_FloodObservation\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[Obs_ID]"
+                      dataType="wstr"
+                      length="100"
+                      name="Obs_ID" />
+                    <externalMetadataColumn
+                      refId="Package\DFT_Load_Fact_FloodObservation\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[TimeKey]"
+                      dataType="i4"
+                      name="TimeKey" />
+                    <externalMetadataColumn
+                      refId="Package\DFT_Load_Fact_FloodObservation\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[AreaKey]"
+                      dataType="i4"
+                      name="AreaKey" />
+                    <externalMetadataColumn
+                      refId="Package\DFT_Load_Fact_FloodObservation\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[LocationKey]"
+                      dataType="i4"
+                      name="LocationKey" />
+                    <externalMetadataColumn
+                      refId="Package\DFT_Load_Fact_FloodObservation\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[CauseKey]"
+                      dataType="i4"
+                      name="CauseKey" />
+                    <externalMetadataColumn
+                      refId="Package\DFT_Load_Fact_FloodObservation\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[SourceKey]"
+                      dataType="i4"
+                      name="SourceKey" />
+                    <externalMetadataColumn
+                      refId="Package\DFT_Load_Fact_FloodObservation\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[MinDepth_cm]"
+                      dataType="numeric"
+                      name="MinDepth_cm"
+                      precision="10"
+                      scale="2" />
+                    <externalMetadataColumn
+                      refId="Package\DFT_Load_Fact_FloodObservation\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[MaxDepth_cm]"
+                      dataType="numeric"
+                      name="MaxDepth_cm"
+                      precision="10"
+                      scale="2" />
+                    <externalMetadataColumn
+                      refId="Package\DFT_Load_Fact_FloodObservation\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[AvgDepth_cm]"
+                      dataType="numeric"
+                      name="AvgDepth_cm"
+                      precision="10"
+                      scale="2" />
+                    <externalMetadataColumn
+                      refId="Package\DFT_Load_Fact_FloodObservation\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[Duration_hours]"
+                      dataType="numeric"
+                      name="Duration_hours"
+                      precision="10"
+                      scale="2" />
+                    <externalMetadataColumn
+                      refId="Package\DFT_Load_Fact_FloodObservation\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[DepthClass]"
+                      dataType="wstr"
+                      length="50"
+                      name="DepthClass" />
+                    <externalMetadataColumn
+                      refId="Package\DFT_Load_Fact_FloodObservation\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[ImpactType]"
+                      dataType="wstr"
+                      length="255"
+                      name="ImpactType" />
+                    <externalMetadataColumn
+                      refId="Package\DFT_Load_Fact_FloodObservation\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[ObservationCount]"
+                      dataType="ui1"
+                      name="ObservationCount" />
+                    <externalMetadataColumn
+                      refId="Package\DFT_Load_Fact_FloodObservation\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[DataQualityStatus]"
+                      dataType="wstr"
+                      length="50"
+                      name="DataQualityStatus" />
+                  </externalMetadataColumns>
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\DFT_Load_Fact_FloodObservation\OLE DB Destination.Outputs[OLE DB Destination Error Output]"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="OLE DB Destination Error Output"
+                  synchronousInputId="Package\DFT_Load_Fact_FloodObservation\OLE DB Destination.Inputs[OLE DB Destination Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\DFT_Load_Fact_FloodObservation\OLE DB Destination.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\DFT_Load_Fact_FloodObservation\OLE DB Destination.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\DFT_Load_Fact_FloodObservation\OLE DB Destination.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\DFT_Load_Fact_FloodObservation\OLE DB Destination.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\DFT_Load_Fact_FloodObservation\OLE DB Source"
+              componentClassID="Microsoft.OLEDBSource"
+              contactInfo="OLE DB Source;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;7"
+              description="OLE DB Source"
+              name="OLE DB Source"
+              usesDispositions="true"
+              version="7">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the name of the database object used to open a rowset."
+                  name="OpenRowset"></property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the variable that contains the name of the database object used to open a rowset."
+                  name="OpenRowsetVariable"></property>
+                <property
+                  dataType="System.String"
+                  description="The SQL command to be executed."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">SELECT
+    f.Obs_id AS Obs_ID,
+    t.TimeKey,
+    a.AreaKey,
+    l.LocationKey,
+    c.CauseKey,
+    s.SourceKey,
+
+    TRY_CONVERT(DECIMAL(10,2), f.Water_height_min_cm) AS MinDepth_cm,
+    TRY_CONVERT(DECIMAL(10,2), f.Water_height_max_cm) AS MaxDepth_cm,
+
+    CASE
+        WHEN f.Water_height_min_cm IS NOT NULL
+         AND f.Water_height_max_cm IS NOT NULL
+        THEN (
+            TRY_CONVERT(DECIMAL(10,2), f.Water_height_min_cm)
+            + TRY_CONVERT(DECIMAL(10,2), f.Water_height_max_cm)
+        ) / 2.0
+        ELSE NULL
+    END AS AvgDepth_cm,
+
+    TRY_CONVERT(DECIMAL(10,2), f.Duration_hours) AS Duration_hours,
+    f.Depth_class AS DepthClass,
+    f.Impact_type AS ImpactType,
+    CAST(1 AS TINYINT) AS ObservationCount,
+
+    CASE
+        WHEN f.Water_height_min_cm IS NULL
+          OR f.Water_height_max_cm IS NULL
+        THEN N'Incomplete'
+        ELSE N'Valid'
+    END AS DataQualityStatus
+
+FROM stg.FloodIntegrated AS f
+
+INNER JOIN dw.Dim_Time AS t
+    ON f.Date = t.FullDate
+
+INNER JOIN dw.Dim_Area AS a
+    ON TRY_CONVERT(INT, TRY_CONVERT(DECIMAL(18,2), f.Population_Area_ID))
+       = TRY_CONVERT(INT, a.Area_ID)
+   AND REPLACE(f.Population_BoundaryVersion, 'District_', '') =
+       a.BoundaryVersion
+
+INNER JOIN dw.Dim_Location AS l
+    ON CONCAT('FID_', f.fid) = l.Location_ID
+
+INNER JOIN dw.Dim_Cause AS c
+    ON f.Cause = c.Cause_Name
+
+INNER JOIN dw.Dim_Source AS s
+    ON f.Source_id = s.Source_ID
+
+WHERE f.Source_id LIKE N'SRC[_]%'
+  AND f.Obs_id IS NOT NULL
+  AND LTRIM(RTRIM(f.Obs_id)) &lt;&gt; '';</property>
+                <property
+                  dataType="System.String"
+                  description="The variable that contains the SQL command to be executed."
+                  name="SqlCommandVariable"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Forces the use of the DefaultCodePage property value when describing character data."
+                  name="AlwaysUseDefaultCodePage">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the mode used to access the database."
+                  name="AccessMode"
+                  typeConverter="AccessMode">2</property>
+                <property
+                  dataType="System.String"
+                  description="The mappings between the parameters in the SQL command and variables."
+                  name="ParameterMapping"></property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\DFT_Load_Fact_FloodObservation\OLE DB Source.Connections[OleDbConnection]"
+                  connectionManagerID="Package.ConnectionManagers[.\SQLEXPRESS.Flood_DSS]"
+                  connectionManagerRefId="Package.ConnectionManagers[.\SQLEXPRESS.Flood_DSS]"
+                  description="The OLE DB runtime connection used to access the database."
+                  name="OleDbConnection" />
+              </connections>
+              <outputs>
+                <output
+                  refId="Package\DFT_Load_Fact_FloodObservation\OLE DB Source.Outputs[OLE DB Source Output]"
+                  name="OLE DB Source Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\DFT_Load_Fact_FloodObservation\OLE DB Source.Outputs[OLE DB Source Output].Columns[Obs_ID]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\DFT_Load_Fact_FloodObservation\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[Obs_ID]"
+                      length="100"
+                      lineageId="Package\DFT_Load_Fact_FloodObservation\OLE DB Source.Outputs[OLE DB Source Output].Columns[Obs_ID]"
+                      name="Obs_ID"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\DFT_Load_Fact_FloodObservation\OLE DB Source.Outputs[OLE DB Source Output].Columns[TimeKey]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\DFT_Load_Fact_FloodObservation\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[TimeKey]"
+                      lineageId="Package\DFT_Load_Fact_FloodObservation\OLE DB Source.Outputs[OLE DB Source Output].Columns[TimeKey]"
+                      name="TimeKey"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\DFT_Load_Fact_FloodObservation\OLE DB Source.Outputs[OLE DB Source Output].Columns[AreaKey]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\DFT_Load_Fact_FloodObservation\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[AreaKey]"
+                      lineageId="Package\DFT_Load_Fact_FloodObservation\OLE DB Source.Outputs[OLE DB Source Output].Columns[AreaKey]"
+                      name="AreaKey"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\DFT_Load_Fact_FloodObservation\OLE DB Source.Outputs[OLE DB Source Output].Columns[LocationKey]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\DFT_Load_Fact_FloodObservation\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[LocationKey]"
+                      lineageId="Package\DFT_Load_Fact_FloodObservation\OLE DB Source.Outputs[OLE DB Source Output].Columns[LocationKey]"
+                      name="LocationKey"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\DFT_Load_Fact_FloodObservation\OLE DB Source.Outputs[OLE DB Source Output].Columns[CauseKey]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\DFT_Load_Fact_FloodObservation\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[CauseKey]"
+                      lineageId="Package\DFT_Load_Fact_FloodObservation\OLE DB Source.Outputs[OLE DB Source Output].Columns[CauseKey]"
+                      name="CauseKey"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\DFT_Load_Fact_FloodObservation\OLE DB Source.Outputs[OLE DB Source Output].Columns[SourceKey]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\DFT_Load_Fact_FloodObservation\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[SourceKey]"
+                      lineageId="Package\DFT_Load_Fact_FloodObservation\OLE DB Source.Outputs[OLE DB Source Output].Columns[SourceKey]"
+                      name="SourceKey"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\DFT_Load_Fact_FloodObservation\OLE DB Source.Outputs[OLE DB Source Output].Columns[MinDepth_cm]"
+                      dataType="numeric"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\DFT_Load_Fact_FloodObservation\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[MinDepth_cm]"
+                      lineageId="Package\DFT_Load_Fact_FloodObservation\OLE DB Source.Outputs[OLE DB Source Output].Columns[MinDepth_cm]"
+                      name="MinDepth_cm"
+                      precision="10"
+                      scale="2"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\DFT_Load_Fact_FloodObservation\OLE DB Source.Outputs[OLE DB Source Output].Columns[MaxDepth_cm]"
+                      dataType="numeric"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\DFT_Load_Fact_FloodObservation\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[MaxDepth_cm]"
+                      lineageId="Package\DFT_Load_Fact_FloodObservation\OLE DB Source.Outputs[OLE DB Source Output].Columns[MaxDepth_cm]"
+                      name="MaxDepth_cm"
+                      precision="10"
+                      scale="2"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\DFT_Load_Fact_FloodObservation\OLE DB Source.Outputs[OLE DB Source Output].Columns[AvgDepth_cm]"
+                      dataType="numeric"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\DFT_Load_Fact_FloodObservation\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[AvgDepth_cm]"
+                      lineageId="Package\DFT_Load_Fact_FloodObservation\OLE DB Source.Outputs[OLE DB Source Output].Columns[AvgDepth_cm]"
+                      name="AvgDepth_cm"
+                      precision="16"
+                      scale="6"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\DFT_Load_Fact_FloodObservation\OLE DB Source.Outputs[OLE DB Source Output].Columns[Duration_hours]"
+                      dataType="numeric"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\DFT_Load_Fact_FloodObservation\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[Duration_hours]"
+                      lineageId="Package\DFT_Load_Fact_FloodObservation\OLE DB Source.Outputs[OLE DB Source Output].Columns[Duration_hours]"
+                      name="Duration_hours"
+                      precision="10"
+                      scale="2"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\DFT_Load_Fact_FloodObservation\OLE DB Source.Outputs[OLE DB Source Output].Columns[DepthClass]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\DFT_Load_Fact_FloodObservation\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[DepthClass]"
+                      length="100"
+                      lineageId="Package\DFT_Load_Fact_FloodObservation\OLE DB Source.Outputs[OLE DB Source Output].Columns[DepthClass]"
+                      name="DepthClass"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\DFT_Load_Fact_FloodObservation\OLE DB Source.Outputs[OLE DB Source Output].Columns[ImpactType]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\DFT_Load_Fact_FloodObservation\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[ImpactType]"
+                      length="255"
+                      lineageId="Package\DFT_Load_Fact_FloodObservation\OLE DB Source.Outputs[OLE DB Source Output].Columns[ImpactType]"
+                      name="ImpactType"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\DFT_Load_Fact_FloodObservation\OLE DB Source.Outputs[OLE DB Source Output].Columns[ObservationCount]"
+                      dataType="ui1"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\DFT_Load_Fact_FloodObservation\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[ObservationCount]"
+                      lineageId="Package\DFT_Load_Fact_FloodObservation\OLE DB Source.Outputs[OLE DB Source Output].Columns[ObservationCount]"
+                      name="ObservationCount"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\DFT_Load_Fact_FloodObservation\OLE DB Source.Outputs[OLE DB Source Output].Columns[DataQualityStatus]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\DFT_Load_Fact_FloodObservation\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[DataQualityStatus]"
+                      length="10"
+                      lineageId="Package\DFT_Load_Fact_FloodObservation\OLE DB Source.Outputs[OLE DB Source Output].Columns[DataQualityStatus]"
+                      name="DataQualityStatus"
+                      truncationRowDisposition="FailComponent" />
+                  </outputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\DFT_Load_Fact_FloodObservation\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[Obs_ID]"
+                      dataType="wstr"
+                      length="100"
+                      name="Obs_ID" />
+                    <externalMetadataColumn
+                      refId="Package\DFT_Load_Fact_FloodObservation\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[TimeKey]"
+                      dataType="i4"
+                      name="TimeKey" />
+                    <externalMetadataColumn
+                      refId="Package\DFT_Load_Fact_FloodObservation\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[AreaKey]"
+                      dataType="i4"
+                      name="AreaKey" />
+                    <externalMetadataColumn
+                      refId="Package\DFT_Load_Fact_FloodObservation\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[LocationKey]"
+                      dataType="i4"
+                      name="LocationKey" />
+                    <externalMetadataColumn
+                      refId="Package\DFT_Load_Fact_FloodObservation\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[CauseKey]"
+                      dataType="i4"
+                      name="CauseKey" />
+                    <externalMetadataColumn
+                      refId="Package\DFT_Load_Fact_FloodObservation\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[SourceKey]"
+                      dataType="i4"
+                      name="SourceKey" />
+                    <externalMetadataColumn
+                      refId="Package\DFT_Load_Fact_FloodObservation\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[MinDepth_cm]"
+                      dataType="numeric"
+                      name="MinDepth_cm"
+                      precision="10"
+                      scale="2" />
+                    <externalMetadataColumn
+                      refId="Package\DFT_Load_Fact_FloodObservation\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[MaxDepth_cm]"
+                      dataType="numeric"
+                      name="MaxDepth_cm"
+                      precision="10"
+                      scale="2" />
+                    <externalMetadataColumn
+                      refId="Package\DFT_Load_Fact_FloodObservation\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[AvgDepth_cm]"
+                      dataType="numeric"
+                      name="AvgDepth_cm"
+                      precision="16"
+                      scale="6" />
+                    <externalMetadataColumn
+                      refId="Package\DFT_Load_Fact_FloodObservation\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[Duration_hours]"
+                      dataType="numeric"
+                      name="Duration_hours"
+                      precision="10"
+                      scale="2" />
+                    <externalMetadataColumn
+                      refId="Package\DFT_Load_Fact_FloodObservation\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[DepthClass]"
+                      dataType="wstr"
+                      length="100"
+                      name="DepthClass" />
+                    <externalMetadataColumn
+                      refId="Package\DFT_Load_Fact_FloodObservation\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[ImpactType]"
+                      dataType="wstr"
+                      length="255"
+                      name="ImpactType" />
+                    <externalMetadataColumn
+                      refId="Package\DFT_Load_Fact_FloodObservation\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[ObservationCount]"
+                      dataType="ui1"
+                      name="ObservationCount" />
+                    <externalMetadataColumn
+                      refId="Package\DFT_Load_Fact_FloodObservation\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[DataQualityStatus]"
+                      dataType="wstr"
+                      length="10"
+                      name="DataQualityStatus" />
+                  </externalMetadataColumns>
+                </output>
+                <output
+                  refId="Package\DFT_Load_Fact_FloodObservation\OLE DB Source.Outputs[OLE DB Source Error Output]"
+                  isErrorOut="true"
+                  name="OLE DB Source Error Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\DFT_Load_Fact_FloodObservation\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[Obs_ID]"
+                      dataType="wstr"
+                      length="100"
+                      lineageId="Package\DFT_Load_Fact_FloodObservation\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[Obs_ID]"
+                      name="Obs_ID" />
+                    <outputColumn
+                      refId="Package\DFT_Load_Fact_FloodObservation\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[TimeKey]"
+                      dataType="i4"
+                      lineageId="Package\DFT_Load_Fact_FloodObservation\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[TimeKey]"
+                      name="TimeKey" />
+                    <outputColumn
+                      refId="Package\DFT_Load_Fact_FloodObservation\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[AreaKey]"
+                      dataType="i4"
+                      lineageId="Package\DFT_Load_Fact_FloodObservation\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[AreaKey]"
+                      name="AreaKey" />
+                    <outputColumn
+                      refId="Package\DFT_Load_Fact_FloodObservation\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[LocationKey]"
+                      dataType="i4"
+                      lineageId="Package\DFT_Load_Fact_FloodObservation\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[LocationKey]"
+                      name="LocationKey" />
+                    <outputColumn
+                      refId="Package\DFT_Load_Fact_FloodObservation\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[CauseKey]"
+                      dataType="i4"
+                      lineageId="Package\DFT_Load_Fact_FloodObservation\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[CauseKey]"
+                      name="CauseKey" />
+                    <outputColumn
+                      refId="Package\DFT_Load_Fact_FloodObservation\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[SourceKey]"
+                      dataType="i4"
+                      lineageId="Package\DFT_Load_Fact_FloodObservation\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[SourceKey]"
+                      name="SourceKey" />
+                    <outputColumn
+                      refId="Package\DFT_Load_Fact_FloodObservation\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[MinDepth_cm]"
+                      dataType="numeric"
+                      lineageId="Package\DFT_Load_Fact_FloodObservation\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[MinDepth_cm]"
+                      name="MinDepth_cm"
+                      precision="10"
+                      scale="2" />
+                    <outputColumn
+                      refId="Package\DFT_Load_Fact_FloodObservation\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[MaxDepth_cm]"
+                      dataType="numeric"
+                      lineageId="Package\DFT_Load_Fact_FloodObservation\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[MaxDepth_cm]"
+                      name="MaxDepth_cm"
+                      precision="10"
+                      scale="2" />
+                    <outputColumn
+                      refId="Package\DFT_Load_Fact_FloodObservation\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[AvgDepth_cm]"
+                      dataType="numeric"
+                      lineageId="Package\DFT_Load_Fact_FloodObservation\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[AvgDepth_cm]"
+                      name="AvgDepth_cm"
+                      precision="16"
+                      scale="6" />
+                    <outputColumn
+                      refId="Package\DFT_Load_Fact_FloodObservation\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[Duration_hours]"
+                      dataType="numeric"
+                      lineageId="Package\DFT_Load_Fact_FloodObservation\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[Duration_hours]"
+                      name="Duration_hours"
+                      precision="10"
+                      scale="2" />
+                    <outputColumn
+                      refId="Package\DFT_Load_Fact_FloodObservation\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[DepthClass]"
+                      dataType="wstr"
+                      length="100"
+                      lineageId="Package\DFT_Load_Fact_FloodObservation\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[DepthClass]"
+                      name="DepthClass" />
+                    <outputColumn
+                      refId="Package\DFT_Load_Fact_FloodObservation\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[ImpactType]"
+                      dataType="wstr"
+                      length="255"
+                      lineageId="Package\DFT_Load_Fact_FloodObservation\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[ImpactType]"
+                      name="ImpactType" />
+                    <outputColumn
+                      refId="Package\DFT_Load_Fact_FloodObservation\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[ObservationCount]"
+                      dataType="ui1"
+                      lineageId="Package\DFT_Load_Fact_FloodObservation\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[ObservationCount]"
+                      name="ObservationCount" />
+                    <outputColumn
+                      refId="Package\DFT_Load_Fact_FloodObservation\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[DataQualityStatus]"
+                      dataType="wstr"
+                      length="10"
+                      lineageId="Package\DFT_Load_Fact_FloodObservation\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[DataQualityStatus]"
+                      name="DataQualityStatus" />
+                    <outputColumn
+                      refId="Package\DFT_Load_Fact_FloodObservation\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\DFT_Load_Fact_FloodObservation\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\DFT_Load_Fact_FloodObservation\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\DFT_Load_Fact_FloodObservation\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+          </components>
+          <paths>
+            <path
+              refId="Package\DFT_Load_Fact_FloodObservation.Paths[Data Conversion Output]"
+              endId="Package\DFT_Load_Fact_FloodObservation\OLE DB Destination.Inputs[OLE DB Destination Input]"
+              name="Data Conversion Output"
+              startId="Package\DFT_Load_Fact_FloodObservation\Data Conversion.Outputs[Data Conversion Output]" />
+            <path
+              refId="Package\DFT_Load_Fact_FloodObservation.Paths[OLE DB Source Output]"
+              endId="Package\DFT_Load_Fact_FloodObservation\Data Conversion.Inputs[Data Conversion Input]"
+              name="OLE DB Source Output"
+              startId="Package\DFT_Load_Fact_FloodObservation\OLE DB Source.Outputs[OLE DB Source Output]" />
+          </paths>
+        </pipeline>
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\DFT_Load_Fact_Population"
+      DTS:CreationName="Microsoft.Pipeline"
+      DTS:Description="Data Flow Task"
+      DTS:DTSID="{02E07631-9035-4025-AC5C-2885BA00391A}"
+      DTS:ExecutableType="Microsoft.Pipeline"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="DFT_Load_Fact_Population"
+      DTS:TaskContact="Performs high-performance data extraction, transformation and loading;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <pipeline
+          version="1">
+          <components>
+            <component
+              refId="Package\DFT_Load_Fact_Population\OLE DB Destination"
+              componentClassID="Microsoft.OLEDBDestination"
+              contactInfo="OLE DB Destination;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;4"
+              description="OLE DB Destination"
+              name="OLE DB Destination"
+              usesDispositions="true"
+              version="4">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the name of the database object used to open a rowset."
+                  name="OpenRowset">[dw].[Fact_Population]</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the variable that contains the name of the database object used to open a rowset."
+                  name="OpenRowsetVariable"></property>
+                <property
+                  dataType="System.String"
+                  description="The SQL command to be executed."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Forces the use of the DefaultCodePage property value when describing character data."
+                  name="AlwaysUseDefaultCodePage">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the mode used to access the database."
+                  name="AccessMode"
+                  typeConverter="AccessMode">3</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether the values supplied for identity columns will be copied to the destination. If false, values for identity columns will be auto-generated at the destination. Applies only if fast load is turned on."
+                  name="FastLoadKeepIdentity">false</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether the columns containing null will have null inserted in the destination. If false, columns containing null will have their default values inserted at the destination. Applies only if fast load is turned on."
+                  name="FastLoadKeepNulls">false</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies options to be used with fast load.  Applies only if fast load is turned on."
+                  name="FastLoadOptions">TABLOCK,CHECK_CONSTRAINTS</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies when commits are issued during data insertion.  A value of 0 specifies that one commit will be issued at the end of data insertion.  Applies only if fast load is turned on."
+                  name="FastLoadMaxInsertCommitSize">2147483647</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\DFT_Load_Fact_Population\OLE DB Destination.Connections[OleDbConnection]"
+                  connectionManagerID="Package.ConnectionManagers[.\SQLEXPRESS.Flood_DSS]"
+                  connectionManagerRefId="Package.ConnectionManagers[.\SQLEXPRESS.Flood_DSS]"
+                  description="The OLE DB runtime connection used to access the database."
+                  name="OleDbConnection" />
+              </connections>
+              <inputs>
+                <input
+                  refId="Package\DFT_Load_Fact_Population\OLE DB Destination.Inputs[OLE DB Destination Input]"
+                  errorOrTruncationOperation="Insert"
+                  errorRowDisposition="FailComponent"
+                  hasSideEffects="true"
+                  name="OLE DB Destination Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\DFT_Load_Fact_Population\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[Year]"
+                      cachedDataType="i2"
+                      cachedName="Year"
+                      externalMetadataColumnId="Package\DFT_Load_Fact_Population\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[Year]"
+                      lineageId="Package\DFT_Load_Fact_Population\OLE DB Source.Outputs[OLE DB Source Output].Columns[Year]" />
+                    <inputColumn
+                      refId="Package\DFT_Load_Fact_Population\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[Population]"
+                      cachedDataType="i8"
+                      cachedName="Population"
+                      externalMetadataColumnId="Package\DFT_Load_Fact_Population\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[Population]"
+                      lineageId="Package\DFT_Load_Fact_Population\OLE DB Source.Outputs[OLE DB Source Output].Columns[Population]" />
+                    <inputColumn
+                      refId="Package\DFT_Load_Fact_Population\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[Area_km2]"
+                      cachedDataType="numeric"
+                      cachedName="Area_km2"
+                      cachedPrecision="18"
+                      cachedScale="4"
+                      externalMetadataColumnId="Package\DFT_Load_Fact_Population\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[Area_km2]"
+                      lineageId="Package\DFT_Load_Fact_Population\OLE DB Source.Outputs[OLE DB Source Output].Columns[Area_km2]" />
+                    <inputColumn
+                      refId="Package\DFT_Load_Fact_Population\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[PopulationDensity]"
+                      cachedDataType="numeric"
+                      cachedName="PopulationDensity"
+                      cachedPrecision="18"
+                      cachedScale="6"
+                      externalMetadataColumnId="Package\DFT_Load_Fact_Population\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[PopulationDensity]"
+                      lineageId="Package\DFT_Load_Fact_Population\OLE DB Source.Outputs[OLE DB Source Output].Columns[PopulationDensity]" />
+                    <inputColumn
+                      refId="Package\DFT_Load_Fact_Population\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[AreaKey]"
+                      cachedDataType="i4"
+                      cachedName="AreaKey"
+                      externalMetadataColumnId="Package\DFT_Load_Fact_Population\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[AreaKey]"
+                      lineageId="Package\DFT_Load_Fact_Population\OLE DB Source.Outputs[OLE DB Source Output].Columns[AreaKey]" />
+                    <inputColumn
+                      refId="Package\DFT_Load_Fact_Population\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[SourceKey]"
+                      cachedDataType="i4"
+                      cachedName="SourceKey"
+                      externalMetadataColumnId="Package\DFT_Load_Fact_Population\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[SourceKey]"
+                      lineageId="Package\DFT_Load_Fact_Population\OLE DB Source.Outputs[OLE DB Source Output].Columns[SourceKey]" />
+                    <inputColumn
+                      refId="Package\DFT_Load_Fact_Population\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[DataQualityStatus]"
+                      cachedDataType="wstr"
+                      cachedLength="5"
+                      cachedName="DataQualityStatus"
+                      externalMetadataColumnId="Package\DFT_Load_Fact_Population\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[DataQualityStatus]"
+                      lineageId="Package\DFT_Load_Fact_Population\OLE DB Source.Outputs[OLE DB Source Output].Columns[DataQualityStatus]" />
+                  </inputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\DFT_Load_Fact_Population\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[PopulationKey]"
+                      dataType="i8"
+                      name="PopulationKey" />
+                    <externalMetadataColumn
+                      refId="Package\DFT_Load_Fact_Population\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[AreaKey]"
+                      dataType="i4"
+                      name="AreaKey" />
+                    <externalMetadataColumn
+                      refId="Package\DFT_Load_Fact_Population\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[Year]"
+                      dataType="i2"
+                      name="Year" />
+                    <externalMetadataColumn
+                      refId="Package\DFT_Load_Fact_Population\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[SourceKey]"
+                      dataType="i4"
+                      name="SourceKey" />
+                    <externalMetadataColumn
+                      refId="Package\DFT_Load_Fact_Population\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[Population]"
+                      dataType="i8"
+                      name="Population" />
+                    <externalMetadataColumn
+                      refId="Package\DFT_Load_Fact_Population\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[Area_km2]"
+                      dataType="numeric"
+                      name="Area_km2"
+                      precision="18"
+                      scale="4" />
+                    <externalMetadataColumn
+                      refId="Package\DFT_Load_Fact_Population\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[PopulationDensity]"
+                      dataType="numeric"
+                      name="PopulationDensity"
+                      precision="18"
+                      scale="3" />
+                    <externalMetadataColumn
+                      refId="Package\DFT_Load_Fact_Population\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[DataQualityStatus]"
+                      dataType="wstr"
+                      length="50"
+                      name="DataQualityStatus" />
+                  </externalMetadataColumns>
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\DFT_Load_Fact_Population\OLE DB Destination.Outputs[OLE DB Destination Error Output]"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="OLE DB Destination Error Output"
+                  synchronousInputId="Package\DFT_Load_Fact_Population\OLE DB Destination.Inputs[OLE DB Destination Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\DFT_Load_Fact_Population\OLE DB Destination.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\DFT_Load_Fact_Population\OLE DB Destination.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\DFT_Load_Fact_Population\OLE DB Destination.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\DFT_Load_Fact_Population\OLE DB Destination.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\DFT_Load_Fact_Population\OLE DB Source"
+              componentClassID="Microsoft.OLEDBSource"
+              contactInfo="OLE DB Source;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;7"
+              description="OLE DB Source"
+              name="OLE DB Source"
+              usesDispositions="true"
+              version="7">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the name of the database object used to open a rowset."
+                  name="OpenRowset"></property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the variable that contains the name of the database object used to open a rowset."
+                  name="OpenRowsetVariable"></property>
+                <property
+                  dataType="System.String"
+                  description="The SQL command to be executed."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">SELECT DISTINCT
+    TRY_CONVERT(INT, p.Area_ID) AS Area_ID,
+    TRY_CONVERT(SMALLINT, 2019) AS [Year],
+    p.Population,
+    p.Area_km2,
+    p.PopulationDensity,
+    a.AreaKey,
+    s.SourceKey,
+    N'Valid' AS DataQualityStatus
+FROM stg.Population AS p
+INNER JOIN dw.Dim_Area AS a
+    ON TRY_CONVERT(INT, p.Area_ID) = TRY_CONVERT(INT, a.Area_ID)
+   AND REPLACE(p.BoundaryVersion, 'District_', '') = a.BoundaryVersion
+INNER JOIN dw.Dim_Source AS s
+    ON s.Source_ID = N'POP_GPKG_01';</property>
+                <property
+                  dataType="System.String"
+                  description="The variable that contains the SQL command to be executed."
+                  name="SqlCommandVariable"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Forces the use of the DefaultCodePage property value when describing character data."
+                  name="AlwaysUseDefaultCodePage">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the mode used to access the database."
+                  name="AccessMode"
+                  typeConverter="AccessMode">2</property>
+                <property
+                  dataType="System.String"
+                  description="The mappings between the parameters in the SQL command and variables."
+                  name="ParameterMapping"></property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\DFT_Load_Fact_Population\OLE DB Source.Connections[OleDbConnection]"
+                  connectionManagerID="Package.ConnectionManagers[.\SQLEXPRESS.Flood_DSS]"
+                  connectionManagerRefId="Package.ConnectionManagers[.\SQLEXPRESS.Flood_DSS]"
+                  description="The OLE DB runtime connection used to access the database."
+                  name="OleDbConnection" />
+              </connections>
+              <outputs>
+                <output
+                  refId="Package\DFT_Load_Fact_Population\OLE DB Source.Outputs[OLE DB Source Output]"
+                  name="OLE DB Source Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\DFT_Load_Fact_Population\OLE DB Source.Outputs[OLE DB Source Output].Columns[Area_ID]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\DFT_Load_Fact_Population\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[Area_ID]"
+                      lineageId="Package\DFT_Load_Fact_Population\OLE DB Source.Outputs[OLE DB Source Output].Columns[Area_ID]"
+                      name="Area_ID"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\DFT_Load_Fact_Population\OLE DB Source.Outputs[OLE DB Source Output].Columns[Year]"
+                      dataType="i2"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\DFT_Load_Fact_Population\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[Year]"
+                      lineageId="Package\DFT_Load_Fact_Population\OLE DB Source.Outputs[OLE DB Source Output].Columns[Year]"
+                      name="Year"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\DFT_Load_Fact_Population\OLE DB Source.Outputs[OLE DB Source Output].Columns[Population]"
+                      dataType="i8"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\DFT_Load_Fact_Population\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[Population]"
+                      lineageId="Package\DFT_Load_Fact_Population\OLE DB Source.Outputs[OLE DB Source Output].Columns[Population]"
+                      name="Population"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\DFT_Load_Fact_Population\OLE DB Source.Outputs[OLE DB Source Output].Columns[Area_km2]"
+                      dataType="numeric"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\DFT_Load_Fact_Population\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[Area_km2]"
+                      lineageId="Package\DFT_Load_Fact_Population\OLE DB Source.Outputs[OLE DB Source Output].Columns[Area_km2]"
+                      name="Area_km2"
+                      precision="18"
+                      scale="4"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\DFT_Load_Fact_Population\OLE DB Source.Outputs[OLE DB Source Output].Columns[PopulationDensity]"
+                      dataType="numeric"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\DFT_Load_Fact_Population\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[PopulationDensity]"
+                      lineageId="Package\DFT_Load_Fact_Population\OLE DB Source.Outputs[OLE DB Source Output].Columns[PopulationDensity]"
+                      name="PopulationDensity"
+                      precision="18"
+                      scale="6"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\DFT_Load_Fact_Population\OLE DB Source.Outputs[OLE DB Source Output].Columns[AreaKey]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\DFT_Load_Fact_Population\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[AreaKey]"
+                      lineageId="Package\DFT_Load_Fact_Population\OLE DB Source.Outputs[OLE DB Source Output].Columns[AreaKey]"
+                      name="AreaKey"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\DFT_Load_Fact_Population\OLE DB Source.Outputs[OLE DB Source Output].Columns[SourceKey]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\DFT_Load_Fact_Population\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[SourceKey]"
+                      lineageId="Package\DFT_Load_Fact_Population\OLE DB Source.Outputs[OLE DB Source Output].Columns[SourceKey]"
+                      name="SourceKey"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\DFT_Load_Fact_Population\OLE DB Source.Outputs[OLE DB Source Output].Columns[DataQualityStatus]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\DFT_Load_Fact_Population\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[DataQualityStatus]"
+                      length="5"
+                      lineageId="Package\DFT_Load_Fact_Population\OLE DB Source.Outputs[OLE DB Source Output].Columns[DataQualityStatus]"
+                      name="DataQualityStatus"
+                      truncationRowDisposition="FailComponent" />
+                  </outputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\DFT_Load_Fact_Population\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[Area_ID]"
+                      dataType="i4"
+                      name="Area_ID" />
+                    <externalMetadataColumn
+                      refId="Package\DFT_Load_Fact_Population\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[Year]"
+                      dataType="i2"
+                      name="Year" />
+                    <externalMetadataColumn
+                      refId="Package\DFT_Load_Fact_Population\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[Population]"
+                      dataType="i8"
+                      name="Population" />
+                    <externalMetadataColumn
+                      refId="Package\DFT_Load_Fact_Population\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[Area_km2]"
+                      dataType="numeric"
+                      name="Area_km2"
+                      precision="18"
+                      scale="4" />
+                    <externalMetadataColumn
+                      refId="Package\DFT_Load_Fact_Population\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[PopulationDensity]"
+                      dataType="numeric"
+                      name="PopulationDensity"
+                      precision="18"
+                      scale="6" />
+                    <externalMetadataColumn
+                      refId="Package\DFT_Load_Fact_Population\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[AreaKey]"
+                      dataType="i4"
+                      name="AreaKey" />
+                    <externalMetadataColumn
+                      refId="Package\DFT_Load_Fact_Population\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[SourceKey]"
+                      dataType="i4"
+                      name="SourceKey" />
+                    <externalMetadataColumn
+                      refId="Package\DFT_Load_Fact_Population\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[DataQualityStatus]"
+                      dataType="wstr"
+                      length="5"
+                      name="DataQualityStatus" />
+                  </externalMetadataColumns>
+                </output>
+                <output
+                  refId="Package\DFT_Load_Fact_Population\OLE DB Source.Outputs[OLE DB Source Error Output]"
+                  isErrorOut="true"
+                  name="OLE DB Source Error Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\DFT_Load_Fact_Population\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[Area_ID]"
+                      dataType="i4"
+                      lineageId="Package\DFT_Load_Fact_Population\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[Area_ID]"
+                      name="Area_ID" />
+                    <outputColumn
+                      refId="Package\DFT_Load_Fact_Population\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[Year]"
+                      dataType="i2"
+                      lineageId="Package\DFT_Load_Fact_Population\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[Year]"
+                      name="Year" />
+                    <outputColumn
+                      refId="Package\DFT_Load_Fact_Population\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[Population]"
+                      dataType="i8"
+                      lineageId="Package\DFT_Load_Fact_Population\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[Population]"
+                      name="Population" />
+                    <outputColumn
+                      refId="Package\DFT_Load_Fact_Population\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[Area_km2]"
+                      dataType="numeric"
+                      lineageId="Package\DFT_Load_Fact_Population\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[Area_km2]"
+                      name="Area_km2"
+                      precision="18"
+                      scale="4" />
+                    <outputColumn
+                      refId="Package\DFT_Load_Fact_Population\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[PopulationDensity]"
+                      dataType="numeric"
+                      lineageId="Package\DFT_Load_Fact_Population\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[PopulationDensity]"
+                      name="PopulationDensity"
+                      precision="18"
+                      scale="6" />
+                    <outputColumn
+                      refId="Package\DFT_Load_Fact_Population\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[AreaKey]"
+                      dataType="i4"
+                      lineageId="Package\DFT_Load_Fact_Population\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[AreaKey]"
+                      name="AreaKey" />
+                    <outputColumn
+                      refId="Package\DFT_Load_Fact_Population\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[SourceKey]"
+                      dataType="i4"
+                      lineageId="Package\DFT_Load_Fact_Population\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[SourceKey]"
+                      name="SourceKey" />
+                    <outputColumn
+                      refId="Package\DFT_Load_Fact_Population\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[DataQualityStatus]"
+                      dataType="wstr"
+                      length="5"
+                      lineageId="Package\DFT_Load_Fact_Population\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[DataQualityStatus]"
+                      name="DataQualityStatus" />
+                    <outputColumn
+                      refId="Package\DFT_Load_Fact_Population\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\DFT_Load_Fact_Population\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\DFT_Load_Fact_Population\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\DFT_Load_Fact_Population\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+          </components>
+          <paths>
+            <path
+              refId="Package\DFT_Load_Fact_Population.Paths[OLE DB Source Output]"
+              endId="Package\DFT_Load_Fact_Population\OLE DB Destination.Inputs[OLE DB Destination Input]"
+              name="OLE DB Source Output"
+              startId="Package\DFT_Load_Fact_Population\OLE DB Source.Outputs[OLE DB Source Output]" />
+          </paths>
+        </pipeline>
+      </DTS:ObjectData>
+    </DTS:Executable>
+  </DTS:Executables>
+  <DTS:PrecedenceConstraints>
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint]"
+      DTS:CreationName=""
+      DTS:DTSID="{7B555945-37F7-4B29-A36E-E0019E2433A3}"
+      DTS:From="Package\DFT_Load_Fact_Population"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint"
+      DTS:To="Package\DFT_Load_Fact_FloodObservation" />
+  </DTS:PrecedenceConstraints>
+  <DTS:DesignTimeProperties><![CDATA[<?xml version="1.0"?>
+<!--This CDATA section contains the layout information of the package. The section includes information such as (x,y) coordinates, width, and height.-->
+<!--If you manually edit this section and make a mistake, you can delete it. -->
+<!--The package will still be able to load normally but the previous layout information will be lost and the designer will automatically re-arrange the elements on the design surface.-->
+<Objects
+  Version="8">
+  <!--Each node below will contain properties that do not affect runtime behavior.-->
+  <Package
+    design-time-name="Package">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
+        <NodeLayout
+          Size="208.8,41.6"
+          Id="Package\DFT_Load_Fact_Population"
+          TopLeft="307.499983198941,95.3333326703973" />
+        <NodeLayout
+          Size="241.6,41.6"
+          Id="Package\DFT_Load_Fact_FloodObservation"
+          TopLeft="638.333298456339,93.5999993491173" />
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint]"
+          TopLeft="516.299983198941,115.266666009757">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="122.033315257398,0"
+              Start="0,0"
+              End="114.533315257398,0">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="114.533315257398,0" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </Package>
+  <TaskHost
+    design-time-name="Package\DFT_Load_Fact_Population">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
+        <NodeLayout
+          Size="152,41.6"
+          Id="Package\DFT_Load_Fact_Population\OLE DB Source"
+          TopLeft="326.99999512732,108.999998375773" />
+        <NodeLayout
+          Size="171.2,41.6"
+          Id="Package\DFT_Load_Fact_Population\OLE DB Destination"
+          TopLeft="706.999989464879,107.999998390675" />
+        <EdgeLayout
+          Id="Package\DFT_Load_Fact_Population.Paths[OLE DB Source Output]"
+          TopLeft="478.99999512732,129.299998383224">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="227.999994337559,0"
+              Start="0,0"
+              End="220.499994337559,0">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="220.499994337559,0" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </TaskHost>
+  <PipelineComponentMetadata
+    design-time-name="Package\DFT_Load_Fact_Population\OLE DB Source">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\DFT_Load_Fact_Population\OLE DB Destination">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Table</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <TaskHost
+    design-time-name="Package\DFT_Load_Fact_FloodObservation">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="8" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
+        <NodeLayout
+          Size="152,41.6"
+          Id="Package\DFT_Load_Fact_FloodObservation\OLE DB Source"
+          TopLeft="369.99999448657,119.999998211861" />
+        <NodeLayout
+          Size="171.2,41.6"
+          Id="Package\DFT_Load_Fact_FloodObservation\OLE DB Destination"
+          TopLeft="888.999986752868,121.999998182058" />
+        <NodeLayout
+          Size="156,41.6"
+          Id="Package\DFT_Load_Fact_FloodObservation\Data Conversion"
+          TopLeft="615.999990820885,123.999998152256" />
+        <EdgeLayout
+          Id="Package\DFT_Load_Fact_FloodObservation.Paths[OLE DB Source Output]"
+          TopLeft="521.99999448657,142.799998182058">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="93.9999963343143,0"
+              Start="0,0"
+              End="86.4999963343143,0">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="86.4999963343143,0" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\DFT_Load_Fact_FloodObservation.Paths[Data Conversion Output]"
+          TopLeft="771.999990820885,143.799998167157">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="116.999995931983,0"
+              Start="0,0"
+              End="109.499995931983,0">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="109.499995931983,0" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </TaskHost>
+  <PipelineComponentMetadata
+    design-time-name="Package\DFT_Load_Fact_FloodObservation\OLE DB Source">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\DFT_Load_Fact_FloodObservation\OLE DB Destination">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Table</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+</Objects>]]></DTS:DesignTimeProperties>
+</DTS:Executable>
