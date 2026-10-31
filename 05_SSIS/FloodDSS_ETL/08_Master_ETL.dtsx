@@ -1,4 +1,4 @@
-﻿<?xml version="1.0"?>
+<?xml version="1.0"?>
 <DTS:Executable xmlns:DTS="www.microsoft.com/SqlServer/Dts"
   DTS:refId="Package"
   DTS:CreationDate="10/31/2026 6:52:05 PM"
@@ -11,8 +11,8 @@
   DTS:LocaleID="1033"
   DTS:ObjectName="08_Master_ETL"
   DTS:PackageType="5"
-  DTS:VersionBuild="5"
-  DTS:VersionGUID="{29CED960-4908-4856-B0BE-A23E52686B84}">
+  DTS:VersionBuild="13"
+  DTS:VersionGUID="{06492FC9-CFE1-4210-B35E-87FBDEE316ED}">
   <DTS:Property
     DTS:Name="PackageFormatVersion">8</DTS:Property>
   <DTS:ConnectionManagers>
@@ -29,8 +29,50 @@
       </DTS:ObjectData>
     </DTS:ConnectionManager>
   </DTS:ConnectionManagers>
-  <DTS:Variables />
+  <DTS:Variables>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{8FE68300-A559-4943-A255-E89DF590D190}"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="ExecutionID">
+      <DTS:VariableValue
+        DTS:DataType="8"
+        xml:space="preserve"></DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{DEB22F6A-9DB6-4D87-947E-AF2703A39F95}"
+      DTS:IncludeInDebugDump="6789"
+      DTS:Namespace="User"
+      DTS:ObjectName="StartTime">
+      <DTS:VariableValue
+        DTS:DataType="7">12:00:00 AM</DTS:VariableValue>
+    </DTS:Variable>
+  </DTS:Variables>
   <DTS:Executables>
+    <DTS:Executable
+      DTS:refId="Package\EX_00_Start_Log"
+      DTS:CreationName="Microsoft.ExecuteSQLTask"
+      DTS:Description="Execute SQL Task"
+      DTS:DTSID="{C4B30DAF-FA20-428C-A61A-66108A88CDDD}"
+      DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="EX_00_Start_Log"
+      DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2025; © 2025 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+      DTS:ThreadHint="0">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{C6DE967B-8AA3-4DB1-8C54-7FEDB98BE803}"
+          SQLTask:SqlStatementSource="DECLARE @ExecutionID UNIQUEIDENTIFIER = NEWID();&#xA;&#xA;INSERT INTO dw.ETL_Log&#xA;(&#xA;    Execution_ID,&#xA;    Package_Name,&#xA;    Start_Time,&#xA;    Execution_Status&#xA;)&#xA;VALUES&#xA;(&#xA;    @ExecutionID,&#xA;    N'08_Master_ETL.dtsx',&#xA;    SYSDATETIME(),&#xA;    N'Running'&#xA;);&#xA;&#xA;SELECT CONVERT(NVARCHAR(36), @ExecutionID) AS ExecutionID;"
+          SQLTask:ResultType="ResultSetType_SingleRow" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask">
+          <SQLTask:ResultBinding
+            SQLTask:ResultName="ExecutionID"
+            SQLTask:DtsVariableName="User::ExecutionID" />
+        </SQLTask:SqlTaskData>
+      </DTS:ObjectData>
+    </DTS:Executable>
     <DTS:Executable
       DTS:refId="Package\EX_01_Load_Flood"
       DTS:CreationName="Microsoft.ExecutePackageTask"
@@ -167,6 +209,36 @@
           SQLTask:SqlStatementSource="USE Flood_DSS;&#xA;&#xA;IF EXISTS (&#xA;    SELECT 1&#xA;    FROM dw.Fact_Population&#xA;    GROUP BY AreaKey, [Year], SourceKey&#xA;    HAVING COUNT_BIG(*) &gt; 1&#xA;)&#xA;    THROW 51001, 'Duplicate grain in Fact_Population', 1;&#xA;&#xA;IF EXISTS (&#xA;    SELECT 1&#xA;    FROM dw.Fact_FloodObservation&#xA;    GROUP BY SourceKey, Obs_ID&#xA;    HAVING COUNT_BIG(*) &gt; 1&#xA;)&#xA;    THROW 51002, 'Duplicate grain in Fact_FloodObservation', 1;&#xA;&#xA;IF EXISTS (&#xA;    SELECT 1&#xA;    FROM dw.Fact_FloodObservation f&#xA;    LEFT JOIN dw.Dim_Time d ON f.TimeKey = d.TimeKey&#xA;    WHERE d.TimeKey IS NULL&#xA;)&#xA;    THROW 51003, 'Invalid TimeKey in Fact_FloodObservation', 1;&#xA;&#xA;IF EXISTS (&#xA;    SELECT 1&#xA;    FROM dw.Fact_FloodObservation f&#xA;    LEFT JOIN dw.Dim_Area d ON f.AreaKey = d.AreaKey&#xA;    WHERE d.AreaKey IS NULL&#xA;)&#xA;    THROW 51004, 'Invalid AreaKey in Fact_FloodObservation', 1;&#xA;&#xA;IF EXISTS (&#xA;    SELECT 1&#xA;    FROM dw.Fact_FloodObservation f&#xA;    LEFT JOIN dw.Dim_Location d ON f.LocationKey = d.LocationKey&#xA;    WHERE d.LocationKey IS NULL&#xA;)&#xA;    THROW 51005, 'Invalid LocationKey in Fact_FloodObservation', 1;&#xA;&#xA;IF EXISTS (&#xA;    SELECT 1&#xA;    FROM dw.Fact_FloodObservation f&#xA;    LEFT JOIN dw.Dim_Cause d ON f.CauseKey = d.CauseKey&#xA;    WHERE d.CauseKey IS NULL&#xA;)&#xA;    THROW 51006, 'Invalid CauseKey in Fact_FloodObservation', 1;&#xA;&#xA;IF EXISTS (&#xA;    SELECT 1&#xA;    FROM dw.Fact_FloodObservation f&#xA;    LEFT JOIN dw.Dim_Source d ON f.SourceKey = d.SourceKey&#xA;    WHERE d.SourceKey IS NULL&#xA;)&#xA;    THROW 51007, 'Invalid SourceKey in Fact_FloodObservation', 1;&#xA;&#xA;IF EXISTS (&#xA;    SELECT 1&#xA;    FROM dw.Fact_Population f&#xA;    LEFT JOIN dw.Dim_Area d ON f.AreaKey = d.AreaKey&#xA;    WHERE d.AreaKey IS NULL&#xA;)&#xA;    THROW 51008, 'Invalid AreaKey in Fact_Population', 1;&#xA;&#xA;IF EXISTS (&#xA;    SELECT 1&#xA;    FROM dw.Fact_Population f&#xA;    LEFT JOIN dw.Dim_Source d ON f.SourceKey = d.SourceKey&#xA;    WHERE d.SourceKey IS NULL&#xA;)&#xA;    THROW 51009, 'Invalid SourceKey in Fact_Population', 1;&#xA;&#xA;IF EXISTS (&#xA;    SELECT 1&#xA;    FROM dw.Fact_FloodObservation&#xA;    WHERE MinDepth_cm &lt; 0&#xA;       OR MaxDepth_cm &lt; 0&#xA;       OR (MinDepth_cm IS NOT NULL&#xA;           AND MaxDepth_cm IS NOT NULL&#xA;           AND MinDepth_cm &gt; MaxDepth_cm)&#xA;       OR (AvgDepth_cm IS NOT NULL&#xA;           AND MinDepth_cm IS NOT NULL&#xA;           AND MaxDepth_cm IS NOT NULL&#xA;           AND (AvgDepth_cm &lt; MinDepth_cm OR AvgDepth_cm &gt; MaxDepth_cm))&#xA;       OR Duration_hours &lt; 0&#xA;       OR ObservationCount &lt;&gt; 1&#xA;)&#xA;    THROW 51010, 'Invalid measures in Fact_FloodObservation', 1;&#xA;&#xA;IF EXISTS (&#xA;    SELECT 1&#xA;    FROM dw.Fact_Population&#xA;    WHERE Population &lt; 0&#xA;       OR (Area_km2 IS NOT NULL AND Area_km2 &lt;= 0)&#xA;       OR PopulationDensity &lt; 0&#xA;)&#xA;    THROW 51011, 'Invalid measures in Fact_Population', 1;&#xA;&#xA;PRINT 'TV5 VALIDATION PASSED';" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
       </DTS:ObjectData>
     </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\EX_09_Success_Log"
+      DTS:CreationName="Microsoft.ExecuteSQLTask"
+      DTS:Description="Execute SQL Task"
+      DTS:DTSID="{5F79FFA5-7F96-4BC1-9630-AB2E523308E3}"
+      DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="EX_09_Success_Log"
+      DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2025; © 2025 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+      DTS:ThreadHint="0">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{C6DE967B-8AA3-4DB1-8C54-7FEDB98BE803}"
+          SQLTask:SqlStatementSource="UPDATE dw.ETL_Log&#xA;SET&#xA;    End_Time = SYSDATETIME(),&#xA;    Execution_Status = N'Success',&#xA;    Rows_Processed =&#xA;        (SELECT COUNT_BIG(*) FROM dw.Fact_FloodObservation)&#xA;        + (SELECT COUNT_BIG(*) FROM dw.Fact_Population),&#xA;    Rows_Error =&#xA;        (SELECT COUNT_BIG(*)&#xA;         FROM dw.ETL_Error&#xA;         WHERE Execution_ID = CONVERT(UNIQUEIDENTIFIER, ?))&#xA;WHERE Execution_ID = CONVERT(UNIQUEIDENTIFIER, ?);" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask">
+          <SQLTask:ParameterBinding
+            SQLTask:ParameterName="0"
+            SQLTask:DtsVariableName="User::ExecutionID"
+            SQLTask:ParameterDirection="Input"
+            SQLTask:DataType="130"
+            SQLTask:ParameterSize="36" />
+          <SQLTask:ParameterBinding
+            SQLTask:ParameterName="1"
+            SQLTask:DtsVariableName="User::ExecutionID"
+            SQLTask:ParameterDirection="Input"
+            SQLTask:DataType="130"
+            SQLTask:ParameterSize="36" />
+        </SQLTask:SqlTaskData>
+      </DTS:ObjectData>
+    </DTS:Executable>
   </DTS:Executables>
   <DTS:PrecedenceConstraints>
     <DTS:PrecedenceConstraint
@@ -225,7 +297,94 @@
       DTS:LogicalAnd="True"
       DTS:ObjectName="Constraint 6"
       DTS:To="Package\EX_08_Validate_Facts" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint 7]"
+      DTS:CreationName=""
+      DTS:DTSID="{1F5B99B8-9769-4FB8-A32F-14A9E925745C}"
+      DTS:From="Package\EX_00_Start_Log"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint 7"
+      DTS:To="Package\EX_01_Load_Flood" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint 8]"
+      DTS:CreationName=""
+      DTS:DTSID="{7A1DB20E-1235-4C4B-9860-A028036EBAFD}"
+      DTS:From="Package\EX_08_Validate_Facts"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint 8"
+      DTS:To="Package\EX_09_Success_Log" />
   </DTS:PrecedenceConstraints>
+  <DTS:EventHandlers>
+    <DTS:EventHandler
+      DTS:refId="Package.EventHandlers[OnError]"
+      DTS:CreationName="OnError"
+      DTS:DTSID="{BEF34FDA-7D2E-4D3A-B13B-14DACF5A6EF7}"
+      DTS:EventID="0"
+      DTS:EventName="OnError"
+      DTS:LocaleID="-1">
+      <DTS:Variables>
+        <DTS:Variable
+          DTS:CreationName=""
+          DTS:Description="The propagate property of the event"
+          DTS:DTSID="{D1CFD534-4ADF-488E-B769-98018A22E8C4}"
+          DTS:IncludeInDebugDump="6789"
+          DTS:Namespace="System"
+          DTS:ObjectName="Propagate">
+          <DTS:VariableValue
+            DTS:DataType="11">-1</DTS:VariableValue>
+        </DTS:Variable>
+      </DTS:Variables>
+      <DTS:Executables>
+        <DTS:Executable
+          DTS:refId="Package.EventHandlers[OnError]\EX_Log_ETL_Error"
+          DTS:CreationName="Microsoft.ExecuteSQLTask"
+          DTS:Description="Execute SQL Task"
+          DTS:DTSID="{B9E10932-C764-4E39-91F6-47B5CEAF798E}"
+          DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="EX_Log_ETL_Error"
+          DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2025; © 2025 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+          <DTS:Variables />
+          <DTS:ObjectData>
+            <SQLTask:SqlTaskData
+              SQLTask:Connection="{C6DE967B-8AA3-4DB1-8C54-7FEDB98BE803}"
+              SQLTask:SqlStatementSource="INSERT INTO dw.ETL_Error&#xA;(&#xA;    Execution_ID,&#xA;    Package_Name,&#xA;    Task_Name,&#xA;    Error_Code,&#xA;    Error_Description,&#xA;    Error_Time&#xA;)&#xA;VALUES&#xA;(&#xA;    CONVERT(UNIQUEIDENTIFIER, ?),&#xA;    ?,&#xA;    ?,&#xA;    ?,&#xA;    ?,&#xA;    SYSDATETIME()&#xA;);" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask">
+              <SQLTask:ParameterBinding
+                SQLTask:ParameterName="NewParameterName"
+                SQLTask:DtsVariableName="User::ExecutionID"
+                SQLTask:ParameterDirection="Input"
+                SQLTask:DataType="130"
+                SQLTask:ParameterSize="36" />
+              <SQLTask:ParameterBinding
+                SQLTask:ParameterName="NewParameterName"
+                SQLTask:DtsVariableName="System::PackageName"
+                SQLTask:ParameterDirection="Input"
+                SQLTask:DataType="130"
+                SQLTask:ParameterSize="-1" />
+              <SQLTask:ParameterBinding
+                SQLTask:ParameterName="NewParameterName"
+                SQLTask:DtsVariableName="System::SourceName"
+                SQLTask:ParameterDirection="Input"
+                SQLTask:DataType="130"
+                SQLTask:ParameterSize="-1" />
+              <SQLTask:ParameterBinding
+                SQLTask:ParameterName="NewParameterName"
+                SQLTask:DtsVariableName="System::ErrorCode"
+                SQLTask:ParameterDirection="Input"
+                SQLTask:DataType="3"
+                SQLTask:ParameterSize="-1" />
+              <SQLTask:ParameterBinding
+                SQLTask:ParameterName="NewParameterName"
+                SQLTask:DtsVariableName="System::ErrorDescription"
+                SQLTask:ParameterDirection="Input"
+                SQLTask:DataType="130"
+                SQLTask:ParameterSize="-1" />
+            </SQLTask:SqlTaskData>
+          </DTS:ObjectData>
+        </DTS:Executable>
+      </DTS:Executables>
+    </DTS:EventHandler>
+  </DTS:EventHandlers>
   <DTS:DesignTimeProperties><![CDATA[<?xml version="1.0"?>
 <!--This CDATA section contains the layout information of the package. The section includes information such as (x,y) coordinates, width, and height.-->
 <!--If you manually edit this section and make a mistake, you can delete it. -->
@@ -237,15 +396,15 @@
     design-time-name="Package">
     <LayoutInfo>
       <GraphLayout
-        Capacity="16" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
+        Capacity="32" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
         <NodeLayout
           Size="170.4,41.6"
           Id="Package\EX_01_Load_Flood"
-          TopLeft="1.66666657560391,22.5333331766393" />
+          TopLeft="97.499994672835,65.8666662086381" />
         <NodeLayout
           Size="216.8,41.6"
           Id="Package\EX_02_Load_FloodIntegrated"
-          TopLeft="89.9999950826171,162.933332200315" />
+          TopLeft="267.499985384445,162.933332200315" />
         <NodeLayout
           Size="193.6,41.6"
           Id="Package\EX_03_Load_Population"
@@ -268,30 +427,30 @@
           TopLeft="1061.66660865976,119.599999168317" />
         <EdgeLayout
           Id="Package.PrecedenceConstraints[Constraint]"
-          TopLeft="86.8666665756039,64.1333331766393">
+          TopLeft="182.699994672835,107.466666208638">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
-              EndConnector="111.533328507013,98.7999990236761"
+              EndConnector="158.39999071161,55.4666659916773"
               Start="0,0"
-              End="111.533328507013,91.2999990236761">
+              End="158.39999071161,47.9666659916773">
               <mssgle:Curve.Segments>
                 <mssgle:SegmentCollection
                   Capacity="5">
                   <mssgle:LineSegment
-                    End="0,45.399999511838" />
+                    End="0,29.0361900741638" />
                   <mssgle:CubicBezierSegment
-                    Point1="0,45.399999511838"
-                    Point2="0,49.399999511838"
-                    Point3="4,49.399999511838" />
+                    Point1="0,29.0361900741638"
+                    Point2="0,33.0361900741638"
+                    Point3="4,33.0361900741638" />
                   <mssgle:LineSegment
-                    End="107.533328507013,49.399999511838" />
+                    End="154.39999071161,33.0361900741638" />
                   <mssgle:CubicBezierSegment
-                    Point1="107.533328507013,49.399999511838"
-                    Point2="111.533328507013,49.399999511838"
-                    Point3="111.533328507013,53.399999511838" />
+                    Point1="154.39999071161,33.0361900741638"
+                    Point2="158.39999071161,33.0361900741638"
+                    Point3="158.39999071161,37.0361900741638" />
                   <mssgle:LineSegment
-                    End="111.533328507013,91.2999990236761" />
+                    End="158.39999071161,47.9666659916773" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>
@@ -302,13 +461,13 @@
         </EdgeLayout>
         <EdgeLayout
           Id="Package.PrecedenceConstraints[Constraint 1]"
-          TopLeft="233.199995082617,162.933332200315">
+          TopLeft="410.699985384445,162.933332200315">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
-              EndConnector="167.333320265843,-68.1666658651167"
+              EndConnector="-10.1666700359849,-68.1666658651167"
               Start="0,0"
-              End="167.333320265843,-60.6666658651167">
+              End="-10.1666700359849,-60.6666658651167">
               <mssgle:Curve.Segments>
                 <mssgle:SegmentCollection
                   Capacity="5">
@@ -317,15 +476,15 @@
                   <mssgle:CubicBezierSegment
                     Point1="0,-30.0463769747989"
                     Point2="0,-34.0463769747989"
-                    Point3="4,-34.0463769747989" />
+                    Point3="-4,-34.0463769747989" />
                   <mssgle:LineSegment
-                    End="163.333320265843,-34.0463769747989" />
+                    End="-6.16667003598491,-34.0463769747989" />
                   <mssgle:CubicBezierSegment
-                    Point1="163.333320265843,-34.0463769747989"
-                    Point2="167.333320265843,-34.0463769747989"
-                    Point3="167.333320265843,-38.0463769747989" />
+                    Point1="-6.16667003598491,-34.0463769747989"
+                    Point2="-10.1666700359849,-34.0463769747989"
+                    Point3="-10.1666700359849,-38.0463769747989" />
                   <mssgle:LineSegment
-                    End="167.333320265843,-60.6666658651167" />
+                    End="-10.1666700359849,-60.6666658651167" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>
@@ -496,8 +655,96 @@
             <EdgeLabelCollection />
           </EdgeLayout.Labels>
         </EdgeLayout>
+        <NodeLayout
+          Size="160,41.6"
+          Id="Package\EX_00_Start_Log"
+          TopLeft="21.666665482852,266.466664852632" />
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 7]"
+          TopLeft="101.666665482852,266.466664852632">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="53.9666625233164,-158.999998643994"
+              Start="0,0"
+              End="53.9666625233164,-151.499998643994">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,-90.5125573334999" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,-90.5125573334999"
+                    Point2="0,-94.5125573334999"
+                    Point3="4,-94.5125573334999" />
+                  <mssgle:LineSegment
+                    End="49.9666625233164,-94.5125573334999" />
+                  <mssgle:CubicBezierSegment
+                    Point1="49.9666625233164,-94.5125573334999"
+                    Point2="53.9666625233164,-94.5125573334999"
+                    Point3="53.9666625233164,-98.5125573334999" />
+                  <mssgle:LineSegment
+                    End="53.9666625233164,-151.499998643994" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <NodeLayout
+          Size="177.6,41.6"
+          Id="Package\EX_09_Success_Log"
+          TopLeft="741.666626143788,307.266664707992" />
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 8]"
+          TopLeft="978.333279879559,267.799998282393">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="-59.0666537357708,60.2666664255989"
+              Start="0,0"
+              End="-51.5666537357708,60.2666664255989">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="-25.5333268678854,0" />
+                  <mssgle:CubicBezierSegment
+                    Point1="-25.5333268678854,0"
+                    Point2="-29.5333268678854,0"
+                    Point3="-29.5333268678854,4" />
+                  <mssgle:LineSegment
+                    End="-29.5333268678854,56.2666664255989" />
+                  <mssgle:CubicBezierSegment
+                    Point1="-29.5333268678854,56.2666664255989"
+                    Point2="-29.5333268678854,60.2666664255989"
+                    Point3="-33.5333268678854,60.2666664255989" />
+                  <mssgle:LineSegment
+                    End="-51.5666537357708,60.2666664255989" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
       </GraphLayout>
     </LayoutInfo>
   </Package>
+  <DtsEventHandler
+    design-time-name="Package.EventHandlers[OnError]">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph">
+        <NodeLayout
+          Size="168.8,41.6"
+          Id="Package.EventHandlers[OnError]\EX_Log_ETL_Error"
+          TopLeft="686.999989762902,151.999997735024" />
+      </GraphLayout>
+    </LayoutInfo>
+  </DtsEventHandler>
 </Objects>]]></DTS:DesignTimeProperties>
 </DTS:Executable>
