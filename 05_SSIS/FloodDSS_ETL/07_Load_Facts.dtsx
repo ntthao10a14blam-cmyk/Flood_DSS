@@ -5,27 +5,27 @@
   DTS:CreationName="Microsoft.Package"
   DTS:CreatorComputerName="LAPTOP-D8LC6NK9"
   DTS:CreatorName="LAPTOP-D8LC6NK9\pc"
-  DTS:DTSID="{E28A268B-7949-4948-AC3C-2611F4C63414}"
+  DTS:DTSID="{7F85615C-8029-4040-ACA8-52269DD581A4}"
   DTS:ExecutableType="Microsoft.Package"
   DTS:LastModifiedProductVersion="17.0.1016.0"
   DTS:LocaleID="1033"
   DTS:ObjectName="07_Load_Facts"
   DTS:PackageType="5"
-  DTS:VersionBuild="64"
-  DTS:VersionGUID="{0EE612D4-D143-4047-ACA1-3BDE60691369}">
+  DTS:VersionBuild="66"
+  DTS:VersionGUID="{992E28EB-34D1-454A-A935-1EF2D0532386}">
   <DTS:Property
     DTS:Name="PackageFormatVersion">8</DTS:Property>
   <DTS:ConnectionManagers>
     <DTS:ConnectionManager
       DTS:refId="Package.ConnectionManagers[.\SQLEXPRESS.Flood_DSS]"
       DTS:CreationName="OLEDB"
-      DTS:DTSID="{6E478507-0C7D-439B-9970-A5D0A305799E}"
+      DTS:DTSID="{BA8DF01A-8FC3-46BC-8E2E-026505A5E908}"
       DTS:ObjectName=".\SQLEXPRESS.Flood_DSS">
       <DTS:ObjectData>
         <DTS:ConnectionManager
           DTS:ConnectRetryCount="1"
           DTS:ConnectRetryInterval="5"
-          DTS:ConnectionString="Data Source=.\SQLEXPRESS;Initial Catalog=Flood_DSS;Provider=MSOLEDBSQL.1;Integrated Security=SSPI;Application Name=SSIS-07_Load_Facts-{6E478507-0C7D-439B-9970-A5D0A305799E}.\SQLEXPRESS.Flood_DSS;Auto Translate=False;" />
+          DTS:ConnectionString="Data Source=localhost\DW2025;Initial Catalog=Flood_DSS;Provider=MSOLEDBSQL.1;Integrated Security=SSPI;Auto Translate=False;Application Name=SSIS-07_Load_Facts-{BA8DF01A-8FC3-46BC-8E2E-026505A5E908}.\SQLEXPRESS.Flood_DSS;" />
       </DTS:ObjectData>
     </DTS:ConnectionManager>
   </DTS:ConnectionManagers>
@@ -35,7 +35,7 @@
       DTS:refId="Package\DFT_Load_Fact_FloodObservation"
       DTS:CreationName="Microsoft.Pipeline"
       DTS:Description="Data Flow Task"
-      DTS:DTSID="{DA0A5ECE-3CD1-4E39-AF89-F56595251D89}"
+      DTS:DTSID="{CA83F4BF-9C12-4319-BE2E-E316B86373A2}"
       DTS:ExecutableType="Microsoft.Pipeline"
       DTS:LocaleID="-1"
       DTS:ObjectName="DFT_Load_Fact_FloodObservation"
@@ -2086,7 +2086,7 @@ WHERE f.Source_id LIKE N'SRC[_]%'
       DTS:refId="Package\DFT_Load_Fact_Population"
       DTS:CreationName="Microsoft.Pipeline"
       DTS:Description="Data Flow Task"
-      DTS:DTSID="{02E07631-9035-4025-AC5C-2885BA00391A}"
+      DTS:DTSID="{2BEBF8E8-C2B1-4DC3-9421-112343DC1488}"
       DTS:ExecutableType="Microsoft.Pipeline"
       DTS:LocaleID="-1"
       DTS:ObjectName="DFT_Load_Fact_Population"
@@ -2843,7 +2843,7 @@ WHERE NOT EXISTS (
     <DTS:PrecedenceConstraint
       DTS:refId="Package.PrecedenceConstraints[Constraint]"
       DTS:CreationName=""
-      DTS:DTSID="{7B555945-37F7-4B29-A36E-E0019E2433A3}"
+      DTS:DTSID="{E31CBBD6-BA86-4903-9CF4-07653CCB0725}"
       DTS:From="Package\DFT_Load_Fact_Population"
       DTS:LogicalAnd="True"
       DTS:ObjectName="Constraint"
@@ -2862,13 +2862,13 @@ WHERE NOT EXISTS (
       <GraphLayout
         Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
         <NodeLayout
-          Size="208.8,41.6"
-          Id="Package\DFT_Load_Fact_Population"
-          TopLeft="307.499983198941,95.3333326703973" />
-        <NodeLayout
           Size="241.6,41.6"
           Id="Package\DFT_Load_Fact_FloodObservation"
           TopLeft="638.333298456339,93.5999993491173" />
+        <NodeLayout
+          Size="208.8,41.6"
+          Id="Package\DFT_Load_Fact_Population"
+          TopLeft="307.499983198941,95.3333326703973" />
         <EdgeLayout
           Id="Package.PrecedenceConstraints[Constraint]"
           TopLeft="516.299983198941,115.266666009757">
@@ -2894,143 +2894,6 @@ WHERE NOT EXISTS (
       </GraphLayout>
     </LayoutInfo>
   </Package>
-  <TaskHost
-    design-time-name="Package\DFT_Load_Fact_Population">
-    <LayoutInfo>
-      <GraphLayout
-        Capacity="8" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mssgm="clr-namespace:Microsoft.SqlServer.Graph.Model;assembly=Microsoft.SqlServer.Graph">
-        <NodeLayout
-          Size="152,41.6"
-          Id="Package\DFT_Load_Fact_Population\OLE DB Source"
-          TopLeft="218.999996736646,111.99999833107" />
-        <NodeLayout
-          Size="171.2,41.6"
-          Id="Package\DFT_Load_Fact_Population\OLE DB Destination"
-          TopLeft="970.999985530973,99.999998509884" />
-        <NodeLayout
-          Size="152.8,41.6"
-          Id="Package\DFT_Load_Fact_Population\Derived Column"
-          TopLeft="767.999988555908,80.9999987930059" />
-        <NodeLayout
-          Size="112.8,41.6"
-          Id="Package\DFT_Load_Fact_Population\Lookup"
-          TopLeft="581.999991327524,106.999998405576" />
-        <EdgeLayout
-          Id="Package\DFT_Load_Fact_Population.Paths[OLE DB Source Output]"
-          TopLeft="370.999996736646,130.299998368323">
-          <EdgeLayout.Curve>
-            <mssgle:Curve
-              StartConnector="{assembly:Null}"
-              EndConnector="210.999994590878,0"
-              Start="0,0"
-              End="203.499994590878,0">
-              <mssgle:Curve.Segments>
-                <mssgle:SegmentCollection
-                  Capacity="5">
-                  <mssgle:LineSegment
-                    End="203.499994590878,0" />
-                </mssgle:SegmentCollection>
-              </mssgle:Curve.Segments>
-            </mssgle:Curve>
-          </EdgeLayout.Curve>
-          <EdgeLayout.Labels>
-            <EdgeLabelCollection />
-          </EdgeLayout.Labels>
-        </EdgeLayout>
-        <EdgeLayout
-          Id="Package\DFT_Load_Fact_Population.Paths[Lookup Match Output]"
-          TopLeft="694.799991327524,127.799998405576">
-          <EdgeLayout.Curve>
-            <mssgle:Curve
-              StartConnector="{assembly:Null}"
-              EndConnector="73.1999972283839,-25.9999996125699"
-              Start="0,0"
-              End="65.6999972283839,-25.9999996125699">
-              <mssgle:Curve.Segments>
-                <mssgle:SegmentCollection
-                  Capacity="5">
-                  <mssgle:LineSegment
-                    End="32.599998614192,0" />
-                  <mssgle:CubicBezierSegment
-                    Point1="32.599998614192,0"
-                    Point2="36.599998614192,0"
-                    Point3="36.599998614192,-4" />
-                  <mssgle:LineSegment
-                    End="36.599998614192,-21.9999996125699" />
-                  <mssgle:CubicBezierSegment
-                    Point1="36.599998614192,-21.9999996125699"
-                    Point2="36.599998614192,-25.9999996125699"
-                    Point3="40.599998614192,-25.9999996125699" />
-                  <mssgle:LineSegment
-                    End="65.6999972283839,-25.9999996125699" />
-                </mssgle:SegmentCollection>
-              </mssgle:Curve.Segments>
-            </mssgle:Curve>
-          </EdgeLayout.Curve>
-          <EdgeLayout.Labels>
-            <mssgm:EdgeLabel
-              BoundingBox="-11.591388104558,1,96.3827734375,11.609375"
-              RelativePosition="Any" />
-          </EdgeLayout.Labels>
-        </EdgeLayout>
-        <EdgeLayout
-          Id="Package\DFT_Load_Fact_Population.Paths[Derived Column Output]"
-          TopLeft="920.799988555908,101.799998793006">
-          <EdgeLayout.Curve>
-            <mssgle:Curve
-              StartConnector="{assembly:Null}"
-              EndConnector="50.1999969750644,18.999999716878"
-              Start="0,0"
-              End="42.6999969750644,18.999999716878">
-              <mssgle:Curve.Segments>
-                <mssgle:SegmentCollection
-                  Capacity="5">
-                  <mssgle:LineSegment
-                    End="21.0999984875322,0" />
-                  <mssgle:CubicBezierSegment
-                    Point1="21.0999984875322,0"
-                    Point2="25.0999984875322,0"
-                    Point3="25.0999984875322,4" />
-                  <mssgle:LineSegment
-                    End="25.0999984875322,14.999999716878" />
-                  <mssgle:CubicBezierSegment
-                    Point1="25.0999984875322,14.999999716878"
-                    Point2="25.0999984875322,18.999999716878"
-                    Point3="29.0999984875322,18.999999716878" />
-                  <mssgle:LineSegment
-                    End="42.6999969750644,18.999999716878" />
-                </mssgle:SegmentCollection>
-              </mssgle:Curve.Segments>
-            </mssgle:Curve>
-          </EdgeLayout.Curve>
-          <EdgeLayout.Labels>
-            <EdgeLabelCollection />
-          </EdgeLayout.Labels>
-        </EdgeLayout>
-      </GraphLayout>
-    </LayoutInfo>
-  </TaskHost>
-  <PipelineComponentMetadata
-    design-time-name="Package\DFT_Load_Fact_Population\OLE DB Source">
-    <Properties>
-      <Property>
-        <Name>DataSourceViewID</Name>
-      </Property>
-    </Properties>
-  </PipelineComponentMetadata>
-  <PipelineComponentMetadata
-    design-time-name="Package\DFT_Load_Fact_Population\OLE DB Destination">
-    <Properties>
-      <Property>
-        <Name>DataSourceViewID</Name>
-      </Property>
-      <Property>
-        <Name>TableInfoObjectType</Name>
-        <Value
-          type="q2:string">Table</Value>
-      </Property>
-    </Properties>
-  </PipelineComponentMetadata>
   <TaskHost
     design-time-name="Package\DFT_Load_Fact_FloodObservation">
     <LayoutInfo>
@@ -3392,25 +3255,12 @@ WHERE NOT EXISTS (
     </Properties>
   </PipelineComponentMetadata>
   <PipelineComponentMetadata
-    design-time-name="Package\DFT_Load_Fact_FloodObservation\OLE DB Destination">
-    <Properties>
-      <Property>
-        <Name>DataSourceViewID</Name>
-      </Property>
-      <Property>
-        <Name>TableInfoObjectType</Name>
-        <Value
-          type="q2:string">Table</Value>
-      </Property>
-    </Properties>
-  </PipelineComponentMetadata>
-  <PipelineComponentMetadata
-    design-time-name="Package\DFT_Load_Fact_Population\Lookup">
+    design-time-name="Package\DFT_Load_Fact_FloodObservation\LKP_Dim_Location">
     <Properties>
       <Property>
         <Name>OverwriteParamsSQLProp</Name>
         <Value
-          type="q2:boolean">false</Value>
+          type="q2:string">false</Value>
       </Property>
       <Property>
         <Name>UsedTableName</Name>
@@ -3420,7 +3270,7 @@ WHERE NOT EXISTS (
       <Property>
         <Name>TableInfoObjectType</Name>
         <Value
-          type="q4:int">0</Value>
+          type="q4:string">0</Value>
       </Property>
       <Property>
         <Name>DataSourceViewID</Name>
@@ -3433,7 +3283,7 @@ WHERE NOT EXISTS (
       <Property>
         <Name>OverwriteParamsSQLProp</Name>
         <Value
-          type="q2:boolean">false</Value>
+          type="q2:string">false</Value>
       </Property>
       <Property>
         <Name>UsedTableName</Name>
@@ -3443,7 +3293,7 @@ WHERE NOT EXISTS (
       <Property>
         <Name>TableInfoObjectType</Name>
         <Value
-          type="q4:int">0</Value>
+          type="q4:string">0</Value>
       </Property>
       <Property>
         <Name>DataSourceViewID</Name>
@@ -3456,7 +3306,7 @@ WHERE NOT EXISTS (
       <Property>
         <Name>OverwriteParamsSQLProp</Name>
         <Value
-          type="q2:boolean">false</Value>
+          type="q2:string">false</Value>
       </Property>
       <Property>
         <Name>UsedTableName</Name>
@@ -3466,30 +3316,7 @@ WHERE NOT EXISTS (
       <Property>
         <Name>TableInfoObjectType</Name>
         <Value
-          type="q4:int">0</Value>
-      </Property>
-      <Property>
-        <Name>DataSourceViewID</Name>
-      </Property>
-    </Properties>
-  </PipelineComponentMetadata>
-  <PipelineComponentMetadata
-    design-time-name="Package\DFT_Load_Fact_FloodObservation\LKP_Dim_Location">
-    <Properties>
-      <Property>
-        <Name>OverwriteParamsSQLProp</Name>
-        <Value
-          type="q2:boolean">false</Value>
-      </Property>
-      <Property>
-        <Name>UsedTableName</Name>
-        <Value
-          type="q3:string"></Value>
-      </Property>
-      <Property>
-        <Name>TableInfoObjectType</Name>
-        <Value
-          type="q4:int">0</Value>
+          type="q4:string">0</Value>
       </Property>
       <Property>
         <Name>DataSourceViewID</Name>
@@ -3502,7 +3329,7 @@ WHERE NOT EXISTS (
       <Property>
         <Name>OverwriteParamsSQLProp</Name>
         <Value
-          type="q2:boolean">false</Value>
+          type="q2:string">false</Value>
       </Property>
       <Property>
         <Name>UsedTableName</Name>
@@ -3512,7 +3339,7 @@ WHERE NOT EXISTS (
       <Property>
         <Name>TableInfoObjectType</Name>
         <Value
-          type="q4:int">0</Value>
+          type="q4:string">0</Value>
       </Property>
       <Property>
         <Name>DataSourceViewID</Name>
@@ -3525,7 +3352,7 @@ WHERE NOT EXISTS (
       <Property>
         <Name>OverwriteParamsSQLProp</Name>
         <Value
-          type="q2:boolean">false</Value>
+          type="q2:string">false</Value>
       </Property>
       <Property>
         <Name>UsedTableName</Name>
@@ -3535,10 +3362,183 @@ WHERE NOT EXISTS (
       <Property>
         <Name>TableInfoObjectType</Name>
         <Value
-          type="q4:int">0</Value>
+          type="q4:string">0</Value>
       </Property>
       <Property>
         <Name>DataSourceViewID</Name>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\DFT_Load_Fact_FloodObservation\OLE DB Destination">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Table</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <TaskHost
+    design-time-name="Package\DFT_Load_Fact_Population">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="8" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mssgm="clr-namespace:Microsoft.SqlServer.Graph.Model;assembly=Microsoft.SqlServer.Graph">
+        <NodeLayout
+          Size="152,41.6"
+          Id="Package\DFT_Load_Fact_Population\OLE DB Source"
+          TopLeft="218.999996736646,111.99999833107" />
+        <NodeLayout
+          Size="171.2,41.6"
+          Id="Package\DFT_Load_Fact_Population\OLE DB Destination"
+          TopLeft="970.999985530973,99.999998509884" />
+        <NodeLayout
+          Size="152.8,41.6"
+          Id="Package\DFT_Load_Fact_Population\Derived Column"
+          TopLeft="767.999988555908,80.9999987930059" />
+        <NodeLayout
+          Size="112.8,41.6"
+          Id="Package\DFT_Load_Fact_Population\Lookup"
+          TopLeft="581.999991327524,106.999998405576" />
+        <EdgeLayout
+          Id="Package\DFT_Load_Fact_Population.Paths[OLE DB Source Output]"
+          TopLeft="370.999996736646,130.299998368323">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="210.999994590878,0"
+              Start="0,0"
+              End="203.499994590878,0">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="203.499994590878,0" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\DFT_Load_Fact_Population.Paths[Lookup Match Output]"
+          TopLeft="694.799991327524,127.799998405576">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="73.1999972283839,-25.9999996125699"
+              Start="0,0"
+              End="65.6999972283839,-25.9999996125699">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="32.599998614192,0" />
+                  <mssgle:CubicBezierSegment
+                    Point1="32.599998614192,0"
+                    Point2="36.599998614192,0"
+                    Point3="36.599998614192,-4" />
+                  <mssgle:LineSegment
+                    End="36.599998614192,-21.9999996125699" />
+                  <mssgle:CubicBezierSegment
+                    Point1="36.599998614192,-21.9999996125699"
+                    Point2="36.599998614192,-25.9999996125699"
+                    Point3="40.599998614192,-25.9999996125699" />
+                  <mssgle:LineSegment
+                    End="65.6999972283839,-25.9999996125699" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="-11.591388104558,1,96.3827734375,11.609375"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\DFT_Load_Fact_Population.Paths[Derived Column Output]"
+          TopLeft="920.799988555908,101.799998793006">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="50.1999969750644,18.999999716878"
+              Start="0,0"
+              End="42.6999969750644,18.999999716878">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="21.0999984875322,0" />
+                  <mssgle:CubicBezierSegment
+                    Point1="21.0999984875322,0"
+                    Point2="25.0999984875322,0"
+                    Point3="25.0999984875322,4" />
+                  <mssgle:LineSegment
+                    End="25.0999984875322,14.999999716878" />
+                  <mssgle:CubicBezierSegment
+                    Point1="25.0999984875322,14.999999716878"
+                    Point2="25.0999984875322,18.999999716878"
+                    Point3="29.0999984875322,18.999999716878" />
+                  <mssgle:LineSegment
+                    End="42.6999969750644,18.999999716878" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </TaskHost>
+  <PipelineComponentMetadata
+    design-time-name="Package\DFT_Load_Fact_Population\Lookup">
+    <Properties>
+      <Property>
+        <Name>OverwriteParamsSQLProp</Name>
+        <Value
+          type="q2:string">false</Value>
+      </Property>
+      <Property>
+        <Name>UsedTableName</Name>
+        <Value
+          type="q3:string"></Value>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q4:string">0</Value>
+      </Property>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\DFT_Load_Fact_Population\OLE DB Source">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\DFT_Load_Fact_Population\OLE DB Destination">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Table</Value>
       </Property>
     </Properties>
   </PipelineComponentMetadata>
