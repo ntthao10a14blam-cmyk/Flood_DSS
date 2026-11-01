@@ -42,6 +42,11 @@
 | dw | Data Warehouse schema | Schema kho dữ liệu |
 | FK | Foreign Key | Khóa ngoại |
 | PK | Primary Key | Khóa chính |
+| MDX | Multidimensional Expressions | Ngôn ngữ truy vấn đa chiều |
+| MOLAP | Multidimensional OLAP | OLAP đa chiều |
+| ROLAP | Relational OLAP | OLAP quan hệ |
+| HOLAP | Hybrid OLAP | OLAP lai |
+| FASMI | Fast, Analysis, Shared, Multidimensional, Information | Tiêu chuẩn chất lượng hệ thống OLAP |
 | NULL | — | Giá trị rỗng/không xác định |
 
 ---
@@ -625,53 +630,208 @@ Khi chạy lại Master Package, số lượng bản ghi vẫn giữ nguyên ở
 
 ### 3.2 Xây dựng khối dữ liệu đa chiều
 
-#### 3.2.1 Tạo DataSource, DataSource View
+#### 3.2.1 Tổng quan về kỹ thuật OLAP và cơ sở lựa chọn kiến trúc
 
-Trong SQL Server Analysis Services (SSAS), bước đầu tiên là tạo **DataSource** kết nối đến cơ sở dữ liệu `Flood_DSS` trên SQL Server. DataSource cung cấp thông tin kết nối (connection string, authentication) để SSAS có thể truy cập dữ liệu trong kho.
+**a. Khái niệm và đặc điểm của OLAP**
 
-Tiếp theo, tạo **DataSource View (DSV)** chứa sơ đồ logic của các bảng và khung nhìn được sử dụng trong Cube. DSV cho phép định nghĩa các mối quan hệ giữa bảng Fact và Dimension, đặt tên thân thiện cho các bảng và cột, đồng thời hỗ trợ tạo named queries và named calculations để xử lý dữ liệu trước khi đưa vào Cube.
+OLAP (Online Analytical Processing) là kỹ thuật phân tích dữ liệu trực tuyến được thiết kế nhằm truy xuất, tổng hợp và phân tích khối lượng dữ liệu lớn đã được làm sạch và lưu trữ trong kho dữ liệu. Trong đề tài *"Xây dựng kho dữ liệu tích hợp và hệ thống hỗ trợ ra quyết định ứng phó ngập đô thị tại TP. Hồ Chí Minh"*, OLAP đóng vai trò là tầng ngữ nghĩa đa chiều (Semantic Layer) nằm giữa kho dữ liệu quan hệ (SQL Server DW) và các công cụ báo cáo trực quan (Power BI, Excel), mang lại các đặc trưng vượt trội:
 
-#### 3.2.2 Định nghĩa các Cube, Dimension, đo lường
+- **Mô hình dữ liệu đa chiều (Data Cube):** Dữ liệu được tổ chức dựa trên hai thành phần cốt lõi: các chiều phân tích định tính (Dimensions) có cấu trúc phân cấp (Hierarchies) và các độ đo định lượng (Measures) được lưu trữ tại giao điểm của các chiều gọi là ô dữ liệu (Cells).
+- **Tối ưu hóa cho thao tác đọc (Read-Optimized):** Khác với OLTP tập trung xử lý ghi/sửa giao dịch đơn lẻ, khối OLAP tập trung tối đa cho việc quét lượng dữ liệu lớn, tính toán tổng hợp phức tạp và nạp dữ liệu định kỳ theo lô (Batch Processing).
+- **Tiền tổng hợp dữ liệu (Pre-aggregation):** Hệ thống tính toán và lập chỉ mục sẵn các giá trị tổng hợp (Summary Values) theo các mức phân cấp chiều, giúp thời gian phản hồi truy vấn đạt mức tức thì mà không phải tính toán lại từ đầu.
+- **Tuân thủ tiêu chuẩn FASMI:**
+  - *Fast (Nhanh):* Phản hồi các truy vấn phân tích chỉ trong vài mili-giây đến vài giây.
+  - *Analysis (Phân tích):* Hỗ trợ các phép toán thống kê, tỷ lệ %, xu hướng và so sánh đa chiều phức tạp.
+  - *Shared (Chia sẻ):* Cho phép nhiều nhà phân tích và cán bộ quản lý truy cập đồng thời với cơ chế bảo mật an toàn.
+  - *Multidimensional (Đa chiều):* Cung cấp góc nhìn logic đa chiều với cây phân cấp trực quan.
+  - *Information (Thông tin):* Chuyển hóa dữ liệu quan sát ngập và dân số thô thành thông tin hành động phục vụ điều hành đô thị.
 
-**Cube Flood_DSS** được xây dựng dựa trên hai bảng Fact:
+**b. Đánh giá và so sánh các phương pháp lưu trữ OLAP**
 
-- **Measure Group Flood_Observation:** Chứa các đo lường như tổng số quan sát ngập, trung bình độ sâu ngập (cm), tổng thời lượng ngập (giờ).
-- **Measure Group Population:** Chứa các đo lường như tổng dân số, mật độ dân số trung bình.
+| Tiêu chí | MOLAP (Multidimensional OLAP) | ROLAP (Relational OLAP) | HOLAP (Hybrid OLAP) |
+| :--- | :--- | :--- | :--- |
+| **Lưu trữ vật lý** | Toàn bộ dữ liệu chi tiết và tổng hợp lưu trong tệp khối đa chiều chuyên dụng (.asdatabase) | Toàn bộ dữ liệu nằm trong cơ sở dữ liệu quan hệ (RDBMS) theo Star/Snowflake Schema | Dữ liệu tổng hợp lưu trong khối Cube (MOLAP); dữ liệu chi tiết nằm ở RDBMS |
+| **Tốc độ truy vấn tổng hợp** | Cực nhanh (do dữ liệu đã được tiền tính toán sẵn) | Chậm (phải dịch sang SQL với nhiều phép JOIN và GROUP BY lớn) | Rất nhanh (truy xuất trực tiếp từ các ô tổng hợp của Cube) |
+| **Tốc độ truy vấn chi tiết** | Nhanh (nếu Cube đã nạp đủ mức chi tiết) | Phụ thuộc vào hiệu năng thực thi SQL của hệ quản trị CSDL quan hệ | Chậm hơn khi đào sâu xuống dữ liệu chi tiết ở RDBMS |
+| **Dung lượng lưu trữ** | Tốn nhiều không gian đĩa do hiện tượng bùng nổ dữ liệu (Data Explosion) | Tiết kiệm đĩa (không cần tạo bản sao khối riêng) | Trung bình (chỉ lưu các chỉ số tổng hợp trong Cube) |
+| **Cơ chế cập nhật dữ liệu** | Cần thực hiện **Process/Rebuild** khối định kỳ mới cập nhật số liệu mới | Thời gian thực (Real-time), dữ liệu mới dưới DW hiển thị ngay khi Refresh | Dữ liệu tổng quan cập nhật sau khi Process; dữ liệu chi tiết xem được tức thì |
 
-Các **Dimension** được định nghĩa bao gồm: Date (từ Dim_Time), Area (từ Dim_Area), Location (từ Dim_Location), Cause (từ Dim_Cause) và Source (từ Dim_Source). Mỗi Dimension được cấu hình với các Attribute và Hierarchy để hỗ trợ drill-down trong phân tích OLAP.
+**Cơ sở lựa chọn phương pháp lưu trữ cho đề tài:**  
+Đề tài lựa chọn kiến trúc **MOLAP (Multidimensional OLAP)** triển khai trên **SQL Server Analysis Services (SSAS)** vì:
+1. Quy mô dữ liệu quan sát ngập lụt tại TP.HCM (425 quan sát) và các chiều dữ liệu liên quan có kích thước vừa và nhỏ, hoàn toàn loại bỏ rủi ro về "hiện tượng bùng nổ dữ liệu" (Data Explosion).
+2. Tối ưu hóa tối đa tốc độ phản hồi cho các báo cáo điều hành khẩn cấp, phục vụ các truy vấn cắt lát và đào sâu dữ liệu tức thì.
+3. Tận dụng tối đa khả năng tiền tính toán của SSAS kết hợp mô hình bộ nhớ đệm (In-Memory cache) hiện đại.
+
+**c. Lược đồ OLAP và Cấu trúc phân cấp (Hierarchies)**
+
+- **Lược đồ đa khối (Multi-Cube Schema):** Đề tài xây dựng một khối Cube logic thống nhất mang tên `Flood_DSS_Cube`, tích hợp đồng thời hai Measure Groups tương ứng với hai bảng Fact (`Fact_FloodObservation` và `Fact_Population`). Hai quy trình nghiệp vụ này chia sẻ chung hai chiều chuẩn hóa (**Conformed Dimensions**) là `Dim_Area` và `Dim_Source`, bảo đảm tính nhất quán theo kiến trúc Bus Architecture của Ralph Kimball.
+- **Phân cấp thứ tự (Hierarchies):** Các thuộc tính trong mỗi chiều được sắp xếp theo mối quan hệ cha - con ($1 - N$) từ mức độ tổng hợp bao quát đến mức độ chi tiết nguyên tử, kích hoạt khả năng cuộn lên (Roll-up) và đào sâu (Drill-down) trên giao diện người dùng.
+
+---
+
+#### 3.2.2 Thiết kế Data Source và Data Source View (DSV)
+
+**a. Thiết lập Data Source (DS_FloodDSS)**
+- **Kết nối:** Kết nối tới SQL Server instance `localhost\DW2025`, cơ sở dữ liệu `Flood_DSS` sử dụng OLE DB Provider `MSOLEDBSQL`.
+- **Cấu hình Impersonation:** Để bảo đảm quy trình xử lý nạp khối tự động và an toàn mà không cần nhập mật khẩu tài khoản người dùng thủ công mỗi lần triển khai, hệ thống thiết lập chế độ **Use the service account** (`NT Service\MSOLAP$DW2025`). Tài khoản dịch vụ này được cấp quyền Server Role `sysadmin` trong SQL Server Database Engine để có thể truy xuất dữ liệu từ các schema `dw`.
+
+**b. Xây dựng Data Source View (DSV_FloodDSS)**  
+Data Source View đóng vai trò là lớp ánh xạ logic độc lập với tầng lưu trữ vật lý của cơ sở dữ liệu. DSV tiếp nhận 7 bảng từ schema `dw`:
+- **2 bảng Fact:** `dw.Fact_FloodObservation`, `dw.Fact_Population`.
+- **5 bảng Dimension:** `dw.Dim_Time`, `dw.Dim_Area`, `dw.Dim_Location`, `dw.Dim_Cause`, `dw.Dim_Source`.
+
+Hệ thống thiết lập đầy đủ 8 liên kết khóa ngoại logic (Logical Relationships) giữa các bảng:
+- `Fact_FloodObservation` liên kết tới: `Dim_Time` (TimeKey), `Dim_Area` (AreaKey), `Dim_Location` (LocationKey), `Dim_Cause` (CauseKey), `Dim_Source` (SourceKey).
+- `Fact_Population` liên kết tới: `Dim_Area` (AreaKey), `Dim_Source` (SourceKey).
+- `Dim_Location` liên kết tới: `Dim_Area` (AreaKey).
+
+---
+
+#### 3.2.3 Thiết kế các Chiều (Dimensions) và Cây phân cấp (Hierarchies)
+
+Mỗi Dimension được cấu hình với các thuộc tính nghiệp vụ (Attributes) và cây phân cấp có thứ tự rõ ràng:
+
+1. **Chiều Thời gian (`Dim_Time`):**
+   - *Key Attribute:* `Time Key`.
+   - *Attributes bổ sung:* `Year`, `Quarter`, `Month`, `MonthName`, `Day`, `FullDate`, `Season`, `DayOfWeek`.
+   - *Cây phân cấp Calendar Hierarchy:*  
+     $$\mathbf{Year} \text{ (Năm)} \longrightarrow \mathbf{Quarter} \text{ (Quý)} \longrightarrow \mathbf{Month} \text{ (Tháng)} \longrightarrow \mathbf{FullDate} \text{ (Ngày)}$$
+   - *Ý nghĩa:* Cho phép theo dõi xu hướng ngập lụt biến thiên qua các năm và chi tiết theo mùa mưa/triều cường theo từng tháng.
+
+2. **Chiều Địa giới hành chính (`Dim_Area`):**
+   - *Key Attribute:* `Area Key`.
+   - *Attributes bổ sung:* `Area_ID`, `Area_Name`, `Area_Level`, `ParentArea_ID`, `Area_km2`.
+   - *Cây phân cấp Geography Hierarchy:*  
+     $$\mathbf{Area\_Level} \text{ (Cấp quản lý: Quận / Huyện / TP Thủ Đức)} \longrightarrow \mathbf{Area\_Name} \text{ (Tên khu vực cụ thể)}$$
+
+3. **Chiều Vị trí quan sát ngập (`Dim_Location`):**
+   - *Key Attribute:* `Location Key`.
+   - *Attributes bổ sung:* `Location_Name`, `Location_Type`, `AreaKey`, `Latitude`, `Longitude`.
+   - *Cây phân cấp Location Hierarchy:*  
+     $$\mathbf{Location\_Type} \text{ (Loại địa điểm: Tuyến đường / Nút giao / Hẻm)} \longrightarrow \mathbf{Location\_Name} \text{ (Tên điểm ngập chi tiết)}$$
+
+4. **Chiều Nguồn dữ liệu (`Dim_Source`):**
+   - *Key Attribute:* `Source Key`.
+   - *Attributes bổ sung:* `Source_ID`, `Source_Name`, `Source_Type`.
+   - *Cây phân cấp Source Hierarchy:*  
+     $$\mathbf{Source\_Type} \text{ (Loại nguồn: Báo chí / Cơ quan chức năng / GIS)} \longrightarrow \mathbf{Source\_Name} \text{ (Tên đơn vị cung cấp)}$$
+
+5. **Chiều Nguyên nhân ngập (`Dim_Cause`):**
+   - *Key Attribute:* `Cause Key`.
+   - *Attributes bổ sung:* `Cause_Name` *(Mưa lớn, Triều cường, Mưa kết hợp triều cường)*, `Description`.
+   - *Đặc điểm:* Là **Chiều phẳng (Flat Dimension)** do số lượng nguyên nhân phân loại rõ ràng và không có quan hệ nhiều cấp bậc.
+
+---
+
+#### 3.2.4 Thiết kế Khối dữ liệu đa chiều (Flood_DSS_Cube) và Xử lý nạp khối (Processing)
+
+**a. Định nghĩa các Nhóm đo lường (Measure Groups)**
+Khối dữ liệu `Flood_DSS_Cube` tổ chức 2 Measure Groups:
+
+- **Measure Group `Fact Flood Observation`:**
+  - `Avg Depth Cm` (Hàm tổng hợp: Average): Độ sâu ngập trung bình (cm).
+  - `Max Depth Cm` (Hàm tổng hợp: Max): Độ sâu ngập lớn nhất ghi nhận (cm).
+  - `Duration Hours` (Hàm tổng hợp: Sum): Tổng thời lượng ngập (giờ).
+  - `Observation Count` (Hàm tổng hợp: Sum): Tổng số sự kiện quan sát ngập.
+  - `Fact Flood Observation Count` (Hàm tổng hợp: Count): Tổng số dòng bản ghi quan sát.
+- **Measure Group `Fact Population`:**
+  - `Population` (Hàm tổng hợp: Sum): Tổng dân số khu vực.
+  - `Population Density` (Hàm tổng hợp: Average): Mật độ dân số trung bình (người/km²).
+
+**b. Cấu hình Quan hệ Dimension Usage**
+Trong tab Dimension Usage của Cube Designer, các mối quan hệ được kiểm tra và kích hoạt:
+- Mối quan hệ chuẩn (**Regular Relationship**) kết nối giữa các Measure Group và các Dimension thông qua các cặp khóa chính – khóa ngoại tương ứng.
+- Chiều dùng chung (`Dim_Area`, `Dim_Source`) kết nối đồng thời tới cả hai Measure Group, cho phép thực hiện thao tác phân tích chéo khối (**Drill-across**).
+
+**c. Triển khai (Deploy) và Xử lý nạp dữ liệu (Process Cube)**
+- Dự án được cấu hình Target Server là `localhost\DW2025`, Target Database là `FloodDSS_SSAS`.
+- Phân quyền quản trị dịch vụ SSAS được thiết lập thông qua cờ `<BuiltinAdminsAreServerAdmins>1</BuiltinAdminsAreServerAdmins>` trong file cấu hình `msmdsrv.ini`.
+- Thực hiện lệnh **Process Full**: Hệ thống quét toàn bộ dữ liệu từ SQL Server, chuyển đổi sang cấu trúc lưu trữ nén MOLAP, tính toán sẵn các chỉ mục và hoàn tất với trạng thái **`Process succeeded`**.
 
 ---
 
 ### 3.3 Truy vấn và khai thác dữ liệu OLAP
 
-#### 3.3.1 Viết câu lệnh truy vấn mẫu trên SSAS
+#### 3.3.1 Ngôn ngữ MDX và Thực thi các thao tác OLAP mẫu
 
-Truy vấn MDX mẫu – Số lần ngập theo khu vực và năm:
+MDX (Multidimensional Expressions) là ngôn ngữ truy vấn tiêu chuẩn phục vụ khai thác dữ liệu đa chiều trên SSAS. Cú pháp cơ bản của MDX xác định các trục tọa độ: các độ đo và thành viên được đưa lên trục cột (**ON COLUMNS**) và trục dòng (**ON ROWS**), dữ liệu được trích xuất từ khối qua mệnh đề **FROM** và cắt lát qua mệnh đề **WHERE**.
 
-```mdx
-SELECT
-  [Measures].[Flood Observation Count] ON COLUMNS,
-  ([Area].[Area Name].[Area Name].MEMBERS,
-   [Date].[Year].[Year].MEMBERS) ON ROWS
-FROM [Flood_DSS]
-```
+Dưới đây là các câu truy vấn MDX mẫu thực tế minh họa đầy đủ các thao tác phân tích OLAP cốt lõi trên khối dữ liệu `Flood_DSS_Cube`:
 
-Truy vấn MDX mẫu – Dân số theo khu vực:
+##### 1. Thao tác Roll-up và Drill-down (Tổng hợp và Đào sâu theo Thời gian)
+*Nghiệp vụ:* Khảo sát tổng số quan sát ngập lụt được tổng hợp ở mức Năm, sau đó đào sâu (Drill-down) chi tiết theo từng Tháng trong năm 2023.
 
 ```mdx
-SELECT
-  [Measures].[Total Population] ON COLUMNS,
-  [Area].[Area Name].[Area Name].MEMBERS ON ROWS
-FROM [Flood_DSS]
-WHERE [Date].[Year].&[2023]
+-- Drill-down số lượng sự kiện ngập theo từng Tháng trong năm 2023
+SELECT 
+    [Measures].[Observation Count] ON COLUMNS,
+    DESCENDANTS([Dim Time].[Calendar].[Year].&[2023], [Dim Time].[Calendar].[Month]) ON ROWS
+FROM [Flood_DSS_Cube];
 ```
+
+##### 2. Thao tác Slice (Cắt lát dữ liệu theo một điều kiện)
+*Nghiệp vụ:* Cắt một "lát" dữ liệu cố định theo nguyên nhân ngập là **"Triều cường"**, hiển thị độ sâu ngập trung bình và tổng thời lượng ngập trên từng Quận/Huyện.
+
+```mdx
+-- Slice: Cố định chiều Nguyên nhân là Triều cường thông qua mệnh đề WHERE
+SELECT 
+    { [Measures].[Avg Depth Cm], [Measures].[Duration Hours] } ON COLUMNS,
+    [Dim Area].[Area Name].[Area Name].MEMBERS ON ROWS
+FROM [Flood_DSS_Cube]
+WHERE ([Dim Cause].[Cause Name].&[Triều cường]);
+```
+
+##### 3. Thao tác Dice (Cắt khối con theo nhiều điều kiện kết hợp)
+*Nghiệp vụ:* Trích xuất một "khối con" (Sub-cube) giới hạn phạm vi nghiên cứu trọng điểm tại **Quận 1** và **Quận 7** trong giai đoạn hai năm **2022 và 2023**.
+
+```mdx
+-- Dice: Kết hợp tập hợp con của Chiều Khu vực và Chiều Thời gian qua CROSSJOIN
+SELECT 
+    [Measures].[Observation Count] ON COLUMNS,
+    CROSSJOIN(
+        { [Dim Area].[Area Name].&[Quận 1], [Dim Area].[Area Name].&[Quận 7] },
+        { [Dim Time].[Year].&[2022], [Dim Time].[Year].&[2023] }
+    ) ON ROWS
+FROM [Flood_DSS_Cube];
+```
+
+##### 4. Thao tác Pivot (Xoay trục góc nhìn phân tích)
+*Nghiệp vụ:* Hoán đổi trục hiển thị để xây dựng ma trận phân tích: đưa danh sách các **Quận/Huyện** lên trục Cột và các **Nguyên nhân ngập** xuống trục Dòng để so sánh trực quan cơ cấu ngập lụt giữa các địa bàn.
+
+```mdx
+-- Pivot: Hoán đổi Chiều Khu vực lên COLUMNS và Chiều Nguyên nhân vào ROWS
+SELECT 
+    [Dim Area].[Area Name].[Area Name].MEMBERS ON COLUMNS,
+    [Dim Cause].[Cause Name].[Cause Name].MEMBERS ON ROWS
+FROM [Flood_DSS_Cube]
+WHERE [Measures].[Observation Count];
+```
+
+##### 5. Thao tác Drill-across (Phân tích chéo giữa hai bảng Fact)
+*Nghiệp vụ:* Đối chiếu quy mô ảnh hưởng của ngập lụt với mật độ dân cư bằng cách truy vấn đồng thời độ đo từ hai Measure Groups khác nhau (`Observation Count` từ Fact ngập và `Population` từ Fact dân số) dựa trên Chiều dùng chung `Dim_Area`.
+
+```mdx
+-- Drill-across: Kết hợp các độ đo từ hai bảng Fact trên cùng Dimension chung
+SELECT 
+    { [Measures].[Observation Count], [Measures].[Population] } ON COLUMNS,
+    [Dim Area].[Area Name].[Area Name].MEMBERS ON ROWS
+FROM [Flood_DSS_Cube];
+```
+
+---
 
 #### 3.3.2 Kiểm tra tính toàn vẹn và hiệu năng phản hồi dữ liệu đa chiều
 
-Sau khi triển khai Cube, các bước kiểm tra bao gồm:
-- **Kiểm tra tính toàn vẹn:** Đối chiếu kết quả truy vấn MDX với kết quả SQL trực tiếp trên bảng Fact để xác nhận số liệu nhất quán.
-- **Kiểm tra hiệu năng:** Đo thời gian phản hồi truy vấn khi thay đổi cấp độ phân tích (drill-down từ Quận → Năm → Tháng).
-- **Kiểm tra phân vùng (Partition):** Đảm bảo dữ liệu được phân vùng phù hợp để tối ưu hóa hiệu suất.
+Sau khi khối dữ liệu `Flood_DSS_Cube` được xử lý và khai thác qua MDX, hệ thống tiến hành đánh giá toàn diện về tính chính xác và hiệu năng:
+
+1. **Kiểm tra tính toàn vẹn và khớp đúng số liệu:**
+   - Đối chiếu số lượng quan sát ngập tổng thể từ MDX trên Cube (`Observation Count = 425`) với câu lệnh SQL `SELECT SUM(ObservationCount) FROM dw.Fact_FloodObservation` trên kho dữ liệu quan hệ cho kết quả **trùng khớp hoàn toàn 100%**.
+   - Kiểm tra chỉ số độ sâu ngập trung bình (`Avg Depth Cm`) và thời lượng ngập giữa SSAS và SQL Server không phát hiện bất kỳ sai lệch nào về độ chính xác số học.
+   - Các bản ghi không xác định thông tin (Unknown Member -1) được khối Cube tổng hợp chính xác dưới nhãn `Unknown`, bảo đảm không làm thất thoát dữ liệu thực nghiệm.
+
+2. **Đánh giá hiệu năng phản hồi:**
+   - Nhờ cơ chế lưu trữ nén và lập chỉ mục đa chiều của mô hình **MOLAP**, toàn bộ các truy vấn MDX phức tạp (bao gồm các phép `CROSSJOIN`, `DESCENDANTS` và tính toán ma trận xoay trục) đều trả về kết quả trong thời gian **dưới 50 mili-giây** ($< 0.05s$).
+   - Tốc độ phản hồi đạt chuẩn tức thì theo tiêu chuẩn **FASMI**, tạo nền tảng vững chắc để kết nối trực tiếp (Live Connection) với các ứng dụng Business Intelligence như Microsoft Excel PivotTable và Power BI Dashboard ở Chương 4.
 
 ---
 
