@@ -71,19 +71,23 @@
 | Bảng | Mô tả |
 |------|-------|
 | Bảng 2.1 | Mô tả các file dữ liệu nguồn |
-| Bảng 2.2 | Ma trận Bus Matrix |
-| Bảng 2.3 | Thiết kế bảng Dim_Time |
-| Bảng 2.4 | Thiết kế bảng Dim_Area |
-| Bảng 2.5 | Thiết kế bảng Dim_Location |
-| Bảng 2.6 | Thiết kế bảng Dim_Cause |
-| Bảng 2.7 | Thiết kế bảng Dim_Source |
-| Bảng 2.8 | Thiết kế bảng Fact_FloodObservation |
-| Bảng 2.9 | Thiết kế bảng Fact_Population |
+| Bảng 2.2 | Quy tắc chuyển đổi và làm sạch dữ liệu trước khi nạp |
+| Bảng 2.3 | Ma trận Bus Matrix |
+| Bảng 2.4 | Thiết kế bảng Dim_Time |
+| Bảng 2.5 | Thiết kế bảng Dim_Area |
+| Bảng 2.6 | Thiết kế bảng Dim_Location |
+| Bảng 2.7 | Thiết kế bảng Dim_Cause |
+| Bảng 2.8 | Thiết kế bảng Dim_Source |
+| Bảng 2.9 | Thiết kế bảng Fact_FloodObservation |
+| Bảng 2.10 | Thiết kế bảng Fact_Population |
 | Bảng 3.1 | Danh sách gói SSIS trong dự án FloodDSS_ETL |
-| Bảng 3.2 | Ánh xạ cột Package 03_Load_Population |
-| Bảng 3.3 | Ánh xạ cột Package 04_Load_Roads |
-| Bảng 3.4 | Ánh xạ cột Package 05_Load_Area |
-| Bảng 3.5 | Kết quả đối chiếu số lượng bản ghi Staging |
+| Bảng 3.2 | Ánh xạ cột Package 01_Load_Flood (stg.Flood) |
+| Bảng 3.3 | Ánh xạ cột Package 02_Load_FloodIntegrated (stg.FloodIntegrated) |
+| Bảng 3.4 | Ánh xạ cột Package 03_Load_Population (stg.Population) |
+| Bảng 3.5 | Ánh xạ cột Package 04_Load_Roads (stg.Roads) |
+| Bảng 3.6 | Ánh xạ cột Package 05_Load_Area (stg.Area) |
+| Bảng 3.7 | Kết quả đối chiếu số lượng bản ghi các bảng Staging |
+| Bảng 3.8 | So sánh các phương pháp lưu trữ OLAP |
 
 ---
 
@@ -229,25 +233,43 @@ Gồm 24 khu vực hành chính, chứa: Area_ID, Area_Name, Area_Level, ParentA
 
 #### 2.2.1 Xác định các vấn đề về chất lượng dữ liệu
 
-Qua phân tích các file CSV nguồn, các vấn đề chất lượng dữ liệu được xác định bao gồm:
+Qua quá trình phân tích và đối chiếu 5 file CSV nguồn (đặc biệt là 2 tập dữ liệu ngập cốt lõi `Flood_Staging_Final.csv` và `Flood_Water_Population_Roads.csv`), các vấn đề chất lượng dữ liệu được xác định và phân loại cụ thể như sau:
 
-1. **Kiểu dữ liệu không đồng nhất:** Trường `Area_km2` trong CSV được đọc dưới dạng chuỗi ký tự hoặc số thực, cần chuyển đổi sang `DECIMAL(18,4)`.
-2. **Mã khu vực dạng float:** `Population_Area_ID` trong dữ liệu tích hợp chứa giá trị dạng `"765.0"` thay vì `"765"`, gây lỗi khi JOIN với bảng Dimension.
-3. **Thiếu dữ liệu ngày tháng:** Hai cột `EffectiveFrom` và `EffectiveTo` trong `Area_Boundaries_Clean.csv` không có giá trị, được xử lý bằng cách cho phép NULL.
-4. **Encoding:** Dữ liệu tiếng Việt yêu cầu bảng mã UTF-8 (Code page 65001) để đọc đúng.
-5. **Trùng lặp tiềm ẩn:** Một số quan sát (Obs_ID) có thể xuất hiện từ nhiều nguồn khác nhau, cần kiểm soát theo Grain.
-6. **Giá trị thiếu (NULL):** Một số trường mô tả không bắt buộc có thể rỗng, được xử lý bằng Unknown Member trong bảng Dimension.
+**1. Các vấn đề chất lượng trong Dữ liệu quan sát ngập (`Flood_Staging_Final.csv` - Package 01):**
+- **Giá trị khuyết thiếu (Missing Values):** Một số sự kiện ngập thu thập từ báo chí và tin tức chỉ ghi nhận vị trí mà không có thông tin ngày tháng cụ thể (`Missing_Date = 1`) hoặc thiếu đo lường độ sâu ngập chính xác (`Missing_Depth = 1`).
+- **Trùng lặp mã quan sát (Duplicate Observations):** Xuất hiện hiện tượng trùng lặp mã sự kiện `Obs_id` giữa các lần thu thập hoặc cùng một sự kiện được nhiều bài báo phản ánh (`Duplicate_Obs_id = 1`).
+- **Tọa độ địa lý không hợp lệ (Invalid Coordinates):** Một số điểm ngập có tọa độ (Longitude, Latitude) bị lỗi định dạng, đảo ngược vị trí kinh/vĩ độ hoặc nằm ngoài phạm vi không gian địa lý của TP. Hồ Chí Minh (`Invalid_Coordinates = 1`).
+- **Bất thường về dải giá trị độ sâu (Invalid Depth Range):** Ghi nhận một số trường hợp giá trị độ sâu ngập bằng 0, mang dấu âm hoặc vượt quá ngưỡng ngập lụt thực tế trong đô thị (`Invalid_Depth_Range = 1`).
+- **Lệch mốc thời gian (Year - Date Mismatch):** Cột năm tổng kết (`Year`) không đồng nhất với năm được trích xuất từ cột ngày quan sát chi tiết (`Date`) (`Year_Date_Mismatch = 1`).
+- **Bảo toàn độ chính xác không gian GIS:** Tọa độ địa lý của các điểm ngập đòi hỏi độ phân giải không gian cao với 12 chữ số thập phân (`DECIMAL(15,12)`) để tránh làm sai lệch vị trí điểm ngập khi tích hợp bản đồ.
+
+**2. Các vấn đề chất lượng trong Dữ liệu ngập tích hợp không gian (`Flood_Water_Population_Roads.csv` - Package 02):**
+- **Lệch kiểu định danh khu vực khi tích hợp:** Cột `Population_Area_ID` sinh ra từ các thuật toán Spatial Join trong môi trường Python/QGIS bị chuyển đổi thành chuỗi số thực dạng float (ví dụ: `"765.0"` thay vì chuỗi số nguyên chuẩn `"765"`), dẫn đến thất bại khi đối chiếu khóa ngoại với bảng `dw.Dim_Area`.
+- **Khoảng cách không gian và phân đoạn bán kính:** Các chỉ số khoảng cách tới nguồn nước (`DistanceToWater_m`) và khoảng cách tới tuyến đường gần nhất (`DistanceToNearestRoad_m`) có dải giá trị rất rộng với nhiều chữ số thập phân, cần chuẩn hóa kiểu dữ liệu `DECIMAL(18,6)`.
+- **Trạng thái khớp nối không gian (Spatial Match Status):** Một số điểm ngập nằm tại ranh giới giáp ranh hoặc ngoài phạm vi bán kính quét của hệ thống sông kênh và mạng lưới giao thông (`Road_Match_Status = 'Unmatched'`), đòi hỏi cơ chế xử lý bằng giá trị mặc định hoặc Unknown Member.
+
+**3. Các vấn đề trong Dữ liệu Dân số, Đường giao thông và Ranh giới (Package 03, 04, 05):**
+- **Thiếu dữ liệu thời gian hiệu lực:** File ranh giới hành chính (`Area_Boundaries_Clean.csv`) không cung cấp ngày hiệu lực (`EffectiveFrom`, `EffectiveTo`), cần xử lý bằng giá trị NULL để phù hợp với thuộc tính SCD.
+- **Không đồng nhất kiểu số diện tích và mật độ:** Cột `Area_km2` và `PopulationDensity` trong CSV bị đọc dạng chuỗi, cần chuyển đổi sang `DECIMAL(18,4)` và `DECIMAL(18,6)` để không làm tròn mất số thập phân.
+- **Bảng mã ký tự (Encoding):** Dữ liệu địa danh tiếng Việt có dấu (`Area_Name`, `Road_Name`, `Location_name`) dễ bị lỗi font (mojibake) nếu không cấu hình chuẩn bảng mã UTF-8 (Code page 65001).
 
 #### 2.2.2 Các quy tắc chuyển đổi và làm sạch dữ liệu trước khi nạp
 
-| Vấn đề | Quy tắc xử lý |
-|--------|--------------|
-| Chuỗi Non-Unicode (DT_STR) | Chuyển sang Unicode (DT_WSTR) bằng Data Conversion trong SSIS |
-| Số thực dạng chuỗi | Dùng `TRY_CAST(... AS DECIMAL(18,4))` hoặc Data Conversion |
-| Mã Area_ID dạng float string | `TRY_CAST(TRY_CAST(Area_ID AS FLOAT) AS INT)` để chuẩn hóa |
-| NULL trong cột bắt buộc Dimension | Gán Unknown Member (SurrogateKey = -1) |
-| Thiếu ngày EffectiveFrom/To | Để NULL, bảng đích cho phép NULL |
-| Trùng lặp theo Grain | Ràng buộc UNIQUE trong SQL Server + kiểm tra trước khi INSERT |
+Dựa trên các vấn đề chất lượng đã nhận diện, hệ thống thiết lập bảng quy tắc chuyển đổi và xử lý dữ liệu chuẩn hóa trong suốt quy trình ETL:
+
+*Bảng 2.2: Quy tắc chuyển đổi và làm sạch dữ liệu trước khi nạp*
+
+| Nhóm dữ liệu / Cột | Vấn đề chất lượng | Quy tắc chuyển đổi và làm sạch | Công cụ thực hiện |
+| :--- | :--- | :--- | :--- |
+| **Tất cả các cột văn bản** (`Location_name`, `Area_Name`, `Road_Name`,...) | Chuỗi ký tự Non-Unicode (DT_STR) làm mất dấu tiếng Việt | Chuyển đổi sang chuỗi Unicode `DT_WSTR` với độ dài tương ứng bảng đích; cấu hình Flat File UTF-8 (Code page 65001) | Data Conversion (SSIS) |
+| **Độ sâu & Thời lượng ngập** (`Water_height_*`, `Duration_hours`) | Chuỗi số hoặc float thiếu độ chính xác thập phân | Ép kiểu sang `DECIMAL(10,2)` (SSIS `DT_NUMERIC(10,2)`), giữ nguyên phần thập phân của thời lượng ngập | Data Conversion (SSIS) |
+| **Tọa độ địa lý** (`Longitude`, `Latitude`) | Cần giữ nguyên độ chính xác cao cho bản đồ GIS | Chuyển sang `DECIMAL(15,12)` (SSIS `DT_NUMERIC(15,12)`), loại bỏ các dòng có tọa độ rỗng hoặc ngoài TP.HCM | Data Conversion & Derived Column |
+| **Các cờ kiểm định** (`Missing_Date`, `Missing_Depth`,...) | Dạng nhị phân 0/1 trong CSV | Chuyển sang kiểu Boolean `DT_BOOL` (Bit trong SQL Server) phục vụ đánh giá chất lượng dữ liệu | Data Conversion (SSIS) |
+| **Mã khu vực tích hợp** (`Population_Area_ID`) | Chứa số thực dạng chuỗi `"765.0"` | Dùng biểu thức `TRY_CAST(TRY_CAST(Population_Area_ID AS FLOAT) AS INT)` hoặc Derived Column để chuyển thành `"765"` | Derived Column / SQL Query |
+| **Khoảng cách không gian** (`DistanceToWater_m`, `DistanceToNearestRoad_m`) | Số thực nhiều phần lẻ, giá trị cực lớn | Chuyển sang `DECIMAL(18,6)` (SSIS `DT_NUMERIC(18,6)`) | Data Conversion (SSIS) |
+| **Ngày tháng** (`Date`, `EffectiveFrom`, `EffectiveTo`) | Dữ liệu rỗng hoặc sai định dạng ngày | Chuẩn hóa định dạng `YYYY-MM-DD` (`DT_DBDATE`), các cột thiếu để nhận giá trị `NULL` trong SQL Server | Data Conversion / SSIS Mapping |
+| **Khóa Dimension khuyết thiếu** | Không tìm thấy bản ghi tương ứng qua Lookup | Gán Khóa thay thế mặc định mang giá trị **`-1` (Unknown Member)** | Derived Column trong SSIS |
+| **Ràng buộc trùng lặp Grain** | Bản ghi bị nhân bản hoặc chạy lại ETL | Áp dụng ràng buộc `UNIQUE (SourceKey, Obs_ID)` và kiểm tra `WHERE NOT EXISTS` trước khi nạp | SQL Server Constraint / SSIS Lookup |
 
 ---
 
@@ -373,9 +395,11 @@ Trong phạm vi xây dựng kho dữ liệu, SSIS tập trung vào việc xây d
 
 Quy trình ETL được tổ chức thành các gói SSIS riêng biệt, phân chia theo chức năng và thuận tiện trong quản lý, kiểm thử:
 
+*Bảng 3.1: Danh sách gói SSIS trong dự án FloodDSS_ETL*
+
 | Gói SSIS | Chức năng |
 |----------|-----------|
-| `01_Load_Flood.dtsx` | Nạp dữ liệu ngập thô vào stg.FloodRaw |
+| `01_Load_Flood.dtsx` | Nạp dữ liệu ngập thô vào stg.Flood |
 | `02_Load_FloodIntegrated.dtsx` | Nạp dữ liệu ngập tích hợp vào stg.FloodIntegrated |
 | `03_Load_Population.dtsx` | Nạp dữ liệu dân số vào stg.Population |
 | `04_Load_Roads.dtsx` | Nạp dữ liệu đường giao thông vào stg.Roads |
@@ -405,33 +429,102 @@ Gói `08_Master_ETL.dtsx` đóng vai trò điều phối tổng thể quy trình
 
 ##### Tổng quan công việc xây dựng Staging
 
-Giai đoạn đầu của quy trình ETL là xây dựng các gói SSIS để nạp dữ liệu từ những file CSV đã được chuẩn bị vào các bảng tương ứng trong vùng Staging của cơ sở dữ liệu Flood_DSS. Công việc bao gồm thiết lập kết nối nguồn và đích, kiểm tra và chuyển đổi kiểu dữ liệu khi cần thiết, thực hiện nạp dữ liệu và kiểm tra kết quả sau khi chạy.
+Giai đoạn đầu của quy trình ETL là xây dựng các gói SSIS để nạp dữ liệu từ 5 file CSV nguồn đã được chuẩn bị vào các bảng tương ứng trong vùng Staging (`stg`) của cơ sở dữ liệu `Flood_DSS`. Công việc bao gồm thiết lập kết nối nguồn và đích, kiểm tra và chuyển đổi kiểu dữ liệu phù hợp với cấu trúc bảng trung gian, thực hiện nạp dữ liệu và kiểm tra kết quả sau khi thực thi.
 
-Ba package tương ứng với ba nhóm dữ liệu được xây dựng:
+Năm package tương ứng với năm nhóm dữ liệu nguồn được xây dựng:
 
 | Package | File dữ liệu nguồn | Bảng đích | Số dòng dự kiến |
 |---------|-------------------|-----------|-----------------|
-| `03_Load_Population.dtsx` | Population_Clean.csv | stg.Population | 24 |
-| `04_Load_Roads.dtsx` | Roads_Clean.csv | stg.Roads | 9 |
-| `05_Load_Area.dtsx` | Area_Boundaries_Clean.csv | stg.Area | 24 |
+| `01_Load_Flood.dtsx` | `Flood_Staging_Final.csv` | `stg.Flood` | 425 |
+| `02_Load_FloodIntegrated.dtsx` | `Flood_Water_Population_Roads.csv` | `stg.FloodIntegrated` | 425 |
+| `03_Load_Population.dtsx` | `Population_Clean.csv` | `stg.Population` | 24 |
+| `04_Load_Roads.dtsx` | `Roads_Clean.csv` | `stg.Roads` | 9 |
+| `05_Load_Area.dtsx` | `Area_Boundaries_Clean.csv` | `stg.Area` | 24 |
 
-##### Thiết lập kết nối và xây dựng luồng ETL
+##### Thiết lập kết nối và xây dựng luồng ETL chung
 
-Trong SSIS, thiết lập **Flat File Connection Manager** để đọc các file CSV nguồn và **OLE DB Connection Manager** để kết nối SQL Server, cơ sở dữ liệu Flood_DSS. Các file CSV được cấu hình theo định dạng phân tách bằng dấu phẩy; bảng mã UTF-8 (Code page 65001) được sử dụng để bảo đảm dữ liệu tiếng Việt được đọc đúng.
+Trong SSIS, thiết lập **Flat File Connection Manager** để đọc các file CSV nguồn và **OLE DB Connection Manager** để kết nối SQL Server, cơ sở dữ liệu `Flood_DSS`. Các file CSV được cấu hình theo định dạng phân tách bằng dấu phẩy; bảng mã UTF-8 (Code page 65001) được sử dụng để bảo đảm dữ liệu tiếng Việt được đọc đúng.
 
 Sau khi thiết lập kết nối, mỗi package được xây dựng theo luồng xử lý chính:
 
 > **Flat File Source → Data Conversion (khi cần) → OLE DB Destination**
 
-- **Flat File Source:** Đọc dữ liệu từ CSV
-- **Data Conversion:** Điều chỉnh kiểu dữ liệu để tương thích với cấu trúc bảng đích
-- **OLE DB Destination:** Thực hiện ánh xạ và nạp dữ liệu vào SQL Server
+- **Flat File Source:** Đọc dữ liệu từ CSV với thiết lập Code Page 65001.
+- **Data Conversion:** Điều chỉnh kiểu dữ liệu từ Non-Unicode (`DT_STR`) sang Unicode (`DT_WSTR`), ép kiểu số nguyên, số thực có độ chính xác cao và các cờ Boolean để tương thích với cấu trúc bảng Staging đích.
+- **OLE DB Destination:** Thực hiện ánh xạ các cột đầu ra sau xử lý và nạp dữ liệu vào SQL Server theo chế độ nạp nhanh (Table or view - fast load).
 
-**a. Package 03 – Nạp dữ liệu dân số**
+---
+
+##### Chi tiết cấu hình các Package nạp dữ liệu Staging
+
+**a. Package 01 – Nạp dữ liệu quan sát ngập lụt (`01_Load_Flood.dtsx`)**
+
+Package `01_Load_Flood.dtsx` được xây dựng để đọc dữ liệu từ `Flood_Staging_Final.csv` và nạp vào bảng `stg.Flood` với 425 quan sát ngập nguyên thủy.
+
+Tại bước Data Conversion:
+- Các trường văn bản được chuyển từ `DT_STR` sang Unicode `DT_WSTR` để bảo toàn dấu tiếng Việt cho các địa danh, mô tả vị trí và nguyên nhân.
+- Các cột độ sâu và thời lượng ngập (`Water_height_max_cm`, `Water_height_min_cm`, `Duration_hours`) được chuyển đổi sang kiểu `DT_NUMERIC (10,2)` để không làm tròn mất phần thập phân.
+- Tọa độ địa lý (`Longitude`, `Latitude`) được ép kiểu `DT_NUMERIC (15,12)` để bảo toàn tối đa độ chính xác không gian cho bản đồ GIS.
+- Các cờ chất lượng (`Missing_Date`, `Missing_Depth`, `Duplicate_Obs_id`, `Invalid_Coordinates`, `Invalid_Depth_Range`, `Year_Date_Mismatch`) được chuyển sang kiểu Boolean `DT_BOOL`.
+
+*Bảng 3.2: Ánh xạ cột Package 01_Load_Flood (stg.Flood)*
+
+| Cột dữ liệu nguồn | Kiểu dữ liệu trong SQL Server | Kiểu SSIS sau xử lý | Mô tả nghiệp vụ |
+| :--- | :--- | :--- | :--- |
+| `Obs_id` | NVARCHAR(100) | DT_WSTR (100) | Mã định danh quan sát ngập |
+| `Date` | DATE | DT_DBDATE | Ngày ghi nhận quan sát |
+| `Year` | SMALLINT | DT_I2 | Năm quan sát |
+| `Location_name` | NVARCHAR(500) | DT_WSTR (500) | Tên điểm/tuyến đường ngập |
+| `Location_type` | NVARCHAR(100) | DT_WSTR (100) | Phân loại địa điểm |
+| `District_mentioned` | NVARCHAR(255) | DT_WSTR (255) | Quận/Huyện được nhắc đến |
+| `Ward` / `Commune` | NVARCHAR(255) | DT_WSTR (255) | Phường/Xã |
+| `Water_height_max_cm` | DECIMAL(10,2) | DT_NUMERIC (10,2) | Độ sâu ngập lớn nhất (cm) |
+| `Water_height_min_cm` | DECIMAL(10,2) | DT_NUMERIC (10,2) | Độ sâu ngập nhỏ nhất (cm) |
+| `Duration_hours` | DECIMAL(10,2) | DT_NUMERIC (10,2) | Thời lượng ngập (giờ) |
+| `Cause` | NVARCHAR(255) | DT_WSTR (255) | Nguyên nhân ngập ghi nhận |
+| `Source_id` | NVARCHAR(100) | DT_WSTR (100) | Mã nguồn dữ liệu |
+| `Longitude` / `Latitude` | DECIMAL(15,12) | DT_NUMERIC (15,12) | Tọa độ kinh độ / vĩ độ GIS |
+| Các cờ kiểm định (`Missing_*`, `Invalid_*`) | BIT | DT_BOOL | Cờ đánh dấu chất lượng bản ghi |
+
+---
+
+**b. Package 02 – Nạp dữ liệu quan sát ngập tích hợp (`02_Load_FloodIntegrated.dtsx`)**
+
+Package `02_Load_FloodIntegrated.dtsx` thực hiện đọc dữ liệu từ `Flood_Water_Population_Roads.csv` và nạp vào bảng `stg.FloodIntegrated`. Đây là tập dữ liệu quan trọng nhất kết nối 4 chiều thông tin: Quan sát ngập + Khoảng cách nguồn nước + Dân số khu vực + Tuyến đường bị ảnh hưởng.
+
+Tại bước Data Conversion & ánh xạ:
+- Kế thừa toàn bộ các trường quan sát ngập cơ bản từ Package 01.
+- Xử lý các trường tích hợp nguồn nước: `Water_ID` sang `DT_WSTR(100)`, `DistanceToWater_m` sang `DT_NUMERIC(18,6)`.
+- Xử lý các trường tích hợp dân số và địa giới: `Population_Area_ID` sang `DT_WSTR(50)`, `Population_Area_Name` sang `DT_WSTR(150)`, `Population_2019` sang `DT_I8`, `Population_Area_km2` sang `DT_NUMERIC(18,4)`, `PopulationDensity_2019` sang `DT_NUMERIC(18,6)`.
+- Xử lý các trường tích hợp đường giao thông: `Nearest_Road_ID` sang `DT_WSTR(100)`, `Nearest_Road_Name` sang `DT_WSTR(255)`, `Nearest_Road_Mentioned_Years` sang `DT_I4`, `DistanceToNearestRoad_m` sang `DT_NUMERIC(18,6)`, `Road_Distance_Band` và `Road_Match_Status` sang `DT_WSTR`.
+
+*Bảng 3.3: Ánh xạ cột Package 02_Load_FloodIntegrated (stg.FloodIntegrated)*
+
+| Cột dữ liệu nguồn | Kiểu dữ liệu trong SQL Server | Kiểu SSIS sau xử lý | Nhóm thông tin tích hợp |
+| :--- | :--- | :--- | :--- |
+| `Obs_id`, `Date`, `Year`, `Location_name`,... | Như stg.Flood | DT_WSTR / Numeric | Nhóm thông tin quan sát ngập cơ bản |
+| `Water_ID` | NVARCHAR(100) | DT_WSTR (100) | Định danh thủy hệ/sông kênh gần nhất |
+| `DistanceToWater_m` | DECIMAL(18,6) | DT_NUMERIC (18,6) | Khoảng cách từ điểm ngập tới nguồn nước (m) |
+| `Population_Area_ID` | NVARCHAR(50) | DT_WSTR (50) | Mã Quận/Huyện tích hợp dân số |
+| `Population_Area_Name` | NVARCHAR(150) | DT_WSTR (150) | Tên Quận/Huyện tích hợp |
+| `Population_2019` | BIGINT | DT_I8 | Dân số năm 2019 của khu vực |
+| `Population_Area_km2` | DECIMAL(18,4) | DT_NUMERIC (18,4) | Diện tích khu vực (km²) |
+| `PopulationDensity_2019` | DECIMAL(18,6) | DT_NUMERIC (18,6) | Mật độ dân số (người/km²) |
+| `Nearest_Road_ID` | NVARCHAR(100) | DT_WSTR (100) | Mã tuyến đường giao thông gần nhất |
+| `Nearest_Road_Name` | NVARCHAR(255) | DT_WSTR (255) | Tên tuyến đường giao thông gần nhất |
+| `DistanceToNearestRoad_m` | DECIMAL(18,6) | DT_NUMERIC (18,6) | Khoảng cách tới tuyến đường (m) |
+| `Road_Distance_Band` | NVARCHAR(50) | DT_WSTR (50) | Phân đoạn khoảng cách (ví dụ: < 50m, 50-100m) |
+| `Road_Match_Status` | NVARCHAR(100) | DT_WSTR (100) | Trạng thái khớp nối không gian |
+
+---
+
+**c. Package 03 – Nạp dữ liệu dân số (`03_Load_Population.dtsx`)**
 
 Package `03_Load_Population.dtsx` được xây dựng để đọc dữ liệu từ `Population_Clean.csv` và nạp vào bảng `stg.Population`.
 
-Tại bước Data Conversion, chuyển các cột văn bản đang ở dạng Non-Unicode (DT_STR) sang Unicode (DT_WSTR) để tương thích với các trường NVARCHAR trong SQL Server. Các cột số được kiểm tra kiểu dữ liệu đầu vào, những cột chưa tương thích được chuyển sang kiểu số phù hợp với cấu trúc bảng đích.
+Tại bước Data Conversion, chuyển các cột văn bản đang ở dạng Non-Unicode (`DT_STR`) sang Unicode (`DT_WSTR`) để tương thích với các trường NVARCHAR trong SQL Server. Các cột số được kiểm tra kiểu dữ liệu đầu vào, những cột chưa tương thích được chuyển sang kiểu số phù hợp với cấu trúc bảng đích.
+
+*Bảng 3.4: Ánh xạ cột Package 03_Load_Population (stg.Population)*
 
 | Cột dữ liệu | Kiểu dữ liệu trong SQL Server | Kiểu SSIS sau xử lý |
 |-------------|------------------------------|---------------------|
@@ -449,11 +542,15 @@ Sau khi chuyển đổi, cấu hình OLE DB Destination để chọn bảng `stg
 
 *Hình 1: Kết quả kiểm tra dữ liệu sau khi nạp vào bảng stg.Population*
 
-**b. Package 04 – Nạp dữ liệu đường giao thông**
+---
+
+**d. Package 04 – Nạp dữ liệu đường giao thông (`04_Load_Roads.dtsx`)**
 
 Package `04_Load_Roads.dtsx` thực hiện đọc dữ liệu từ `Roads_Clean.csv` và nạp vào bảng `stg.Roads`.
 
-Qua kiểm tra metadata của Flat File Source, cột `Mentioned_Years` được SSIS nhận diện là kiểu số nguyên DT_I4, tương thích với kiểu INT trong SQL Server nên được ánh xạ trực tiếp mà không cần chuyển đổi. Các cột văn bản đang ở dạng Non-Unicode (DT_STR) được chuyển sang Unicode (DT_WSTR) để phù hợp với các trường NVARCHAR.
+Qua kiểm tra metadata của Flat File Source, cột `Mentioned_Years` được SSIS nhận diện là kiểu số nguyên DT_I4, tương thích với kiểu INT trong SQL Server nên được ánh xạ trực tiếp mà không cần chuyển đổi. Các cột văn bản đang ở dạng Non-Unicode (`DT_STR`) được chuyển sang Unicode (`DT_WSTR`) để phù hợp với các trường NVARCHAR.
+
+*Bảng 3.5: Ánh xạ cột Package 04_Load_Roads (stg.Roads)*
 
 | Cột dữ liệu | Kiểu dữ liệu trong SQL Server | Kiểu SSIS sau xử lý |
 |-------------|------------------------------|---------------------|
@@ -466,11 +563,15 @@ Các cột sau xử lý được ánh xạ vào bảng `stg.Roads` thông qua OL
 
 *Hình 2: Luồng Data Flow của Package 04 – Nạp dữ liệu đường giao thông vào bảng stg.Roads*
 
-**c. Package 05 – Nạp dữ liệu địa giới hành chính**
+---
+
+**e. Package 05 – Nạp dữ liệu địa giới hành chính (`05_Load_Area.dtsx`)**
 
 Package `05_Load_Area.dtsx` đọc dữ liệu từ `Area_Boundaries_Clean.csv` và nạp vào bảng `stg.Area`.
 
-Các cột văn bản đang ở dạng Non-Unicode (DT_STR) được chuyển sang Unicode (DT_WSTR) để tương thích với các trường NVARCHAR. Cột `Area_km2` được chuyển sang kiểu DT_NUMERIC với Precision 18 và Scale 4 để phù hợp với kiểu `DECIMAL(18,4)` trong SQL Server.
+Các cột văn bản đang ở dạng Non-Unicode (`DT_STR`) được chuyển sang Unicode (`DT_WSTR`) để tương thích với các trường NVARCHAR. Cột `Area_km2` được chuyển sang kiểu DT_NUMERIC với Precision 18 và Scale 4 để phù hợp với kiểu `DECIMAL(18,4)` trong SQL Server.
+
+*Bảng 3.6: Ánh xạ cột Package 05_Load_Area (stg.Area)*
 
 | Cột dữ liệu | Kiểu dữ liệu trong SQL Server | Kiểu SSIS sau xử lý |
 |-------------|------------------------------|---------------------|
@@ -488,25 +589,34 @@ Các cột văn bản đang ở dạng Non-Unicode (DT_STR) được chuyển sa
 
 *Hình 3: Luồng Data Flow của Package 05 – Nạp dữ liệu địa giới hành chính vào bảng stg.Area*
 
+---
+
 ##### Thực thi và kiểm tra kết quả Staging
 
 **Kết quả thực thi:**
 
-Sau khi hoàn tất cấu hình ba package, tiến hành thực thi trên SSIS. Các package đều trả về trạng thái **Success**, cho thấy luồng đọc dữ liệu, xử lý và nạp dữ liệu đã chạy hoàn tất.
+Sau khi hoàn tất cấu hình toàn bộ 5 package nạp dữ liệu Staging, tiến hành thực thi trên SSIS (hoặc thông qua Master Package). Toàn bộ các package đều trả về trạng thái **Success**, hoàn tất luồng đọc dữ liệu, chuyển đổi và nạp dữ liệu vào SQL Server.
 
 **Đối chiếu số lượng bản ghi:**
 
-| Bảng Staging | Số dòng nguồn | Số dòng sau khi nạp | Kết quả |
-|-------------|--------------|---------------------|---------|
-| stg.Population | 24 | 24 | ✓ Khớp |
-| stg.Roads | 9 | 9 | ✓ Khớp |
-| stg.Area | 24 | 24 | ✓ Khớp |
+Sử dụng các câu lệnh truy vấn SQL kiểm tra số lượng bản ghi trong từng bảng Staging và đối chiếu với dữ liệu nguồn ban đầu:
 
-**Kiểm tra dữ liệu:**
+*Bảng 3.7: Kết quả đối chiếu số lượng bản ghi các bảng Staging*
 
-- **Kiểm tra tiếng Việt:** Các trường tên như `Area_Name` và `Road_Name` hiển thị đúng tiếng Việt có dấu, không xuất hiện ký tự lỗi font.
-- **Kiểm tra giá trị thiếu:** Hai cột `EffectiveFrom` và `EffectiveTo` trong `stg.Area` được lưu NULL do nguồn không cung cấp thông tin ngày hiệu lực.
-- **Kiểm tra mã khu vực:** Sử dụng LEFT JOIN giữa `stg.Population` và `stg.Area` để tìm `Area_ID` không có mã tương ứng. Kết quả trả về 0 dòng, cho thấy không phát hiện mã khu vực chưa khớp giữa hai bảng.
+| Bảng Staging | Gói SSIS thực thi | Số dòng nguồn | Số dòng sau khi nạp | Kết quả kiểm tra |
+| :--- | :--- | :---: | :---: | :---: |
+| `stg.Flood` | `01_Load_Flood.dtsx` | 425 | 425 | ✓ Khớp 100% |
+| `stg.FloodIntegrated` | `02_Load_FloodIntegrated.dtsx` | 425 | 425 | ✓ Khớp 100% |
+| `stg.Population` | `03_Load_Population.dtsx` | 24 | 24 | ✓ Khớp 100% |
+| `stg.Roads` | `04_Load_Roads.dtsx` | 9 | 9 | ✓ Khớp 100% |
+| `stg.Area` | `05_Load_Area.dtsx` | 24 | 24 | ✓ Khớp 100% |
+
+**Kiểm tra và đánh giá chất lượng dữ liệu sau nạp:**
+
+- **Kiểm tra tiếng Việt có dấu:** Toàn bộ các trường định danh và địa danh tiếng Việt như `Location_name`, `Area_Name`, `Road_Name` đều hiển thị chính xác bảng mã UTF-8 có dấu, không xuất hiện hiện tượng lỗi font hay ký tự lạ (`?` hoặc `mojibake`).
+- **Kiểm tra giá trị thiếu (Missing Values):** Hai cột `EffectiveFrom` và `EffectiveTo` trong `stg.Area` được gán giá trị `NULL` theo đúng thiết kế; các trường độ sâu ngập khuyết thiếu trong `stg.Flood` được đánh dấu qua cờ `Missing_Depth = 1` phục vụ lọc dữ liệu khi nạp Fact.
+- **Kiểm tra độ chính xác không gian GIS:** Cột kinh độ và vĩ độ (`Longitude`, `Latitude`) trong `stg.Flood` và `stg.FloodIntegrated` bảo toàn nguyên vẹn 12 chữ số thập phân, không bị cắt xén hay suy giảm độ phân giải tọa độ.
+- **Kiểm tra tính khớp nối mã khu vực:** Thực hiện phép `LEFT JOIN` giữa `stg.Population` và `stg.Area` theo `Area_ID` để tìm các mã khu vực không tồn tại. Kết quả trả về 0 dòng lỗi, xác nhận tính đồng nhất 100% về mã hành chính giữa các nguồn dữ liệu trước khi nạp vào các bảng Dimension.
 
 ---
 
