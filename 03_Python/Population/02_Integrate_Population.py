@@ -2,7 +2,7 @@
 from pathlib import Path
 import pandas as pd
 
-BASE = Path(r"D:\Kho_du_lieu\Flood_DSS")
+BASE = Path(__file__).resolve().parents[2]
 
 flood_path = BASE / "02_Staging_CSV/Integrated/Flood_With_Water.csv"
 join_path = BASE / "02_Staging_CSV/Population/Flood_Population_Join.csv"

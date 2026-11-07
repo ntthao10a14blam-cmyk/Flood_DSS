@@ -2,7 +2,7 @@
 from pathlib import Path
 import pandas as pd
 
-ROOT = Path(r"D:\Kho_du_lieu\Flood_DSS")
+ROOT = Path(__file__).resolve().parents[2]
 
 FILES = {
     "Flood_New": "02_Staging_CSV/Flood/Flood_Events_Staging.csv",

@@ -3,7 +3,7 @@ from pathlib import Path
 import pandas as pd
 
 # ===== 1. ĐƯỜNG DẪN =====
-ROOT = Path(r"D:\Kho_du_lieu\Flood_DSS")
+ROOT = Path(__file__).resolve().parents[2]
 
 INPUT = ROOT / "01_Raw/Flood/Flood_event_locations.tab"
 OUTPUT = ROOT / "02_Staging_CSV/Flood"

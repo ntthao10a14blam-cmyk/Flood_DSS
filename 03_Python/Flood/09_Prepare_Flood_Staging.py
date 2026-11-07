@@ -8,7 +8,7 @@ import re
 # 1. KHAI BAO DUONG DAN
 # ==================================================
 
-ROOT = Path(r"D:\Kho_du_lieu\Flood_DSS")
+ROOT = Path(__file__).resolve().parents[2]
 FOLDER = ROOT / "02_Staging_CSV" / "Flood"
 
 clean_file = FOLDER / "Flood_Events_Clean.csv"

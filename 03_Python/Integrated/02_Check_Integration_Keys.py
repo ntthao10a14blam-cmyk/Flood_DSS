@@ -4,7 +4,7 @@ import pandas as pd
 import unicodedata
 import re
 
-ROOT = Path(r"D:\Kho_du_lieu\Flood_DSS")
+ROOT = Path(__file__).resolve().parents[2]
 BASE = ROOT / "02_Staging_CSV"
 LOGS = ROOT / "07_Logs"
 
