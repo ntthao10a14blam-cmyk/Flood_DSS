@@ -2,8 +2,8 @@
 import pandas as pd
 from pathlib import Path
 
-base = Path(r"D:\Kho_du_lieu\Flood_DSS")
-folder = base / "02_Staging_CSV"
+base = Path(__file__).resolve().parents[2]
+folder = base / "02_Staging_CSV" / "Flood"
 
 clean = pd.read_csv(
     folder / "Flood_Clean.csv",

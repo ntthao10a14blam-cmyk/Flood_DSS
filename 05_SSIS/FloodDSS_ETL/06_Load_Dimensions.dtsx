@@ -5,33 +5,33 @@
   DTS:CreationName="Microsoft.Package"
   DTS:CreatorComputerName="DESKTOP-MK23IU5"
   DTS:CreatorName="DESKTOP-MK23IU5\Admin"
-  DTS:DTSID="{FB717516-5A50-4F9A-B08E-E366F1B8288C}"
+  DTS:DTSID="{C4437495-0B6B-48FD-B5E1-7B1F0E135D03}"
   DTS:ExecutableType="Microsoft.Package"
   DTS:LastModifiedProductVersion="17.0.1016.0"
   DTS:LocaleID="1066"
   DTS:ObjectName="06_Load_Dimensions"
   DTS:PackageType="5"
-  DTS:VersionBuild="33"
-  DTS:VersionGUID="{320F36D2-764D-41D3-A184-E0A5519D955C}">
+  DTS:VersionBuild="28"
+  DTS:VersionGUID="{C1901C91-7B58-4A90-AF7B-7991F0805E96}">
   <DTS:Property
     DTS:Name="PackageFormatVersion">8</DTS:Property>
   <DTS:ConnectionManagers>
     <DTS:ConnectionManager
       DTS:refId="Package.ConnectionManagers[Conn_Flood_DSS]"
       DTS:CreationName="OLEDB"
-      DTS:DTSID="{678E1E2D-A565-4264-B9DF-3A43F4A52BDF}"
+      DTS:DTSID="{20BD284E-5341-4D1A-876D-A42D6B4A7E28}"
       DTS:ObjectName="Conn_Flood_DSS">
       <DTS:ObjectData>
         <DTS:ConnectionManager
           DTS:ConnectRetryCount="1"
           DTS:ConnectRetryInterval="5"
-          DTS:ConnectionString="Data Source=.\SQLEXPRESS;Initial Catalog=Flood_DSS;Provider=SQLOLEDB.1;Integrated Security=SSPI;Auto Translate=False;Application Name=SSIS-06_Load_Dimensions-{678E1E2D-A565-4264-B9DF-3A43F4A52BDF}DESKTOP-MK23IU5\SQLEXPRESS.Flood_DSS;" />
+          DTS:ConnectionString="Data Source=localhost\DW2025;Initial Catalog=Flood_DSS;Provider=SQLOLEDB.1;Integrated Security=SSPI;Auto Translate=False;Application Name=SSIS-06_Load_Dimensions-{20BD284E-5341-4D1A-876D-A42D6B4A7E28}DESKTOP-MK23IU5\SQLEXPRESS.Flood_DSS;" />
       </DTS:ObjectData>
     </DTS:ConnectionManager>
     <DTS:ConnectionManager
       DTS:refId="Package.ConnectionManagers[FCM_Dim_Area_Error]"
       DTS:CreationName="FLATFILE"
-      DTS:DTSID="{979A924E-F597-410E-8319-AE3D65C9B945}"
+      DTS:DTSID="{F9FA1EC2-DE3F-44BA-B142-0C161F3055BB}"
       DTS:ObjectName="FCM_Dim_Area_Error">
       <DTS:ObjectData>
         <DTS:ConnectionManager
@@ -42,7 +42,7 @@
           DTS:RowDelimiter=""
           DTS:TextQualifier="_x0022_"
           DTS:CodePage="1252"
-          DTS:ConnectionString="D:\AAAA\ĐANG HỌC\Kho dữ liệu và ht hỗ trợ ra quyết định\BTL\BTL\Flood_DSS-main_fn\Flood_DSS-main\07_Logs\Dim_Area_Errors.csv">
+          DTS:ConnectionString="D:\Kho_du_lieu\Flood-DSS\07_Logs\Dim_Area_Errors.csv">
           <DTS:FlatFileColumns>
             <DTS:FlatFileColumn
               DTS:ColumnType="Delimited"
@@ -51,7 +51,7 @@
               DTS:DataType="130"
               DTS:TextQualified="True"
               DTS:ObjectName="Area_ID"
-              DTS:DTSID="{E023633C-603C-40C5-AE91-62971EA5EB2D}"
+              DTS:DTSID="{7AFAC3A6-9758-49FF-8734-F7185E7F7838}"
               DTS:CreationName="" />
             <DTS:FlatFileColumn
               DTS:ColumnType="Delimited"
@@ -60,7 +60,7 @@
               DTS:DataType="130"
               DTS:TextQualified="True"
               DTS:ObjectName="Area_Name"
-              DTS:DTSID="{A53FAF9E-3AC2-4EF6-BCE5-155501C9CC94}"
+              DTS:DTSID="{C954E7A6-8B5A-44A8-A82F-7E7E08A180FA}"
               DTS:CreationName="" />
             <DTS:FlatFileColumn
               DTS:ColumnType="Delimited"
@@ -69,7 +69,7 @@
               DTS:DataType="130"
               DTS:TextQualified="True"
               DTS:ObjectName="Area_Level"
-              DTS:DTSID="{5C399A93-6A30-46EC-974A-E13748803BDB}"
+              DTS:DTSID="{B0FF6EE9-4B88-478B-852B-80E85FF3D594}"
               DTS:CreationName="" />
             <DTS:FlatFileColumn
               DTS:ColumnType="Delimited"
@@ -78,7 +78,7 @@
               DTS:DataType="130"
               DTS:TextQualified="True"
               DTS:ObjectName="ParentArea_ID"
-              DTS:DTSID="{29008D6E-9CC2-4BE7-A0A9-0A9CF569CFA7}"
+              DTS:DTSID="{8CFB2CC3-266D-481E-BB90-FE675F22E99B}"
               DTS:CreationName="" />
             <DTS:FlatFileColumn
               DTS:ColumnType="Delimited"
@@ -87,7 +87,7 @@
               DTS:DataType="130"
               DTS:TextQualified="True"
               DTS:ObjectName="ParentArea_Name"
-              DTS:DTSID="{414F52BF-2BCD-4925-B471-DB194503FEDB}"
+              DTS:DTSID="{4BC2F847-A7C3-41FB-9E4D-1A1A3FEADA4E}"
               DTS:CreationName="" />
             <DTS:FlatFileColumn
               DTS:ColumnType="Delimited"
@@ -96,7 +96,7 @@
               DTS:DataType="130"
               DTS:TextQualified="True"
               DTS:ObjectName="BoundaryVersion"
-              DTS:DTSID="{CE186AC3-0BB2-4818-B7FC-AB9A15669FA0}"
+              DTS:DTSID="{06CAE130-74B7-4994-AD2E-2F5EE8202060}"
               DTS:CreationName="" />
             <DTS:FlatFileColumn
               DTS:ColumnType="Delimited"
@@ -106,7 +106,7 @@
               DTS:DataScale="4"
               DTS:TextQualified="True"
               DTS:ObjectName="Area_km2"
-              DTS:DTSID="{E20998E1-EDBB-445C-A38D-ACB252D29E2F}"
+              DTS:DTSID="{E3939920-B226-4EE5-87F4-0093200DD5E7}"
               DTS:CreationName="" />
             <DTS:FlatFileColumn
               DTS:ColumnType="Delimited"
@@ -115,7 +115,7 @@
               DTS:DataType="130"
               DTS:TextQualified="True"
               DTS:ObjectName="EffectiveFrom"
-              DTS:DTSID="{D24E06D1-ADFE-4F2F-93B8-17A11DEB16E6}"
+              DTS:DTSID="{98073A9B-6D6D-4FD1-AB36-E143E82BFB9C}"
               DTS:CreationName="" />
             <DTS:FlatFileColumn
               DTS:ColumnType="Delimited"
@@ -124,7 +124,7 @@
               DTS:DataType="130"
               DTS:TextQualified="True"
               DTS:ObjectName="EffectiveTo"
-              DTS:DTSID="{99C2EAAB-95A6-456F-9805-6F278A15FCCF}"
+              DTS:DTSID="{7D316524-F979-4678-8614-82CFE54F01A1}"
               DTS:CreationName="" />
             <DTS:FlatFileColumn
               DTS:ColumnType="Delimited"
@@ -132,7 +132,7 @@
               DTS:DataType="3"
               DTS:TextQualified="True"
               DTS:ObjectName="ErrorCode"
-              DTS:DTSID="{09977B6C-D8FE-4111-9963-07CB8C6B7184}"
+              DTS:DTSID="{1DFF57A4-CD40-4798-9181-BD16A412131F}"
               DTS:CreationName="" />
             <DTS:FlatFileColumn
               DTS:ColumnType="Delimited"
@@ -140,7 +140,7 @@
               DTS:DataType="3"
               DTS:TextQualified="True"
               DTS:ObjectName="ErrorColumn"
-              DTS:DTSID="{8879AE30-0F82-4557-8A6A-53F1FD9556CA}"
+              DTS:DTSID="{889C518B-64B7-47B0-ABE3-5DD3461C8B4A}"
               DTS:CreationName="" />
           </DTS:FlatFileColumns>
         </DTS:ConnectionManager>
@@ -153,7 +153,7 @@
       DTS:refId="Package\DFT_Load_Dim_Area"
       DTS:CreationName="Microsoft.Pipeline"
       DTS:Description="Data Flow Task"
-      DTS:DTSID="{DD21B7DF-283C-44E1-BC61-34C7FC001162}"
+      DTS:DTSID="{CD7F6B85-B9D4-422A-AC3B-49123C6560A3}"
       DTS:ExecutableType="Microsoft.Pipeline"
       DTS:LocaleID="-1"
       DTS:ObjectName="DFT_Load_Dim_Area"
@@ -741,7 +741,7 @@ where [refTable].[Area_ID] = ? and [refTable].[BoundaryVersion] = ?</property>
                   dataType="System.String"
                   description="The SQL command to be executed."
                   name="SqlCommand"
-                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">SELECT DISTINCT
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">SELECT
     Area_ID,
     Area_Name,
     Area_Level,
@@ -1033,7 +1033,7 @@ WHERE Area_ID IS NOT NULL
       DTS:refId="Package\DFT_Load_Dim_Cause"
       DTS:CreationName="Microsoft.Pipeline"
       DTS:Description="Data Flow Task"
-      DTS:DTSID="{4B89171B-E075-4DBF-84DB-423E2183CF79}"
+      DTS:DTSID="{4E4496F1-8617-4910-8D97-4AFE6D2CF58D}"
       DTS:ExecutableType="Microsoft.Pipeline"
       DTS:LocaleID="-1"
       DTS:ObjectName="DFT_Load_Dim_Cause"
@@ -1470,7 +1470,7 @@ WHERE Cause IS NOT NULL;</property>
       DTS:refId="Package\DFT_Load_Dim_Location"
       DTS:CreationName="Microsoft.Pipeline"
       DTS:Description="Data Flow Task"
-      DTS:DTSID="{688D36CB-313B-45B2-AA08-B11A03194B83}"
+      DTS:DTSID="{88EC4DA1-C6DD-4565-859F-7EC80FF6216B}"
       DTS:ExecutableType="Microsoft.Pipeline"
       DTS:LocaleID="-1"
       DTS:ObjectName="DFT_Load_Dim_Location"
@@ -1654,7 +1654,7 @@ WHERE Cause IS NOT NULL;</property>
                     <externalMetadataColumn
                       refId="Package\DFT_Load_Dim_Location\DEST_dw_Dim_Location.Inputs[OLE DB Destination Input].ExternalColumns[Location_Name]"
                       dataType="wstr"
-                      length="500"
+                      length="255"
                       name="Location_Name" />
                     <externalMetadataColumn
                       refId="Package\DFT_Load_Dim_Location\DEST_dw_Dim_Location.Inputs[OLE DB Destination Input].ExternalColumns[Location_Type]"
@@ -1669,14 +1669,14 @@ WHERE Cause IS NOT NULL;</property>
                       refId="Package\DFT_Load_Dim_Location\DEST_dw_Dim_Location.Inputs[OLE DB Destination Input].ExternalColumns[Longitude]"
                       dataType="numeric"
                       name="Longitude"
-                      precision="15"
-                      scale="12" />
+                      precision="10"
+                      scale="7" />
                     <externalMetadataColumn
                       refId="Package\DFT_Load_Dim_Location\DEST_dw_Dim_Location.Inputs[OLE DB Destination Input].ExternalColumns[Latitude]"
                       dataType="numeric"
                       name="Latitude"
-                      precision="15"
-                      scale="12" />
+                      precision="10"
+                      scale="7" />
                     <externalMetadataColumn
                       refId="Package\DFT_Load_Dim_Location\DEST_dw_Dim_Location.Inputs[OLE DB Destination Input].ExternalColumns[SpatialPrecision]"
                       dataType="wstr"
@@ -1691,24 +1691,24 @@ WHERE Cause IS NOT NULL;</property>
                       refId="Package\DFT_Load_Dim_Location\DEST_dw_Dim_Location.Inputs[OLE DB Destination Input].ExternalColumns[DistanceToWater_m]"
                       dataType="numeric"
                       name="DistanceToWater_m"
-                      precision="18"
-                      scale="6" />
+                      precision="14"
+                      scale="3" />
                     <externalMetadataColumn
                       refId="Package\DFT_Load_Dim_Location\DEST_dw_Dim_Location.Inputs[OLE DB Destination Input].ExternalColumns[NearestWater_ID]"
                       dataType="wstr"
-                      length="100"
+                      length="50"
                       name="NearestWater_ID" />
                     <externalMetadataColumn
                       refId="Package\DFT_Load_Dim_Location\DEST_dw_Dim_Location.Inputs[OLE DB Destination Input].ExternalColumns[NearestRoad_Name]"
                       dataType="wstr"
-                      length="255"
+                      length="150"
                       name="NearestRoad_Name" />
                     <externalMetadataColumn
                       refId="Package\DFT_Load_Dim_Location\DEST_dw_Dim_Location.Inputs[OLE DB Destination Input].ExternalColumns[DistanceToRoad_m]"
                       dataType="numeric"
                       name="DistanceToRoad_m"
-                      precision="18"
-                      scale="6" />
+                      precision="14"
+                      scale="3" />
                   </externalMetadataColumns>
                 </input>
               </inputs>
@@ -1905,59 +1905,35 @@ where [refTable].[Location_ID] = ?</property>
                   description="The SQL command to be executed."
                   name="SqlCommand"
                   UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">SELECT
-    CAST('FID_' + CONVERT(VARCHAR(20), f.fid) AS NVARCHAR(50))
-                                AS Location_ID,
+    f.Obs_id                    AS Location_ID,
     f.Location_name             AS Location_Name,
     f.Location_type             AS Location_Type,
     ISNULL(a.AreaKey, -1)       AS AreaKey,
-
-    CASE
-        WHEN TRY_CONVERT(DECIMAL(15,12), f.Longitude)
-             BETWEEN -180 AND 180
-        THEN TRY_CONVERT(DECIMAL(15,12), f.Longitude)
-        ELSE NULL
-    END                         AS Longitude,
-
-    CASE
-        WHEN TRY_CONVERT(DECIMAL(15,12), f.Latitude)
-             BETWEEN -90 AND 90
-        THEN TRY_CONVERT(DECIMAL(15,12), f.Latitude)
-        ELSE NULL
-    END                         AS Latitude,
-
+    f.Longitude,
+    f.Latitude,
     f.Spatial_precision         AS SpatialPrecision,
     f.Geocoding_method          AS GeocodingMethod,
-
-    CASE
-        WHEN f.DistanceToWater_m &gt;= 0
-        THEN f.DistanceToWater_m
-        ELSE NULL
-    END                         AS DistanceToWater_m,
-
+    f.DistanceToWater_m,
     f.Water_ID                  AS NearestWater_ID,
     f.Nearest_Road_Name         AS NearestRoad_Name,
-
-    CASE
-        WHEN f.DistanceToNearestRoad_m &gt;= 0
-        THEN f.DistanceToNearestRoad_m
-        ELSE NULL
-    END                         AS DistanceToRoad_m
-
-FROM stg.FloodIntegrated f
-
+    f.DistanceToNearestRoad_m   AS DistanceToRoad_m
+FROM (
+    SELECT *,
+        ROW_NUMBER() OVER (PARTITION BY Obs_id ORDER BY Obs_id) AS rn
+    FROM stg.FloodIntegrated
+    WHERE Obs_id IS NOT NULL
+) f
 LEFT JOIN dw.Dim_Area a
     ON TRY_CONVERT(
-        INT,
-        TRY_CONVERT(DECIMAL(18,2), f.Population_Area_ID)
-    ) = TRY_CONVERT(INT, a.Area_ID)
+       INT,
+       TRY_CONVERT(DECIMAL(18,2), f.Population_Area_ID)
+   ) = TRY_CONVERT(INT, a.Area_ID)
 
-   AND REPLACE(
-        f.Population_BoundaryVersion,
-        'District_',
-        ''
-   ) = a.BoundaryVersion
-
-WHERE f.fid IS NOT NULL;</property>
+AND REPLACE(
+    f.Population_BoundaryVersion,
+    'District_',
+    ''
+) = a.BoundaryVersion</property>
                 <property
                   dataType="System.String"
                   description="The variable that contains the SQL command to be executed."
@@ -2122,7 +2098,7 @@ WHERE f.fid IS NOT NULL;</property>
                     <externalMetadataColumn
                       refId="Package\DFT_Load_Dim_Location\SRC_stg_FloodIntegrated.Outputs[OLE DB Source Output].ExternalColumns[Location_ID]"
                       dataType="wstr"
-                      length="50"
+                      length="100"
                       name="Location_ID" />
                     <externalMetadataColumn
                       refId="Package\DFT_Load_Dim_Location\SRC_stg_FloodIntegrated.Outputs[OLE DB Source Output].ExternalColumns[Location_Name]"
@@ -2192,7 +2168,7 @@ WHERE f.fid IS NOT NULL;</property>
                     <outputColumn
                       refId="Package\DFT_Load_Dim_Location\SRC_stg_FloodIntegrated.Outputs[OLE DB Source Error Output].Columns[Location_ID]"
                       dataType="wstr"
-                      length="50"
+                      length="100"
                       lineageId="Package\DFT_Load_Dim_Location\SRC_stg_FloodIntegrated.Outputs[OLE DB Source Error Output].Columns[Location_ID]"
                       name="Location_ID" />
                     <outputColumn
@@ -2301,7 +2277,7 @@ WHERE f.fid IS NOT NULL;</property>
       DTS:refId="Package\DFT_Load_Dim_Source"
       DTS:CreationName="Microsoft.Pipeline"
       DTS:Description="Data Flow Task"
-      DTS:DTSID="{27F3B18A-BFE3-4A22-8BA1-35130CF9946C}"
+      DTS:DTSID="{D828312A-5173-4171-97CC-F4B3EE0EBA93}"
       DTS:ExecutableType="Microsoft.Pipeline"
       DTS:LocaleID="-1"
       DTS:ObjectName="DFT_Load_Dim_Source"
@@ -2801,7 +2777,7 @@ WHERE RowNum = 1;</property>
     <DTS:PrecedenceConstraint
       DTS:refId="Package.PrecedenceConstraints[Constraint]"
       DTS:CreationName=""
-      DTS:DTSID="{5081E111-8C8A-4414-A207-F0882F269B92}"
+      DTS:DTSID="{2095CD23-2622-41D1-9177-43F1E78B3B89}"
       DTS:From="Package\DFT_Load_Dim_Area"
       DTS:LogicalAnd="True"
       DTS:ObjectName="Constraint"
@@ -2809,7 +2785,7 @@ WHERE RowNum = 1;</property>
     <DTS:PrecedenceConstraint
       DTS:refId="Package.PrecedenceConstraints[Constraint 1]"
       DTS:CreationName=""
-      DTS:DTSID="{B43DBC27-042B-41F3-A517-2DC29165B275}"
+      DTS:DTSID="{1BA095CF-2E01-4A4B-8E54-8B1B9731B88A}"
       DTS:From="Package\DFT_Load_Dim_Cause"
       DTS:LogicalAnd="True"
       DTS:ObjectName="Constraint 1"
@@ -2817,7 +2793,7 @@ WHERE RowNum = 1;</property>
     <DTS:PrecedenceConstraint
       DTS:refId="Package.PrecedenceConstraints[Constraint 2]"
       DTS:CreationName=""
-      DTS:DTSID="{4E2EFFED-CF18-4F5E-8A5A-19836CC8CE46}"
+      DTS:DTSID="{DBE8C29B-178E-43BA-AF25-DF9FB8478686}"
       DTS:From="Package\DFT_Load_Dim_Source"
       DTS:LogicalAnd="True"
       DTS:ObjectName="Constraint 2"
@@ -2947,14 +2923,14 @@ WHERE RowNum = 1;</property>
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
-              EndConnector="0,67.870586582606"
+              EndConnector="0,67.8705865826057"
               Start="0,0"
-              End="0,60.370586582606">
+              End="0,60.3705865826057">
               <mssgle:Curve.Segments>
                 <mssgle:SegmentCollection
                   Capacity="5">
                   <mssgle:LineSegment
-                    End="0,60.370586582606" />
+                    End="0,60.3705865826057" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>
