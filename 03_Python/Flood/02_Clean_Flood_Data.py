@@ -2,10 +2,10 @@
 import pandas as pd
 from pathlib import Path
 
-BASE = Path(r"D:\Kho_du_lieu\Flood_DSS")
+BASE = Path(__file__).resolve().parents[2]
 
-input_file = BASE / "02_Staging_CSV" / "Flood_GIS_Raw.csv"
-output_file = BASE / "02_Staging_CSV" / "Flood_Clean.csv"
+input_file = BASE / "02_Staging_CSV" / "Flood" / "Flood_GIS_Raw.csv"
+output_file = BASE / "02_Staging_CSV" / "Flood" / "Flood_Clean.csv"
 report_file = BASE / "07_Logs" / "Flood_Quality_Report.csv"
 
 df = pd.read_csv(input_file, encoding="utf-8-sig")

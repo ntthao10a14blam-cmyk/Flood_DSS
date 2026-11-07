@@ -2,9 +2,9 @@
 import pandas as pd
 from pathlib import Path
 
-base = Path(r"D:\Kho_du_lieu\Flood_DSS")
+base = Path(__file__).resolve().parents[2]
 
-file = base / "02_Staging_CSV" / "Flood_Clean.csv"
+file = base / "02_Staging_CSV" / "Flood" / "Flood_Clean.csv"
 
 df = pd.read_csv(file, encoding="utf-8-sig")
 

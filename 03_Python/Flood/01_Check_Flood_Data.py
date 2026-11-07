@@ -1,7 +1,9 @@
 
 import pandas as pd
 
-file_path = r"D:\Kho_du_lieu\Flood_DSS\02_Staging_CSV\Flood_GIS_Raw.csv"
+from pathlib import Path
+ROOT = Path(__file__).resolve().parents[2]
+file_path = ROOT / "02_Staging_CSV" / "Flood" / "Flood_GIS_Raw.csv"
 
 df = pd.read_csv(file_path, encoding="utf-8-sig")
 

@@ -2,9 +2,9 @@
 import pandas as pd
 from pathlib import Path
 
-base = Path(r"D:\Kho_du_lieu\Flood_DSS")
+base = Path(__file__).resolve().parents[2]
 
-flood_path = base / "02_Staging_CSV" / "Flood_Clean.csv"
+flood_path = base / "02_Staging_CSV" / "Flood" / "Flood_Clean.csv"
 source_path = base / "01_Raw" / "Flood" / "Sources_floods_HCMC.tab"
 
 flood = pd.read_csv(

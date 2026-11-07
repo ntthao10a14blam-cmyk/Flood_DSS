@@ -1,7 +1,7 @@
 from pathlib import Path
 import pandas as pd
 
-ROOT = Path(r'D:\Kho_du_lieu\Flood_DSS')
+ROOT = Path(__file__).resolve().parents[2]
 WATER = ROOT / '02_Staging_CSV' / 'Water' / 'Flood_Water_Distance.csv'
 FLOOD = ROOT / '02_Staging_CSV' / 'Flood' / 'Flood_Staging_Final.csv'
 OUTPUT = ROOT / '02_Staging_CSV' / 'Integrated' / 'Flood_With_Water.csv'
