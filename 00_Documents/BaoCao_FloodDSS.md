@@ -953,30 +953,101 @@ Khối dữ liệu `Flood_DSS_Cube` tổ chức 2 Measure Groups:
   - `Population Density` (Hàm tổng hợp: Average): Mật độ dân số trung bình.
 
 ### 4.1.5. Xử lý Cube và kiểm tra kết quả phân tích
-Thực thi lệnh **Process Full**, nạp toàn bộ dữ liệu vào khối mảng đa chiều thành công với trạng thái `Process succeeded`. Hệ thống thực thi các câu truy vấn MDX mẫu kiểm tra các thao tác phân tích cốt lõi:
+Thực thi lệnh **Process Full**, nạp toàn bộ dữ liệu vào khối mảng đa chiều thành công với trạng thái `Process succeeded`. Nhằm phục vụ công tác giám sát và ra quyết định phòng chống ngập lụt tại TP.HCM, hệ thống xây dựng 4 câu truy vấn MDX với cú pháp chuẩn xác, có chú thích chi tiết từng dòng lệnh gắn liền với các bài toán nghiệp vụ thực tiễn của đồ án:
 
-*Truy vấn MDX 1 – Thao tác Roll-up và Drill-down theo Thời gian:*
+*Truy vấn 1 – Phân tích diễn biến tần suất ngập lụt theo chu kỳ 12 tháng (Nhận diện tháng cao điểm mùa mưa bão):*
+> **Mục tiêu nghiệp vụ:** Thống kê tổng số vụ ngập lụt được ghi nhận trong toàn bộ dữ liệu lịch sử gom theo từng tháng (từ Tháng 1 đến Tháng 12). Giúp phát hiện quy luật cao điểm (tháng 8 – tháng 11) để chủ động lập kế hoạch nạo vét cống rãnh và bố trí lực lượng ứng trực trước mùa mưa.
 ```mdx
+/* ========================================================================
+   Truy vấn 1: Thống kê số sự kiện ngập gom theo 12 Tháng trong năm
+   - Trục Cột (Trục 0 / COLUMNS): Thước đo số lần quan sát ngập lụt
+   - Trục Dòng (Trục 1 / ROWS)   : Cấp độ Tháng (Month) của Dim_Time
+   - Khối đa chiều (FROM)       : Flood_DSS_Cube
+   ======================================================================== */
 SELECT 
+    -- 1. TRỤC CỘT: Đo lường tổng số sự kiện ngập lụt ghi nhận
     [Measures].[Observation Count] ON COLUMNS,
-    DESCENDANTS([Dim Time].[Calendar].[Year].&[2023], [Dim Time].[Calendar].[Month]) ON ROWS
+
+    -- 2. TRỤC DÒNG: Lấy danh sách toàn bộ các thành viên thuộc thuộc tính Tháng (Tháng 1 -> 12)
+    -- NON EMPTY: Tự động loại bỏ những tháng không có dữ liệu ngập
+    NON EMPTY [Dim Time].[Month].[Month].MEMBERS ON ROWS
+
 FROM [Flood_DSS_Cube];
 ```
 
-*Truy vấn MDX 2 – Thao tác Slice (Cắt lát cố định nguyên nhân Triều cường):*
+*Truy vấn 2 – Đánh giá mức độ nghiêm trọng tại các điểm ngập do ảnh hưởng của Triều cường:*
+> **Mục tiêu nghiệp vụ:** Cắt lát (Slice) chuyên sâu các sự kiện ngập có nguyên nhân là "Triều cường" tại từng quận/huyện qua 3 chỉ số: độ sâu ngập trung bình (`Avg Depth Cm`), độ sâu ngập lớn nhất (`Max Depth Cm`) và tổng thời lượng ngập (`Duration Hours`), hỗ trợ vận hành đóng mở cống ngăn triều và điều động máy bơm khẩn cấp.
 ```mdx
+/* ========================================================================
+   Truy vấn 2: Độ sâu và thời lượng ngập do Triều cường theo từng Quận/Huyện
+   - Trục Cột (COLUMNS): Tập hợp 3 chỉ số đo lường mức độ ngập
+   - Trục Dòng (ROWS)   : Danh sách Quận/Huyện từ Dim_Area
+   - Cắt lát (WHERE)   : Cố định nguyên nhân ngập là "Triều cường"
+   ======================================================================== */
 SELECT 
-    { [Measures].[Avg Depth Cm], [Measures].[Duration Hours] } ON COLUMNS,
-    [Dim Area].[Area Name].[Area Name].MEMBERS ON ROWS
+    -- 1. TRỤC CỘT: Tập hợp 3 thước đo phản ánh mức độ nghiêm trọng của đợt ngập
+    { 
+        [Measures].[Avg Depth Cm],      -- Độ sâu ngập trung bình (cm)
+        [Measures].[Max Depth Cm],      -- Độ sâu ngập lớn nhất từng ghi nhận (cm)
+        [Measures].[Duration Hours]     -- Tổng thời lượng nước ngập duy trì (giờ)
+    } ON COLUMNS,
+
+    -- 2. TRỤC DÒNG: Danh sách tên các đơn vị hành chính cấp Quận/Huyện
+    NON EMPTY [Dim Area].[Area Name].[Area Name].MEMBERS ON ROWS
+
 FROM [Flood_DSS_Cube]
-WHERE ([Dim Cause].[Cause Name].&[Triều cường]);
+
+-- 3. MỆNH ĐỀ CẮT LÁT (SLICE): Lọc riêng các bản ghi có Cause_Name = "Triều cường"
+WHERE ([Dim Cause].[Cause Name].[Cause Name].&[Triều cường]);
 ```
 
-*Truy vấn MDX 3 – Thao tác Drill-across kết hợp đo lường từ 2 bảng Fact:*
+*Truy vấn 3 – Phân tích mức độ phơi nhiễm dân cư trước hiểm họa ngập úng (Tích hợp liên Fact):*
+> **Mục tiêu nghiệp vụ:** Áp dụng kỹ thuật Drill-across tích hợp đồng thời 2 bảng Fact khác nhau: số vụ ngập (`Fact Flood Observation`) với quy mô dân số và mật độ dân cư (`Fact Population`) trên chiều chung `Dim_Area`. Nhận diện các khu vực vừa ngập nhiều vừa đông dân để ưu tiên bảo vệ và cứu hộ dân sinh.
 ```mdx
+/* ========================================================================
+   Truy vấn 3: Đối chiếu số sự kiện ngập với Dân số và Mật độ dân cư
+   - Kỹ thuật: Drill-across (kết hợp đồng thời độ đo từ 2 bảng Fact)
+   - Trục Cột (COLUMNS): Số vụ ngập (Fact ngập) + Dân số & Mật độ (Fact dân số)
+   - Trục Dòng (ROWS)   : Chiều dùng chung Conformed Dimension [Dim Area]
+   ======================================================================== */
 SELECT 
-    { [Measures].[Observation Count], [Measures].[Population] } ON COLUMNS,
-    [Dim Area].[Area Name].[Area Name].MEMBERS ON ROWS
+    -- 1. TRỤC CỘT: Kết hợp các độ đo từ 2 bảng Fact khác nhau
+    { 
+        [Measures].[Observation Count],     -- Từ Fact_FloodObservation: Số sự kiện ngập
+        [Measures].[Population],            -- Từ Fact_Population: Tổng dân số quận/huyện
+        [Measures].[Population Density]     -- Từ Fact_Population: Mật độ dân cư (người/km2)
+    } ON COLUMNS,
+
+    -- 2. TRỤC DÒNG: Hiển thị phân rã theo từng đơn vị hành chính cấp Quận/Huyện
+    NON EMPTY [Dim Area].[Area Name].[Area Name].MEMBERS ON ROWS
+
+FROM [Flood_DSS_Cube];
+```
+
+*Truy vấn 4 – Xếp hạng Top 5 khu vực ngập sâu nghiêm trọng nhất toàn thành phố:*
+> **Mục tiêu nghiệp vụ:** Sử dụng hàm xếp hạng `TOPCOUNT` để tự động lọc ra đúng 5 quận/huyện có độ sâu ngập đỉnh lịch sử lớn nhất toàn thành phố kèm số vụ ngập, phục vụ lãnh đạo thành phố chỉ đạo ứng phó nhanh và ưu tiên vốn công trình thoát nước.
+```mdx
+/* ========================================================================
+   Truy vấn 4: Xếp hạng Top 5 Quận/Huyện có độ sâu ngập đỉnh lớn nhất
+   - Hàm MDX: TOPCOUNT(Set, Count, Numeric_Expression)
+   - Trục Cột (COLUMNS): Max Depth, Avg Depth, Observation Count
+   - Trục Dòng (ROWS)   : 5 Quận/Huyện đứng đầu theo tiêu chí [Max Depth Cm]
+   ======================================================================== */
+SELECT 
+    -- 1. TRỤC CỘT: Các chỉ số phản ánh mức độ nghiêm trọng
+    { 
+        [Measures].[Max Depth Cm],      -- Tiêu chí xếp hạng chính
+        [Measures].[Avg Depth Cm],      -- Độ sâu trung bình bổ trợ
+        [Measures].[Observation Count]  -- Tổng số vụ ngập bổ trợ
+    } ON COLUMNS,
+
+    -- 2. TRỤC DÒNG: Hàm TOPCOUNT tự động sắp xếp giảm dần và lấy đúng 5 quận đứng đầu
+    TOPCOUNT(
+        [Dim Area].[Area Name].[Area Name].MEMBERS, -- Tập hợp các Quận/Huyện xét duyệt
+        5,                                          -- Số lượng phần tử trích xuất (Top 5)
+        [Measures].[Max Depth Cm]                   -- Độ đo dùng làm căn cứ sắp xếp giảm dần
+    ) ON ROWS
+
 FROM [Flood_DSS_Cube];
 ```
 

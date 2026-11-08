@@ -1,0 +1,146 @@
+[
+  {
+    "Test_ID": "TC01",
+    "Suite": "Schema & Files",
+    "Description": "Kiểm tra tồn tại đầy đủ các tệp nguồn CSV",
+    "Status": "PASSED",
+    "Details": "Đầy đủ 6/6 tệp dữ liệu tồn tại trên đĩa",
+    "Timestamp": "2026-11-07 21:05:57"
+  },
+  {
+    "Test_ID": "TC02",
+    "Suite": "Schema & Files",
+    "Description": "Đối soát số lượng bản ghi (Row Counts) theo Baseline",
+    "Status": "PASSED",
+    "Details": "Flood: 425/425 | Integ: 425/425 | Pop: 24/24 | Roads: 9/9 | Area: 24/24",
+    "Timestamp": "2026-11-07 21:05:57"
+  },
+  {
+    "Test_ID": "TC03",
+    "Suite": "Schema & Files",
+    "Description": "Kiểm tra cấu trúc thuộc tính cốt lõi bảng Flood",
+    "Status": "PASSED",
+    "Details": "Đầy đủ 9 thuộc tính cốt lõi của bảng sự kiện ngập",
+    "Timestamp": "2026-11-07 21:05:57"
+  },
+  {
+    "Test_ID": "TC04",
+    "Suite": "Uniqueness",
+    "Description": "Kiểm tra trùng lặp 100% trên toàn bộ các dòng",
+    "Status": "PASSED",
+    "Details": "0 dòng trùng lặp 100% trên cả 6 dataset",
+    "Timestamp": "2026-11-07 21:05:57"
+  },
+  {
+    "Test_ID": "TC05",
+    "Suite": "Uniqueness",
+    "Description": "Kiểm tra phát hiện và khử trùng mã sự kiện Obs_id",
+    "Status": "PASSED",
+    "Details": "Phát hiện đúng 2 dòng trùng mã ['Obs_239']; khử trùng thành công còn 424 sự kiện duy nhất (QR_06)",
+    "Timestamp": "2026-11-07 21:05:57"
+  },
+  {
+    "Test_ID": "TC06",
+    "Suite": "Uniqueness",
+    "Description": "Kiểm tra tính duy nhất của Khóa tự nhiên Dimension",
+    "Status": "PASSED",
+    "Details": "Area_ID (24/24), Road_ID (9/9), Boundary Area_ID (24/24) đều duy nhất 100%",
+    "Timestamp": "2026-11-07 21:05:57"
+  },
+  {
+    "Test_ID": "TC07",
+    "Suite": "Completeness",
+    "Description": "Kiểm tra 0 giá trị NULL trên các thuộc tính bắt buộc",
+    "Status": "PASSED",
+    "Details": "0 giá trị NULL trên 7 cột bắt buộc (Obs_id, Year, Location, Cause, Source, Long, Lat)",
+    "Timestamp": "2026-11-07 21:05:57"
+  },
+  {
+    "Test_ID": "TC08",
+    "Suite": "Completeness",
+    "Description": "Kiểm tra tỷ lệ khuyết Ngày quan sát (Date IS NULL)",
+    "Status": "PASSED",
+    "Details": "Khuyết ngày: 63 dòng (14.82% <= ngưỡng 20.0%); gán TimeKey = -1",
+    "Timestamp": "2026-11-07 21:05:57"
+  },
+  {
+    "Test_ID": "TC09",
+    "Suite": "Completeness",
+    "Description": "Kiểm tra tính nhất quán của cờ kiểm định Missing_Depth",
+    "Status": "PASSED",
+    "Details": "Khuyết độ sâu số học: 278 dòng (65.41%); cờ Missing_Depth: 257 dòng (60.47%); 21 dòng có nhãn định tính (16 Severe, 5 Heavy)",
+    "Timestamp": "2026-11-07 21:05:57"
+  },
+  {
+    "Test_ID": "TC10",
+    "Suite": "Domain & Business Logic",
+    "Description": "Kiểm tra quy tắc QR_01: Độ sâu ngập không âm (>= 0)",
+    "Status": "PASSED",
+    "Details": "0 dòng độ sâu âm (MaxDepth min: 10.0 cm, MinDepth min: 10.0 cm)",
+    "Timestamp": "2026-11-07 21:05:57"
+  },
+  {
+    "Test_ID": "TC11",
+    "Suite": "Domain & Business Logic",
+    "Description": "Kiểm tra quy tắc QR_02: Thời lượng ngập không âm (>= 0)",
+    "Status": "PASSED",
+    "Details": "0 dòng thời lượng ngập âm (Thời lượng min: 0.3 giờ, max: 6.0 giờ)",
+    "Timestamp": "2026-11-07 21:05:57"
+  },
+  {
+    "Test_ID": "TC12",
+    "Suite": "Domain & Business Logic",
+    "Description": "Kiểm tra miền giá trị danh mục nguyên nhân ngập (Cause)",
+    "Status": "PASSED",
+    "Details": "100% nguyên nhân hợp lệ trong danh mục chuẩn: ['High tide', 'Rain', 'Combined']",
+    "Timestamp": "2026-11-07 21:05:57"
+  },
+  {
+    "Test_ID": "TC13",
+    "Suite": "Domain & Business Logic",
+    "Description": "Kiểm tra tính nhất quán giữa cột Date và cột Year",
+    "Status": "PASSED",
+    "Details": "Phát hiện đúng 1 bản ghi lệch ngày-năm (['Obs_298']: Date 2018 vs Year 2019); 361/362 bản ghi khớp 100%",
+    "Timestamp": "2026-11-07 21:05:57"
+  },
+  {
+    "Test_ID": "TC14",
+    "Suite": "Geospatial Accuracy",
+    "Description": "Kiểm tra quy tắc QR_03: Tọa độ WGS84 trong phạm vi khảo sát",
+    "Status": "PASSED",
+    "Details": "100% tọa độ nằm trong Bounding Box khảo sát [10.3-11.2°N, 106.3-107.2°E]; xác định đúng 2 điểm Vũng Tàu (['Obs_12', 'Obs_13']) được định tuyến sang Unknown Member",
+    "Timestamp": "2026-11-07 21:05:57"
+  },
+  {
+    "Test_ID": "TC15",
+    "Suite": "Geospatial Accuracy",
+    "Description": "Kiểm tra tính hợp lệ khoảng cách tới sông kênh (DistanceToWater)",
+    "Status": "PASSED",
+    "Details": "0 khoảng cách âm | Min: 0.00m | Mean: 364.35m | Max: 16789.39m (Cần Giờ/Củ Chi)",
+    "Timestamp": "2026-11-07 21:05:57"
+  },
+  {
+    "Test_ID": "TC16",
+    "Suite": "Geospatial Accuracy",
+    "Description": "Kiểm tra tính hợp lệ khoảng cách tới đường bộ (DistanceToRoad)",
+    "Status": "PASSED",
+    "Details": "0 khoảng cách âm | Min: 0.02m | Max: 49381.61m | 100% hợp lệ",
+    "Timestamp": "2026-11-07 21:05:57"
+  },
+  {
+    "Test_ID": "TC17",
+    "Suite": "Integration & Referential",
+    "Description": "Kiểm tra quy tắc QR_04: Ép kiểu mã quận/huyện dạng float string",
+    "Status": "PASSED",
+    "Details": "Phát hiện 417 chuỗi float string; 100% (417 dòng) ép kiểu an toàn sang INT (QR_04)",
+    "Timestamp": "2026-11-07 21:05:57"
+  },
+  {
+    "Test_ID": "TC18",
+    "Suite": "Integration & Referential",
+    "Description": "Kiểm tra quy tắc QR_05: Toàn vẹn tham chiếu mã đơn vị hành chính",
+    "Status": "PASSED",
+    "Details": "417/425 sự kiện khớp 24 quận/huyện; 8 điểm giáp ranh/ngoài tỉnh định tuyến sang Unknown Member (-1) theo QR_05",
+    "Timestamp": "2026-11-07 21:05:57"
+  }
+]

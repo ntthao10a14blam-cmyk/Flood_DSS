@@ -1,0 +1,621 @@
+﻿<Cube xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ddl2="http://schemas.microsoft.com/analysisservices/2003/engine/2" xmlns:ddl2_2="http://schemas.microsoft.com/analysisservices/2003/engine/2/2" xmlns:ddl100_100="http://schemas.microsoft.com/analysisservices/2008/engine/100/100" xmlns:ddl200="http://schemas.microsoft.com/analysisservices/2010/engine/200" xmlns:ddl200_200="http://schemas.microsoft.com/analysisservices/2010/engine/200/200" xmlns:ddl300="http://schemas.microsoft.com/analysisservices/2011/engine/300" xmlns:ddl300_300="http://schemas.microsoft.com/analysisservices/2011/engine/300/300" xmlns:ddl400="http://schemas.microsoft.com/analysisservices/2012/engine/400" xmlns:ddl400_400="http://schemas.microsoft.com/analysisservices/2012/engine/400/400" xmlns:ddl500="http://schemas.microsoft.com/analysisservices/2013/engine/500" xmlns:ddl500_500="http://schemas.microsoft.com/analysisservices/2013/engine/500/500" xmlns:dwd="http://schemas.microsoft.com/DataWarehouse/Designer/1.0" dwd:design-time-name="815a0566-058a-427e-9b78-298dd9bc5659" xmlns="http://schemas.microsoft.com/analysisservices/2003/engine">
+  <ID>Flood_DSS_Cube</ID>
+  <Name>Flood_DSS_Cube</Name>
+  <CreatedTimestamp>0001-01-01T00:00:00Z</CreatedTimestamp>
+  <LastSchemaUpdate>0001-01-01T00:00:00Z</LastSchemaUpdate>
+  <Annotations>
+    <Annotation>
+      <Name>http://schemas.microsoft.com/DataWarehouse/Designer/1.0:DiagramLayout</Name>
+      <Value>
+        <dds xmlns="">
+          <diagram fontclsid="{0BE35203-8F91-11CE-9DE3-00AA004BB851}" mouseiconclsid="{0BE35204-8F91-11CE-9DE3-00AA004BB851}" defaultlayout="MSDDS.Rectilinear" defaultlineroute="MSDDS.Rectilinear" version="7" nextobject="16" scale="100" pagebreakanchorx="0" pagebreakanchory="0" pagebreaksizex="0" pagebreaksizey="0" scrollleft="-7661" scrolltop="-3630" gridx="150" gridy="150" marginx="5000" marginy="5000" zoom="65" x="21040" y="15261" backcolor="2039583" defaultpersistence="2" PrintPageNumbersMode="3" PrintMarginTop="0" PrintMarginBottom="635" PrintMarginLeft="0" PrintMarginRight="0" marqueeselectionmode="0" mousepointer="0" snaptogrid="0" autotypeannotation="1" showscrollbars="0" viewpagebreaks="0" donotforceconnectorsbehindshapes="1" backpictureclsid="{00000000-0000-0000-0000-000000000000}">
+            <font>
+              <ddsxmlobjectstreamwrapper binary="010000009001b0300100065461686f6d61" />
+            </font>
+            <mouseicon>
+              <ddsxmlobjectstreamwrapper binary="6c74000000000000" />
+            </mouseicon>
+          </diagram>
+          <layoutmanager>
+            <ddsxmlobj />
+          </layoutmanager>
+          <ddscontrol controlprogid="DdsShapes.DdsObjectManagedBridge" tooltip="Fact_Population" left="6536" top="14626" logicalid="1" controlid="1" masterid="0" hint1="0" hint2="0" width="3493" height="3747" noresize="0" nomove="0" nodefaultattachpoints="0" autodrag="1" usedefaultiddshape="1" selectable="1" showselectionhandles="1" allownudging="1" isannotation="0" dontautolayout="0" groupcollapsed="0" tabstop="1" visible="1" snaptogrid="0">
+            <control>
+              <ddsxmlobjectstreaminitwrapper binary="000e0000a50d0000a30e0000" />
+            </control>
+            <layoutobject>
+              <ddsxmlobj>
+                <property name="LogicalObject" value="dw_Fact_Population" vartype="8" />
+              </ddsxmlobj>
+            </layoutobject>
+            <shape groupshapeid="0" groupnode="0" />
+          </ddscontrol>
+          <ddscontrol controlprogid="DdsShapes.DdsObjectManagedBridge" tooltip="Fact_FloodObservation" left="20" top="6686" logicalid="2" controlid="2" masterid="0" hint1="0" hint2="0" width="3958" height="5000" noresize="0" nomove="0" nodefaultattachpoints="0" autodrag="1" usedefaultiddshape="1" selectable="1" showselectionhandles="1" allownudging="1" isannotation="0" dontautolayout="0" groupcollapsed="0" tabstop="1" visible="1" snaptogrid="0">
+            <control>
+              <ddsxmlobjectstreaminitwrapper binary="000e0000760f000088130000" />
+            </control>
+            <layoutobject>
+              <ddsxmlobj>
+                <property name="LogicalObject" value="dw_Fact_FloodObservation" vartype="8" />
+              </ddsxmlobj>
+            </layoutobject>
+            <shape groupshapeid="0" groupnode="0" />
+          </ddscontrol>
+          <ddscontrol controlprogid="DdsShapes.DdsObjectManagedBridge" tooltip="Dim_Area" left="6505" top="7400" logicalid="3" controlid="3" masterid="0" hint1="0" hint2="0" width="3556" height="4826" noresize="0" nomove="0" nodefaultattachpoints="0" autodrag="1" usedefaultiddshape="1" selectable="1" showselectionhandles="1" allownudging="1" isannotation="0" dontautolayout="0" groupcollapsed="0" tabstop="1" visible="1" snaptogrid="0">
+            <control>
+              <ddsxmlobjectstreaminitwrapper binary="000e0000e40d0000da120000" />
+            </control>
+            <layoutobject>
+              <ddsxmlobj>
+                <property name="LogicalObject" value="dw_Dim_Area" vartype="8" />
+              </ddsxmlobj>
+            </layoutobject>
+            <shape groupshapeid="0" groupnode="0" />
+          </ddscontrol>
+          <ddscontrol controlprogid="DdsShapes.DdsObjectManagedBridge" tooltip="Dim_Cause" left="499" top="14086" logicalid="4" controlid="4" masterid="0" hint1="0" hint2="0" width="3000" height="1947" noresize="0" nomove="0" nodefaultattachpoints="0" autodrag="1" usedefaultiddshape="1" selectable="1" showselectionhandles="1" allownudging="1" isannotation="0" dontautolayout="0" groupcollapsed="0" tabstop="1" visible="1" snaptogrid="0">
+            <control>
+              <ddsxmlobjectstreaminitwrapper binary="000e0000b80b00009b070000" />
+            </control>
+            <layoutobject>
+              <ddsxmlobj>
+                <property name="LogicalObject" value="dw_Dim_Cause" vartype="8" />
+              </ddsxmlobj>
+            </layoutobject>
+            <shape groupshapeid="0" groupnode="0" />
+          </ddscontrol>
+          <ddscontrol controlprogid="DdsShapes.DdsObjectManagedBridge" tooltip="Dim_Location" left="6378" top="0" logicalid="5" controlid="5" masterid="0" hint1="0" hint2="0" width="3810" height="5000" noresize="0" nomove="0" nodefaultattachpoints="0" autodrag="1" usedefaultiddshape="1" selectable="1" showselectionhandles="1" allownudging="1" isannotation="0" dontautolayout="0" groupcollapsed="0" tabstop="1" visible="1" snaptogrid="0">
+            <control>
+              <ddsxmlobjectstreaminitwrapper binary="000e0000e20e000088130000" />
+            </control>
+            <layoutobject>
+              <ddsxmlobj>
+                <property name="LogicalObject" value="dw_Dim_Location" vartype="8" />
+              </ddsxmlobj>
+            </layoutobject>
+            <shape groupshapeid="0" groupnode="0" />
+          </ddscontrol>
+          <ddscontrol controlprogid="MSDDS.Polyline.080.1" left="7884" top="11727" logicalid="6" controlid="6" masterid="0" hint1="0" hint2="0" width="799" height="3199" noresize="0" nomove="0" nodefaultattachpoints="1" autodrag="0" usedefaultiddshape="0" selectable="1" showselectionhandles="0" allownudging="1" isannotation="0" dontautolayout="0" groupcollapsed="0" tabstop="1" visible="1" snaptogrid="0">
+            <control>
+              <ddsxmlobj>
+                <polyline endtypedst="6" endtypesrc="3" usercolor="16448250" linestyle="0" linerender="1" customendtypedstid="0" customendtypesrcid="0" adornsvisible="1" />
+              </ddsxmlobj>
+            </control>
+            <layoutobject>
+              <ddsxmlobj>
+                <property name="LogicalObject" value="dataSet.Relations[FK_Fact_Population_Area]" vartype="8" />
+                <property name="Virtual" value="0" vartype="11" />
+                <property name="VisibleAP" value="0" vartype="3" />
+              </ddsxmlobj>
+            </layoutobject>
+            <connector lineroutestyle="MSDDS.Rectilinear" sourceid="3" destid="1" sourceattachpoint="7" destattachpoint="4" segmenteditmode="0" bendpointeditmode="0" bendpointvisibility="0" relatedid="0" virtual="0">
+              <point x="8283" y="12226" />
+              <point x="8283" y="13426" />
+              <point x="8282" y="13426" />
+              <point x="8282" y="14626" />
+            </connector>
+          </ddscontrol>
+          <ddscontrol controlprogid="MSDDS.Polyline.080.1" left="1600" top="11386" logicalid="7" controlid="7" masterid="0" hint1="0" hint2="0" width="799" height="3200" noresize="0" nomove="0" nodefaultattachpoints="1" autodrag="0" usedefaultiddshape="0" selectable="1" showselectionhandles="0" allownudging="1" isannotation="0" dontautolayout="0" groupcollapsed="0" tabstop="1" visible="1" snaptogrid="0">
+            <control>
+              <ddsxmlobj>
+                <polyline endtypedst="6" endtypesrc="3" usercolor="16448250" linestyle="0" linerender="1" customendtypedstid="0" customendtypesrcid="0" adornsvisible="1" />
+              </ddsxmlobj>
+            </control>
+            <layoutobject>
+              <ddsxmlobj>
+                <property name="LogicalObject" value="dataSet.Relations[FK_Fact_FloodObservation_Cause]" vartype="8" />
+                <property name="Virtual" value="0" vartype="11" />
+                <property name="VisibleAP" value="0" vartype="3" />
+              </ddsxmlobj>
+            </layoutobject>
+            <connector lineroutestyle="MSDDS.Rectilinear" sourceid="4" destid="2" sourceattachpoint="4" destattachpoint="7" segmenteditmode="0" bendpointeditmode="0" bendpointvisibility="0" relatedid="0" virtual="0">
+              <point x="1999" y="14086" />
+              <point x="1999" y="11686" />
+            </connector>
+          </ddscontrol>
+          <ddscontrol controlprogid="MSDDS.Polyline.080.1" left="3678" top="9414" logicalid="8" controlid="8" masterid="0" hint1="0" hint2="0" width="3127" height="799" noresize="0" nomove="0" nodefaultattachpoints="1" autodrag="0" usedefaultiddshape="0" selectable="1" showselectionhandles="0" allownudging="1" isannotation="0" dontautolayout="0" groupcollapsed="0" tabstop="1" visible="1" snaptogrid="0">
+            <control>
+              <ddsxmlobj>
+                <polyline endtypedst="6" endtypesrc="3" usercolor="16448250" linestyle="0" linerender="1" customendtypedstid="0" customendtypesrcid="0" adornsvisible="1" />
+              </ddsxmlobj>
+            </control>
+            <layoutobject>
+              <ddsxmlobj>
+                <property name="LogicalObject" value="dataSet.Relations[FK_Fact_FloodObservation_Area]" vartype="8" />
+                <property name="Virtual" value="0" vartype="11" />
+                <property name="VisibleAP" value="0" vartype="3" />
+              </ddsxmlobj>
+            </layoutobject>
+            <connector lineroutestyle="MSDDS.Rectilinear" sourceid="3" destid="2" sourceattachpoint="22" destattachpoint="25" segmenteditmode="0" bendpointeditmode="0" bendpointvisibility="0" relatedid="0" virtual="0">
+              <point x="6505" y="9813" />
+              <point x="5242" y="9813" />
+              <point x="5242" y="9736" />
+              <point x="3978" y="9736" />
+            </connector>
+          </ddscontrol>
+          <ddscontrol controlprogid="MSDDS.Polyline.080.1" left="3678" top="2101" logicalid="9" controlid="9" masterid="0" hint1="0" hint2="0" width="3000" height="6285" noresize="0" nomove="0" nodefaultattachpoints="1" autodrag="0" usedefaultiddshape="0" selectable="1" showselectionhandles="0" allownudging="1" isannotation="0" dontautolayout="0" groupcollapsed="0" tabstop="1" visible="1" snaptogrid="0">
+            <control>
+              <ddsxmlobj>
+                <polyline endtypedst="6" endtypesrc="3" usercolor="16448250" linestyle="0" linerender="1" customendtypedstid="0" customendtypesrcid="0" adornsvisible="1" />
+              </ddsxmlobj>
+            </control>
+            <layoutobject>
+              <ddsxmlobj>
+                <property name="LogicalObject" value="dataSet.Relations[FK_Fact_FloodObservation_Location]" vartype="8" />
+                <property name="Virtual" value="0" vartype="11" />
+                <property name="VisibleAP" value="0" vartype="3" />
+              </ddsxmlobj>
+            </layoutobject>
+            <connector lineroutestyle="MSDDS.Rectilinear" sourceid="5" destid="2" sourceattachpoint="22" destattachpoint="19" segmenteditmode="0" bendpointeditmode="0" bendpointvisibility="0" relatedid="0" virtual="0">
+              <point x="6378" y="2500" />
+              <point x="5178" y="2500" />
+              <point x="5178" y="8086" />
+              <point x="3978" y="8086" />
+            </connector>
+          </ddscontrol>
+          <ddscontrol controlprogid="MSDDS.Polyline.080.1" left="7884" top="4700" logicalid="10" controlid="10" masterid="0" hint1="0" hint2="0" width="799" height="3200" noresize="0" nomove="0" nodefaultattachpoints="1" autodrag="0" usedefaultiddshape="0" selectable="1" showselectionhandles="0" allownudging="1" isannotation="0" dontautolayout="0" groupcollapsed="0" tabstop="1" visible="1" snaptogrid="0">
+            <control>
+              <ddsxmlobj>
+                <polyline endtypedst="6" endtypesrc="3" usercolor="16448250" linestyle="0" linerender="1" customendtypedstid="0" customendtypesrcid="0" adornsvisible="1" />
+              </ddsxmlobj>
+            </control>
+            <layoutobject>
+              <ddsxmlobj>
+                <property name="LogicalObject" value="dataSet.Relations[FK_Dim_Location_Area]" vartype="8" />
+                <property name="Virtual" value="0" vartype="11" />
+                <property name="VisibleAP" value="0" vartype="3" />
+              </ddsxmlobj>
+            </layoutobject>
+            <connector lineroutestyle="MSDDS.Rectilinear" sourceid="3" destid="5" sourceattachpoint="6" destattachpoint="7" segmenteditmode="0" bendpointeditmode="0" bendpointvisibility="0" relatedid="0" virtual="0">
+              <point x="8283" y="7400" />
+              <point x="8283" y="5000" />
+            </connector>
+          </ddscontrol>
+          <ddscontrol controlprogid="DdsShapes.DdsObjectManagedBridge" tooltip="Dim_Source" left="11095" top="3142" logicalid="11" controlid="11" masterid="0" hint1="0" hint2="0" width="3126" height="3386" noresize="0" nomove="0" nodefaultattachpoints="0" autodrag="1" usedefaultiddshape="1" selectable="1" showselectionhandles="1" allownudging="1" isannotation="0" dontautolayout="0" groupcollapsed="0" tabstop="1" visible="1" snaptogrid="0">
+            <control>
+              <ddsxmlobjectstreaminitwrapper binary="000e0000360c00003a0d0000" />
+            </control>
+            <layoutobject>
+              <ddsxmlobj>
+                <property name="LogicalObject" value="dw_Dim_Source" vartype="8" />
+              </ddsxmlobj>
+            </layoutobject>
+            <shape groupshapeid="0" groupnode="0" />
+          </ddscontrol>
+          <ddscontrol controlprogid="MSDDS.Polyline.080.1" left="6882" top="6029" logicalid="12" controlid="12" masterid="0" hint1="0" hint2="0" width="7276" height="8897" noresize="0" nomove="0" nodefaultattachpoints="1" autodrag="0" usedefaultiddshape="0" selectable="1" showselectionhandles="0" allownudging="1" isannotation="0" dontautolayout="0" groupcollapsed="0" tabstop="1" visible="1" snaptogrid="0">
+            <control>
+              <ddsxmlobj>
+                <polyline endtypedst="6" endtypesrc="3" usercolor="16448250" linestyle="0" linerender="1" customendtypedstid="0" customendtypesrcid="0" adornsvisible="1" />
+              </ddsxmlobj>
+            </control>
+            <layoutobject>
+              <ddsxmlobj>
+                <property name="LogicalObject" value="dataSet.Relations[FK_Fact_Population_Source]" vartype="8" />
+                <property name="Virtual" value="0" vartype="11" />
+                <property name="VisibleAP" value="0" vartype="3" />
+              </ddsxmlobj>
+            </layoutobject>
+            <connector lineroutestyle="MSDDS.Rectilinear" sourceid="11" destid="1" sourceattachpoint="9" destattachpoint="0" segmenteditmode="0" bendpointeditmode="0" bendpointvisibility="0" relatedid="0" virtual="0">
+              <point x="13758" y="6528" />
+              <point x="13758" y="9006" />
+              <point x="7182" y="9006" />
+              <point x="7182" y="14626" />
+            </connector>
+          </ddscontrol>
+          <ddscontrol controlprogid="MSDDS.Polyline.080.1" left="49" top="4436" logicalid="13" controlid="13" masterid="0" hint1="0" hint2="0" width="11346" height="2550" noresize="0" nomove="0" nodefaultattachpoints="1" autodrag="0" usedefaultiddshape="0" selectable="1" showselectionhandles="0" allownudging="1" isannotation="0" dontautolayout="0" groupcollapsed="0" tabstop="1" visible="1" snaptogrid="0">
+            <control>
+              <ddsxmlobj>
+                <polyline endtypedst="6" endtypesrc="3" usercolor="16448250" linestyle="0" linerender="1" customendtypedstid="0" customendtypesrcid="0" adornsvisible="1" />
+              </ddsxmlobj>
+            </control>
+            <layoutobject>
+              <ddsxmlobj>
+                <property name="LogicalObject" value="dataSet.Relations[FK_Fact_FloodObservation_Source]" vartype="8" />
+                <property name="Virtual" value="0" vartype="11" />
+                <property name="VisibleAP" value="0" vartype="3" />
+              </ddsxmlobj>
+            </layoutobject>
+            <connector lineroutestyle="MSDDS.Rectilinear" sourceid="11" destid="2" sourceattachpoint="14" destattachpoint="0" segmenteditmode="0" bendpointeditmode="0" bendpointvisibility="0" relatedid="0" virtual="0">
+              <point x="11095" y="4835" />
+              <point x="349" y="4835" />
+              <point x="349" y="6686" />
+            </connector>
+          </ddscontrol>
+          <ddscontrol controlprogid="DdsShapes.DdsObjectManagedBridge" tooltip="Dim_Time" left="11348" top="7667" logicalid="14" controlid="14" masterid="0" hint1="0" hint2="0" width="3000" height="3745" noresize="0" nomove="0" nodefaultattachpoints="0" autodrag="1" usedefaultiddshape="1" selectable="1" showselectionhandles="1" allownudging="1" isannotation="0" dontautolayout="0" groupcollapsed="0" tabstop="1" visible="1" snaptogrid="0">
+            <control>
+              <ddsxmlobjectstreaminitwrapper binary="000e0000b80b0000a10e0000" />
+            </control>
+            <layoutobject>
+              <ddsxmlobj>
+                <property name="LogicalObject" value="dw_Dim_Time" vartype="8" />
+              </ddsxmlobj>
+            </layoutobject>
+            <shape groupshapeid="0" groupnode="0" />
+          </ddscontrol>
+          <ddscontrol controlprogid="MSDDS.Polyline.080.1" left="3678" top="7490" logicalid="15" controlid="15" masterid="0" hint1="0" hint2="0" width="7970" height="896" noresize="0" nomove="0" nodefaultattachpoints="1" autodrag="0" usedefaultiddshape="0" selectable="1" showselectionhandles="0" allownudging="1" isannotation="0" dontautolayout="0" groupcollapsed="0" tabstop="1" visible="1" snaptogrid="0">
+            <control>
+              <ddsxmlobj>
+                <polyline endtypedst="6" endtypesrc="3" usercolor="16448250" linestyle="0" linerender="1" customendtypedstid="0" customendtypesrcid="0" adornsvisible="1" />
+              </ddsxmlobj>
+            </control>
+            <layoutobject>
+              <ddsxmlobj>
+                <property name="LogicalObject" value="dataSet.Relations[FK_Fact_FloodObservation_Time]" vartype="8" />
+                <property name="Virtual" value="0" vartype="11" />
+                <property name="VisibleAP" value="0" vartype="3" />
+              </ddsxmlobj>
+            </layoutobject>
+            <connector lineroutestyle="MSDDS.Rectilinear" sourceid="14" destid="2" sourceattachpoint="10" destattachpoint="19" segmenteditmode="0" bendpointeditmode="0" bendpointvisibility="0" relatedid="0" virtual="0">
+              <point x="11348" y="7889" />
+              <point x="7159" y="7889" />
+              <point x="7159" y="8086" />
+              <point x="3978" y="8086" />
+            </connector>
+          </ddscontrol>
+        </dds>
+      </Value>
+    </Annotation>
+    <Annotation>
+      <Name>http://schemas.microsoft.com/DataWarehouse/Designer/1.0:ShowFriendlyNames</Name>
+      <Value>true</Value>
+    </Annotation>
+    <Annotation>
+      <Name>http://schemas.microsoft.com/DataWarehouse/Designer/1.0:ShowRelationshipNames</Name>
+      <Value>false</Value>
+    </Annotation>
+    <Annotation>
+      <Name>http://schemas.microsoft.com/DataWarehouse/Designer/1.0:UseDiagramDefaultLayout</Name>
+      <Value>true</Value>
+    </Annotation>
+    <Annotation>
+      <Name>http://schemas.microsoft.com/DataWarehouse/Designer/1.0:DiagramViewPortLeft</Name>
+      <Value>-7661</Value>
+    </Annotation>
+    <Annotation>
+      <Name>http://schemas.microsoft.com/DataWarehouse/Designer/1.0:DiagramViewPortTop</Name>
+      <Value>-3630</Value>
+    </Annotation>
+    <Annotation>
+      <Name>http://schemas.microsoft.com/DataWarehouse/Designer/1.0:DiagramBoundingLeft</Name>
+      <Value>20</Value>
+    </Annotation>
+    <Annotation>
+      <Name>http://schemas.microsoft.com/DataWarehouse/Designer/1.0:DiagramBoundingTop</Name>
+      <Value>0</Value>
+    </Annotation>
+    <Annotation>
+      <Name>http://schemas.microsoft.com/DataWarehouse/Designer/1.0:DiagramZoom</Name>
+      <Value>65</Value>
+    </Annotation>
+  </Annotations>
+  <LastProcessed>0001-01-01T00:00:00Z</LastProcessed>
+  <State>Unprocessed</State>
+  <Dimensions>
+    <Dimension dwd:design-time-name="27b92428-22cb-45fa-9dd7-b3979c69e62a">
+      <ID>Fact Population</ID>
+      <Name>Fact Population</Name>
+      <DimensionID>Fact Population</DimensionID>
+      <Attributes>
+        <Attribute dwd:design-time-name="9d1f57db-8964-4dbe-b94a-daf75c0ecda3">
+          <AttributeID>Population Key</AttributeID>
+        </Attribute>
+        <Attribute dwd:design-time-name="d41ceca5-a075-4c22-8bc9-948b16391512">
+          <AttributeID>Area Key</AttributeID>
+        </Attribute>
+        <Attribute dwd:design-time-name="884676fb-f3e9-400c-89f2-8f13cfd14d52">
+          <AttributeID>Source Key</AttributeID>
+        </Attribute>
+      </Attributes>
+    </Dimension>
+    <Dimension dwd:design-time-name="8ac88fc8-3106-4f03-bd16-67a8c9b36aa7">
+      <ID>Fact Flood Observation</ID>
+      <Name>Fact Flood Observation</Name>
+      <DimensionID>Fact Flood Observation</DimensionID>
+      <Attributes>
+        <Attribute dwd:design-time-name="acd8ad03-a4b6-445d-98ff-aaf44feb39c8">
+          <AttributeID>Flood Observation Key</AttributeID>
+        </Attribute>
+        <Attribute dwd:design-time-name="c37af71f-63ea-4050-a156-d854f8ed8b2b">
+          <AttributeID>Location Key</AttributeID>
+        </Attribute>
+        <Attribute dwd:design-time-name="d3036f25-4ea9-4186-8016-465f4a7f44d9">
+          <AttributeID>Time Key</AttributeID>
+        </Attribute>
+        <Attribute dwd:design-time-name="819fd852-cf73-4ea2-8805-520eaf312ab0">
+          <AttributeID>Area Key</AttributeID>
+        </Attribute>
+        <Attribute dwd:design-time-name="395f05a8-8e5f-48aa-95b7-ff5b076efaae">
+          <AttributeID>Cause Key</AttributeID>
+        </Attribute>
+        <Attribute dwd:design-time-name="fb92b994-2755-4abd-8757-278664378a3f">
+          <AttributeID>Source Key</AttributeID>
+        </Attribute>
+      </Attributes>
+    </Dimension>
+    <Dimension dwd:design-time-name="9fc423c9-dcda-4795-a638-8a82e85fad58">
+      <ID>Dim Cause</ID>
+      <Name>Dim Cause</Name>
+      <DimensionID>Dim Cause</DimensionID>
+      <Attributes>
+        <Attribute dwd:design-time-name="99ecc31d-ca55-4959-8dde-96e26ced8403">
+          <AttributeID>Cause Key</AttributeID>
+        </Attribute>
+        <Attribute dwd:design-time-name="8898f7f3-e462-4330-a7a6-8cfa23995be4">
+          <AttributeID>Cause Name</AttributeID>
+        </Attribute>
+      </Attributes>
+    </Dimension>
+    <Dimension dwd:design-time-name="e0486567-13d8-4327-bae4-861d8aced8f9">
+      <ID>Dim Location</ID>
+      <Name>Dim Location</Name>
+      <DimensionID>Dim Location</DimensionID>
+      <Attributes>
+        <Attribute dwd:design-time-name="7588042d-3305-4d43-9176-433a6c9164ac">
+          <AttributeID>Location Key</AttributeID>
+        </Attribute>
+        <Attribute dwd:design-time-name="6cbdd4a1-17fd-4a81-9e4c-4efa8ecea299">
+          <AttributeID>Area Key</AttributeID>
+        </Attribute>
+        <Attribute dwd:design-time-name="8cf2f86f-fd36-40ec-9e2d-094304aed75e">
+          <AttributeID>Location Name</AttributeID>
+        </Attribute>
+        <Attribute dwd:design-time-name="bc07201e-9260-497b-af34-c1fd2a3ae215">
+          <AttributeID>Location Type</AttributeID>
+        </Attribute>
+      </Attributes>
+    </Dimension>
+    <Dimension dwd:design-time-name="2a7d52f9-f9e1-4e90-a56d-1c103a7562b6">
+      <ID>Dim Area</ID>
+      <Name>Dim Area</Name>
+      <DimensionID>Dim Area</DimensionID>
+      <Attributes>
+        <Attribute dwd:design-time-name="8238e581-c715-4d92-8bb8-92aaf95e6235">
+          <AttributeID>Area Key</AttributeID>
+        </Attribute>
+        <Attribute dwd:design-time-name="7313adfc-d03c-48c6-8b78-eb6b28228601">
+          <AttributeID>Area Name</AttributeID>
+        </Attribute>
+        <Attribute dwd:design-time-name="a8ba4671-dee8-4f5c-ae3d-543ecc450435">
+          <AttributeID>Area Level</AttributeID>
+        </Attribute>
+      </Attributes>
+    </Dimension>
+    <Dimension dwd:design-time-name="00f7a167-5721-4277-94ff-6922b26feab2">
+      <ID>Dim Source</ID>
+      <Name>Dim Source</Name>
+      <DimensionID>Dim Source</DimensionID>
+      <Attributes>
+        <Attribute dwd:design-time-name="b7e34fb9-aa21-475d-93b6-57fe0e7a3a81">
+          <AttributeID>Source Key</AttributeID>
+        </Attribute>
+      </Attributes>
+    </Dimension>
+    <Dimension dwd:design-time-name="373add88-8d56-4a68-9ef1-7d1376d02353">
+      <ID>Dim Time</ID>
+      <Name>Dim Time</Name>
+      <DimensionID>dw-Dim_Time</DimensionID>
+      <Attributes>
+        <Attribute dwd:design-time-name="d54900fd-45f9-431b-9e33-23ca01e8b770">
+          <AttributeID>Time Key</AttributeID>
+        </Attribute>
+        <Attribute dwd:design-time-name="e3359acd-0bba-42c6-b976-b639984d32fd">
+          <AttributeID>Full Date</AttributeID>
+        </Attribute>
+        <Attribute dwd:design-time-name="315f1fd0-a55e-4f95-bc83-662c0db1f39c">
+          <AttributeID>Day</AttributeID>
+        </Attribute>
+        <Attribute dwd:design-time-name="542dd435-4dfb-4094-8e04-9eab8e26da92">
+          <AttributeID>Month</AttributeID>
+        </Attribute>
+        <Attribute dwd:design-time-name="6bb3040e-22e8-402c-912d-e6738a2193bc">
+          <AttributeID>Quarter</AttributeID>
+        </Attribute>
+        <Attribute dwd:design-time-name="33b51a3f-cd76-405d-9965-5055b3aac3e2">
+          <AttributeID>Year</AttributeID>
+        </Attribute>
+      </Attributes>
+    </Dimension>
+  </Dimensions>
+  <MeasureGroups>
+    <MeasureGroup dwd:design-time-name="356afb33-863c-4adc-85a2-6e497cef6f4f">
+      <ID>Fact Population</ID>
+      <Name>Fact Population</Name>
+      <CreatedTimestamp>0001-01-01T00:00:00Z</CreatedTimestamp>
+      <LastSchemaUpdate>0001-01-01T00:00:00Z</LastSchemaUpdate>
+      <LastProcessed>0001-01-01T00:00:00Z</LastProcessed>
+      <State>Unprocessed</State>
+      <Measures>
+        <Measure dwd:design-time-name="e424a219-b6d6-4b22-9b33-7c6c7d722979">
+          <ID>Population</ID>
+          <Name>Population</Name>
+          <Source dwd:design-time-name="a4fd80f1-da6d-40ef-a0d7-85e42cf1af84">
+            <DataType>BigInt</DataType>
+            <Source xsi:type="ColumnBinding" dwd:design-time-name="f1e3841d-66ad-4c4a-a584-f10913a411e6">
+              <TableID>dw_Fact_Population</TableID>
+              <ColumnID>Population</ColumnID>
+            </Source>
+          </Source>
+        </Measure>
+        <Measure dwd:design-time-name="37a3d3b6-fd87-4c7b-9588-1942d082633e">
+          <ID>Population Density</ID>
+          <Name>Population Density</Name>
+          <Source dwd:design-time-name="01aa32bd-bf8b-468b-9089-ab9c78e8d125">
+            <DataType>Double</DataType>
+            <Source xsi:type="ColumnBinding" dwd:design-time-name="b43ea48a-efab-48fd-a31d-dea45f741514">
+              <TableID>dw_Fact_Population</TableID>
+              <ColumnID>PopulationDensity</ColumnID>
+            </Source>
+          </Source>
+        </Measure>
+      </Measures>
+      <StorageMode>Molap</StorageMode>
+      <ProcessingMode>Regular</ProcessingMode>
+      <Dimensions>
+        <Dimension xsi:type="DegenerateMeasureGroupDimension" dwd:design-time-name="7e55ef37-2673-4bc7-999f-0cebbaffbe8b">
+          <CubeDimensionID>Fact Population</CubeDimensionID>
+          <Attributes>
+            <Attribute dwd:design-time-name="c7dd8b7d-bfb1-47cd-9b07-4393501da910">
+              <AttributeID>Population Key</AttributeID>
+              <KeyColumns>
+                <KeyColumn dwd:design-time-name="bc569677-7b7e-45f8-aa97-a7b19a3ee28a">
+                  <DataType>BigInt</DataType>
+                  <Source xsi:type="ColumnBinding" dwd:design-time-name="0f0152c4-92f7-463c-b5ad-1a23fcd96ca1">
+                    <TableID>dw_Fact_Population</TableID>
+                    <ColumnID>PopulationKey</ColumnID>
+                  </Source>
+                </KeyColumn>
+              </KeyColumns>
+              <Type>Granularity</Type>
+            </Attribute>
+          </Attributes>
+        </Dimension>
+        <Dimension xsi:type="RegularMeasureGroupDimension" dwd:design-time-name="874d645d-a391-4342-b296-5da92b9384e0">
+          <CubeDimensionID>Dim Location</CubeDimensionID>
+          <Attributes>
+            <Attribute dwd:design-time-name="b0a5a02f-aba4-4510-b270-288588d8db33">
+              <AttributeID>Area Key</AttributeID>
+              <KeyColumns>
+                <KeyColumn dwd:design-time-name="5ff23fd1-86a6-49fc-a5f1-fe062a7939fe">
+                  <DataType>Integer</DataType>
+                  <Source xsi:type="ColumnBinding" dwd:design-time-name="dad961b4-ba8a-45b6-87d6-8aaeb3efa392">
+                    <TableID>dw_Fact_Population</TableID>
+                    <ColumnID>AreaKey</ColumnID>
+                  </Source>
+                </KeyColumn>
+              </KeyColumns>
+              <Type>Granularity</Type>
+            </Attribute>
+          </Attributes>
+        </Dimension>
+      </Dimensions>
+      <Partitions />
+    </MeasureGroup>
+    <MeasureGroup dwd:design-time-name="66412620-0335-4574-ad78-03f9d804a5b6">
+      <ID>Fact Flood Observation</ID>
+      <Name>Fact Flood Observation</Name>
+      <CreatedTimestamp>0001-01-01T00:00:00Z</CreatedTimestamp>
+      <LastSchemaUpdate>0001-01-01T00:00:00Z</LastSchemaUpdate>
+      <LastProcessed>0001-01-01T00:00:00Z</LastProcessed>
+      <State>Unprocessed</State>
+      <Measures>
+        <Measure dwd:design-time-name="6bacdfff-d977-48e2-a1cb-e948ce8da236">
+          <ID>Max Depth Cm</ID>
+          <Name>Max Depth Cm</Name>
+          <Source dwd:design-time-name="b963836d-a614-4b0d-a293-965ec33da7c8">
+            <DataType>Double</DataType>
+            <Source xsi:type="ColumnBinding" dwd:design-time-name="ff763ae4-6664-4b32-b277-41d75c182e15">
+              <TableID>dw_Fact_FloodObservation</TableID>
+              <ColumnID>MaxDepth_cm</ColumnID>
+            </Source>
+          </Source>
+        </Measure>
+        <Measure dwd:design-time-name="1dff1f84-4bf4-4173-8d1e-a8dd8e6a58b7">
+          <ID>Avg Depth Cm</ID>
+          <Name>Avg Depth Cm</Name>
+          <Source dwd:design-time-name="842e4e65-9818-4a32-9f7e-175a1561d354">
+            <DataType>Double</DataType>
+            <Source xsi:type="ColumnBinding" dwd:design-time-name="fba08193-8d95-419b-8146-e580266303dd">
+              <TableID>dw_Fact_FloodObservation</TableID>
+              <ColumnID>AvgDepth_cm</ColumnID>
+            </Source>
+          </Source>
+        </Measure>
+        <Measure dwd:design-time-name="004be001-1f44-4bb7-9adc-1033b35da22d">
+          <ID>Duration Hours</ID>
+          <Name>Duration Hours</Name>
+          <Source dwd:design-time-name="5bb01a8c-8d04-4a34-ba13-e22418e1fea3">
+            <DataType>Double</DataType>
+            <Source xsi:type="ColumnBinding" dwd:design-time-name="556b462d-d876-4dda-94c2-06c966394961">
+              <TableID>dw_Fact_FloodObservation</TableID>
+              <ColumnID>Duration_hours</ColumnID>
+            </Source>
+          </Source>
+        </Measure>
+        <Measure dwd:design-time-name="b6d20b71-4629-4a13-a51b-c6c12f8a6f47">
+          <ID>Observation Count</ID>
+          <Name>Observation Count</Name>
+          <Source dwd:design-time-name="9b408495-f735-45fb-ae56-a65911627d58">
+            <DataType>UnsignedInt</DataType>
+            <Source xsi:type="ColumnBinding" dwd:design-time-name="cb80c725-93b5-474e-a4dd-9dece3e595d3">
+              <TableID>dw_Fact_FloodObservation</TableID>
+              <ColumnID>ObservationCount</ColumnID>
+            </Source>
+          </Source>
+        </Measure>
+        <Measure dwd:design-time-name="f25f7ff1-e66f-49a8-a0a8-3280c4fbe7ee">
+          <ID>Fact Flood Observation Count</ID>
+          <Name>Fact Flood Observation Count</Name>
+          <AggregateFunction>Count</AggregateFunction>
+          <Source dwd:design-time-name="3d96fef4-1487-40fa-bd6a-a1374e7acdb8">
+            <DataType>Integer</DataType>
+            <DataSize>4</DataSize>
+            <Source xsi:type="RowBinding" dwd:design-time-name="0788bb42-2ffc-4c26-9136-e8745cb6c7ec">
+              <TableID>dw_Fact_FloodObservation</TableID>
+            </Source>
+          </Source>
+        </Measure>
+      </Measures>
+      <StorageMode>Molap</StorageMode>
+      <ProcessingMode>Regular</ProcessingMode>
+      <Dimensions>
+        <Dimension xsi:type="DegenerateMeasureGroupDimension" dwd:design-time-name="8dba2744-a5df-47aa-b5bb-a31c2c693c94">
+          <CubeDimensionID>Fact Flood Observation</CubeDimensionID>
+          <Attributes>
+            <Attribute dwd:design-time-name="04beab03-6d38-4c3b-a9c0-bed461a8a4a5">
+              <AttributeID>Flood Observation Key</AttributeID>
+              <KeyColumns>
+                <KeyColumn dwd:design-time-name="8c97f074-192c-4f35-a764-6bb49a9ec770">
+                  <DataType>BigInt</DataType>
+                  <Source xsi:type="ColumnBinding" dwd:design-time-name="08d237f5-09e6-43ae-bba6-e413d2b88848">
+                    <TableID>dw_Fact_FloodObservation</TableID>
+                    <ColumnID>FloodObservationKey</ColumnID>
+                  </Source>
+                </KeyColumn>
+              </KeyColumns>
+              <Type>Granularity</Type>
+            </Attribute>
+          </Attributes>
+        </Dimension>
+        <Dimension xsi:type="RegularMeasureGroupDimension" dwd:design-time-name="d9b82eaf-f2d7-4033-9fab-83e97b0bed03">
+          <CubeDimensionID>Dim Location</CubeDimensionID>
+          <Attributes>
+            <Attribute dwd:design-time-name="edec26aa-0f03-453f-918a-7aafef7bc4b4">
+              <AttributeID>Area Key</AttributeID>
+              <KeyColumns>
+                <KeyColumn dwd:design-time-name="e97406b3-1350-4695-8646-38d724ddd232">
+                  <DataType>Integer</DataType>
+                  <Source xsi:type="ColumnBinding" dwd:design-time-name="789aabf5-973a-42e1-a3ca-7b1bf059027d">
+                    <TableID>dw_Fact_FloodObservation</TableID>
+                    <ColumnID>AreaKey</ColumnID>
+                  </Source>
+                </KeyColumn>
+              </KeyColumns>
+              <Type>Granularity</Type>
+            </Attribute>
+          </Attributes>
+        </Dimension>
+        <Dimension xsi:type="RegularMeasureGroupDimension" dwd:design-time-name="439f925d-6fcc-4074-b0e2-4c255fc518bf">
+          <CubeDimensionID>Dim Cause</CubeDimensionID>
+          <Attributes>
+            <Attribute dwd:design-time-name="4c9daba5-5dfc-495d-a3c7-99a27b9fd09a">
+              <AttributeID>Cause Key</AttributeID>
+              <KeyColumns>
+                <KeyColumn dwd:design-time-name="370375a7-2e8d-42e5-b274-3b22ef78246d">
+                  <DataType>Integer</DataType>
+                  <Source xsi:type="ColumnBinding" dwd:design-time-name="91606bc6-7aa7-47d3-a5f2-c7cf61cfa725">
+                    <TableID>dw_Fact_FloodObservation</TableID>
+                    <ColumnID>CauseKey</ColumnID>
+                  </Source>
+                </KeyColumn>
+              </KeyColumns>
+              <Type>Granularity</Type>
+            </Attribute>
+          </Attributes>
+        </Dimension>
+      </Dimensions>
+      <Partitions />
+    </MeasureGroup>
+  </MeasureGroups>
+  <Source dwd:design-time-name="59e32228-432d-43e4-a93f-3de1b4115f2b">
+    <DataSourceViewID>DSV_FloodDSS</DataSourceViewID>
+  </Source>
+</Cube>

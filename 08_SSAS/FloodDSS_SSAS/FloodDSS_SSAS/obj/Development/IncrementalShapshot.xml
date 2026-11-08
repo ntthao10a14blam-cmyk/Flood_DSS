@@ -1,0 +1,103 @@
+﻿<DeploymentSnapshot xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ddl2="http://schemas.microsoft.com/analysisservices/2003/engine/2" xmlns:ddl2_2="http://schemas.microsoft.com/analysisservices/2003/engine/2/2" xmlns:ddl100_100="http://schemas.microsoft.com/analysisservices/2008/engine/100/100" xmlns:ddl200="http://schemas.microsoft.com/analysisservices/2010/engine/200" xmlns:ddl200_200="http://schemas.microsoft.com/analysisservices/2010/engine/200/200" xmlns:ddl300="http://schemas.microsoft.com/analysisservices/2011/engine/300" xmlns:ddl300_300="http://schemas.microsoft.com/analysisservices/2011/engine/300/300" xmlns:ddl400="http://schemas.microsoft.com/analysisservices/2012/engine/400" xmlns:ddl400_400="http://schemas.microsoft.com/analysisservices/2012/engine/400/400" xmlns:ddl500="http://schemas.microsoft.com/analysisservices/2013/engine/500" xmlns:ddl500_500="http://schemas.microsoft.com/analysisservices/2013/engine/500/500" xmlns:dwd="http://schemas.microsoft.com/DataWarehouse/Designer/1.0">
+  <Target>
+    <Database>FloodDSS_SSAS</Database>
+    <Server>localhost\DW2025</Server>
+    <ConnectionString>Data Source=localhost\DW2025;Timeout=0</ConnectionString>
+  </Target>
+  <Options>
+    <TransactionalDeployment>false</TransactionalDeployment>
+    <PartitionDeployment>DeployPartitions</PartitionDeployment>
+    <RoleDeployment>DeployRolesRetainMembers</RoleDeployment>
+    <ProcessingOption>Default</ProcessingOption>
+    <OutputScript></OutputScript>
+    <ImpactAnalysisFile></ImpactAnalysisFile>
+    <ConfigurationSettingsDeployment>Deploy</ConfigurationSettingsDeployment>
+    <OptimizationSettingsDeployment>Deploy</OptimizationSettingsDeployment>
+    <WriteBackTableCreation>UseExisting</WriteBackTableCreation>
+  </Options>
+  <Snapshot>
+    <ObjectSnapshots>
+      <ObjectSnapshot>
+        <Type>Microsoft.AnalysisServices.RelationalDataSource</Type>
+        <TimeStamp>U8fggw/QD4lWvvucc74x6WN9rcY=02/11/2026 02:19:3802/11/2026 01:14:54</TimeStamp>
+        <ID>
+          <String>DS_FloodDSS</String>
+        </ID>
+      </ObjectSnapshot>
+      <ObjectSnapshot>
+        <Type>Microsoft.AnalysisServices.DataSourceView</Type>
+        <TimeStamp>LF5O7mdas89jDLjeVJiIKlXZqHU=02/11/2026 01:16:3702/11/2026 01:16:36</TimeStamp>
+        <ID>
+          <String>DSV_FloodDSS</String>
+        </ID>
+      </ObjectSnapshot>
+      <ObjectSnapshot>
+        <Type>Microsoft.AnalysisServices.Dimension</Type>
+        <TimeStamp>mit21ktFW2+gHqyqiuYbxpTG5Dc=02/11/2026 02:36:4302/11/2026 01:22:16</TimeStamp>
+        <ID>
+          <String>dw-Dim_Time</String>
+        </ID>
+      </ObjectSnapshot>
+      <ObjectSnapshot>
+        <Type>Microsoft.AnalysisServices.Dimension</Type>
+        <TimeStamp>QkgqMXaTwCV2aDgMJUvWZok1lwQ=02/11/2026 02:36:0802/11/2026 01:26:55</TimeStamp>
+        <ID>
+          <String>Dim Area</String>
+        </ID>
+      </ObjectSnapshot>
+      <ObjectSnapshot>
+        <Type>Microsoft.AnalysisServices.Dimension</Type>
+        <TimeStamp>wtXQ+3T2V4SHMhl1BoEqKR/UJJM=02/11/2026 01:28:1902/11/2026 01:28:19</TimeStamp>
+        <ID>
+          <String>Dim Source</String>
+        </ID>
+      </ObjectSnapshot>
+      <ObjectSnapshot>
+        <Type>Microsoft.AnalysisServices.Dimension</Type>
+        <TimeStamp>YPXXTGznQLQ4R7ThMd8LQA4Lfpo=02/11/2026 02:37:0802/11/2026 01:29:18</TimeStamp>
+        <ID>
+          <String>Dim Location</String>
+        </ID>
+      </ObjectSnapshot>
+      <ObjectSnapshot>
+        <Type>Microsoft.AnalysisServices.Dimension</Type>
+        <TimeStamp>UtUH1TyVfECa29O5HWekiTzyqzI=02/11/2026 02:36:1202/11/2026 01:29:33</TimeStamp>
+        <ID>
+          <String>Dim Cause</String>
+        </ID>
+      </ObjectSnapshot>
+      <ObjectSnapshot>
+        <Type>Microsoft.AnalysisServices.Dimension</Type>
+        <TimeStamp>ob6uxr2GWk2h0vJ9wkBKPzu1j3Q=02/11/2026 01:32:0602/11/2026 01:32:06</TimeStamp>
+        <ID>
+          <String>Fact Population</String>
+        </ID>
+      </ObjectSnapshot>
+      <ObjectSnapshot>
+        <Type>Microsoft.AnalysisServices.Dimension</Type>
+        <TimeStamp>U8kx0s24m9H2KxNbVREt4TcPMRU=02/11/2026 01:32:0602/11/2026 01:32:06</TimeStamp>
+        <ID>
+          <String>Fact Flood Observation</String>
+        </ID>
+      </ObjectSnapshot>
+      <ObjectSnapshot>
+        <Type>Microsoft.AnalysisServices.Cube</Type>
+        <TimeStamp>dndLMcDgepBFBHv3dS56lKEOOcI=02/11/2026 02:38:4902/11/2026 01:32:068u+5kxzjm5mj7tFGGmMR/BEw04g=02/11/2026 01:32:0602/11/2026 01:32:06</TimeStamp>
+        <ID>
+          <String>Flood_DSS_Cube</String>
+        </ID>
+      </ObjectSnapshot>
+    </ObjectSnapshots>
+    <DatabaseSnapshot>
+      <Type>Microsoft.AnalysisServices.Database</Type>
+      <TimeStamp>d8EfgXkKVdZLT+iDjR+J/UVIctk=02/11/2026 01:11:5102/11/2026 01:11:51</TimeStamp>
+      <ID>
+        <String>FloodDSS_SSAS</String>
+      </ID>
+    </DatabaseSnapshot>
+    <Granularity>Coarse</Granularity>
+  </Snapshot>
+  <AssemblyLocations />
+  <ProcessingComplete>true</ProcessingComplete>
+  <LastDeployed>2026-11-01T19:39:03.903333Z</LastDeployed>
+</DeploymentSnapshot>
