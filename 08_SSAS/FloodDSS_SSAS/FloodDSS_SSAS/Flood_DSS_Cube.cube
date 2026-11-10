@@ -1,0 +1,496 @@
+﻿<Cube xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ddl2="http://schemas.microsoft.com/analysisservices/2003/engine/2" xmlns:ddl2_2="http://schemas.microsoft.com/analysisservices/2003/engine/2/2" xmlns:ddl100_100="http://schemas.microsoft.com/analysisservices/2008/engine/100/100" xmlns:ddl200="http://schemas.microsoft.com/analysisservices/2010/engine/200" xmlns:ddl200_200="http://schemas.microsoft.com/analysisservices/2010/engine/200/200" xmlns:ddl300="http://schemas.microsoft.com/analysisservices/2011/engine/300" xmlns:ddl300_300="http://schemas.microsoft.com/analysisservices/2011/engine/300/300" xmlns:ddl400="http://schemas.microsoft.com/analysisservices/2012/engine/400" xmlns:ddl400_400="http://schemas.microsoft.com/analysisservices/2012/engine/400/400" xmlns:ddl500="http://schemas.microsoft.com/analysisservices/2013/engine/500" xmlns:ddl500_500="http://schemas.microsoft.com/analysisservices/2013/engine/500/500" xmlns:dwd="http://schemas.microsoft.com/DataWarehouse/Designer/1.0" dwd:design-time-name="ffaff964-d448-461e-9659-35ae04df3e2b" xmlns="http://schemas.microsoft.com/analysisservices/2003/engine">
+  <ID>Flood_DSS_Cube</ID>
+  <Name>Flood_DSS_Cube</Name>
+  <CreatedTimestamp>0001-01-01T00:00:00Z</CreatedTimestamp>
+  <LastSchemaUpdate>0001-01-01T00:00:00Z</LastSchemaUpdate>
+  <Annotations>
+    <Annotation>
+      <Name>http://schemas.microsoft.com/DataWarehouse/Designer/1.0:DiagramLayout</Name>
+    </Annotation>
+    <Annotation>
+      <Name>http://schemas.microsoft.com/DataWarehouse/Designer/1.0:ShowFriendlyNames</Name>
+      <Value>true</Value>
+    </Annotation>
+    <Annotation>
+      <Name>http://schemas.microsoft.com/DataWarehouse/Designer/1.0:ShowRelationshipNames</Name>
+      <Value>false</Value>
+    </Annotation>
+    <Annotation>
+      <Name>http://schemas.microsoft.com/DataWarehouse/Designer/1.0:UseDiagramDefaultLayout</Name>
+      <Value>true</Value>
+    </Annotation>
+    <Annotation>
+      <Name>http://schemas.microsoft.com/DataWarehouse/Designer/1.0:DiagramViewPortLeft</Name>
+      <Value>0</Value>
+    </Annotation>
+    <Annotation>
+      <Name>http://schemas.microsoft.com/DataWarehouse/Designer/1.0:DiagramViewPortTop</Name>
+      <Value>0</Value>
+    </Annotation>
+    <Annotation>
+      <Name>http://schemas.microsoft.com/DataWarehouse/Designer/1.0:DiagramBoundingLeft</Name>
+      <Value>0</Value>
+    </Annotation>
+    <Annotation>
+      <Name>http://schemas.microsoft.com/DataWarehouse/Designer/1.0:DiagramBoundingTop</Name>
+      <Value>0</Value>
+    </Annotation>
+    <Annotation>
+      <Name>http://schemas.microsoft.com/DataWarehouse/Designer/1.0:DiagramZoom</Name>
+      <Value>100</Value>
+    </Annotation>
+  </Annotations>
+  <LastProcessed>0001-01-01T00:00:00Z</LastProcessed>
+  <State>Unprocessed</State>
+  <Dimensions>
+    <Dimension dwd:design-time-name="9099dbbb-59ae-498a-b6fc-ce9c6c77001d">
+      <ID>Fact Flood Observation</ID>
+      <Name>Fact Flood Observation</Name>
+      <DimensionID>Fact Flood Observation</DimensionID>
+      <Attributes>
+        <Attribute dwd:design-time-name="d8cfcbc5-9180-4b01-9f42-285df345020b">
+          <AttributeID>Flood Observation Key</AttributeID>
+        </Attribute>
+        <Attribute dwd:design-time-name="be520722-6518-4cb5-89b7-0325b2325303">
+          <AttributeID>Source Key</AttributeID>
+        </Attribute>
+        <Attribute dwd:design-time-name="b834f9ea-32c9-423f-aff7-4dbc851c9746">
+          <AttributeID>Cause Key</AttributeID>
+        </Attribute>
+        <Attribute dwd:design-time-name="955397cd-858b-44b2-af2a-276a8f656adf">
+          <AttributeID>Area Key</AttributeID>
+        </Attribute>
+        <Attribute dwd:design-time-name="64ad91dd-cbf9-4e66-a1ee-00a0aedfcc98">
+          <AttributeID>Time Key</AttributeID>
+        </Attribute>
+        <Attribute dwd:design-time-name="4091a1f9-9485-4a07-9e92-0ce81ea8f486">
+          <AttributeID>Location Key</AttributeID>
+        </Attribute>
+      </Attributes>
+    </Dimension>
+    <Dimension dwd:design-time-name="9121bfd7-c6c5-42f0-9b3c-dc8f10dd6db2">
+      <ID>Dim Source</ID>
+      <Name>Dim Source</Name>
+      <DimensionID>Dim Source</DimensionID>
+      <Attributes>
+        <Attribute dwd:design-time-name="1a6ab9a9-fd0e-4bed-b05e-5c52c0da4989">
+          <AttributeID>Source Key</AttributeID>
+        </Attribute>
+        <Attribute dwd:design-time-name="a0321820-9826-4d09-a16f-7a24de7e94fa">
+          <AttributeID>Source Name</AttributeID>
+        </Attribute>
+        <Attribute dwd:design-time-name="26c8e93f-d10a-4d2b-b033-e7b38cad015c">
+          <AttributeID>Source Type</AttributeID>
+        </Attribute>
+      </Attributes>
+      <Hierarchies>
+        <Hierarchy dwd:design-time-name="8a2a7b7d-acdf-4d0b-b685-199b29a8629a">
+          <HierarchyID>Hierarchy</HierarchyID>
+        </Hierarchy>
+      </Hierarchies>
+    </Dimension>
+    <Dimension dwd:design-time-name="73af7303-afff-44ec-836f-c4ec116ea166">
+      <ID>Dim Cause</ID>
+      <Name>Dim Cause</Name>
+      <DimensionID>Dim Cause</DimensionID>
+      <Attributes>
+        <Attribute dwd:design-time-name="f53f589e-d7ef-4bcf-b4b5-dfe701e1e111">
+          <AttributeID>Cause Key</AttributeID>
+        </Attribute>
+        <Attribute dwd:design-time-name="41310644-a3fe-400d-87f5-baf99a94bef7">
+          <AttributeID>Cause Name</AttributeID>
+        </Attribute>
+        <Attribute dwd:design-time-name="4ac5dc50-f71f-4853-ba79-ed0ab0f3b8c7">
+          <AttributeID>Description</AttributeID>
+        </Attribute>
+      </Attributes>
+      <Hierarchies>
+        <Hierarchy dwd:design-time-name="15f7431d-4ffa-47b6-87fe-7cacbb9b3121">
+          <HierarchyID>Hierarchy</HierarchyID>
+        </Hierarchy>
+      </Hierarchies>
+    </Dimension>
+    <Dimension dwd:design-time-name="d02d5944-cdba-4866-94be-52de7659c5cc">
+      <ID>Dim Area</ID>
+      <Name>Dim Area</Name>
+      <DimensionID>Dim Area</DimensionID>
+      <Attributes>
+        <Attribute dwd:design-time-name="6b8458a2-701e-465c-be61-33a65a407fab">
+          <AttributeID>Area Key</AttributeID>
+        </Attribute>
+        <Attribute dwd:design-time-name="bac7dee4-eb02-442a-a326-dd085bdbe926">
+          <AttributeID>Area Name</AttributeID>
+        </Attribute>
+        <Attribute dwd:design-time-name="7e596248-9944-4e35-88c2-5f442bb08a0e">
+          <AttributeID>Area Level</AttributeID>
+        </Attribute>
+        <Attribute dwd:design-time-name="508a89ba-6452-4d98-b1d1-3e7c73217e65">
+          <AttributeID>Parent Area ID</AttributeID>
+        </Attribute>
+      </Attributes>
+      <Hierarchies>
+        <Hierarchy dwd:design-time-name="eabc3a89-ed0f-42c7-9548-51b9ae475ada">
+          <HierarchyID>Hierarchy</HierarchyID>
+        </Hierarchy>
+      </Hierarchies>
+    </Dimension>
+    <Dimension dwd:design-time-name="401b6ec3-f610-4479-b735-a02fbe8b97ea">
+      <ID>Dim Time</ID>
+      <Name>Dim Time</Name>
+      <DimensionID>Dim Time</DimensionID>
+      <Attributes>
+        <Attribute dwd:design-time-name="e4edfe22-b462-4d03-9a86-dc6b948cd8ee">
+          <AttributeID>Time Key</AttributeID>
+        </Attribute>
+        <Attribute dwd:design-time-name="fee633be-85a4-46bd-a981-52e0dc5dd3bf">
+          <AttributeID>Full Date</AttributeID>
+        </Attribute>
+        <Attribute dwd:design-time-name="73773e8c-f175-4a7f-bc67-015e3b17fe0d">
+          <AttributeID>Day</AttributeID>
+        </Attribute>
+        <Attribute dwd:design-time-name="13299d4b-fc87-4b55-aa4e-743db3f0d629">
+          <AttributeID>Month</AttributeID>
+        </Attribute>
+        <Attribute dwd:design-time-name="abbc2686-9cc3-4abe-9698-9a755d68ca06">
+          <AttributeID>Quarter</AttributeID>
+        </Attribute>
+        <Attribute dwd:design-time-name="58db4194-cbda-4ba8-bd0c-c5122166b76b">
+          <AttributeID>Year</AttributeID>
+        </Attribute>
+      </Attributes>
+      <Hierarchies>
+        <Hierarchy dwd:design-time-name="36ef91e3-82b1-4903-9b18-793a58634e63">
+          <HierarchyID>Hierarchy</HierarchyID>
+        </Hierarchy>
+      </Hierarchies>
+    </Dimension>
+    <Dimension dwd:design-time-name="af9efef4-b242-435f-aa7f-f6a2dd2d6d98">
+      <ID>Dim Location</ID>
+      <Name>Dim Location</Name>
+      <DimensionID>Dim Location</DimensionID>
+      <Attributes>
+        <Attribute dwd:design-time-name="dacb89d6-e18f-4b9d-811f-c17f1a3401c2">
+          <AttributeID>Location Key</AttributeID>
+        </Attribute>
+        <Attribute dwd:design-time-name="1b50809b-109a-4ea2-ac1d-5e4f8f92bf5f">
+          <AttributeID>Location Name</AttributeID>
+        </Attribute>
+        <Attribute dwd:design-time-name="230eded7-5094-4af1-b427-57638a7c57de">
+          <AttributeID>Location Type</AttributeID>
+        </Attribute>
+        <Attribute dwd:design-time-name="b5a8c256-b884-4e27-9ec7-5c39e705e0a3">
+          <AttributeID>Area Key</AttributeID>
+        </Attribute>
+      </Attributes>
+      <Hierarchies>
+        <Hierarchy dwd:design-time-name="f545409c-650d-45e4-9a9b-ecbab423754a">
+          <HierarchyID>Hierarchy</HierarchyID>
+        </Hierarchy>
+      </Hierarchies>
+    </Dimension>
+    <Dimension dwd:design-time-name="ae5fa0e6-f037-4c8e-9317-66c555a53dd3">
+      <ID>Fact Population</ID>
+      <Name>Fact Population</Name>
+      <DimensionID>Fact Population</DimensionID>
+      <Attributes>
+        <Attribute dwd:design-time-name="464b6d1d-d227-494c-acd9-b012aa5e53be">
+          <AttributeID>Population Key</AttributeID>
+        </Attribute>
+        <Attribute dwd:design-time-name="759a1949-f891-4c17-ba67-3dbdde214462">
+          <AttributeID>Source Key</AttributeID>
+        </Attribute>
+        <Attribute dwd:design-time-name="31476f77-4425-45ca-870a-da3e00407af9">
+          <AttributeID>Area Key</AttributeID>
+        </Attribute>
+      </Attributes>
+    </Dimension>
+  </Dimensions>
+  <MeasureGroups>
+    <MeasureGroup dwd:design-time-name="e6ba4b7c-38aa-4fbf-9825-87769f5db782">
+      <ID>Fact Flood Observation</ID>
+      <Name>Fact Flood Observation</Name>
+      <CreatedTimestamp>0001-01-01T00:00:00Z</CreatedTimestamp>
+      <LastSchemaUpdate>0001-01-01T00:00:00Z</LastSchemaUpdate>
+      <LastProcessed>0001-01-01T00:00:00Z</LastProcessed>
+      <State>Unprocessed</State>
+      <Measures>
+        <Measure dwd:design-time-name="95475001-5530-4ac2-8d35-8cacd111b039">
+          <ID>Max Flood Depth</ID>
+          <Name>Max Flood Depth</Name>
+          <Source dwd:design-time-name="984081e7-f90c-4627-91c6-51c30b2d9b71">
+            <DataType>Double</DataType>
+            <Source xsi:type="ColumnBinding" dwd:design-time-name="c96ab65a-6f01-4e74-8f55-61269a5bf64a">
+              <TableID>dw_Fact_FloodObservation</TableID>
+              <ColumnID>MaxDepth_cm</ColumnID>
+            </Source>
+          </Source>
+        </Measure>
+        <Measure dwd:design-time-name="593de15c-2b87-42bd-845d-46ec751442bc">
+          <ID>Avg Flood Depth</ID>
+          <Name>Avg Flood Depth</Name>
+          <Source dwd:design-time-name="a7d3af1c-0240-491b-8d16-6e0ad3969986">
+            <DataType>Double</DataType>
+            <Source xsi:type="ColumnBinding" dwd:design-time-name="3100592d-87fc-41b3-b084-a2fba140df86">
+              <TableID>dw_Fact_FloodObservation</TableID>
+              <ColumnID>AvgDepth_cm</ColumnID>
+            </Source>
+          </Source>
+        </Measure>
+        <Measure dwd:design-time-name="e3fc7a13-bf21-41ce-b473-1dcc430b47fc">
+          <ID>Total Duration Hours</ID>
+          <Name>Total Duration Hours</Name>
+          <Source dwd:design-time-name="be0956d7-dc7e-4d79-88c1-0efd1bf889dc">
+            <DataType>Double</DataType>
+            <Source xsi:type="ColumnBinding" dwd:design-time-name="031f11d3-5c0b-492e-8139-06238a37b296">
+              <TableID>dw_Fact_FloodObservation</TableID>
+              <ColumnID>Duration_hours</ColumnID>
+            </Source>
+          </Source>
+        </Measure>
+        <Measure dwd:design-time-name="25d21b5b-6aff-49fc-bf0b-ba3e45fe774c">
+          <ID>Total Observations</ID>
+          <Name>Total Observations</Name>
+          <Source dwd:design-time-name="d128e4d9-ca4f-40c2-9c91-0209b386dea6">
+            <DataType>UnsignedInt</DataType>
+            <Source xsi:type="ColumnBinding" dwd:design-time-name="03314e69-ec0b-414f-abef-e6eb8d50a3cd">
+              <TableID>dw_Fact_FloodObservation</TableID>
+              <ColumnID>ObservationCount</ColumnID>
+            </Source>
+          </Source>
+        </Measure>
+        <Measure dwd:design-time-name="9be71eea-77db-4535-a830-d51f554206d3">
+          <ID>Fact Flood Observation Count</ID>
+          <Name>Fact Flood Observation Count</Name>
+          <AggregateFunction>Count</AggregateFunction>
+          <Source dwd:design-time-name="0a5ae2fb-aa32-4df5-baea-de507a0b8801">
+            <DataType>Integer</DataType>
+            <DataSize>4</DataSize>
+            <Source xsi:type="RowBinding" dwd:design-time-name="4edc98aa-319e-4fa9-a605-e5c6cd0836ad">
+              <TableID>dw_Fact_FloodObservation</TableID>
+            </Source>
+          </Source>
+        </Measure>
+      </Measures>
+      <StorageMode>Molap</StorageMode>
+      <ProcessingMode>Regular</ProcessingMode>
+      <Dimensions>
+        <Dimension xsi:type="DegenerateMeasureGroupDimension" dwd:design-time-name="48932652-36c2-452d-ae7e-b8f54aaf44c0">
+          <CubeDimensionID>Fact Flood Observation</CubeDimensionID>
+          <Attributes>
+            <Attribute dwd:design-time-name="464145f7-bb29-4364-b009-84f10fd9178d">
+              <AttributeID>Flood Observation Key</AttributeID>
+              <KeyColumns>
+                <KeyColumn dwd:design-time-name="4672dde4-2fb5-4324-be74-a9c2ba85eef4">
+                  <DataType>BigInt</DataType>
+                  <Source xsi:type="ColumnBinding" dwd:design-time-name="15ec4f38-07a3-4a0c-8613-9afed39dcb4e">
+                    <TableID>dw_Fact_FloodObservation</TableID>
+                    <ColumnID>FloodObservationKey</ColumnID>
+                  </Source>
+                </KeyColumn>
+              </KeyColumns>
+              <Type>Granularity</Type>
+            </Attribute>
+          </Attributes>
+        </Dimension>
+        <Dimension xsi:type="RegularMeasureGroupDimension" dwd:design-time-name="75e77d1d-d1d8-4792-975e-1ad8200824dc">
+          <CubeDimensionID>Dim Source</CubeDimensionID>
+          <Attributes>
+            <Attribute dwd:design-time-name="556eee5d-6053-4b02-b7e1-e9cbb3e098d7">
+              <AttributeID>Source Key</AttributeID>
+              <KeyColumns>
+                <KeyColumn dwd:design-time-name="42f8a1a5-9ec7-4c51-a94e-6f047cb0c837">
+                  <DataType>Integer</DataType>
+                  <Source xsi:type="ColumnBinding" dwd:design-time-name="30cd17d3-de3a-4d9f-918b-6a1a1889cd41">
+                    <TableID>dw_Fact_FloodObservation</TableID>
+                    <ColumnID>SourceKey</ColumnID>
+                  </Source>
+                </KeyColumn>
+              </KeyColumns>
+              <Type>Granularity</Type>
+            </Attribute>
+          </Attributes>
+        </Dimension>
+        <Dimension xsi:type="RegularMeasureGroupDimension" dwd:design-time-name="92898d42-1f31-4924-b27e-980d29540057">
+          <CubeDimensionID>Dim Cause</CubeDimensionID>
+          <Attributes>
+            <Attribute dwd:design-time-name="b80038f9-1041-4100-8257-4e901f1e5b02">
+              <AttributeID>Cause Key</AttributeID>
+              <KeyColumns>
+                <KeyColumn dwd:design-time-name="f6048959-2fcb-47c6-9d3b-99e4b4a6411a">
+                  <DataType>Integer</DataType>
+                  <Source xsi:type="ColumnBinding" dwd:design-time-name="74142443-34e0-4c56-a3fd-446f4d7ad2d0">
+                    <TableID>dw_Fact_FloodObservation</TableID>
+                    <ColumnID>CauseKey</ColumnID>
+                  </Source>
+                </KeyColumn>
+              </KeyColumns>
+              <Type>Granularity</Type>
+            </Attribute>
+          </Attributes>
+        </Dimension>
+        <Dimension xsi:type="RegularMeasureGroupDimension" dwd:design-time-name="e633e5bc-9501-4722-9b48-6a5600015145">
+          <CubeDimensionID>Dim Area</CubeDimensionID>
+          <Attributes>
+            <Attribute dwd:design-time-name="8d662143-b5a1-41da-986b-13842766a70d">
+              <AttributeID>Area Key</AttributeID>
+              <KeyColumns>
+                <KeyColumn dwd:design-time-name="f27a915c-1780-4659-b557-103c310675c9">
+                  <DataType>Integer</DataType>
+                  <Source xsi:type="ColumnBinding" dwd:design-time-name="00732d36-e3e2-42b2-b073-6947ee92f301">
+                    <TableID>dw_Fact_FloodObservation</TableID>
+                    <ColumnID>AreaKey</ColumnID>
+                  </Source>
+                </KeyColumn>
+              </KeyColumns>
+              <Type>Granularity</Type>
+            </Attribute>
+          </Attributes>
+        </Dimension>
+        <Dimension xsi:type="RegularMeasureGroupDimension" dwd:design-time-name="6bbef279-80ad-4d56-9eaf-5b197ad72308">
+          <CubeDimensionID>Dim Time</CubeDimensionID>
+          <Attributes>
+            <Attribute dwd:design-time-name="7bc4000e-061d-4c4f-aac0-def5696fcc84">
+              <AttributeID>Time Key</AttributeID>
+              <KeyColumns>
+                <KeyColumn dwd:design-time-name="0fabad3c-2874-4d6b-8c0e-1be92354f7b4">
+                  <DataType>Integer</DataType>
+                  <Source xsi:type="ColumnBinding" dwd:design-time-name="04b48411-4e82-4c4a-a1b8-3c4332ded372">
+                    <TableID>dw_Fact_FloodObservation</TableID>
+                    <ColumnID>TimeKey</ColumnID>
+                  </Source>
+                </KeyColumn>
+              </KeyColumns>
+              <Type>Granularity</Type>
+            </Attribute>
+          </Attributes>
+        </Dimension>
+        <Dimension xsi:type="RegularMeasureGroupDimension" dwd:design-time-name="e0bfdb42-1a50-4ba9-b89c-218e9863972f">
+          <CubeDimensionID>Dim Location</CubeDimensionID>
+          <Attributes>
+            <Attribute dwd:design-time-name="1f3135da-cdc3-4a4b-a78f-8ee5a8d1a10d">
+              <AttributeID>Location Key</AttributeID>
+              <KeyColumns>
+                <KeyColumn dwd:design-time-name="3b178bd6-a4e2-43aa-9398-02399da74d9c">
+                  <DataType>Integer</DataType>
+                  <Source xsi:type="ColumnBinding" dwd:design-time-name="9b3016ab-5c67-4ef3-8368-fbecb0c13ad8">
+                    <TableID>dw_Fact_FloodObservation</TableID>
+                    <ColumnID>LocationKey</ColumnID>
+                  </Source>
+                </KeyColumn>
+              </KeyColumns>
+              <Type>Granularity</Type>
+            </Attribute>
+          </Attributes>
+        </Dimension>
+      </Dimensions>
+      <Partitions />
+    </MeasureGroup>
+    <MeasureGroup dwd:design-time-name="1ce34522-0adb-4980-ba8e-34ad040c79f1">
+      <ID>Fact Population</ID>
+      <Name>Fact Population</Name>
+      <CreatedTimestamp>0001-01-01T00:00:00Z</CreatedTimestamp>
+      <LastSchemaUpdate>0001-01-01T00:00:00Z</LastSchemaUpdate>
+      <LastProcessed>0001-01-01T00:00:00Z</LastProcessed>
+      <State>Unprocessed</State>
+      <Measures>
+        <Measure dwd:design-time-name="9d56528d-f2a4-4eef-8f61-bba7c6fc6736">
+          <ID>Total Population</ID>
+          <Name>Total Population</Name>
+          <Source dwd:design-time-name="3faf04e2-995f-477d-a2c3-c70d77f220b4">
+            <DataType>BigInt</DataType>
+            <Source xsi:type="ColumnBinding" dwd:design-time-name="65990e2b-333f-48c5-9505-67af1f4bf63d">
+              <TableID>dw_Fact_Population</TableID>
+              <ColumnID>Population</ColumnID>
+            </Source>
+          </Source>
+        </Measure>
+        <Measure dwd:design-time-name="b2806afb-a1b5-4a52-8558-e26a234c884a">
+          <ID>Avg Population Density</ID>
+          <Name>Avg Population Density</Name>
+          <Source dwd:design-time-name="ec2736fa-3674-4ce5-9382-0c58058b4e14">
+            <DataType>Double</DataType>
+            <Source xsi:type="ColumnBinding" dwd:design-time-name="0d1817fd-8fe6-450e-8ec6-46915aaaa06a">
+              <TableID>dw_Fact_Population</TableID>
+              <ColumnID>PopulationDensity</ColumnID>
+            </Source>
+          </Source>
+        </Measure>
+      </Measures>
+      <StorageMode>Molap</StorageMode>
+      <ProcessingMode>Regular</ProcessingMode>
+      <Dimensions>
+        <Dimension xsi:type="DegenerateMeasureGroupDimension" dwd:design-time-name="2fd05cae-b57e-4cae-84d8-f73a9e17d412">
+          <CubeDimensionID>Fact Population</CubeDimensionID>
+          <Attributes>
+            <Attribute dwd:design-time-name="9a3eb1c2-33da-4f5b-96c8-b00ca8a933e1">
+              <AttributeID>Population Key</AttributeID>
+              <KeyColumns>
+                <KeyColumn dwd:design-time-name="4e71f36f-1a59-422e-8f51-ee6296e3c0a6">
+                  <DataType>BigInt</DataType>
+                  <Source xsi:type="ColumnBinding" dwd:design-time-name="eb923b9b-831f-416e-bb8c-b4d401b803c5">
+                    <TableID>dw_Fact_Population</TableID>
+                    <ColumnID>PopulationKey</ColumnID>
+                  </Source>
+                </KeyColumn>
+              </KeyColumns>
+              <Type>Granularity</Type>
+            </Attribute>
+          </Attributes>
+        </Dimension>
+        <Dimension xsi:type="RegularMeasureGroupDimension" dwd:design-time-name="94a2da4d-60d0-4108-9f79-2927cbab42b0">
+          <CubeDimensionID>Dim Source</CubeDimensionID>
+          <Attributes>
+            <Attribute dwd:design-time-name="10faddb6-cd04-4540-92f8-bb5f5ae6e7c8">
+              <AttributeID>Source Key</AttributeID>
+              <KeyColumns>
+                <KeyColumn dwd:design-time-name="4b627d78-bb9e-4851-a914-6acf4b2c0b82">
+                  <DataType>Integer</DataType>
+                  <Source xsi:type="ColumnBinding" dwd:design-time-name="7a941fdf-4e76-49da-b79f-96505db6a6d2">
+                    <TableID>dw_Fact_Population</TableID>
+                    <ColumnID>SourceKey</ColumnID>
+                  </Source>
+                </KeyColumn>
+              </KeyColumns>
+              <Type>Granularity</Type>
+            </Attribute>
+          </Attributes>
+        </Dimension>
+        <Dimension xsi:type="RegularMeasureGroupDimension" dwd:design-time-name="075f7375-7f13-4546-a96d-52150a43c5d8">
+          <CubeDimensionID>Dim Area</CubeDimensionID>
+          <Attributes>
+            <Attribute dwd:design-time-name="43170c4b-14b6-430c-b339-87e683e987f2">
+              <AttributeID>Area Key</AttributeID>
+              <KeyColumns>
+                <KeyColumn dwd:design-time-name="32db5711-b2ae-4d1e-ad2a-dbfcb8f8b2c1">
+                  <DataType>Integer</DataType>
+                  <Source xsi:type="ColumnBinding" dwd:design-time-name="fd723d11-19d4-4891-a990-c515355d66d8">
+                    <TableID>dw_Fact_Population</TableID>
+                    <ColumnID>AreaKey</ColumnID>
+                  </Source>
+                </KeyColumn>
+              </KeyColumns>
+              <Type>Granularity</Type>
+            </Attribute>
+          </Attributes>
+        </Dimension>
+        <Dimension xsi:type="ReferenceMeasureGroupDimension" dwd:design-time-name="b4253be5-6093-45e2-a1c1-c8f6c2e100a6">
+          <CubeDimensionID>Dim Location</CubeDimensionID>
+          <Attributes>
+            <Attribute dwd:design-time-name="40e5ca70-b5be-4ae8-b555-a07e2db3bac7">
+              <AttributeID>Area Key</AttributeID>
+              <Type>Granularity</Type>
+            </Attribute>
+          </Attributes>
+          <IntermediateCubeDimensionID>Fact Population</IntermediateCubeDimensionID>
+          <IntermediateGranularityAttributeID>Area Key</IntermediateGranularityAttributeID>
+          <Materialization>Regular</Materialization>
+          <ddl200:ProcessingState>Unprocessed</ddl200:ProcessingState>
+        </Dimension>
+      </Dimensions>
+      <Partitions />
+    </MeasureGroup>
+  </MeasureGroups>
+  <Source dwd:design-time-name="cf2d7875-6f12-4d5d-8416-d8eb46eb5363">
+    <DataSourceViewID>DSV_Flood DSS</DataSourceViewID>
+  </Source>
+</Cube>

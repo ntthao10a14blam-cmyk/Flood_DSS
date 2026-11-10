@@ -11,8 +11,8 @@
   DTS:LocaleID="1033"
   DTS:ObjectName="04_Load_Roads"
   DTS:PackageType="5"
-  DTS:VersionBuild="12"
-  DTS:VersionGUID="{78981BCD-C49C-4E78-80A3-98D717AFD9C4}">
+  DTS:VersionBuild="14"
+  DTS:VersionGUID="{6622ADBD-5C61-4261-9CA4-F32E496F5E0E}">
   <DTS:Property
     DTS:Name="PackageFormatVersion">8</DTS:Property>
   <DTS:ConnectionManagers>
@@ -25,7 +25,7 @@
         <DTS:ConnectionManager
           DTS:ConnectRetryCount="1"
           DTS:ConnectRetryInterval="5"
-          DTS:ConnectionString="Data Source=localhost\DW2025;Initial Catalog=Flood_DSS;Provider=SQLOLEDB.1;Integrated Security=SSPI;Auto Translate=False;Application Name=SSIS-Package-{4F62EC60-DC8A-498C-B66B-D6E0E21D455D}LAPTOP-522UK8L8.Flood_DSS.sa;" />
+          DTS:ConnectionString="Data Source=localhost\MSSQL2022_NHUNG;Initial Catalog=Flood_DSS;Provider=SQLOLEDB.1;Integrated Security=SSPI;Auto Translate=False;Application Name=SSIS-Package-{4F62EC60-DC8A-498C-B66B-D6E0E21D455D}LAPTOP-522UK8L8.Flood_DSS.sa;" />
       </DTS:ObjectData>
     </DTS:ConnectionManager>
     <DTS:ConnectionManager
@@ -42,7 +42,7 @@
           DTS:RowDelimiter=""
           DTS:TextQualifier="_x003C_none_x003E_"
           DTS:CodePage="65001"
-          DTS:ConnectionString="D:\Kho_du_lieu\Flood-DSS\02_Staging_CSV\Roads\Roads_Clean.csv">
+          DTS:ConnectionString="D:\TAI_LIEU_BAI_GIANG\Datawarehouse\Flood_DSS\02_Staging_CSV\Roads\Roads_Clean.csv">
           <DTS:FlatFileColumns>
             <DTS:FlatFileColumn
               DTS:ColumnType="Delimited"
@@ -51,7 +51,7 @@
               DTS:DataType="129"
               DTS:TextQualified="True"
               DTS:ObjectName="Road_ID"
-              DTS:DTSID="{CF0569E7-AF85-47A0-A82C-C11B722DDA7F}"
+              DTS:DTSID="{4EEA7F9A-E806-44B7-A4DB-C74AEB4D8A8E}"
               DTS:CreationName="" />
             <DTS:FlatFileColumn
               DTS:ColumnType="Delimited"
@@ -60,7 +60,7 @@
               DTS:DataType="129"
               DTS:TextQualified="True"
               DTS:ObjectName="Road_Name"
-              DTS:DTSID="{6EAF5643-4594-4DB4-A193-AEE0A6EAB6E9}"
+              DTS:DTSID="{EC572B94-D4FF-4399-9FFA-D4E47B658DA0}"
               DTS:CreationName="" />
             <DTS:FlatFileColumn
               DTS:ColumnType="Delimited"
@@ -69,7 +69,7 @@
               DTS:DataType="129"
               DTS:TextQualified="True"
               DTS:ObjectName="Mentioned_Years"
-              DTS:DTSID="{B51CDD15-1912-4799-BA51-4115C47B2508}"
+              DTS:DTSID="{4D1D3314-444A-4A48-9EEF-94239050F6D8}"
               DTS:CreationName="" />
             <DTS:FlatFileColumn
               DTS:ColumnType="Delimited"
@@ -78,7 +78,7 @@
               DTS:DataType="129"
               DTS:TextQualified="True"
               DTS:ObjectName="Source_ID"
-              DTS:DTSID="{812BA165-BA26-4ADE-A01F-31FCB8B16426}"
+              DTS:DTSID="{4A4D746F-1192-4A3C-B2BD-44816EE8930D}"
               DTS:CreationName="" />
           </DTS:FlatFileColumns>
         </DTS:ConnectionManager>

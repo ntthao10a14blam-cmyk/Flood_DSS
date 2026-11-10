@@ -11,8 +11,8 @@
   DTS:LocaleID="1033"
   DTS:ObjectName="03_Load_Population"
   DTS:PackageType="5"
-  DTS:VersionBuild="8"
-  DTS:VersionGUID="{C9A6B0BF-B95E-46AB-A4C6-16431BB7A2C0}">
+  DTS:VersionBuild="10"
+  DTS:VersionGUID="{B96BC57B-AAB7-4E0F-998E-154ADBE2198F}">
   <DTS:Property
     DTS:Name="PackageFormatVersion">8</DTS:Property>
   <DTS:ConnectionManagers>
@@ -30,7 +30,7 @@
           DTS:RowDelimiter=""
           DTS:TextQualifier="_x003C_none_x003E_"
           DTS:CodePage="65001"
-          DTS:ConnectionString="D:\Kho_du_lieu\Flood-DSS\02_Staging_CSV\Population\Population_Clean.csv">
+          DTS:ConnectionString="D:\TAI_LIEU_BAI_GIANG\Datawarehouse\Flood_DSS\02_Staging_CSV\Population\Population_Clean.csv">
           <DTS:FlatFileColumns>
             <DTS:FlatFileColumn
               DTS:ColumnType="Delimited"
@@ -39,7 +39,7 @@
               DTS:DataType="129"
               DTS:TextQualified="True"
               DTS:ObjectName="OBJECTID"
-              DTS:DTSID="{065B33FF-C838-43F2-9DE3-8CF7DC73BCC7}"
+              DTS:DTSID="{4F05A2B0-7901-4420-8063-A3B1C29D3E97}"
               DTS:CreationName="" />
             <DTS:FlatFileColumn
               DTS:ColumnType="Delimited"
@@ -48,7 +48,7 @@
               DTS:DataType="129"
               DTS:TextQualified="True"
               DTS:ObjectName="Area_ID"
-              DTS:DTSID="{BA49F000-2050-48B6-A2E6-52ADC3636E02}"
+              DTS:DTSID="{DE071829-1A01-41FA-95B7-38D8B8480F6B}"
               DTS:CreationName="" />
             <DTS:FlatFileColumn
               DTS:ColumnType="Delimited"
@@ -57,7 +57,7 @@
               DTS:DataType="129"
               DTS:TextQualified="True"
               DTS:ObjectName="Area_Name"
-              DTS:DTSID="{2F7B0BD2-19D7-45F5-B557-2628932D6678}"
+              DTS:DTSID="{4694A622-ED97-40FE-AF73-A0CE66B75B73}"
               DTS:CreationName="" />
             <DTS:FlatFileColumn
               DTS:ColumnType="Delimited"
@@ -66,7 +66,7 @@
               DTS:DataType="129"
               DTS:TextQualified="True"
               DTS:ObjectName="Year"
-              DTS:DTSID="{6370D1CB-4AE0-4E6E-B96D-3E2AE605E7DD}"
+              DTS:DTSID="{16C6D776-EE42-45EE-B282-81485F7EC75D}"
               DTS:CreationName="" />
             <DTS:FlatFileColumn
               DTS:ColumnType="Delimited"
@@ -75,7 +75,7 @@
               DTS:DataType="129"
               DTS:TextQualified="True"
               DTS:ObjectName="BoundaryVersion"
-              DTS:DTSID="{BC87D75E-1AD4-4C91-A7A8-39AB21A2BFDB}"
+              DTS:DTSID="{DC6965B5-7730-4BF8-8C62-5514AE938899}"
               DTS:CreationName="" />
             <DTS:FlatFileColumn
               DTS:ColumnType="Delimited"
@@ -84,7 +84,7 @@
               DTS:DataType="129"
               DTS:TextQualified="True"
               DTS:ObjectName="Population"
-              DTS:DTSID="{FDEA1E63-5352-49C3-A0B2-6B823C073408}"
+              DTS:DTSID="{8E1F238F-E52C-43FB-BAE6-E740EFAA3A94}"
               DTS:CreationName="" />
             <DTS:FlatFileColumn
               DTS:ColumnType="Delimited"
@@ -93,7 +93,7 @@
               DTS:DataType="129"
               DTS:TextQualified="True"
               DTS:ObjectName="Area_km2"
-              DTS:DTSID="{30CF9420-CDF1-4F6D-A1DF-B0BB3285307A}"
+              DTS:DTSID="{27721185-65C5-4DC9-9206-A0F4F56DD909}"
               DTS:CreationName="" />
             <DTS:FlatFileColumn
               DTS:ColumnType="Delimited"
@@ -102,7 +102,7 @@
               DTS:DataType="129"
               DTS:TextQualified="True"
               DTS:ObjectName="PopulationDensity"
-              DTS:DTSID="{F4D859B1-FB83-4DE6-8DD6-57FC675179E0}"
+              DTS:DTSID="{A8798A85-BD2A-476D-8558-30F1075C9F59}"
               DTS:CreationName="" />
             <DTS:FlatFileColumn
               DTS:ColumnType="Delimited"
@@ -111,7 +111,7 @@
               DTS:DataType="129"
               DTS:TextQualified="True"
               DTS:ObjectName="Source_ID"
-              DTS:DTSID="{268C7777-B969-4C54-A75A-6F411201ABBB}"
+              DTS:DTSID="{DA37F0A0-8887-483A-9DE0-E781CBBBDA2E}"
               DTS:CreationName="" />
           </DTS:FlatFileColumns>
         </DTS:ConnectionManager>
@@ -126,7 +126,7 @@
         <DTS:ConnectionManager
           DTS:ConnectRetryCount="1"
           DTS:ConnectRetryInterval="5"
-          DTS:ConnectionString="Data Source=localhost\DW2025;Initial Catalog=Flood_DSS;Provider=SQLOLEDB.1;Integrated Security=SSPI;Auto Translate=False;Application Name=SSIS-03_Load_Population-{8EFD1F7E-EF1A-44AC-9AA4-D875F0957A32}LAPTOP-522UK8L8.Flood_DSS.sa;" />
+          DTS:ConnectionString="Data Source=localhost\MSSQL2022_NHUNG;Initial Catalog=Flood_DSS;Provider=SQLOLEDB.1;Integrated Security=SSPI;Auto Translate=False;Application Name=SSIS-03_Load_Population-{8EFD1F7E-EF1A-44AC-9AA4-D875F0957A32}LAPTOP-522UK8L8.Flood_DSS.sa;" />
       </DTS:ObjectData>
     </DTS:ConnectionManager>
   </DTS:ConnectionManagers>
@@ -894,40 +894,6 @@
           Id="Package\Data Flow Task\Data Conversion"
           TopLeft="257.142857690247,109.352941080618" />
         <EdgeLayout
-          Id="Package\Data Flow Task.Paths[Flat File Source Output]"
-          TopLeft="199.685714390631,69.7411764276894">
-          <EdgeLayout.Curve>
-            <mssgle:Curve
-              StartConnector="{assembly:Null}"
-              EndConnector="57.4571432996161,60.4117646529291"
-              Start="0,0"
-              End="49.9571432996161,60.4117646529291">
-              <mssgle:Curve.Segments>
-                <mssgle:SegmentCollection
-                  Capacity="5">
-                  <mssgle:LineSegment
-                    End="24.728571649808,0" />
-                  <mssgle:CubicBezierSegment
-                    Point1="24.728571649808,0"
-                    Point2="28.728571649808,0"
-                    Point3="28.728571649808,4" />
-                  <mssgle:LineSegment
-                    End="28.728571649808,56.4117646529291" />
-                  <mssgle:CubicBezierSegment
-                    Point1="28.728571649808,56.4117646529291"
-                    Point2="28.728571649808,60.4117646529291"
-                    Point3="32.728571649808,60.4117646529291" />
-                  <mssgle:LineSegment
-                    End="49.9571432996161,60.4117646529291" />
-                </mssgle:SegmentCollection>
-              </mssgle:Curve.Segments>
-            </mssgle:Curve>
-          </EdgeLayout.Curve>
-          <EdgeLayout.Labels>
-            <EdgeLabelCollection />
-          </EdgeLayout.Labels>
-        </EdgeLayout>
-        <EdgeLayout
           Id="Package\Data Flow Task.Paths[Data Conversion Output]"
           TopLeft="412.342857690247,130.152941080618">
           <EdgeLayout.Curve>
@@ -953,6 +919,40 @@
                     Point3="52.4714288398015,48.1764705460068" />
                   <mssgle:LineSegment
                     End="89.4428576796031,48.1764705460068" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Data Flow Task.Paths[Flat File Source Output]"
+          TopLeft="199.685714390631,69.7411764276894">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="57.4571432996161,60.4117646529291"
+              Start="0,0"
+              End="49.9571432996161,60.4117646529291">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="24.728571649808,0" />
+                  <mssgle:CubicBezierSegment
+                    Point1="24.728571649808,0"
+                    Point2="28.728571649808,0"
+                    Point3="28.728571649808,4" />
+                  <mssgle:LineSegment
+                    End="28.728571649808,56.4117646529291" />
+                  <mssgle:CubicBezierSegment
+                    Point1="28.728571649808,56.4117646529291"
+                    Point2="28.728571649808,60.4117646529291"
+                    Point3="32.728571649808,60.4117646529291" />
+                  <mssgle:LineSegment
+                    End="49.9571432996161,60.4117646529291" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>

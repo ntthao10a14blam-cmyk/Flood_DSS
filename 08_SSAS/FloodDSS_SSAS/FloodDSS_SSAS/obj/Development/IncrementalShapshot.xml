@@ -1,0 +1,103 @@
+﻿<DeploymentSnapshot xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ddl2="http://schemas.microsoft.com/analysisservices/2003/engine/2" xmlns:ddl2_2="http://schemas.microsoft.com/analysisservices/2003/engine/2/2" xmlns:ddl100_100="http://schemas.microsoft.com/analysisservices/2008/engine/100/100" xmlns:ddl200="http://schemas.microsoft.com/analysisservices/2010/engine/200" xmlns:ddl200_200="http://schemas.microsoft.com/analysisservices/2010/engine/200/200" xmlns:ddl300="http://schemas.microsoft.com/analysisservices/2011/engine/300" xmlns:ddl300_300="http://schemas.microsoft.com/analysisservices/2011/engine/300/300" xmlns:ddl400="http://schemas.microsoft.com/analysisservices/2012/engine/400" xmlns:ddl400_400="http://schemas.microsoft.com/analysisservices/2012/engine/400/400" xmlns:ddl500="http://schemas.microsoft.com/analysisservices/2013/engine/500" xmlns:ddl500_500="http://schemas.microsoft.com/analysisservices/2013/engine/500/500" xmlns:dwd="http://schemas.microsoft.com/DataWarehouse/Designer/1.0">
+  <Target>
+    <Database>FloodDSS_SSAS</Database>
+    <Server>localhost\MSSQL2022_NHUNG</Server>
+    <ConnectionString>Data Source=localhost\MSSQL2022_NHUNG;Timeout=0</ConnectionString>
+  </Target>
+  <Options>
+    <TransactionalDeployment>false</TransactionalDeployment>
+    <PartitionDeployment>DeployPartitions</PartitionDeployment>
+    <RoleDeployment>DeployRolesRetainMembers</RoleDeployment>
+    <ProcessingOption>Default</ProcessingOption>
+    <OutputScript></OutputScript>
+    <ImpactAnalysisFile></ImpactAnalysisFile>
+    <ConfigurationSettingsDeployment>Deploy</ConfigurationSettingsDeployment>
+    <OptimizationSettingsDeployment>Deploy</OptimizationSettingsDeployment>
+    <WriteBackTableCreation>UseExisting</WriteBackTableCreation>
+  </Options>
+  <Snapshot>
+    <ObjectSnapshots>
+      <ObjectSnapshot>
+        <Type>Microsoft.AnalysisServices.RelationalDataSource</Type>
+        <TimeStamp>4KPiU9oKhL0evBAOYphhJBfA/k0=10/11/2026 10:22:50 SA09/11/2026 9:34:40 SA</TimeStamp>
+        <ID>
+          <String>Flood DSS</String>
+        </ID>
+      </ObjectSnapshot>
+      <ObjectSnapshot>
+        <Type>Microsoft.AnalysisServices.DataSourceView</Type>
+        <TimeStamp>Xu3G4+pv0L79RB6XQCgZB9QCp7k=09/11/2026 9:36:51 SA09/11/2026 9:36:50 SA</TimeStamp>
+        <ID>
+          <String>DSV_Flood DSS</String>
+        </ID>
+      </ObjectSnapshot>
+      <ObjectSnapshot>
+        <Type>Microsoft.AnalysisServices.Dimension</Type>
+        <TimeStamp>R7FRwKm2T45mEJs8BeeE+Y8A8K0=10/11/2026 8:54:41 SA09/11/2026 9:39:34 SA</TimeStamp>
+        <ID>
+          <String>Dim Time</String>
+        </ID>
+      </ObjectSnapshot>
+      <ObjectSnapshot>
+        <Type>Microsoft.AnalysisServices.Dimension</Type>
+        <TimeStamp>wD9g9G3X9aevBicEGox8KlJgqb4=10/11/2026 8:54:41 SA10/11/2026 8:52:11 SA</TimeStamp>
+        <ID>
+          <String>Dim Area</String>
+        </ID>
+      </ObjectSnapshot>
+      <ObjectSnapshot>
+        <Type>Microsoft.AnalysisServices.Dimension</Type>
+        <TimeStamp>gmB5nNUAfWCKOpdsvR13utGqk8s=10/11/2026 8:55:04 SA10/11/2026 8:54:41 SA</TimeStamp>
+        <ID>
+          <String>Dim Cause</String>
+        </ID>
+      </ObjectSnapshot>
+      <ObjectSnapshot>
+        <Type>Microsoft.AnalysisServices.Dimension</Type>
+        <TimeStamp>Vx9awr8mC5tp9tTu5vI6H04q7i0=10/11/2026 8:55:32 SA10/11/2026 8:55:04 SA</TimeStamp>
+        <ID>
+          <String>Dim Source</String>
+        </ID>
+      </ObjectSnapshot>
+      <ObjectSnapshot>
+        <Type>Microsoft.AnalysisServices.Dimension</Type>
+        <TimeStamp>Ix1Os35+aJMJSSOCvK5s5gnxENI=10/11/2026 9:00:59 SA10/11/2026 8:55:32 SA</TimeStamp>
+        <ID>
+          <String>Dim Location</String>
+        </ID>
+      </ObjectSnapshot>
+      <ObjectSnapshot>
+        <Type>Microsoft.AnalysisServices.Dimension</Type>
+        <TimeStamp>EBz+sNWd22oBcldix7UjlOzgOH4=10/11/2026 9:00:59 SA10/11/2026 9:00:59 SA</TimeStamp>
+        <ID>
+          <String>Fact Flood Observation</String>
+        </ID>
+      </ObjectSnapshot>
+      <ObjectSnapshot>
+        <Type>Microsoft.AnalysisServices.Dimension</Type>
+        <TimeStamp>DPCdCpaBRo9yLAsbo2+nSagq7LI=10/11/2026 9:00:59 SA10/11/2026 9:00:59 SA</TimeStamp>
+        <ID>
+          <String>Fact Population</String>
+        </ID>
+      </ObjectSnapshot>
+      <ObjectSnapshot>
+        <Type>Microsoft.AnalysisServices.Cube</Type>
+        <TimeStamp>82vfifu922w1uwA7E0qJizI1fw4=10/11/2026 9:00:59 SA10/11/2026 9:00:59 SAsCUGG4L7s6CWha5XoicmaArjZ60=10/11/2026 9:00:59 SA10/11/2026 9:00:59 SA</TimeStamp>
+        <ID>
+          <String>Flood_DSS_Cube</String>
+        </ID>
+      </ObjectSnapshot>
+    </ObjectSnapshots>
+    <DatabaseSnapshot>
+      <Type>Microsoft.AnalysisServices.Database</Type>
+      <TimeStamp>RrFX+s7ohBFrGt8Po6T/CCKtOWk=09/11/2026 8:15:24 SA09/11/2026 8:15:23 SA</TimeStamp>
+      <ID>
+        <String>FloodDSS_SSAS</String>
+      </ID>
+    </DatabaseSnapshot>
+    <Granularity>Coarse</Granularity>
+  </Snapshot>
+  <AssemblyLocations />
+  <ProcessingComplete>true</ProcessingComplete>
+  <LastDeployed>2026-11-10T03:25:00.996667Z</LastDeployed>
+</DeploymentSnapshot>

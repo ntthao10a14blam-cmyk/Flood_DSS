@@ -11,8 +11,8 @@
   DTS:LocaleID="1033"
   DTS:ObjectName="08_Master_ETL"
   DTS:PackageType="5"
-  DTS:VersionBuild="20"
-  DTS:VersionGUID="{BD7FEB9C-6EAD-4C04-8114-617325C67E20}">
+  DTS:VersionBuild="28"
+  DTS:VersionGUID="{9DC6DC88-EEB2-4151-BBB2-732E7ECDA961}">
   <DTS:Property
     DTS:Name="PackageFormatVersion">8</DTS:Property>
   <DTS:ConnectionManagers>
@@ -25,7 +25,7 @@
         <DTS:ConnectionManager
           DTS:ConnectRetryCount="1"
           DTS:ConnectRetryInterval="5"
-          DTS:ConnectionString="Data Source=localhost\DW2025;Initial Catalog=Flood_DSS;Provider=MSOLEDBSQL.1;Integrated Security=SSPI;Auto Translate=False;Application Name=SSIS-08_Master_ETL-{771F85D4-8AD1-4490-894E-AE4A9D778405}.\SQLEXPRESS.Flood_DSS;" />
+          DTS:ConnectionString="Data Source=localhost\MSSQL2022_NHUNG;Initial Catalog=Flood_DSS;Provider=MSOLEDBSQL.1;Integrated Security=SSPI;Auto Translate=False;Application Name=SSIS-08_Master_ETL-{771F85D4-8AD1-4490-894E-AE4A9D778405}.\SQLEXPRESS.Flood_DSS;" />
       </DTS:ObjectData>
     </DTS:ConnectionManager>
     <DTS:ConnectionManager
@@ -37,7 +37,7 @@
         <DTS:ConnectionManager
           DTS:ConnectRetryCount="1"
           DTS:ConnectRetryInterval="5"
-          DTS:ConnectionString="Data Source=localhost\DW2025;Provider=MSOLEDBSQL.1;Integrated Security=SSPI;Auto Translate=False;Application Name=SSIS-08_Master_ETL-{082A7BE6-FF34-4008-834A-670829FCB957}localhost\DW2025;" />
+          DTS:ConnectionString="Data Source=localhost\MSSQL2022_NHUNG;Provider=MSOLEDBSQL.1;Integrated Security=SSPI;Auto Translate=False;Application Name=SSIS-08_Master_ETL-{082A7BE6-FF34-4008-834A-670829FCB957}localhost\DW2025;" />
       </DTS:ObjectData>
     </DTS:ConnectionManager>
     <DTS:ConnectionManager
@@ -49,7 +49,7 @@
         <DTS:ConnectionManager
           DTS:ConnectRetryCount="1"
           DTS:ConnectRetryInterval="5"
-          DTS:ConnectionString="Data Source=localhost\DW2025;Initial Catalog=Flood_DSS;Provider=MSOLEDBSQL.1;Integrated Security=SSPI;Auto Translate=False;Application Name=SSIS-08_Master_ETL-{DF4163EC-6363-4D66-A17B-76B4121E9E4A}localhost\DW2025.Flood_DSS;" />
+          DTS:ConnectionString="Data Source=localhost\MSSQL2022_NHUNG;Initial Catalog=Flood_DSS;Provider=MSOLEDBSQL.1;Integrated Security=SSPI;Auto Translate=False;Application Name=SSIS-08_Master_ETL-{DF4163EC-6363-4D66-A17B-76B4121E9E4A}localhost\DW2025.Flood_DSS;" />
       </DTS:ObjectData>
     </DTS:ConnectionManager>
   </DTS:ConnectionManagers>
@@ -86,6 +86,29 @@
       DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2025; © 2025 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
       DTS:ThreadHint="0">
       <DTS:Variables />
+      <DTS:EventHandlers>
+        <DTS:EventHandler
+          DTS:refId="Package\EX_00_Start_Log.EventHandlers[OnError]"
+          DTS:CreationName="OnError"
+          DTS:DTSID="{D132F46F-FF28-4021-AFE5-5DF21010F8C2}"
+          DTS:EventID="7602273"
+          DTS:EventName="OnError"
+          DTS:LocaleID="-1">
+          <DTS:Variables>
+            <DTS:Variable
+              DTS:CreationName=""
+              DTS:Description="The propagate property of the event"
+              DTS:DTSID="{A041F9BF-E344-408D-90AA-EF41BBDA19AF}"
+              DTS:IncludeInDebugDump="6789"
+              DTS:Namespace="System"
+              DTS:ObjectName="Propagate">
+              <DTS:VariableValue
+                DTS:DataType="11">-1</DTS:VariableValue>
+            </DTS:Variable>
+          </DTS:Variables>
+          <DTS:Executables />
+        </DTS:EventHandler>
+      </DTS:EventHandlers>
       <DTS:ObjectData>
         <SQLTask:SqlTaskData
           SQLTask:Connection="{DF4163EC-6363-4D66-A17B-76B4121E9E4A}"
@@ -247,20 +270,7 @@
       <DTS:ObjectData>
         <SQLTask:SqlTaskData
           SQLTask:Connection="{771F85D4-8AD1-4490-894E-AE4A9D778405}"
-          SQLTask:SqlStatementSource="UPDATE dw.ETL_Log&#xA;SET&#xA;    End_Time = SYSDATETIME(),&#xA;    Execution_Status = N'Success',&#xA;    Rows_Processed =&#xA;        (SELECT COUNT_BIG(*) FROM dw.Fact_FloodObservation)&#xA;        + (SELECT COUNT_BIG(*) FROM dw.Fact_Population),&#xA;    Rows_Error =&#xA;        (SELECT COUNT_BIG(*)&#xA;         FROM dw.ETL_Error&#xA;         WHERE Execution_ID = CONVERT(UNIQUEIDENTIFIER, ?))&#xA;WHERE Execution_ID = CONVERT(UNIQUEIDENTIFIER, ?);" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask">
-          <SQLTask:ParameterBinding
-            SQLTask:ParameterName="0"
-            SQLTask:DtsVariableName="User::ExecutionID"
-            SQLTask:ParameterDirection="Input"
-            SQLTask:DataType="130"
-            SQLTask:ParameterSize="36" />
-          <SQLTask:ParameterBinding
-            SQLTask:ParameterName="1"
-            SQLTask:DtsVariableName="User::ExecutionID"
-            SQLTask:ParameterDirection="Input"
-            SQLTask:DataType="130"
-            SQLTask:ParameterSize="36" />
-        </SQLTask:SqlTaskData>
+          SQLTask:SqlStatementSource=";WITH CurrentRun AS&#xA;(&#xA;    SELECT TOP (1) *&#xA;    FROM stg.ETL_Log&#xA;    WHERE EndTime IS NULL&#xA;    ORDER BY StartTime DESC&#xA;)&#xA;UPDATE CurrentRun&#xA;SET&#xA;    EndTime = SYSDATETIME(),&#xA;    ExecutionStatus = N'Success',&#xA;    ErrorMessage = NULL;" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
       </DTS:ObjectData>
     </DTS:Executable>
   </DTS:Executables>
@@ -372,33 +382,33 @@
           <DTS:ObjectData>
             <SQLTask:SqlTaskData
               SQLTask:Connection="{771F85D4-8AD1-4490-894E-AE4A9D778405}"
-              SQLTask:SqlStatementSource="INSERT INTO dw.ETL_Error&#xA;(&#xA;    Execution_ID,&#xA;    Package_Name,&#xA;    Task_Name,&#xA;    Error_Code,&#xA;    Error_Description,&#xA;    Error_Time&#xA;)&#xA;VALUES&#xA;(&#xA;    CONVERT(UNIQUEIDENTIFIER, ?),&#xA;    ?,&#xA;    ?,&#xA;    ?,&#xA;    ?,&#xA;    SYSDATETIME()&#xA;);" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask">
+              SQLTask:SqlStatementSource="INSERT INTO dw.ETL_Error&#xA;(&#xA;    Execution_ID,&#xA;    PackageName,&#xA;    ErrorTime,&#xA;    ErrorMessage&#xA;)&#xA;VALUES&#xA;(&#xA;    CONVERT(UNIQUEIDENTIFIER, ?),&#xA;    ?,&#xA;    SYSDATETIME(),&#xA;    CONCAT(&#xA;        N'Source: ', ?,&#xA;        N'; Error code: ', ?,&#xA;        N'; Description: ', ?&#xA;    )&#xA;);" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask">
               <SQLTask:ParameterBinding
-                SQLTask:ParameterName="NewParameterName"
+                SQLTask:ParameterName="0"
                 SQLTask:DtsVariableName="User::ExecutionID"
                 SQLTask:ParameterDirection="Input"
                 SQLTask:DataType="130"
                 SQLTask:ParameterSize="36" />
               <SQLTask:ParameterBinding
-                SQLTask:ParameterName="NewParameterName"
+                SQLTask:ParameterName="1"
                 SQLTask:DtsVariableName="System::PackageName"
                 SQLTask:ParameterDirection="Input"
                 SQLTask:DataType="130"
                 SQLTask:ParameterSize="-1" />
               <SQLTask:ParameterBinding
-                SQLTask:ParameterName="NewParameterName"
+                SQLTask:ParameterName="2"
                 SQLTask:DtsVariableName="System::SourceName"
                 SQLTask:ParameterDirection="Input"
                 SQLTask:DataType="130"
                 SQLTask:ParameterSize="-1" />
               <SQLTask:ParameterBinding
-                SQLTask:ParameterName="NewParameterName"
+                SQLTask:ParameterName="3"
                 SQLTask:DtsVariableName="System::ErrorCode"
                 SQLTask:ParameterDirection="Input"
                 SQLTask:DataType="3"
                 SQLTask:ParameterSize="-1" />
               <SQLTask:ParameterBinding
-                SQLTask:ParameterName="NewParameterName"
+                SQLTask:ParameterName="4"
                 SQLTask:DtsVariableName="System::ErrorDescription"
                 SQLTask:ParameterDirection="Input"
                 SQLTask:DataType="130"
@@ -460,7 +470,7 @@
         <NodeLayout
           Size="177.6,41.6"
           Id="Package\EX_09_Success_Log"
-          TopLeft="741.666626143788,307.266664707992" />
+          TopLeft="740.872975348448,308.116337909862" />
         <EdgeLayout
           Id="Package.PrecedenceConstraints[Constraint]"
           TopLeft="182.699994672835,107.466666208638">
@@ -727,26 +737,26 @@
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
-              EndConnector="-59.0666537357708,60.2666664255989"
+              EndConnector="-59.8603045311113,61.1163396274686"
               Start="0,0"
-              End="-51.5666537357708,60.2666664255989">
+              End="-52.3603045311113,61.1163396274686">
               <mssgle:Curve.Segments>
                 <mssgle:SegmentCollection
                   Capacity="5">
                   <mssgle:LineSegment
-                    End="-25.5333268678854,0" />
+                    End="-25.9301522655556,0" />
                   <mssgle:CubicBezierSegment
-                    Point1="-25.5333268678854,0"
-                    Point2="-29.5333268678854,0"
-                    Point3="-29.5333268678854,4" />
+                    Point1="-25.9301522655556,0"
+                    Point2="-29.9301522655556,0"
+                    Point3="-29.9301522655556,4" />
                   <mssgle:LineSegment
-                    End="-29.5333268678854,56.2666664255989" />
+                    End="-29.9301522655556,57.1163396274686" />
                   <mssgle:CubicBezierSegment
-                    Point1="-29.5333268678854,56.2666664255989"
-                    Point2="-29.5333268678854,60.2666664255989"
-                    Point3="-33.5333268678854,60.2666664255989" />
+                    Point1="-29.9301522655556,57.1163396274686"
+                    Point2="-29.9301522655556,61.1163396274686"
+                    Point3="-33.9301522655556,61.1163396274686" />
                   <mssgle:LineSegment
-                    End="-51.5666537357708,60.2666664255989" />
+                    End="-52.3603045311113,61.1163396274686" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>

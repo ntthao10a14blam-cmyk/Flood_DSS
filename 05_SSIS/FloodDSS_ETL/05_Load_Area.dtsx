@@ -1,4 +1,4 @@
-<?xml version="1.0"?>
+﻿<?xml version="1.0"?>
 <DTS:Executable xmlns:DTS="www.microsoft.com/SqlServer/Dts"
   DTS:refId="Package"
   DTS:CreationDate="10/28/2026 12:54:38 AM"
@@ -11,8 +11,8 @@
   DTS:LocaleID="1033"
   DTS:ObjectName="05_Load_Area1"
   DTS:PackageType="5"
-  DTS:VersionBuild="4"
-  DTS:VersionGUID="{0A235EE3-676E-4090-B7E9-ABC74852EF30}">
+  DTS:VersionBuild="7"
+  DTS:VersionGUID="{BF5EFDDD-F1FE-46E7-B386-FED765D4DA41}">
   <DTS:Property
     DTS:Name="PackageFormatVersion">8</DTS:Property>
   <DTS:ConnectionManagers>
@@ -30,7 +30,7 @@
           DTS:RowDelimiter=""
           DTS:TextQualifier="_x003C_none_x003E_"
           DTS:CodePage="65001"
-          DTS:ConnectionString="D:\Kho_du_lieu\Flood-DSS\02_Staging_CSV\Boundaries\Area_Boundaries_Clean.csv">
+          DTS:ConnectionString="D:\TAI_LIEU_BAI_GIANG\Datawarehouse\Flood_DSS\02_Staging_CSV\Boundaries\Area_Boundaries_Clean.csv">
           <DTS:FlatFileColumns>
             <DTS:FlatFileColumn
               DTS:ColumnType="Delimited"
@@ -39,7 +39,7 @@
               DTS:DataType="129"
               DTS:TextQualified="True"
               DTS:ObjectName="Area_ID"
-              DTS:DTSID="{1E52A83D-D735-4667-882C-D3788FBC2CBC}"
+              DTS:DTSID="{268FE745-1A36-47BD-A1D2-9A73A0DEC55F}"
               DTS:CreationName="" />
             <DTS:FlatFileColumn
               DTS:ColumnType="Delimited"
@@ -48,7 +48,7 @@
               DTS:DataType="129"
               DTS:TextQualified="True"
               DTS:ObjectName="Area_Name"
-              DTS:DTSID="{A580022F-26C3-4969-AF71-340E182047CD}"
+              DTS:DTSID="{46EDCA2A-722A-4B95-B439-6626413B0C32}"
               DTS:CreationName="" />
             <DTS:FlatFileColumn
               DTS:ColumnType="Delimited"
@@ -57,7 +57,7 @@
               DTS:DataType="129"
               DTS:TextQualified="True"
               DTS:ObjectName="Area_Level"
-              DTS:DTSID="{E5A9DE12-38E0-44C5-94B1-150A47DD8067}"
+              DTS:DTSID="{357041F7-20D1-48CB-81B8-A86572F51DD2}"
               DTS:CreationName="" />
             <DTS:FlatFileColumn
               DTS:ColumnType="Delimited"
@@ -66,7 +66,7 @@
               DTS:DataType="129"
               DTS:TextQualified="True"
               DTS:ObjectName="ParentArea_ID"
-              DTS:DTSID="{8E7198AF-3879-4E20-A5E4-6AE3DF731F9E}"
+              DTS:DTSID="{CE08F179-6DF1-4CE4-BF63-11D25D8D4781}"
               DTS:CreationName="" />
             <DTS:FlatFileColumn
               DTS:ColumnType="Delimited"
@@ -75,7 +75,7 @@
               DTS:DataType="129"
               DTS:TextQualified="True"
               DTS:ObjectName="ParentArea_Name"
-              DTS:DTSID="{B16585B1-E666-4600-9279-E522098FA461}"
+              DTS:DTSID="{B26B7FB6-55DF-4954-B610-D0C4C97098BE}"
               DTS:CreationName="" />
             <DTS:FlatFileColumn
               DTS:ColumnType="Delimited"
@@ -84,7 +84,7 @@
               DTS:DataType="129"
               DTS:TextQualified="True"
               DTS:ObjectName="BoundaryVersion"
-              DTS:DTSID="{699E225A-8D9E-467E-876E-4EC7883233F7}"
+              DTS:DTSID="{6DEE1CE5-B321-4207-9493-7BECCDC20E28}"
               DTS:CreationName="" />
             <DTS:FlatFileColumn
               DTS:ColumnType="Delimited"
@@ -93,7 +93,7 @@
               DTS:DataType="129"
               DTS:TextQualified="True"
               DTS:ObjectName="Area_km2"
-              DTS:DTSID="{D356FF2D-E1E6-45CA-BEDD-1418808D9A49}"
+              DTS:DTSID="{0955AF3C-040A-4234-8995-5F78E26FDC62}"
               DTS:CreationName="" />
             <DTS:FlatFileColumn
               DTS:ColumnType="Delimited"
@@ -102,7 +102,7 @@
               DTS:DataType="129"
               DTS:TextQualified="True"
               DTS:ObjectName="EffectiveFrom"
-              DTS:DTSID="{B5DA3777-AD93-406A-9245-382EFBDD012E}"
+              DTS:DTSID="{F794ADE3-FB96-4C0B-8C0D-4476DCC69C0C}"
               DTS:CreationName="" />
             <DTS:FlatFileColumn
               DTS:ColumnType="Delimited"
@@ -111,7 +111,7 @@
               DTS:DataType="129"
               DTS:TextQualified="True"
               DTS:ObjectName="EffectiveTo"
-              DTS:DTSID="{036D2CE8-149F-4114-A598-32A072987B73}"
+              DTS:DTSID="{155A1CDB-59F5-4687-995D-65C07DB4DD15}"
               DTS:CreationName="" />
           </DTS:FlatFileColumns>
         </DTS:ConnectionManager>
@@ -126,7 +126,7 @@
         <DTS:ConnectionManager
           DTS:ConnectRetryCount="1"
           DTS:ConnectRetryInterval="5"
-          DTS:ConnectionString="Data Source=localhost\DW2025;Initial Catalog=Flood_DSS;Provider=SQLOLEDB.1;Integrated Security=SSPI;Auto Translate=False;Application Name=SSIS-05_Load_Area1-{B448DDFF-66E6-4F2A-B74C-3143EC340FBE}LAPTOP-522UK8L8.Flood_DSS.sa;" />
+          DTS:ConnectionString="Data Source=localhost\MSSQL2022_NHUNG;Initial Catalog=Flood_DSS;Provider=SQLOLEDB.1;Integrated Security=SSPI;Auto Translate=False;Application Name=SSIS-05_Load_Area1-{B448DDFF-66E6-4F2A-B74C-3143EC340FBE}LAPTOP-522UK8L8.Flood_DSS.sa;" />
       </DTS:ObjectData>
     </DTS:ConnectionManager>
   </DTS:ConnectionManagers>

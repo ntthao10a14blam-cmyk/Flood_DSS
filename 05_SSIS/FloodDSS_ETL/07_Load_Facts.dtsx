@@ -11,8 +11,8 @@
   DTS:LocaleID="1033"
   DTS:ObjectName="07_Load_Facts"
   DTS:PackageType="5"
-  DTS:VersionBuild="66"
-  DTS:VersionGUID="{992E28EB-34D1-454A-A935-1EF2D0532386}">
+  DTS:VersionBuild="70"
+  DTS:VersionGUID="{3D956B5D-38C1-466A-9646-907ABD399C2B}">
   <DTS:Property
     DTS:Name="PackageFormatVersion">8</DTS:Property>
   <DTS:ConnectionManagers>
@@ -25,7 +25,7 @@
         <DTS:ConnectionManager
           DTS:ConnectRetryCount="1"
           DTS:ConnectRetryInterval="5"
-          DTS:ConnectionString="Data Source=localhost\DW2025;Initial Catalog=Flood_DSS;Provider=MSOLEDBSQL.1;Integrated Security=SSPI;Auto Translate=False;Application Name=SSIS-07_Load_Facts-{BA8DF01A-8FC3-46BC-8E2E-026505A5E908}.\SQLEXPRESS.Flood_DSS;" />
+          DTS:ConnectionString="Data Source=localhost\MSSQL2022_NHUNG;Initial Catalog=Flood_DSS;Provider=MSOLEDBSQL.1;Integrated Security=SSPI;Auto Translate=False;Application Name=SSIS-07_Load_Facts-{BA8DF01A-8FC3-46BC-8E2E-026505A5E908}.\SQLEXPRESS.Flood_DSS;" />
       </DTS:ObjectData>
     </DTS:ConnectionManager>
   </DTS:ConnectionManagers>
@@ -551,22 +551,6 @@ where [refTable].[Area_ID] = ? and [refTable].[BoundaryVersion] = ?</property>
                   name="Lookup Input">
                   <inputColumns>
                     <inputColumn
-                      refId="Package\DFT_Load_Fact_FloodObservation\LKP_Dim_Area.Inputs[Lookup Input].Columns[Area_ID]"
-                      cachedDataType="i4"
-                      cachedName="Area_ID"
-                      lineageId="Package\DFT_Load_Fact_FloodObservation\OLE DB Source.Outputs[OLE DB Source Output].Columns[Area_ID]">
-                      <properties>
-                        <property
-                          dataType="System.String"
-                          description="Specifies the column in the reference table that a column joins."
-                          name="JoinToReferenceColumn">Area_ID</property>
-                        <property
-                          dataType="System.Null"
-                          description="Specifies the column in the reference table from which a column is copied."
-                          name="CopyFromReferenceColumn" />
-                      </properties>
-                    </inputColumn>
-                    <inputColumn
                       refId="Package\DFT_Load_Fact_FloodObservation\LKP_Dim_Area.Inputs[Lookup Input].Columns[BoundaryVersion]"
                       cachedDataType="wstr"
                       cachedLength="4000"
@@ -577,6 +561,22 @@ where [refTable].[Area_ID] = ? and [refTable].[BoundaryVersion] = ?</property>
                           dataType="System.String"
                           description="Specifies the column in the reference table that a column joins."
                           name="JoinToReferenceColumn">BoundaryVersion</property>
+                        <property
+                          dataType="System.Null"
+                          description="Specifies the column in the reference table from which a column is copied."
+                          name="CopyFromReferenceColumn" />
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\DFT_Load_Fact_FloodObservation\LKP_Dim_Area.Inputs[Lookup Input].Columns[Area_ID]"
+                      cachedDataType="i4"
+                      cachedName="Area_ID"
+                      lineageId="Package\DFT_Load_Fact_FloodObservation\OLE DB Source.Outputs[OLE DB Source Output].Columns[Area_ID]">
+                      <properties>
+                        <property
+                          dataType="System.String"
+                          description="Specifies the column in the reference table that a column joins."
+                          name="JoinToReferenceColumn">Area_ID</property>
                         <property
                           dataType="System.Null"
                           description="Specifies the column in the reference table from which a column is copied."
@@ -1474,7 +1474,7 @@ where [refTable].[FullDate] = ?</property>
                     <externalMetadataColumn
                       refId="Package\DFT_Load_Fact_FloodObservation\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[Obs_ID]"
                       dataType="wstr"
-                      length="100"
+                      length="200"
                       name="Obs_ID" />
                     <externalMetadataColumn
                       refId="Package\DFT_Load_Fact_FloodObservation\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[TimeKey]"
@@ -1523,12 +1523,12 @@ where [refTable].[FullDate] = ?</property>
                     <externalMetadataColumn
                       refId="Package\DFT_Load_Fact_FloodObservation\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[DepthClass]"
                       dataType="wstr"
-                      length="50"
+                      length="100"
                       name="DepthClass" />
                     <externalMetadataColumn
                       refId="Package\DFT_Load_Fact_FloodObservation\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[ImpactType]"
                       dataType="wstr"
-                      length="255"
+                      length="510"
                       name="ImpactType" />
                     <externalMetadataColumn
                       refId="Package\DFT_Load_Fact_FloodObservation\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[ObservationCount]"
@@ -1537,7 +1537,7 @@ where [refTable].[FullDate] = ?</property>
                     <externalMetadataColumn
                       refId="Package\DFT_Load_Fact_FloodObservation\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[DataQualityStatus]"
                       dataType="wstr"
-                      length="50"
+                      length="100"
                       name="DataQualityStatus" />
                   </externalMetadataColumns>
                 </input>
@@ -2904,17 +2904,41 @@ WHERE NOT EXISTS (
           Id="Package\DFT_Load_Fact_FloodObservation\OLE DB Source"
           TopLeft="92.999998614192,62.9999990612269" />
         <NodeLayout
-          Size="171.2,41.6"
-          Id="Package\DFT_Load_Fact_FloodObservation\OLE DB Destination"
-          TopLeft="1338.99998004735,34.9999994784593" />
+          Size="167.2,64.8"
+          Id="Package\DFT_Load_Fact_FloodObservation\LKP_Dim_Location"
+          TopLeft="848.999987348914,205.999996930361" />
+        <NodeLayout
+          Size="151.2,41.6"
+          Id="Package\DFT_Load_Fact_FloodObservation\LKP_Dim_Time"
+          TopLeft="231.999996542931,142.999997869134" />
+        <NodeLayout
+          Size="150.4,41.6"
+          Id="Package\DFT_Load_Fact_FloodObservation\LKP_Dim_Area"
+          TopLeft="452.999993249774,77.9999988377094" />
+        <NodeLayout
+          Size="164,41.6"
+          Id="Package\DFT_Load_Fact_FloodObservation\Data Conversion 1"
+          TopLeft="606.999990954995,196.999997064471" />
+        <NodeLayout
+          Size="160.8,41.6"
+          Id="Package\DFT_Load_Fact_FloodObservation\LKP_Dim_Source"
+          TopLeft="1325.49998033047,159.499997705221" />
+        <NodeLayout
+          Size="158.4,41.6"
+          Id="Package\DFT_Load_Fact_FloodObservation\LKP_Dim_Cause"
+          TopLeft="1143.99998295307,235.999996483326" />
         <NodeLayout
           Size="156,41.6"
           Id="Package\DFT_Load_Fact_FloodObservation\Data Conversion"
           TopLeft="1116.9999833554,31.9999995231629" />
         <NodeLayout
-          Size="151.2,41.6"
-          Id="Package\DFT_Load_Fact_FloodObservation\LKP_Dim_Time"
-          TopLeft="231.999996542931,142.999997869134" />
+          Size="171.2,41.6"
+          Id="Package\DFT_Load_Fact_FloodObservation\OLE DB Destination"
+          TopLeft="1338.99998004735,34.9999994784593" />
+        <NodeLayout
+          Size="161.6,41.6"
+          Id="Package\DFT_Load_Fact_FloodObservation\Derived Column 1"
+          TopLeft="1012.99998490512,128.99999807775" />
         <EdgeLayout
           Id="Package\DFT_Load_Fact_FloodObservation.Paths[OLE DB Source Output]"
           TopLeft="168.999998614192,104.599999061227">
@@ -2949,230 +2973,6 @@ WHERE NOT EXISTS (
             <EdgeLabelCollection />
           </EdgeLayout.Labels>
         </EdgeLayout>
-        <NodeLayout
-          Size="150.4,41.6"
-          Id="Package\DFT_Load_Fact_FloodObservation\LKP_Dim_Area"
-          TopLeft="452.999993249774,77.9999988377094" />
-        <EdgeLayout
-          Id="Package\DFT_Load_Fact_FloodObservation.Paths[Data Conversion Output]"
-          TopLeft="1272.9999833554,54.2999995008111">
-          <EdgeLayout.Curve>
-            <mssgle:Curve
-              StartConnector="{assembly:Null}"
-              EndConnector="65.9999966919424,0"
-              Start="0,0"
-              End="58.4999966919424,0">
-              <mssgle:Curve.Segments>
-                <mssgle:SegmentCollection
-                  Capacity="5">
-                  <mssgle:LineSegment
-                    End="58.4999966919424,0" />
-                </mssgle:SegmentCollection>
-              </mssgle:Curve.Segments>
-            </mssgle:Curve>
-          </EdgeLayout.Curve>
-          <EdgeLayout.Labels>
-            <EdgeLabelCollection />
-          </EdgeLayout.Labels>
-        </EdgeLayout>
-        <NodeLayout
-          Size="167.2,64.8"
-          Id="Package\DFT_Load_Fact_FloodObservation\LKP_Dim_Location"
-          TopLeft="848.999987348914,205.999996930361" />
-        <NodeLayout
-          Size="164,41.6"
-          Id="Package\DFT_Load_Fact_FloodObservation\Data Conversion 1"
-          TopLeft="606.999990954995,196.999997064471" />
-        <EdgeLayout
-          Id="Package\DFT_Load_Fact_FloodObservation.Paths[Lookup Match Output]"
-          TopLeft="551.933326583107,119.599998837709">
-          <EdgeLayout.Curve>
-            <mssgle:Curve
-              StartConnector="{assembly:Null}"
-              EndConnector="137.066664371888,77.3999982267619"
-              Start="0,0"
-              End="137.066664371888,69.8999982267619">
-              <mssgle:Curve.Segments>
-                <mssgle:SegmentCollection
-                  Capacity="5">
-                  <mssgle:LineSegment
-                    End="0,27.4488413847685" />
-                  <mssgle:CubicBezierSegment
-                    Point1="0,27.4488413847685"
-                    Point2="0,31.4488413847685"
-                    Point3="4,31.4488413847685" />
-                  <mssgle:LineSegment
-                    End="133.066664371888,31.4488413847685" />
-                  <mssgle:CubicBezierSegment
-                    Point1="133.066664371888,31.4488413847685"
-                    Point2="137.066664371888,31.4488413847685"
-                    Point3="137.066664371888,35.4488413847685" />
-                  <mssgle:LineSegment
-                    End="137.066664371888,69.8999982267619" />
-                </mssgle:SegmentCollection>
-              </mssgle:Curve.Segments>
-            </mssgle:Curve>
-          </EdgeLayout.Curve>
-          <EdgeLayout.Labels>
-            <mssgm:EdgeLabel
-              BoundingBox="20.341945467194,36.4488413847685,96.3827734375,11.609375"
-              RelativePosition="Any" />
-          </EdgeLayout.Labels>
-        </EdgeLayout>
-        <EdgeLayout
-          Id="Package\DFT_Load_Fact_FloodObservation.Paths[Data Conversion Output1]"
-          TopLeft="770.999990954995,217.799997064471">
-          <EdgeLayout.Curve>
-            <mssgle:Curve
-              StartConnector="{assembly:Null}"
-              EndConnector="77.9999963939188,20.5999998658895"
-              Start="0,0"
-              End="70.4999963939188,20.5999998658895">
-              <mssgle:Curve.Segments>
-                <mssgle:SegmentCollection
-                  Capacity="5">
-                  <mssgle:LineSegment
-                    End="34.9999981969594,0" />
-                  <mssgle:CubicBezierSegment
-                    Point1="34.9999981969594,0"
-                    Point2="38.9999981969594,0"
-                    Point3="38.9999981969594,4" />
-                  <mssgle:LineSegment
-                    End="38.9999981969594,16.5999998658895" />
-                  <mssgle:CubicBezierSegment
-                    Point1="38.9999981969594,16.5999998658895"
-                    Point2="38.9999981969594,20.5999998658895"
-                    Point3="42.9999981969594,20.5999998658895" />
-                  <mssgle:LineSegment
-                    End="70.4999963939188,20.5999998658895" />
-                </mssgle:SegmentCollection>
-              </mssgle:Curve.Segments>
-            </mssgle:Curve>
-          </EdgeLayout.Curve>
-          <EdgeLayout.Labels>
-            <EdgeLabelCollection />
-          </EdgeLayout.Labels>
-        </EdgeLayout>
-        <NodeLayout
-          Size="160.8,41.6"
-          Id="Package\DFT_Load_Fact_FloodObservation\LKP_Dim_Source"
-          TopLeft="1325.49998033047,159.499997705221" />
-        <NodeLayout
-          Size="158.4,41.6"
-          Id="Package\DFT_Load_Fact_FloodObservation\LKP_Dim_Cause"
-          TopLeft="1143.99998295307,235.999996483326" />
-        <EdgeLayout
-          Id="Package\DFT_Load_Fact_FloodObservation.Paths[Lookup Match Output1]"
-          TopLeft="1016.19998734891,238.399996930361">
-          <EdgeLayout.Curve>
-            <mssgle:Curve
-              StartConnector="{assembly:Null}"
-              EndConnector="127.799995604158,18.3999995529652"
-              Start="0,0"
-              End="120.299995604158,18.3999995529652">
-              <mssgle:Curve.Segments>
-                <mssgle:SegmentCollection
-                  Capacity="5">
-                  <mssgle:LineSegment
-                    End="59.8999978020789,0" />
-                  <mssgle:CubicBezierSegment
-                    Point1="59.8999978020789,0"
-                    Point2="63.8999978020789,0"
-                    Point3="63.8999978020789,4" />
-                  <mssgle:LineSegment
-                    End="63.8999978020789,14.3999995529652" />
-                  <mssgle:CubicBezierSegment
-                    Point1="63.8999978020789,14.3999995529652"
-                    Point2="63.8999978020789,18.3999995529652"
-                    Point3="67.8999978020789,18.3999995529652" />
-                  <mssgle:LineSegment
-                    End="120.299995604158,18.3999995529652" />
-                </mssgle:SegmentCollection>
-              </mssgle:Curve.Segments>
-            </mssgle:Curve>
-          </EdgeLayout.Curve>
-          <EdgeLayout.Labels>
-            <mssgm:EdgeLabel
-              BoundingBox="15.7086110833289,-17.609375,96.3827734375,11.609375"
-              RelativePosition="Any" />
-          </EdgeLayout.Labels>
-        </EdgeLayout>
-        <EdgeLayout
-          Id="Package\DFT_Load_Fact_FloodObservation.Paths[Lookup Match Output2]"
-          TopLeft="1223.19998295307,235.999996483326">
-          <EdgeLayout.Curve>
-            <mssgle:Curve
-              StartConnector="{assembly:Null}"
-              EndConnector="182.699997377396,-34.8999987781048"
-              Start="0,0"
-              End="182.699997377396,-27.3999987781048">
-              <mssgle:Curve.Segments>
-                <mssgle:SegmentCollection
-                  Capacity="5">
-                  <mssgle:LineSegment
-                    End="0,-13.4499993890524" />
-                  <mssgle:CubicBezierSegment
-                    Point1="0,-13.4499993890524"
-                    Point2="0,-17.4499993890524"
-                    Point3="4,-17.4499993890524" />
-                  <mssgle:LineSegment
-                    End="178.699997377396,-17.4499993890524" />
-                  <mssgle:CubicBezierSegment
-                    Point1="178.699997377396,-17.4499993890524"
-                    Point2="182.699997377396,-17.4499993890524"
-                    Point3="182.699997377396,-21.4499993890524" />
-                  <mssgle:LineSegment
-                    End="182.699997377396,-27.3999987781048" />
-                </mssgle:SegmentCollection>
-              </mssgle:Curve.Segments>
-            </mssgle:Curve>
-          </EdgeLayout.Curve>
-          <EdgeLayout.Labels>
-            <mssgm:EdgeLabel
-              BoundingBox="43.1586119699478,-12.4499993890524,96.3827734375,11.609375"
-              RelativePosition="Any" />
-          </EdgeLayout.Labels>
-        </EdgeLayout>
-        <EdgeLayout
-          Id="Package\DFT_Load_Fact_FloodObservation.Paths[Lookup Match Output3]"
-          TopLeft="331.466663209597,142.999997869134">
-          <EdgeLayout.Curve>
-            <mssgle:Curve
-              StartConnector="{assembly:Null}"
-              EndConnector="172.999996706843,-23.3999990314244"
-              Start="0,0"
-              End="172.999996706843,-15.8999990314244">
-              <mssgle:Curve.Segments>
-                <mssgle:SegmentCollection
-                  Capacity="5">
-                  <mssgle:LineSegment
-                    End="0,-7.69919758562985" />
-                  <mssgle:CubicBezierSegment
-                    Point1="0,-7.69919758562985"
-                    Point2="0,-11.6991975856299"
-                    Point3="4,-11.6991975856299" />
-                  <mssgle:LineSegment
-                    End="168.999996706843,-11.6991975856299" />
-                  <mssgle:CubicBezierSegment
-                    Point1="168.999996706843,-11.6991975856299"
-                    Point2="172.999996706843,-11.6991975856299"
-                    Point3="172.999996706843,-15.6991975856299" />
-                  <mssgle:LineSegment
-                    End="172.999996706843,-15.8999990314244" />
-                </mssgle:SegmentCollection>
-              </mssgle:Curve.Segments>
-            </mssgle:Curve>
-          </EdgeLayout.Curve>
-          <EdgeLayout.Labels>
-            <mssgm:EdgeLabel
-              BoundingBox="38.3086116346716,-6.69919758562985,96.3827734375,11.609375"
-              RelativePosition="Any" />
-          </EdgeLayout.Labels>
-        </EdgeLayout>
-        <NodeLayout
-          Size="161.6,41.6"
-          Id="Package\DFT_Load_Fact_FloodObservation\Derived Column 1"
-          TopLeft="1012.99998490512,128.99999807775" />
         <EdgeLayout
           Id="Package\DFT_Load_Fact_FloodObservation.Paths[Lookup Match Output4]"
           TopLeft="1325.49998033047,180.299997705221">
@@ -3210,6 +3010,150 @@ WHERE NOT EXISTS (
           </EdgeLayout.Labels>
         </EdgeLayout>
         <EdgeLayout
+          Id="Package\DFT_Load_Fact_FloodObservation.Paths[Lookup Match Output3]"
+          TopLeft="331.466663209597,142.999997869134">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="172.999996706843,-23.3999990314244"
+              Start="0,0"
+              End="172.999996706843,-15.8999990314244">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,-7.69919758562985" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,-7.69919758562985"
+                    Point2="0,-11.6991975856299"
+                    Point3="4,-11.6991975856299" />
+                  <mssgle:LineSegment
+                    End="168.999996706843,-11.6991975856299" />
+                  <mssgle:CubicBezierSegment
+                    Point1="168.999996706843,-11.6991975856299"
+                    Point2="172.999996706843,-11.6991975856299"
+                    Point3="172.999996706843,-15.6991975856299" />
+                  <mssgle:LineSegment
+                    End="172.999996706843,-15.8999990314244" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="38.3086116346715,-6.6991975856299,96.3827734375,11.609375"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\DFT_Load_Fact_FloodObservation.Paths[Lookup Match Output2]"
+          TopLeft="1223.19998295307,235.999996483326">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="182.699997377396,-34.8999987781048"
+              Start="0,0"
+              End="182.699997377396,-27.3999987781048">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,-13.4499993890524" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,-13.4499993890524"
+                    Point2="0,-17.4499993890524"
+                    Point3="4,-17.4499993890524" />
+                  <mssgle:LineSegment
+                    End="178.699997377396,-17.4499993890524" />
+                  <mssgle:CubicBezierSegment
+                    Point1="178.699997377396,-17.4499993890524"
+                    Point2="182.699997377396,-17.4499993890524"
+                    Point3="182.699997377396,-21.4499993890524" />
+                  <mssgle:LineSegment
+                    End="182.699997377396,-27.3999987781048" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="43.158611969948,-12.4499993890524,96.3827734375,11.609375"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\DFT_Load_Fact_FloodObservation.Paths[Lookup Match Output1]"
+          TopLeft="1016.19998734891,238.399996930361">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="127.799995604158,18.3999995529652"
+              Start="0,0"
+              End="120.299995604158,18.3999995529652">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="59.8999978020789,0" />
+                  <mssgle:CubicBezierSegment
+                    Point1="59.8999978020789,0"
+                    Point2="63.8999978020789,0"
+                    Point3="63.8999978020789,4" />
+                  <mssgle:LineSegment
+                    End="63.8999978020789,14.3999995529652" />
+                  <mssgle:CubicBezierSegment
+                    Point1="63.8999978020789,14.3999995529652"
+                    Point2="63.8999978020789,18.3999995529652"
+                    Point3="67.8999978020789,18.3999995529652" />
+                  <mssgle:LineSegment
+                    End="120.299995604158,18.3999995529652" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="15.7086110833289,-17.609375,96.3827734375,11.609375"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\DFT_Load_Fact_FloodObservation.Paths[Lookup Match Output]"
+          TopLeft="551.933326583107,119.599998837709">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="137.066664371888,77.3999982267619"
+              Start="0,0"
+              End="137.066664371888,69.8999982267619">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,27.4488413847685" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,27.4488413847685"
+                    Point2="0,31.4488413847685"
+                    Point3="4,31.4488413847685" />
+                  <mssgle:LineSegment
+                    End="133.066664371888,31.4488413847685" />
+                  <mssgle:CubicBezierSegment
+                    Point1="133.066664371888,31.4488413847685"
+                    Point2="137.066664371888,31.4488413847685"
+                    Point3="137.066664371888,35.4488413847685" />
+                  <mssgle:LineSegment
+                    End="137.066664371888,69.8999982267619" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="20.341945467194,36.4488413847685,96.3827734375,11.609375"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
           Id="Package\DFT_Load_Fact_FloodObservation.Paths[Derived Column Output]"
           TopLeft="1093.79998490512,128.99999807775">
           <EdgeLayout.Curve>
@@ -3243,6 +3187,62 @@ WHERE NOT EXISTS (
             <EdgeLabelCollection />
           </EdgeLayout.Labels>
         </EdgeLayout>
+        <EdgeLayout
+          Id="Package\DFT_Load_Fact_FloodObservation.Paths[Data Conversion Output1]"
+          TopLeft="770.999990954995,217.799997064471">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="77.9999963939188,20.5999998658895"
+              Start="0,0"
+              End="70.4999963939188,20.5999998658895">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="34.9999981969594,0" />
+                  <mssgle:CubicBezierSegment
+                    Point1="34.9999981969594,0"
+                    Point2="38.9999981969594,0"
+                    Point3="38.9999981969594,4" />
+                  <mssgle:LineSegment
+                    End="38.9999981969594,16.5999998658895" />
+                  <mssgle:CubicBezierSegment
+                    Point1="38.9999981969594,16.5999998658895"
+                    Point2="38.9999981969594,20.5999998658895"
+                    Point3="42.9999981969594,20.5999998658895" />
+                  <mssgle:LineSegment
+                    End="70.4999963939188,20.5999998658895" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\DFT_Load_Fact_FloodObservation.Paths[Data Conversion Output]"
+          TopLeft="1272.9999833554,54.2999995008111">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="65.9999966919424,0"
+              Start="0,0"
+              End="58.4999966919424,0">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="58.4999966919424,0" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
       </GraphLayout>
     </LayoutInfo>
   </TaskHost>
@@ -3260,7 +3260,7 @@ WHERE NOT EXISTS (
       <Property>
         <Name>OverwriteParamsSQLProp</Name>
         <Value
-          type="q2:string">false</Value>
+          type="q2:boolean">false</Value>
       </Property>
       <Property>
         <Name>UsedTableName</Name>
@@ -3306,7 +3306,7 @@ WHERE NOT EXISTS (
       <Property>
         <Name>OverwriteParamsSQLProp</Name>
         <Value
-          type="q2:string">false</Value>
+          type="q2:boolean">false</Value>
       </Property>
       <Property>
         <Name>UsedTableName</Name>
@@ -3316,7 +3316,7 @@ WHERE NOT EXISTS (
       <Property>
         <Name>TableInfoObjectType</Name>
         <Value
-          type="q4:string">0</Value>
+          type="q4:int">0</Value>
       </Property>
       <Property>
         <Name>DataSourceViewID</Name>
@@ -3388,21 +3388,55 @@ WHERE NOT EXISTS (
       <GraphLayout
         Capacity="8" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mssgm="clr-namespace:Microsoft.SqlServer.Graph.Model;assembly=Microsoft.SqlServer.Graph">
         <NodeLayout
+          Size="112.8,41.6"
+          Id="Package\DFT_Load_Fact_Population\Lookup"
+          TopLeft="581.999991327524,106.999998405576" />
+        <NodeLayout
           Size="152,41.6"
           Id="Package\DFT_Load_Fact_Population\OLE DB Source"
           TopLeft="218.999996736646,111.99999833107" />
-        <NodeLayout
-          Size="171.2,41.6"
-          Id="Package\DFT_Load_Fact_Population\OLE DB Destination"
-          TopLeft="970.999985530973,99.999998509884" />
         <NodeLayout
           Size="152.8,41.6"
           Id="Package\DFT_Load_Fact_Population\Derived Column"
           TopLeft="767.999988555908,80.9999987930059" />
         <NodeLayout
-          Size="112.8,41.6"
-          Id="Package\DFT_Load_Fact_Population\Lookup"
-          TopLeft="581.999991327524,106.999998405576" />
+          Size="171.2,41.6"
+          Id="Package\DFT_Load_Fact_Population\OLE DB Destination"
+          TopLeft="970.999985530973,99.999998509884" />
+        <EdgeLayout
+          Id="Package\DFT_Load_Fact_Population.Paths[Derived Column Output]"
+          TopLeft="920.799988555908,101.799998793006">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="50.1999969750644,18.999999716878"
+              Start="0,0"
+              End="42.6999969750644,18.999999716878">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="21.0999984875322,0" />
+                  <mssgle:CubicBezierSegment
+                    Point1="21.0999984875322,0"
+                    Point2="25.0999984875322,0"
+                    Point3="25.0999984875322,4" />
+                  <mssgle:LineSegment
+                    End="25.0999984875322,14.999999716878" />
+                  <mssgle:CubicBezierSegment
+                    Point1="25.0999984875322,14.999999716878"
+                    Point2="25.0999984875322,18.999999716878"
+                    Point3="29.0999984875322,18.999999716878" />
+                  <mssgle:LineSegment
+                    End="42.6999969750644,18.999999716878" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
         <EdgeLayout
           Id="Package\DFT_Load_Fact_Population.Paths[OLE DB Source Output]"
           TopLeft="370.999996736646,130.299998368323">
@@ -3459,40 +3493,6 @@ WHERE NOT EXISTS (
             <mssgm:EdgeLabel
               BoundingBox="-11.591388104558,1,96.3827734375,11.609375"
               RelativePosition="Any" />
-          </EdgeLayout.Labels>
-        </EdgeLayout>
-        <EdgeLayout
-          Id="Package\DFT_Load_Fact_Population.Paths[Derived Column Output]"
-          TopLeft="920.799988555908,101.799998793006">
-          <EdgeLayout.Curve>
-            <mssgle:Curve
-              StartConnector="{assembly:Null}"
-              EndConnector="50.1999969750644,18.999999716878"
-              Start="0,0"
-              End="42.6999969750644,18.999999716878">
-              <mssgle:Curve.Segments>
-                <mssgle:SegmentCollection
-                  Capacity="5">
-                  <mssgle:LineSegment
-                    End="21.0999984875322,0" />
-                  <mssgle:CubicBezierSegment
-                    Point1="21.0999984875322,0"
-                    Point2="25.0999984875322,0"
-                    Point3="25.0999984875322,4" />
-                  <mssgle:LineSegment
-                    End="25.0999984875322,14.999999716878" />
-                  <mssgle:CubicBezierSegment
-                    Point1="25.0999984875322,14.999999716878"
-                    Point2="25.0999984875322,18.999999716878"
-                    Point3="29.0999984875322,18.999999716878" />
-                  <mssgle:LineSegment
-                    End="42.6999969750644,18.999999716878" />
-                </mssgle:SegmentCollection>
-              </mssgle:Curve.Segments>
-            </mssgle:Curve>
-          </EdgeLayout.Curve>
-          <EdgeLayout.Labels>
-            <EdgeLabelCollection />
           </EdgeLayout.Labels>
         </EdgeLayout>
       </GraphLayout>
