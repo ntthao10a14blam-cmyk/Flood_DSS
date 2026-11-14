@@ -28,10 +28,6 @@
       <FullPath>Dim Area.dim</FullPath>
     </ProjectItem>
     <ProjectItem>
-      <Name>Dim Cause.dim</Name>
-      <FullPath>Dim Cause.dim</FullPath>
-    </ProjectItem>
-    <ProjectItem>
       <Name>Dim Source.dim</Name>
       <FullPath>Dim Source.dim</FullPath>
     </ProjectItem>
@@ -40,24 +36,28 @@
       <FullPath>Dim Location.dim</FullPath>
     </ProjectItem>
     <ProjectItem>
-      <Name>Fact Flood Observation.dim</Name>
-      <FullPath>Fact Flood Observation.dim</FullPath>
+      <Name>Dim Cause.dim</Name>
+      <FullPath>Dim Cause.dim</FullPath>
     </ProjectItem>
     <ProjectItem>
       <Name>Fact Population.dim</Name>
       <FullPath>Fact Population.dim</FullPath>
     </ProjectItem>
+    <ProjectItem>
+      <Name>Fact Flood Observation.dim</Name>
+      <FullPath>Fact Flood Observation.dim</FullPath>
+    </ProjectItem>
   </Dimensions>
   <DataSources>
     <ProjectItem>
-      <Name>DS_Flood DSS.ds</Name>
-      <FullPath>DS_Flood DSS.ds</FullPath>
+      <Name>DS_FloodDSS.ds</Name>
+      <FullPath>DS_FloodDSS.ds</FullPath>
     </ProjectItem>
   </DataSources>
   <DataSourceViews>
     <ProjectItem>
-      <Name>DSV_Flood DSS.dsv</Name>
-      <FullPath>DSV_Flood DSS.dsv</FullPath>
+      <Name>DSV_FloodDSS.dsv</Name>
+      <FullPath>DSV_FloodDSS.dsv</FullPath>
     </ProjectItem>
   </DataSourceViews>
   <Configurations>
@@ -66,15 +66,15 @@
       <Options>
         <ConnectionMappings>
           <ConfigurationSetting>
-            <Id>Flood DSS</Id>
-            <Name>Flood DSS</Name>
-            <Value xsi:type="xsd:string">Provider=MSOLEDBSQL.1;Data Source=localhost\MSSQL2022_NHUNG;Integrated Security=SSPI;Initial Catalog=Flood_DSS</Value>
+            <Id>DS_FloodDSS</Id>
+            <Name>DS_FloodDSS</Name>
+            <Value xsi:type="xsd:string">Provider=MSOLEDBSQL.1;Data Source=localhost\DW2025;Integrated Security=SSPI;Initial Catalog=Flood_DSS</Value>
           </ConfigurationSetting>
         </ConnectionMappings>
         <ConnectionSecurityMappings>
           <ConfigurationSetting>
-            <Id>Flood DSS</Id>
-            <Name>Flood DSS</Name>
+            <Id>DS_FloodDSS</Id>
+            <Name>DS_FloodDSS</Name>
             <Value xsi:type="xsd:int">0</Value>
           </ConfigurationSetting>
         </ConnectionSecurityMappings>

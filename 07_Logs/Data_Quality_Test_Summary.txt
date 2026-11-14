@@ -1,0 +1,30 @@
+====================================================================================================
+  BÁO CÁO TỔNG HỢP KẾT QUẢ KIỂM THỬ CHẤT LƯỢNG DỮ LIỆU TỰ ĐỘNG BẰNG PYTHON (FLOOD-DSS)
+====================================================================================================
+Thời gian thực thi : 07/11/2026 21:05:57
+Tổng số ca kiểm thử: 18
+Số ca ĐẠT (PASSED) : 18 / 18
+Số ca LỖI (FAILED) : 0 / 18
+Tỷ lệ thành công   : 100.0%
+----------------------------------------------------------------------------------------------------
+Mã TC  | Phân nhóm kiểm thử         | Trạng thái | Chi tiết kết quả
+----------------------------------------------------------------------------------------------------
+TC01   | Schema & Files             | PASSED     | Đầy đủ 6/6 tệp dữ liệu tồn tại trên đĩa
+TC02   | Schema & Files             | PASSED     | Flood: 425/425 | Integ: 425/425 | Pop: 24/24 | Roads: 9/9 | Area: 24/24
+TC03   | Schema & Files             | PASSED     | Đầy đủ 9 thuộc tính cốt lõi của bảng sự kiện ngập
+TC04   | Uniqueness                 | PASSED     | 0 dòng trùng lặp 100% trên cả 6 dataset
+TC05   | Uniqueness                 | PASSED     | Phát hiện đúng 2 dòng trùng mã ['Obs_239']; khử trùng thành công còn 424 sự kiện duy nhất (QR_06)
+TC06   | Uniqueness                 | PASSED     | Area_ID (24/24), Road_ID (9/9), Boundary Area_ID (24/24) đều duy nhất 100%
+TC07   | Completeness               | PASSED     | 0 giá trị NULL trên 7 cột bắt buộc (Obs_id, Year, Location, Cause, Source, Long, Lat)
+TC08   | Completeness               | PASSED     | Khuyết ngày: 63 dòng (14.82% <= ngưỡng 20.0%); gán TimeKey = -1
+TC09   | Completeness               | PASSED     | Khuyết độ sâu số học: 278 dòng (65.41%); cờ Missing_Depth: 257 dòng (60.47%); 21 dòng có nhãn định tính (16 Severe, 5 Heavy)
+TC10   | Domain & Business Logic    | PASSED     | 0 dòng độ sâu âm (MaxDepth min: 10.0 cm, MinDepth min: 10.0 cm)
+TC11   | Domain & Business Logic    | PASSED     | 0 dòng thời lượng ngập âm (Thời lượng min: 0.3 giờ, max: 6.0 giờ)
+TC12   | Domain & Business Logic    | PASSED     | 100% nguyên nhân hợp lệ trong danh mục chuẩn: ['High tide', 'Rain', 'Combined']
+TC13   | Domain & Business Logic    | PASSED     | Phát hiện đúng 1 bản ghi lệch ngày-năm (['Obs_298']: Date 2018 vs Year 2019); 361/362 bản ghi khớp 100%
+TC14   | Geospatial Accuracy        | PASSED     | 100% tọa độ nằm trong Bounding Box khảo sát [10.3-11.2°N, 106.3-107.2°E]; xác định đúng 2 điểm Vũng Tàu (['Obs_12', 'Obs_13']) được định tuyến sang Unknown Member
+TC15   | Geospatial Accuracy        | PASSED     | 0 khoảng cách âm | Min: 0.00m | Mean: 364.35m | Max: 16789.39m (Cần Giờ/Củ Chi)
+TC16   | Geospatial Accuracy        | PASSED     | 0 khoảng cách âm | Min: 0.02m | Max: 49381.61m | 100% hợp lệ
+TC17   | Integration & Referential  | PASSED     | Phát hiện 417 chuỗi float string; 100% (417 dòng) ép kiểu an toàn sang INT (QR_04)
+TC18   | Integration & Referential  | PASSED     | 417/425 sự kiện khớp 24 quận/huyện; 8 điểm giáp ranh/ngoài tỉnh định tuyến sang Unknown Member (-1) theo QR_05
+====================================================================================================

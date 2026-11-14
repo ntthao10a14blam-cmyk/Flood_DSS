@@ -1,0 +1,377 @@
+﻿<DataSourceView xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ddl2="http://schemas.microsoft.com/analysisservices/2003/engine/2" xmlns:ddl2_2="http://schemas.microsoft.com/analysisservices/2003/engine/2/2" xmlns:ddl100_100="http://schemas.microsoft.com/analysisservices/2008/engine/100/100" xmlns:ddl200="http://schemas.microsoft.com/analysisservices/2010/engine/200" xmlns:ddl200_200="http://schemas.microsoft.com/analysisservices/2010/engine/200/200" xmlns:ddl300="http://schemas.microsoft.com/analysisservices/2011/engine/300" xmlns:ddl300_300="http://schemas.microsoft.com/analysisservices/2011/engine/300/300" xmlns:ddl400="http://schemas.microsoft.com/analysisservices/2012/engine/400" xmlns:ddl400_400="http://schemas.microsoft.com/analysisservices/2012/engine/400/400" xmlns:ddl500="http://schemas.microsoft.com/analysisservices/2013/engine/500" xmlns:ddl500_500="http://schemas.microsoft.com/analysisservices/2013/engine/500/500" xmlns:dwd="http://schemas.microsoft.com/DataWarehouse/Designer/1.0" dwd:design-time-name="6bb1dd92-54ab-47f1-92d9-89f43354597d" xmlns="http://schemas.microsoft.com/analysisservices/2003/engine">
+  <ID>DSV_FloodDSS</ID>
+  <Name>DSV_FloodDSS</Name>
+  <CreatedTimestamp>0001-01-01T00:00:00Z</CreatedTimestamp>
+  <LastSchemaUpdate>0001-01-01T00:00:00Z</LastSchemaUpdate>
+  <Annotations>
+    <Annotation>
+      <Name>http://schemas.microsoft.com/DataWarehouse/Designer/1.0:ShowFriendlyNames</Name>
+      <Value>true</Value>
+    </Annotation>
+    <Annotation>
+      <Name>http://schemas.microsoft.com/DataWarehouse/Designer/1.0:CurrentLayout</Name>
+      <Value>_ALL_TABLES_</Value>
+    </Annotation>
+    <Annotation>
+      <Name>http://schemas.microsoft.com/DataWarehouse/Designer/1.0:SchemaRestriction</Name>
+      <Value></Value>
+    </Annotation>
+    <Annotation>
+      <Name>http://schemas.microsoft.com/DataWarehouse/Designer/1.0:RetrieveRelationships</Name>
+      <Value>true</Value>
+    </Annotation>
+    <Annotation>
+      <Name>http://schemas.microsoft.com/DataWarehouse/Designer/1.0:Layouts</Name>
+      <Value>
+        <Layouts xmlns="">
+          <Diagram>
+            <Name>_ALL_TABLES_</Name>
+            <DiagramLayout />
+            <ShowRelationshipNames>False</ShowRelationshipNames>
+            <UseDiagramDefaultLayout>True</UseDiagramDefaultLayout>
+            <DiagramViewPortLeft>0</DiagramViewPortLeft>
+            <DiagramViewPortTop>0</DiagramViewPortTop>
+            <DiagramBoundingLeft>0</DiagramBoundingLeft>
+            <DiagramBoundingTop>0</DiagramBoundingTop>
+            <DiagramZoom>100</DiagramZoom>
+          </Diagram>
+        </Layouts>
+      </Value>
+    </Annotation>
+  </Annotations>
+  <DataSourceID>DS_FloodDSS</DataSourceID>
+  <Schema>
+    <xs:schema id="DSV_FloodDSS" xmlns="" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" xmlns:msprop="urn:schemas-microsoft-com:xml-msprop">
+      <xs:element name="DSV_FloodDSS" msdata:IsDataSet="true" msdata:UseCurrentLocale="true" msprop:design-time-name="08e32100-d00f-4198-a322-a33a6c230e78">
+        <xs:complexType>
+          <xs:choice minOccurs="0" maxOccurs="unbounded">
+            <xs:element name="dw_Dim_Area" msprop:DbTableName="Dim_Area" msprop:FriendlyName="Dim_Area" msprop:TableType="Table" msprop:DbSchemaName="dw" msprop:design-time-name="89d6142f-16bb-40cc-a793-dc2981250c78">
+              <xs:complexType>
+                <xs:sequence>
+                  <xs:element name="AreaKey" msdata:ReadOnly="true" msdata:AutoIncrement="true" msprop:FriendlyName="AreaKey" msprop:DbColumnName="AreaKey" msprop:design-time-name="023260f0-c252-4cac-9f05-e56a579acc38" type="xs:int" />
+                  <xs:element name="Area_ID" msprop:FriendlyName="Area_ID" msprop:DbColumnName="Area_ID" msprop:design-time-name="05c2050c-8a5d-459b-b143-53126a5886d4">
+                    <xs:simpleType>
+                      <xs:restriction base="xs:string">
+                        <xs:maxLength value="50" />
+                      </xs:restriction>
+                    </xs:simpleType>
+                  </xs:element>
+                  <xs:element name="Area_Name" msprop:FriendlyName="Area_Name" msprop:DbColumnName="Area_Name" msprop:design-time-name="686112b7-1e4e-484d-8ba2-c0c23653a301">
+                    <xs:simpleType>
+                      <xs:restriction base="xs:string">
+                        <xs:maxLength value="150" />
+                      </xs:restriction>
+                    </xs:simpleType>
+                  </xs:element>
+                  <xs:element name="Area_Level" msprop:FriendlyName="Area_Level" msprop:DbColumnName="Area_Level" msprop:design-time-name="24de8ac8-c028-4e84-830e-8678bbdf82e7">
+                    <xs:simpleType>
+                      <xs:restriction base="xs:string">
+                        <xs:maxLength value="30" />
+                      </xs:restriction>
+                    </xs:simpleType>
+                  </xs:element>
+                  <xs:element name="ParentArea_ID" msprop:FriendlyName="ParentArea_ID" msprop:DbColumnName="ParentArea_ID" msprop:design-time-name="83d492f0-79aa-4f43-acca-78da0d264198" minOccurs="0">
+                    <xs:simpleType>
+                      <xs:restriction base="xs:string">
+                        <xs:maxLength value="50" />
+                      </xs:restriction>
+                    </xs:simpleType>
+                  </xs:element>
+                  <xs:element name="ParentArea_Name" msprop:FriendlyName="ParentArea_Name" msprop:DbColumnName="ParentArea_Name" msprop:design-time-name="216fdcac-6640-4f12-b612-c47d6d1adac1" minOccurs="0">
+                    <xs:simpleType>
+                      <xs:restriction base="xs:string">
+                        <xs:maxLength value="150" />
+                      </xs:restriction>
+                    </xs:simpleType>
+                  </xs:element>
+                  <xs:element name="BoundaryVersion" msprop:FriendlyName="BoundaryVersion" msprop:DbColumnName="BoundaryVersion" msprop:design-time-name="32670cb9-edb8-4a1e-bdf3-ac019294efaf">
+                    <xs:simpleType>
+                      <xs:restriction base="xs:string">
+                        <xs:maxLength value="30" />
+                      </xs:restriction>
+                    </xs:simpleType>
+                  </xs:element>
+                  <xs:element name="Area_km2" msprop:FriendlyName="Area_km2" msprop:DbColumnName="Area_km2" msprop:design-time-name="4e5b84ca-f760-41a6-8594-daac8e5309b2" type="xs:decimal" minOccurs="0" />
+                  <xs:element name="EffectiveFrom" msprop:FriendlyName="EffectiveFrom" msprop:DbColumnName="EffectiveFrom" msprop:design-time-name="67daadbb-6351-452a-91f8-c88cbb2b51d9" type="xs:dateTime" minOccurs="0" />
+                  <xs:element name="EffectiveTo" msprop:FriendlyName="EffectiveTo" msprop:DbColumnName="EffectiveTo" msprop:design-time-name="70a81cff-d06b-4891-9c07-a44943d6f3cd" type="xs:dateTime" minOccurs="0" />
+                  <xs:element name="IsCurrent" msprop:FriendlyName="IsCurrent" msprop:DbColumnName="IsCurrent" msprop:design-time-name="7a8e91db-db1b-4972-92df-e59239626de1" type="xs:boolean" />
+                </xs:sequence>
+              </xs:complexType>
+            </xs:element>
+            <xs:element name="dw_Dim_Cause" msprop:DbTableName="Dim_Cause" msprop:FriendlyName="Dim_Cause" msprop:TableType="Table" msprop:DbSchemaName="dw" msprop:design-time-name="65afdbd9-f141-44fa-9852-b9a7c614d2d0">
+              <xs:complexType>
+                <xs:sequence>
+                  <xs:element name="CauseKey" msdata:ReadOnly="true" msdata:AutoIncrement="true" msprop:FriendlyName="CauseKey" msprop:DbColumnName="CauseKey" msprop:design-time-name="e043248b-d9ac-48f8-ac5f-e48663abbf06" type="xs:int" />
+                  <xs:element name="Cause_Name" msprop:FriendlyName="Cause_Name" msprop:DbColumnName="Cause_Name" msprop:design-time-name="ed5a8fe4-275b-491c-9e0a-affc0635b39a">
+                    <xs:simpleType>
+                      <xs:restriction base="xs:string">
+                        <xs:maxLength value="150" />
+                      </xs:restriction>
+                    </xs:simpleType>
+                  </xs:element>
+                  <xs:element name="Description" msprop:FriendlyName="Description" msprop:DbColumnName="Description" msprop:design-time-name="50369f7d-0f78-47cd-bdac-497420a418da" minOccurs="0">
+                    <xs:simpleType>
+                      <xs:restriction base="xs:string">
+                        <xs:maxLength value="500" />
+                      </xs:restriction>
+                    </xs:simpleType>
+                  </xs:element>
+                </xs:sequence>
+              </xs:complexType>
+            </xs:element>
+            <xs:element name="dw_Dim_Location" msprop:DbTableName="Dim_Location" msprop:FriendlyName="Dim_Location" msprop:TableType="Table" msprop:DbSchemaName="dw" msprop:design-time-name="a8734780-1494-4f01-a5fd-ed140f362094">
+              <xs:complexType>
+                <xs:sequence>
+                  <xs:element name="LocationKey" msdata:ReadOnly="true" msdata:AutoIncrement="true" msprop:FriendlyName="LocationKey" msprop:DbColumnName="LocationKey" msprop:design-time-name="1c61e79c-6c65-4af6-a0ce-534943de8445" type="xs:int" />
+                  <xs:element name="Location_ID" msprop:FriendlyName="Location_ID" msprop:DbColumnName="Location_ID" msprop:design-time-name="df52a057-b6fc-4f83-a00f-68ffcd637de3">
+                    <xs:simpleType>
+                      <xs:restriction base="xs:string">
+                        <xs:maxLength value="50" />
+                      </xs:restriction>
+                    </xs:simpleType>
+                  </xs:element>
+                  <xs:element name="Location_Name" msprop:FriendlyName="Location_Name" msprop:DbColumnName="Location_Name" msprop:design-time-name="3835c3d3-723f-43fa-868c-0a8d588351bb" minOccurs="0">
+                    <xs:simpleType>
+                      <xs:restriction base="xs:string">
+                        <xs:maxLength value="255" />
+                      </xs:restriction>
+                    </xs:simpleType>
+                  </xs:element>
+                  <xs:element name="Location_Type" msprop:FriendlyName="Location_Type" msprop:DbColumnName="Location_Type" msprop:design-time-name="5b1ac367-bbcb-437d-8d6b-643dc0f35381" minOccurs="0">
+                    <xs:simpleType>
+                      <xs:restriction base="xs:string">
+                        <xs:maxLength value="100" />
+                      </xs:restriction>
+                    </xs:simpleType>
+                  </xs:element>
+                  <xs:element name="AreaKey" msprop:FriendlyName="AreaKey" msprop:DbColumnName="AreaKey" msprop:design-time-name="879e8f37-14cc-4483-a899-a359873fd3ef" type="xs:int" />
+                  <xs:element name="Latitude" msprop:FriendlyName="Latitude" msprop:DbColumnName="Latitude" msprop:design-time-name="be450c60-efa8-4d8f-b86c-02823a9208b3" type="xs:decimal" minOccurs="0" />
+                  <xs:element name="Longitude" msprop:FriendlyName="Longitude" msprop:DbColumnName="Longitude" msprop:design-time-name="591ee611-56eb-44c2-b877-20a4619afb53" type="xs:decimal" minOccurs="0" />
+                  <xs:element name="SpatialPrecision" msprop:FriendlyName="SpatialPrecision" msprop:DbColumnName="SpatialPrecision" msprop:design-time-name="aa859b56-c939-4b60-aa96-190ba4a58063" minOccurs="0">
+                    <xs:simpleType>
+                      <xs:restriction base="xs:string">
+                        <xs:maxLength value="100" />
+                      </xs:restriction>
+                    </xs:simpleType>
+                  </xs:element>
+                  <xs:element name="GeocodingMethod" msprop:FriendlyName="GeocodingMethod" msprop:DbColumnName="GeocodingMethod" msprop:design-time-name="9ad9aeea-7e80-4e9c-a042-43bbcf87a526" minOccurs="0">
+                    <xs:simpleType>
+                      <xs:restriction base="xs:string">
+                        <xs:maxLength value="100" />
+                      </xs:restriction>
+                    </xs:simpleType>
+                  </xs:element>
+                  <xs:element name="DistanceToWater_m" msprop:FriendlyName="DistanceToWater_m" msprop:DbColumnName="DistanceToWater_m" msprop:design-time-name="edafd75a-3983-4fdc-9d1b-517033f28397" type="xs:decimal" minOccurs="0" />
+                  <xs:element name="NearestWater_ID" msprop:FriendlyName="NearestWater_ID" msprop:DbColumnName="NearestWater_ID" msprop:design-time-name="f943651b-dacc-44ac-ae3b-40fcd9e621e0" minOccurs="0">
+                    <xs:simpleType>
+                      <xs:restriction base="xs:string">
+                        <xs:maxLength value="50" />
+                      </xs:restriction>
+                    </xs:simpleType>
+                  </xs:element>
+                  <xs:element name="NearestRoad_Name" msprop:FriendlyName="NearestRoad_Name" msprop:DbColumnName="NearestRoad_Name" msprop:design-time-name="981a5997-d01e-44da-a4db-696bef767ac1" minOccurs="0">
+                    <xs:simpleType>
+                      <xs:restriction base="xs:string">
+                        <xs:maxLength value="150" />
+                      </xs:restriction>
+                    </xs:simpleType>
+                  </xs:element>
+                  <xs:element name="DistanceToRoad_m" msprop:FriendlyName="DistanceToRoad_m" msprop:DbColumnName="DistanceToRoad_m" msprop:design-time-name="f1107c78-b4b7-4cac-80a1-5936de5ad2a3" type="xs:decimal" minOccurs="0" />
+                </xs:sequence>
+              </xs:complexType>
+            </xs:element>
+            <xs:element name="dw_Dim_Source" msprop:DbTableName="Dim_Source" msprop:FriendlyName="Dim_Source" msprop:TableType="Table" msprop:DbSchemaName="dw" msprop:design-time-name="662f15fa-36db-4ccd-b297-e67d7b96f1b5">
+              <xs:complexType>
+                <xs:sequence>
+                  <xs:element name="SourceKey" msdata:ReadOnly="true" msdata:AutoIncrement="true" msprop:FriendlyName="SourceKey" msprop:DbColumnName="SourceKey" msprop:design-time-name="22d7e7ba-9440-4303-908a-50686e4732e6" type="xs:int" />
+                  <xs:element name="Source_ID" msprop:FriendlyName="Source_ID" msprop:DbColumnName="Source_ID" msprop:design-time-name="554efc4c-5b1c-46aa-b770-027cae0f4f91">
+                    <xs:simpleType>
+                      <xs:restriction base="xs:string">
+                        <xs:maxLength value="100" />
+                      </xs:restriction>
+                    </xs:simpleType>
+                  </xs:element>
+                  <xs:element name="Source_Name" msprop:FriendlyName="Source_Name" msprop:DbColumnName="Source_Name" msprop:design-time-name="d9188a9e-547c-4f14-b9e1-4a3d6eac4314">
+                    <xs:simpleType>
+                      <xs:restriction base="xs:string">
+                        <xs:maxLength value="255" />
+                      </xs:restriction>
+                    </xs:simpleType>
+                  </xs:element>
+                  <xs:element name="Source_Type" msprop:FriendlyName="Source_Type" msprop:DbColumnName="Source_Type" msprop:design-time-name="8095aa6e-6186-45a2-95af-37dac3c5b7e8" minOccurs="0">
+                    <xs:simpleType>
+                      <xs:restriction base="xs:string">
+                        <xs:maxLength value="100" />
+                      </xs:restriction>
+                    </xs:simpleType>
+                  </xs:element>
+                  <xs:element name="SourceURL" msprop:FriendlyName="SourceURL" msprop:DbColumnName="SourceURL" msprop:design-time-name="a47ed344-e50d-4c1a-813c-d87bbfc75178" minOccurs="0">
+                    <xs:simpleType>
+                      <xs:restriction base="xs:string">
+                        <xs:maxLength value="1000" />
+                      </xs:restriction>
+                    </xs:simpleType>
+                  </xs:element>
+                  <xs:element name="DatasetVersion" msprop:FriendlyName="DatasetVersion" msprop:DbColumnName="DatasetVersion" msprop:design-time-name="fa86de73-aa1b-42dd-b562-2dac84e18bfe" minOccurs="0">
+                    <xs:simpleType>
+                      <xs:restriction base="xs:string">
+                        <xs:maxLength value="100" />
+                      </xs:restriction>
+                    </xs:simpleType>
+                  </xs:element>
+                  <xs:element name="RetrievedDate" msprop:FriendlyName="RetrievedDate" msprop:DbColumnName="RetrievedDate" msprop:design-time-name="258d0ec8-4e96-4564-a9b7-7f1026eb345e" type="xs:dateTime" minOccurs="0" />
+                </xs:sequence>
+              </xs:complexType>
+            </xs:element>
+            <xs:element name="dw_Dim_Time" msprop:DbTableName="Dim_Time" msprop:FriendlyName="Dim_Time" msprop:TableType="Table" msprop:DbSchemaName="dw" msprop:design-time-name="0322f348-1d6e-4191-bf8f-86f3c50549a4">
+              <xs:complexType>
+                <xs:sequence>
+                  <xs:element name="TimeKey" msprop:FriendlyName="TimeKey" msprop:DbColumnName="TimeKey" msprop:design-time-name="e000294a-df25-4f5f-a074-6070d71af55c" type="xs:int" />
+                  <xs:element name="FullDate" msprop:FriendlyName="FullDate" msprop:DbColumnName="FullDate" msprop:design-time-name="e1ff1af1-a461-4634-a20b-37353eb9507c" type="xs:dateTime" />
+                  <xs:element name="Day" msprop:FriendlyName="Day" msprop:DbColumnName="Day" msprop:design-time-name="574acf9c-eced-4cb7-b477-fd3dd62e6a90" type="xs:unsignedByte" minOccurs="0" />
+                  <xs:element name="Month" msprop:FriendlyName="Month" msprop:DbColumnName="Month" msprop:design-time-name="72d355ac-1fc5-4c85-b62b-be87caa77d09" type="xs:unsignedByte" minOccurs="0" />
+                  <xs:element name="Quarter" msprop:FriendlyName="Quarter" msprop:DbColumnName="Quarter" msprop:design-time-name="3cc87686-3199-4613-847d-30862587e5a9" type="xs:unsignedByte" minOccurs="0" />
+                  <xs:element name="Year" msprop:FriendlyName="Year" msprop:DbColumnName="Year" msprop:design-time-name="cbccc726-e74e-4ad7-9e7e-5d5d3729f83b" type="xs:short" minOccurs="0" />
+                  <xs:element name="Season" msprop:FriendlyName="Season" msprop:DbColumnName="Season" msprop:design-time-name="2a62b1e9-0ddb-4133-bc41-2011317da45b" minOccurs="0">
+                    <xs:simpleType>
+                      <xs:restriction base="xs:string">
+                        <xs:maxLength value="30" />
+                      </xs:restriction>
+                    </xs:simpleType>
+                  </xs:element>
+                  <xs:element name="DayOfWeek" msprop:FriendlyName="DayOfWeek" msprop:DbColumnName="DayOfWeek" msprop:design-time-name="1c7f083c-eef3-44a3-882e-16671e4dcc51" type="xs:unsignedByte" minOccurs="0" />
+                </xs:sequence>
+              </xs:complexType>
+            </xs:element>
+            <xs:element name="dw_Fact_FloodObservation" msprop:DbTableName="Fact_FloodObservation" msprop:FriendlyName="Fact_FloodObservation" msprop:TableType="Table" msprop:DbSchemaName="dw" msprop:design-time-name="b23b5fe9-d73d-4bab-a820-83b29b5204a5">
+              <xs:complexType>
+                <xs:sequence>
+                  <xs:element name="FloodObservationKey" msdata:ReadOnly="true" msdata:AutoIncrement="true" msprop:FriendlyName="FloodObservationKey" msprop:DbColumnName="FloodObservationKey" msprop:design-time-name="a9fbb0c8-1d3c-4c67-8535-2e22d612fc6f" type="xs:long" />
+                  <xs:element name="Obs_ID" msprop:FriendlyName="Obs_ID" msprop:DbColumnName="Obs_ID" msprop:design-time-name="90ba811e-5a09-4f3b-ba26-7d7478047184">
+                    <xs:simpleType>
+                      <xs:restriction base="xs:string">
+                        <xs:maxLength value="200" />
+                      </xs:restriction>
+                    </xs:simpleType>
+                  </xs:element>
+                  <xs:element name="TimeKey" msprop:FriendlyName="TimeKey" msprop:DbColumnName="TimeKey" msprop:design-time-name="b0dc4d1a-8300-49e2-a84f-35301ece3d71" type="xs:int" />
+                  <xs:element name="AreaKey" msprop:FriendlyName="AreaKey" msprop:DbColumnName="AreaKey" msprop:design-time-name="60fc93af-86d2-4433-8d57-2cd92c669d58" type="xs:int" />
+                  <xs:element name="LocationKey" msprop:FriendlyName="LocationKey" msprop:DbColumnName="LocationKey" msprop:design-time-name="4fcf29e0-1002-4735-81e3-dec4beed9f58" type="xs:int" />
+                  <xs:element name="CauseKey" msprop:FriendlyName="CauseKey" msprop:DbColumnName="CauseKey" msprop:design-time-name="5b14a986-a3dd-400e-915d-86b648a6ef50" type="xs:int" />
+                  <xs:element name="SourceKey" msprop:FriendlyName="SourceKey" msprop:DbColumnName="SourceKey" msprop:design-time-name="cf16f284-2014-459a-a3f7-c52ec4bf4d8d" type="xs:int" />
+                  <xs:element name="MinDepth_cm" msprop:FriendlyName="MinDepth_cm" msprop:DbColumnName="MinDepth_cm" msprop:design-time-name="56f469c4-be23-40b8-bc08-70a57635f1b2" type="xs:decimal" minOccurs="0" />
+                  <xs:element name="MaxDepth_cm" msprop:FriendlyName="MaxDepth_cm" msprop:DbColumnName="MaxDepth_cm" msprop:design-time-name="9d92db1c-2355-4707-97eb-c23f2bab97b4" type="xs:decimal" minOccurs="0" />
+                  <xs:element name="AvgDepth_cm" msprop:FriendlyName="AvgDepth_cm" msprop:DbColumnName="AvgDepth_cm" msprop:design-time-name="0cf4fa2f-f6c0-4655-9f51-09968111748f" type="xs:decimal" minOccurs="0" />
+                  <xs:element name="Duration_hours" msprop:FriendlyName="Duration_hours" msprop:DbColumnName="Duration_hours" msprop:design-time-name="c8922ae2-c35a-4121-883d-f3c3d2a58113" type="xs:decimal" minOccurs="0" />
+                  <xs:element name="DepthClass" msprop:FriendlyName="DepthClass" msprop:DbColumnName="DepthClass" msprop:design-time-name="b85883d1-ebd4-462f-b1c2-047ba03d2177" minOccurs="0">
+                    <xs:simpleType>
+                      <xs:restriction base="xs:string">
+                        <xs:maxLength value="100" />
+                      </xs:restriction>
+                    </xs:simpleType>
+                  </xs:element>
+                  <xs:element name="ImpactType" msprop:FriendlyName="ImpactType" msprop:DbColumnName="ImpactType" msprop:design-time-name="5c180b25-3435-40e7-8257-7acc81cf815a" minOccurs="0">
+                    <xs:simpleType>
+                      <xs:restriction base="xs:string">
+                        <xs:maxLength value="510" />
+                      </xs:restriction>
+                    </xs:simpleType>
+                  </xs:element>
+                  <xs:element name="ObservationCount" msprop:FriendlyName="ObservationCount" msprop:DbColumnName="ObservationCount" msprop:design-time-name="bab86833-a524-4c6b-b586-b3c138303b92" type="xs:unsignedByte" />
+                  <xs:element name="DataQualityStatus" msprop:FriendlyName="DataQualityStatus" msprop:DbColumnName="DataQualityStatus" msprop:design-time-name="f9311a6e-ef22-4a1b-85d8-3f4ac8c3ee7e">
+                    <xs:simpleType>
+                      <xs:restriction base="xs:string">
+                        <xs:maxLength value="100" />
+                      </xs:restriction>
+                    </xs:simpleType>
+                  </xs:element>
+                </xs:sequence>
+              </xs:complexType>
+            </xs:element>
+            <xs:element name="dw_Fact_Population" msprop:DbTableName="Fact_Population" msprop:FriendlyName="Fact_Population" msprop:TableType="Table" msprop:DbSchemaName="dw" msprop:design-time-name="5d3b84d3-a0ab-41bf-9194-6f97e95be233">
+              <xs:complexType>
+                <xs:sequence>
+                  <xs:element name="PopulationKey" msdata:ReadOnly="true" msdata:AutoIncrement="true" msprop:FriendlyName="PopulationKey" msprop:DbColumnName="PopulationKey" msprop:design-time-name="8811b8a3-b78c-4ac1-bef6-ff89906a1f0b" type="xs:long" />
+                  <xs:element name="AreaKey" msprop:FriendlyName="AreaKey" msprop:DbColumnName="AreaKey" msprop:design-time-name="b3595aa3-6e51-44c6-9bda-5eb52a1cfcc9" type="xs:int" />
+                  <xs:element name="Year" msprop:FriendlyName="Year" msprop:DbColumnName="Year" msprop:design-time-name="077aff80-c86e-4438-a4e4-78f108214516" type="xs:short" />
+                  <xs:element name="SourceKey" msprop:FriendlyName="SourceKey" msprop:DbColumnName="SourceKey" msprop:design-time-name="e7da2dc6-a5e0-4082-988c-31f23f5eb2d4" type="xs:int" />
+                  <xs:element name="Population" msprop:FriendlyName="Population" msprop:DbColumnName="Population" msprop:design-time-name="c5df143b-75fd-45aa-89b1-01099d06a292" type="xs:long" minOccurs="0" />
+                  <xs:element name="Area_km2" msprop:FriendlyName="Area_km2" msprop:DbColumnName="Area_km2" msprop:design-time-name="34131b2f-1a3d-48c5-b07d-6f3938afee45" type="xs:decimal" minOccurs="0" />
+                  <xs:element name="PopulationDensity" msprop:FriendlyName="PopulationDensity" msprop:DbColumnName="PopulationDensity" msprop:design-time-name="ca520495-a0b4-408f-8bd3-d21e59b3f10e" type="xs:decimal" minOccurs="0" />
+                  <xs:element name="DataQualityStatus" msprop:FriendlyName="DataQualityStatus" msprop:DbColumnName="DataQualityStatus" msprop:design-time-name="e68b3d67-dd9c-4e57-b1fc-b91c8a7ec2a4">
+                    <xs:simpleType>
+                      <xs:restriction base="xs:string">
+                        <xs:maxLength value="100" />
+                      </xs:restriction>
+                    </xs:simpleType>
+                  </xs:element>
+                </xs:sequence>
+              </xs:complexType>
+            </xs:element>
+          </xs:choice>
+        </xs:complexType>
+        <xs:unique name="Constraint1" msdata:PrimaryKey="true">
+          <xs:selector xpath=".//dw_Dim_Area" />
+          <xs:field xpath="AreaKey" />
+        </xs:unique>
+        <xs:unique name="dw_Dim_Cause_Constraint1" msdata:ConstraintName="Constraint1" msdata:PrimaryKey="true">
+          <xs:selector xpath=".//dw_Dim_Cause" />
+          <xs:field xpath="CauseKey" />
+        </xs:unique>
+        <xs:unique name="dw_Dim_Location_Constraint1" msdata:ConstraintName="Constraint1" msdata:PrimaryKey="true">
+          <xs:selector xpath=".//dw_Dim_Location" />
+          <xs:field xpath="LocationKey" />
+        </xs:unique>
+        <xs:unique name="dw_Dim_Source_Constraint1" msdata:ConstraintName="Constraint1" msdata:PrimaryKey="true">
+          <xs:selector xpath=".//dw_Dim_Source" />
+          <xs:field xpath="SourceKey" />
+        </xs:unique>
+        <xs:unique name="dw_Dim_Time_Constraint1" msdata:ConstraintName="Constraint1" msdata:PrimaryKey="true">
+          <xs:selector xpath=".//dw_Dim_Time" />
+          <xs:field xpath="TimeKey" />
+        </xs:unique>
+        <xs:unique name="dw_Fact_FloodObservation_Constraint1" msdata:ConstraintName="Constraint1" msdata:PrimaryKey="true">
+          <xs:selector xpath=".//dw_Fact_FloodObservation" />
+          <xs:field xpath="FloodObservationKey" />
+        </xs:unique>
+        <xs:unique name="dw_Fact_Population_Constraint1" msdata:ConstraintName="Constraint1" msdata:PrimaryKey="true">
+          <xs:selector xpath=".//dw_Fact_Population" />
+          <xs:field xpath="PopulationKey" />
+        </xs:unique>
+        <xs:keyref name="FK_Fact_Population_Source" refer="dw_Dim_Source_Constraint1">
+          <xs:selector xpath=".//dw_Fact_Population" />
+          <xs:field xpath="SourceKey" />
+        </xs:keyref>
+        <xs:keyref name="FK_Fact_Population_Area" refer="Constraint1">
+          <xs:selector xpath=".//dw_Fact_Population" />
+          <xs:field xpath="AreaKey" />
+        </xs:keyref>
+        <xs:keyref name="FK_Fact_FloodObservation_Source" refer="dw_Dim_Source_Constraint1">
+          <xs:selector xpath=".//dw_Fact_FloodObservation" />
+          <xs:field xpath="SourceKey" />
+        </xs:keyref>
+        <xs:keyref name="FK_Fact_FloodObservation_Cause" refer="dw_Dim_Cause_Constraint1">
+          <xs:selector xpath=".//dw_Fact_FloodObservation" />
+          <xs:field xpath="CauseKey" />
+        </xs:keyref>
+        <xs:keyref name="FK_Fact_FloodObservation_Area" refer="Constraint1">
+          <xs:selector xpath=".//dw_Fact_FloodObservation" />
+          <xs:field xpath="AreaKey" />
+        </xs:keyref>
+        <xs:keyref name="FK_Fact_FloodObservation_Time" refer="dw_Dim_Time_Constraint1">
+          <xs:selector xpath=".//dw_Fact_FloodObservation" />
+          <xs:field xpath="TimeKey" />
+        </xs:keyref>
+        <xs:keyref name="FK_Fact_FloodObservation_Location" refer="dw_Dim_Location_Constraint1">
+          <xs:selector xpath=".//dw_Fact_FloodObservation" />
+          <xs:field xpath="LocationKey" />
+        </xs:keyref>
+        <xs:keyref name="FK_Dim_Location_Area" refer="Constraint1">
+          <xs:selector xpath=".//dw_Dim_Location" />
+          <xs:field xpath="AreaKey" />
+        </xs:keyref>
+      </xs:element>
+    </xs:schema>
+    <DSV_FloodDSS xmlns="" />
+  </Schema>
+</DataSourceView>

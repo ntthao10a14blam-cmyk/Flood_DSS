@@ -8,13 +8,11 @@ Owner    : TV1
 
 Purpose:
     1. Create Flood_DSS database.
-    2. Create schemas for each data layer.
+    2. Create 2 core schemas for the data architecture.
 
 Schemas:
-    stg  : Staging
-    dw   : Dimensional Data Warehouse
-    mart : Data Mart
-    dss  : Decision Support System
+    stg  : Staging Layer (Vùng đệm trung gian nhận dữ liệu từ CSV)
+    dw   : Dimensional Data Warehouse (Kho dữ liệu mô hình Star Schema)
 ============================================================
 */
 
@@ -43,7 +41,7 @@ GO
 
 
 /* =========================================================
-   2. CREATE SCHEMA: stg
+   2. CREATE SCHEMA: stg (Staging Layer)
    ========================================================= */
 
 IF NOT EXISTS
@@ -60,7 +58,7 @@ GO
 
 
 /* =========================================================
-   3. CREATE SCHEMA: dw
+   3. CREATE SCHEMA: dw (Data Warehouse Layer)
    ========================================================= */
 
 IF NOT EXISTS
@@ -77,41 +75,7 @@ GO
 
 
 /* =========================================================
-   4. CREATE SCHEMA: mart
-   ========================================================= */
-
-IF NOT EXISTS
-(
-    SELECT 1
-    FROM sys.schemas
-    WHERE name = N'mart'
-)
-BEGIN
-    EXEC(N'CREATE SCHEMA mart');
-    PRINT N'Created schema mart.';
-END;
-GO
-
-
-/* =========================================================
-   5. CREATE SCHEMA: dss
-   ========================================================= */
-
-IF NOT EXISTS
-(
-    SELECT 1
-    FROM sys.schemas
-    WHERE name = N'dss'
-)
-BEGIN
-    EXEC(N'CREATE SCHEMA dss');
-    PRINT N'Created schema dss.';
-END;
-GO
-
-
-/* =========================================================
-   6. VALIDATION
+   4. VALIDATION
    ========================================================= */
 
 SELECT
@@ -120,9 +84,7 @@ FROM sys.schemas
 WHERE name IN
 (
     N'stg',
-    N'dw',
-    N'mart',
-    N'dss'
+    N'dw'
 )
 ORDER BY name;
 GO
