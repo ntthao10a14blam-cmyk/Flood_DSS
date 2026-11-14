@@ -802,73 +802,158 @@ GO
 ### 3.2.2. Xây dựng các bảng Staging
 Trong schema `stg`, xây dựng 5 bảng dữ liệu trung gian tương ứng với 5 tệp nguồn: `stg.Flood`, `stg.FloodIntegrated`, `stg.Population`, `stg.Roads` và `stg.Area`. Cấu trúc các bảng Staging cho phép các cột nhận giá trị NULL và không áp đặt khóa chính/khóa ngoại vật lý để việc nạp dữ liệu từ tệp diễn ra trơn tru nhất.
 
-### 3.2.3. Xây dựng các bảng Dimension và Fact
-Trong schema `dw`, khởi tạo 5 bảng Dimension (`dw.Dim_Time`, `dw.Dim_Area`, `dw.Dim_Location`, `dw.Dim_Cause`, `dw.Dim_Source`) sử dụng khóa thay thế IDENTITY, và 2 bảng Fact (`dw.Fact_FloodObservation`, `dw.Fact_Population`) với đầy đủ các ràng buộc `PRIMARY KEY`, `FOREIGN KEY`, `CHECK` và `UNIQUE`.
+### 3.2.3. Xây dựng các bảng Dimension, Fact và Cơ chế Unknown Member
+Trong schema `dw`, hệ thống khởi tạo các bảng theo chuẩn Ralph Kimball:
+1. **5 bảng Dimension (`03_Dimensions/Create_Dimensions.sql`):** `dw.Dim_Time`, `dw.Dim_Area`, `dw.Dim_Location`, `dw.Dim_Cause`, `dw.Dim_Source` sử dụng khóa thay thế tự tăng IDENTITY (riêng `Dim_Time` dùng khóa số `YYYYMMDD`).
+2. **Khởi tạo dữ liệu cơ sở (Seeding):**
+   - Chạy script `Seed_Dim_Time.sql` nạp sẵn toàn bộ chuỗi ngày lịch sử từ năm 2000 đến 2030 vào `dw.Dim_Time`.
+   - Chạy script `Seed_Unknown_Members.sql` gán sẵn bản ghi mặc định mang mã khóa `-1` (`Unknown`) cho toàn bộ 5 bảng Dimension. Cơ chế này bảo đảm khi sự kiện ngập bị khuyết ngày hoặc thiếu thông tin hành chính, khóa ngoại vẫn liên kết an toàn tới bản ghi `-1` mà không làm lỗi luồng ETL.
+3. **2 bảng Fact (`04_Facts/Create_Facts.sql`):** `dw.Fact_FloodObservation` và `dw.Fact_Population` với đầy đủ các ràng buộc toàn vẹn tham chiếu `FOREIGN KEY`, ràng buộc miền giá trị `CHECK >= 0` và ràng buộc duy nhất `UNIQUE` bảo vệ Grain nghiệp vụ.
 
 ### 3.2.4. Xây dựng các bảng ETL Log và ETL Error
-Hệ thống thiết lập 2 bảng chuyên dụng để giám sát vận hành:
-- `stg.ETL_Log`: Lưu `ExecutionID`, `PackageName`, `StartTime`, `EndTime`, `Status` (Running/Success/Failed) và `RowsProcessed`.
-- `stg.ETL_Error`: Lưu vết chi tiết khi có sự cố gồm `ErrorCode`, `ErrorDescription`, `SourceName` và mốc thời gian phát sinh lỗi.
+Hệ thống thiết lập 2 bảng chuyên dụng trong schema `stg` (`02_Staging_Tables/Create_ETL_Log.sql`) để phục vụ giám sát và kiểm toán vận hành:
+- `stg.ETL_Log`: Ghi nhận nhật ký mỗi phiên thực thi ETL gồm `LogID` (PK), mã lô `BatchID` (GUID), `PackageName`, `SourceFile`, `StartTime`, `EndTime`, số lượng dòng đối soát (`RowsRead`, `RowsInserted`, `RowsRejected`), trạng thái thực thi `ExecutionStatus` (`Running`, `Success`, `Failed`) và thông điệp lỗi `ErrorMessage`.
+- `stg.ETL_Error`: Lưu vết chi tiết từng dòng dữ liệu bị lỗi gồm `ErrorID` (PK), `BatchID`, `SourceTable`, định danh bản ghi nguồn `SourceRecordID`, tên cột lỗi `ErrorColumn`, mô tả chi tiết `ErrorDescription`, giá trị thô `RawValue` và thời điểm phát sinh `CreatedAt`.
 
 ### 3.2.5. Kiểm tra cấu trúc cơ sở dữ liệu và các ràng buộc
-Thực hiện script kiểm tra `INFORMATION_SCHEMA.TABLES` và `sys.foreign_keys`, xác nhận 100% các bảng và 7 khóa ngoại đã được tạo lập thành công và kích hoạt ở trạng thái tin cậy.
+Thực hiện script kiểm tra tự động (`07_Testing/Validate_DW.sql` và `Validate_Dimensions.sql`), xác nhận 100% các bảng thuộc 2 schema `stg` và `dw` đã hiện diện đầy đủ, toàn bộ 7 khóa ngoại đã được kích hoạt ở trạng thái tin cậy (`TRUSTED`), và bản ghi Unknown Member (`Key = -1`) tồn tại đầy đủ trên cả 5 Dimension.
 
 ---
 
 ## 3.3. Xây dựng và thực thi quy trình ETL bằng SSIS
 
 ### 3.3.1. Thiết kế Control Flow tổng thể
-Gói điều phối `08_Master_ETL.dtsx` quản lý toàn bộ luồng thực thi thông qua các tác vụ Execute Package Task và Precedence Constraints:
+Nhằm tự động hóa toàn diện quy trình trích xuất, làm sạch và nạp dữ liệu theo chuẩn kiến trúc kho dữ liệu doanh nghiệp, hệ thống áp dụng mô hình điều phối **Master – Child Packages** thay vì gom chung vào một gói đơn lẻ. Trong đó, gói **`08_Master_ETL.dtsx`** đóng vai trò là "nhạc trưởng" trung tâm, quản lý và điều phối đồng bộ việc thực thi 7 gói ETL con chuyên biệt thông qua các tác vụ **Execute Package Task** và hệ thống ràng buộc thứ tự ưu tiên (**Precedence Constraints**). Quy trình được mở đầu bằng tác vụ `EX_00_Start_Log` nhằm khởi tạo mã định danh phiên chạy duy nhất (`BatchID` kiểu GUID) và ghi nhận mốc thời gian bắt đầu vào bảng nhật ký `stg.ETL_Log`.
+
+Về cơ chế vận hành, hệ thống áp dụng mô hình rẽ nhánh song song (**Fan-out / Fan-in**) đối với giai đoạn nạp vùng đệm: 5 gói ETL nạp từ các tệp CSV nguồn vào Staging (`EX_01_Load_Flood` đến `EX_05_Load_Area`) được thực thi đồng thời nhằm tối ưu hóa năng lực xử lý đa luồng của CPU và rút ngắn thời gian nạp. Chỉ khi toàn bộ 5 bảng Staging được nạp thành công (thỏa mãn điều kiện hội tụ **Logical AND**), luồng xử lý mới tiếp tục chuyển sang giai đoạn nạp kho dữ liệu: tuần tự nạp sạch 5 bảng Dimension (`EX_06_Load_Dimensions`), nạp 2 bảng Fact có tra cứu khóa thay thế (`EX_07_Load_Facts`), tự động đối soát số dòng và khóa ngoại (`EX_08_Validate_Facts`), và kết thúc bằng tác vụ ghi nhận hoàn tất thành công (`EX_09_Success_Log`).
 
 ```
-[EX_01_Load_Flood] ──┐
-[EX_02_Load_FloodIntegrated] ─┼──> [EX_06_Load_Dimensions] ──> [EX_07_Load_Facts] ──> [EX_08_Validate_Facts] ──> [EX_09_Success_Log]
-[EX_03_Load_Population] ──────┤
-[EX_04_Load_Roads] ───────────┤
-[EX_05_Load_Area] ────────────┘
+                            ┌─── [EX_00_Start_Log] ───┐
+         ┌──────────────────┼───────────┼─────────────┼──────────────────┐
+         ↓                  ↓           ↓             ↓                  ↓
+  [EX_01_Flood]      [EX_02_Integ] [EX_03_Pop]   [EX_04_Roads]      [EX_05_Area]
+         └──────────────────┼───────────┼─────────────┼──────────────────┘
+                            ↓
+                 [EX_06_Load_Dimensions]
+                            ↓
+                    [EX_07_Load_Facts]
+                            ↓
+                  [EX_08_Validate_Facts]
+                            ↓
+                   [EX_09_Success_Log]
 ```
+
+*Hình 3.3: Sơ đồ Control Flow tổng thể điều phối quy trình ETL trong gói 08_Master_ETL.dtsx*
 
 ### 3.3.2. Cấu hình Connection Manager
-Dự án cấu hình đồng bộ:
-- Flat File Connection Managers: Đọc các file CSV nguồn, cấu hình định dạng phân tách bằng dấu phẩy, Code page 65001 (UTF-8).
-- OLE DB Connection Manager: Kết nối tới SQL Server `localhost\DW2025`, CSDL `Flood_DSS` sử dụng Provider hiện đại `MSOLEDBSQL.1`.
+Dự án cấu hình tập trung và đồng bộ 2 nhóm Connection Manager trong toàn bộ giải pháp:
+1. **Flat File Connection Managers:** 
+   - Đọc 5 tệp dữ liệu phẳng CSV từ thư mục `02_Staging_CSV`.
+   - Cấu hình định dạng phân tách bằng dấu phẩy (`Format: Delimited`, `HeaderRowDelimiter: {CR}{LF}`).
+   - **Mã hóa ký tự:** Bắt buộc cấu hình `CodePage = 65001 (UTF-8)` kết hợp `TextQualifier = "`" nhằm bảo đảm đọc chính xác 100% dữ liệu tiếng Việt có dấu (như tên quận/huyện, tên tuyến đường, nguyên nhân ngập) mà không bị lỗi font hoặc vỡ cột khi dữ liệu chứa dấu phẩy bên trong.
+2. **OLE DB Connection Manager:**
+   - Kết nối trực tiếp tới máy chủ SQL Server `localhost\DW2025`, cơ sở dữ liệu `Flood_DSS`.
+   - Sử dụng Driver hiện đại nhất của Microsoft: `Provider = MSOLEDBSQL.1` (*Microsoft OLE DB Driver for SQL Server*), hỗ trợ bảo mật mã hóa đường truyền TLS và tương thích tối đa với SQL Server 2025.
+   - Tại các OLE DB Destination, cấu hình cơ chế nạp nhanh **Fast Load** với các tùy chọn tối ưu: `TABLOCK` (khóa toàn bảng để tăng tốc I/O), `CHECK_CONSTRAINTS` (kiểm tra toàn vẹn dữ liệu) và kích thước khối nạp lớn (`Rows per batch = 10000`).
 
 ### 3.3.3. Xây dựng Data Flow nạp dữ liệu vào Staging
-Các gói `01_Load_Flood.dtsx` đến `05_Load_Area.dtsx` đọc dữ liệu từ CSV qua Flat File Source, đi qua Data Conversion để ép kiểu chuỗi Unicode `DT_WSTR`, số thực và số nguyên, sau đó nạp nhanh vào các bảng Staging qua OLE DB Destination với tùy chọn Fast Load (`TABLOCK`, `CHECK_CONSTRAINTS`).
+Các gói ETL từ `01_Load_Flood.dtsx` đến `05_Load_Area.dtsx` đảm nhiệm việc chuyển dữ liệu từ tệp CSV vào 5 bảng Staging tương ứng. Tùy thuộc vào đặc tính và độ phức tạp của từng nguồn dữ liệu, hệ thống triển khai 2 mô hình luồng Data Flow chuyên biệt:
 
-*Bảng 3.4: Bảng ánh xạ chuyển đổi cột trong Package 01_Load_Flood.dtsx (stg.Flood)*
+1. **Mô hình luồng kiểm soát đối soát nâng cao (Advanced Flow with Lookup Deduplication):**
+   - **Áp dụng cho gói `01_Load_Flood.dtsx` (Hình 3.4) và `02_Load_FloodIntegrated.dtsx` (Hình 3.5):**
+     - Dữ liệu bắt đầu từ `Flat File Source`, đi qua **`Script Component`** để xử lý tiền kỳ (cắt tỉa khoảng trắng `Trim()`, làm sạch ký tự lạ, và phân tách các trường hợp đặc biệt).
+     - Đi qua khối **`Data Conversion`** để ép kiểu tường minh từ chuỗi văn bản sang các kiểu số thực, số nguyên, ngày tháng của SQL Server.
+     - Đi qua khối **`Sort`** sắp xếp theo mã định danh tự nhiên (`Obs_id` hoặc cặp `OBJECTID, Obs_id`).
+     - Đi qua khối **`Lookup`** đối soát trực tiếp với dữ liệu đã có trong bảng Staging: luồng chỉ định tuyến nhánh **`Lookup No Match Output`** đi tiếp vào `OLE DB Destination`. Cơ chế này loại bỏ hoàn toàn nguy cơ nạp trùng lặp bản ghi khi thực thi lại quy trình nhiều lần (Idempotent ETL).
+     - **Công cụ kiểm toán Data Viewer:** Riêng trong gói `02_Load_FloodIntegrated.dtsx`, các điểm gắn *Data Viewer* (biểu tượng kính lúp) được thiết lập giữa các bước để kiểm tra trực quan dòng dữ liệu di chuyển trong bộ nhớ RAM, phục vụ việc đối soát cự ly khoảng cách GIS trước và sau biến đổi.
 
-| Cột dữ liệu nguồn | Kiểu dữ liệu trong SQL Server | Kiểu SSIS sau xử lý | Mô tả nghiệp vụ |
-| :--- | :--- | :--- | :--- |
-| `Obs_id` | NVARCHAR(100) | DT_WSTR (100) | Mã sự kiện quan sát ngập |
-| `Date` | DATE | DT_DBDATE | Ngày ghi nhận sự kiện |
-| `Year` | SMALLINT | DT_I2 | Năm quan sát |
-| `Location_name` | NVARCHAR(500) | DT_WSTR (500) | Tên điểm/tuyến đường ngập |
-| `Water_height_max_cm` | DECIMAL(10,2) | DT_NUMERIC (10,2) | Độ sâu ngập lớn nhất (cm) |
-| `Duration_hours` | DECIMAL(10,2) | DT_NUMERIC (10,2) | Thời lượng ngập (giờ) |
-| `Cause` | NVARCHAR(255) | DT_WSTR (255) | Nguyên nhân ngập |
-| `Source_id` | NVARCHAR(100) | DT_WSTR (100) | Mã định danh nguồn tin |
-| `Longitude` / `Latitude` | DECIMAL(15,12) | DT_NUMERIC (15,12) | Tọa độ địa lý GIS chuẩn |
+*Hình 3.4: Thiết kế Data Flow nạp dữ liệu sự kiện ngập trong gói 01_Load_Flood.dtsx*
+
+*Hình 3.5: Thiết kế Data Flow nạp dữ liệu tích hợp không gian trong gói 02_Load_FloodIntegrated.dtsx*
+
+2. **Mô hình luồng nạp trực tiếp tinh gọn (Direct Stream Pipeline):**
+   - **Áp dụng cho gói `03_Load_Population.dtsx` (Hình 3.6), `04_Load_Roads.dtsx` và `05_Load_Area.dtsx`:**
+     - Do các tập dữ liệu danh mục hành chính, dân số và đường bộ có số lượng bản ghi nhỏ (24 quận/huyện, 9 tuyến đường) và đã được kiểm định làm sạch 100% từ tầng Python, luồng xử lý được tối giản: từ `Flat File Source` truyền thẳng qua `Data Conversion` và nạp trực tiếp vào `OLE DB Destination` với tùy chọn Fast Load. Thiết kế này giúp tiết kiệm tối đa tài nguyên bộ nhớ đệm và hoàn thành trong mili-giây.
+
+*Hình 3.6: Thiết kế Data Flow nạp dữ liệu dân số trong gói 03_Load_Population.dtsx*
+
+*Bảng 3.4: Bảng ánh xạ chuyển đổi kiểu dữ liệu tiêu biểu trong gói 01_Load_Flood.dtsx (stg.Flood)*
+
+| Cột dữ liệu nguồn | Kiểu dữ liệu trong CSV | Kiểu SSIS sau Data Conversion | Kiểu đích trong SQL Server | Ý nghĩa nghiệp vụ |
+| :--- | :--- | :--- | :--- | :--- |
+| `Obs_id` | Chuỗi ký tự (DT_STR) | `DT_WSTR (100)` | NVARCHAR(100) | Mã định danh quan sát ngập |
+| `Date` | Chuỗi ký tự ngày | `DT_DBDATE` | DATE | Ngày ghi nhận sự kiện ngập |
+| `Year` | Chuỗi ký tự số | `DT_I2` | SMALLINT | Năm quan sát ngập lụt |
+| `Location_name` | Chuỗi ký tự | `DT_WSTR (500)` | NVARCHAR(500) | Tên tuyến đường / điểm ngập |
+| `Water_height_max_cm` | Chuỗi ký tự số | `DT_NUMERIC (10,2)` | DECIMAL(10,2) | Độ sâu ngập lớn nhất ghi nhận (cm) |
+| `Duration_hours` | Chuỗi ký tự số | `DT_NUMERIC (10,2)` | DECIMAL(10,2) | Thời lượng ngập duy trì (giờ) |
+| `Cause` | Chuỗi ký tự | `DT_WSTR (255)` | NVARCHAR(255) | Phân loại nguyên nhân ngập |
+| `Source_id` | Chuỗi ký tự | `DT_WSTR (100)` | NVARCHAR(100) | Mã định danh nguồn tin tức |
+| `Longitude` / `Latitude` | Chuỗi ký tự số thực | `DT_NUMERIC (15,12)` | DECIMAL(15,12) | Tọa độ GPS trắc địa chuẩn WGS84 |
+
+*Bảng 3.5: Bảng ánh xạ chuyển đổi cột trong Package 02_Load_FloodIntegrated.dtsx (stg.FloodIntegrated)*
+
+| Cột dữ liệu nguồn | Kiểu dữ liệu trong CSV | Kiểu SSIS sau Data Conversion | Kiểu đích trong SQL Server | Ý nghĩa nghiệp vụ tích hợp |
+| :--- | :--- | :--- | :--- | :--- |
+| `OBJECTID` | Chuỗi ký tự số | `DT_I8` | BIGINT | Khóa định danh hình học đối tượng GIS |
+| `Obs_id` | Chuỗi ký tự | `DT_WSTR (100)` | NVARCHAR(100) | Mã sự kiện quan sát ngập cốt lõi |
+| `Water_ID` | Chuỗi ký tự | `DT_WSTR (100)` | NVARCHAR(100) | Mã định danh kênh rạch/thủy vực gần nhất |
+| `DistanceToWater_m` | Chuỗi ký tự số thực | `DT_NUMERIC (18,6)` | DECIMAL(18,6) | Khoảng cách từ điểm ngập tới mép kênh rạch (m) |
+| `Population_Area_ID` | Chuỗi float ("765.0") | `DT_WSTR (50)` (sau xử lý) | NVARCHAR(50) | Mã quận/huyện chuẩn hóa liên kết dân số |
+| `Population_Area_Name` | Chuỗi ký tự | `DT_WSTR (150)` | NVARCHAR(150) | Tên quận/huyện hành chính nơi xảy ra ngập |
+| `Population_2019` | Chuỗi ký tự số | `DT_I8` | BIGINT | Quy mô dân số quận/huyện năm 2019 |
+| `PopulationDensity_2019`| Chuỗi ký tự số thực | `DT_NUMERIC (18,6)` | DECIMAL(18,6) | Mật độ dân số phơi nhiễm (người/km²) |
+| `Nearest_Road_Name` | Chuỗi ký tự | `DT_WSTR (255)` | NVARCHAR(255) | Tên trục đường giao thông huyết mạch gần nhất |
+| `DistanceToNearestRoad_m`| Chuỗi ký tự số thực | `DT_NUMERIC (18,6)` | DECIMAL(18,6) | Khoảng cách từ điểm ngập tới tim đường chính (m) |
+| `Road_Distance_Band` | Chuỗi ký tự | `DT_WSTR (50)` | NVARCHAR(50) | Phân dải cự ly tác động (<50m, 50-200m...) |
 
 ### 3.3.4. Thực hiện làm sạch, chuyển đổi và chuẩn hóa dữ liệu
-Trong gói `02_Load_FloodIntegrated.dtsx` và `06_Load_Dimensions.dtsx`:
-- Chuẩn hóa mã khu vực dạng float string `"765.0"` về chuỗi nguyên `"765"` bằng biểu thức Derived Column:
-  `TRY_CAST(TRY_CAST(Population_Area_ID AS FLOAT) AS INT)`.
-- Ép kiểu chính xác các chỉ số khoảng cách `DistanceToWater_m` và `DistanceToNearestRoad_m` sang kiểu `DT_NUMERIC(18,6)`.
+Trong quá trình luân chuyển dữ liệu qua tầng Staging và Dimension, hệ thống thực thi 4 kỹ thuật làm sạch dữ liệu cốt lõi:
+1. **Chuẩn hóa lỗi chuỗi số học GIS (Float String):** Trong tệp tích hợp không gian `Flood_Water_Population_Roads.csv`, mã quận/huyện bị lỗi định dạng phần thập phân do phép xuất dữ liệu GIS (ví dụ `"765.0"` thay vì `"765"`). Khối Script Component và Derived Column áp dụng biểu thức chuẩn hóa:
+   `TRY_CAST(TRY_CAST(Population_Area_ID AS FLOAT) AS INT)` để chuyển đổi an toàn 417 bản ghi về chuỗi số nguyên hợp lệ.
+2. **Khử trùng lặp bản ghi (Deduplication):** Phát hiện 2 bản ghi trùng lặp mã sự kiện `Obs_239`. Hệ thống ưu tiên giữ lại bản ghi có thông tin độ sâu ngập lớn hơn (`MaxDepth = 40cm`) và khử bản ghi trùng lặp trước khi nạp vào bảng Fact.
+3. **Bảo toàn độ chính xác không gian tuyệt đối:** Các trường cự ly không gian (`DistanceToWater_m`, `DistanceToNearestRoad_m`) được ép kiểu chính xác sang `DECIMAL(18,6)` thay vì kiểu `FLOAT` gần đúng, ngăn chặn hiện tượng trôi số thập phân khi phân tích lân cận.
+4. **Chuẩn hóa danh mục nguyên nhân:** Đồng nhất toàn bộ các biến thể văn bản về đúng 3 giá trị nguyên nhân chuẩn: `'Rain'` (Mưa), `'High tide'` (Triều cường) và `'Combined'` (Mưa kết hợp triều cường).
 
-### 3.3.5. Xây dựng Data Flow nạp dữ liệu vào Dimension
-Gói `06_Load_Dimensions.dtsx` trích xuất các giá trị phân biệt (`SELECT DISTINCT`) từ các bảng Staging, thực hiện tra cứu và nạp vào 5 bảng Dimension. Trước khi nạp dữ liệu chính, script khởi tạo đã gán sẵn thành viên không xác định (Unknown Member) mang mã `-1` vào tất cả các Dimension.
+### 3.3.5. Xây dựng Data Flow nạp dữ liệu vào Dimension (`06_Load_Dimensions.dtsx`)
+Gói điều phối `06_Load_Dimensions.dtsx` chịu trách nhiệm nạp dữ liệu vào 5 bảng Dimension theo mô hình Kimball. Gói tổ chức 4 tác vụ Data Flow thực thi tuần tự có kiểm soát:
+1. **`DFT_Load_Dim_Area`:** Đọc dữ liệu từ `stg.Area`, nạp danh mục 24 đơn vị hành chính quận/huyện, tự động sinh khóa thay thế tự tăng `AreaKey` (IDENTITY), lưu giữ các thông tin địa giới theo Quyết định 124/2004/QĐ-TTg và gán cờ hiện hành `IsCurrent = 1` (SCD Type 1/2 baseline).
+2. **`DFT_Load_Dim_Cause`:** Thực hiện trích xuất phân biệt `SELECT DISTINCT Cause FROM stg.Flood`, tự động sinh mã khóa thay thế `CauseKey` cho 3 nhóm nguyên nhân chính kèm mô tả chi tiết.
+3. **`DFT_Load_Dim_Location`:** Trích xuất các vị trí ngập và tim đường từ `stg.FloodIntegrated`. Tác vụ sử dụng khối Lookup tra cứu sang `dw.Dim_Area` để gán khóa ngoại `AreaKey` tương ứng, đồng thời lưu trữ kinh độ, vĩ độ và các cự ly khoảng cách tới mặt nước và tim đường.
+4. **`DFT_Load_Dim_Source`:** Trích xuất danh mục 53 nguồn báo chí uy tín từ `stg.Flood`, sinh khóa thay thế `SourceKey` và phân loại nhóm nguồn tin (`Báo chí`, `Báo cáo kỹ thuật`).
+5. **Cơ chế nạp sẵn (Pre-seeding) Unknown Member và Dim_Time:**
+   - Chiều thời gian `dw.Dim_Time` được nạp sẵn 100% dữ liệu lịch (từ năm 2000 đến 2030) qua kịch bản `Seed_Dim_Time.sql` với khóa thời gian `TimeKey = YYYYMMDD`.
+   - Toàn bộ 5 bảng Dimension đều được nạp sẵn một bản ghi mặc định mang mã khóa `-1` (`Unknown Member`) thông qua kịch bản `Seed_Unknown_Members.sql`. Cơ chế này đảm bảo khi sự kiện ngập bị khuyết ngày hoặc khuyết quận, khóa ngoại vẫn liên kết an toàn tới bản ghi `-1` mà không làm sập luồng ETL.
 
-### 3.3.6. Xây dựng Data Flow nạp dữ liệu vào Fact
-Gói `07_Load_Facts.dtsx` gồm 2 luồng Data Flow chính:
-- `DFT_Load_Fact_Population`: Đọc từ `stg.Population`, tra cứu `AreaKey` và `SourceKey`, sau đó nạp vào `dw.Fact_Population`.
-- `DFT_Load_Fact_FloodObservation`: Đọc từ `stg.FloodIntegrated`, đi qua chuỗi 5 khối Lookup (`LK_Time`, `LK_Area`, `LK_Location`, `LK_Cause`, `LK_Source`). Nếu kết quả tra cứu không tìm thấy (No Match), nhánh Derived Column sẽ tự động gán giá trị khóa `-1` (Unknown), triệt tiêu hoàn toàn nguy cơ vi phạm ràng buộc khóa ngoại.
+### 3.3.6. Xây dựng Data Flow nạp dữ liệu vào Fact (`07_Load_Facts.dtsx`)
+Gói `07_Load_Facts.dtsx` đóng vai trò nạp dữ liệu vào 2 bảng Fact trung tâm với chuỗi tra cứu khóa thay thế (Surrogate Key Lookup) nghiêm ngặt:
+1. **Luồng nạp sự kiện ngập lụt (`DFT_Load_Fact_FloodObservation`):**
+   - Đọc dữ liệu chi tiết từ bảng `stg.FloodIntegrated`.
+   - Dữ liệu đi qua chuỗi **5 khối Lookup tuần tự**:
+     - `LK_Time`: Tra cứu `TimeKey` từ `dw.Dim_Time` dựa trên cột ngày quan sát `Date`.
+     - `LK_Area`: Tra cứu `AreaKey` từ `dw.Dim_Area` dựa trên mã quận `Population_Area_ID`.
+     - `LK_Location`: Tra cứu `LocationKey` từ `dw.Dim_Location` dựa trên mã vị trí `Obs_id`.
+     - `LK_Cause`: Tra cứu `CauseKey` từ `dw.Dim_Cause` dựa trên nguyên nhân `Cause`.
+     - `LK_Source`: Tra cứu `SourceKey` từ `dw.Dim_Source` dựa trên mã nguồn `Source_id`.
+   - **Xử lý No Match:** Nếu bất kỳ khối Lookup nào không tìm thấy khóa tương ứng (ví dụ: sự kiện khuyết ngày), nhánh Derived Column sẽ tự động thay thế bằng giá trị `-1` (Unknown), triệt tiêu hoàn toàn lỗi vi phạm toàn vẹn khóa ngoại.
+   - Tính toán độ sâu trung bình `AvgDepth_cm = (MinDepth + MaxDepth) / 2` và gán mặc định `ObservationCount = 1`.
+   - Nạp vào bảng `dw.Fact_FloodObservation` qua OLE DB Destination với tùy chọn Fast Load.
+2. **Luồng nạp thống kê dân số (`DFT_Load_Fact_Population`):**
+   - Đọc dữ liệu từ `stg.Population`.
+   - Đi qua 2 khối Lookup tra cứu `AreaKey` từ `dw.Dim_Area` và `SourceKey` từ `dw.Dim_Source`.
+   - Nạp 24 bản ghi thống kê dân số và mật độ dân cư năm 2019 vào bảng `dw.Fact_Population`.
 
 ### 3.3.7. Thiết lập thứ tự thực thi và điều kiện chuyển bước ETL
-Các bước được liên kết bằng Precedence Constraint loại `Success`. Tác vụ nạp Fact chỉ được phép kích hoạt khi toàn bộ 5 bảng Dimension đã được nạp thành công và vượt qua kiểm tra cấu trúc.
+Hệ thống sử dụng Precedence Constraints để thiết lập thứ tự thực thi chặt chẽ:
+- Ràng buộc **Success (Mũi tên xanh lá cây):** Bước sau chỉ được phép khởi chạy khi bước trước hoàn thành thành công và không phát sinh lỗi.
+- Ràng buộc **Logical AND:** Tại các điểm hội tụ (như `EX_06_Load_Dimensions`), toàn bộ 5 gói Staging tiên quyết đều phải kết thúc thành công thì mới bắt đầu nạp Dimension.
+- Đảm bảo tính phụ thuộc dữ liệu: `Staging` hoàn thành $\rightarrow$ `Dimensions` hoàn thành $\rightarrow$ `Facts` mới được nạp.
 
-### 3.3.8. Ghi nhật ký thực thi và xử lý lỗi ETL
-Hệ thống tích hợp các tác vụ Execute SQL Task ở đầu và cuối quy trình để ghi nhận `StartTime`, cập nhật trạng thái `Success` và số dòng xử lý vào bảng `stg.ETL_Log`. Event Handler `OnError` được cấu hình để tự động ghi lại chi tiết lỗi vào `stg.ETL_Error` khi có sự cố.
+### 3.3.8. Ghi nhật ký thực thi và xử lý ngoại lệ (ETL Logging & Exception Handling)
+Quy trình ETL được trang bị hệ thống giám sát và bẫy lỗi 2 tầng:
+1. **Giám sát phiên chạy bằng `stg.ETL_Log`:** Tác vụ `EX_00_Start_Log` ghi nhận mã phiên `BatchID`, `PackageName`, và thời gian bắt đầu `StartTime`. Tác vụ `EX_09_Success_Log` đo lường thời gian kết thúc `EndTime`, tính toán tổng số dòng xử lý trên 2 bảng Fact (`RowsInserted`) và cập nhật trạng thái `ExecutionStatus = 'Success'`.
+2. **Cơ chế bẫy lỗi tự động bằng `stg.ETL_Error`:** Trong gói Master ETL, trình xử lý sự kiện **`Package.EventHandlers[OnError]`** được cấu hình tác vụ `EX_Log_ETL_Error`. Khi có bất kỳ lỗi runtime nào xảy ra (mất kết nối cơ sở dữ liệu, lỗi tràn bộ nhớ, lỗi cú pháp), Event Handler sẽ ngay lập tức bắt lấy mã lỗi (`Error_Code`), mô tả lỗi (`Error_Description`), tên tác vụ gặp sự cố và ghi nhận vào bảng `stg.ETL_Error`.
+   - *Lưu ý thực tế:* Do toàn bộ dữ liệu nguồn đã được làm sạch và chuẩn hóa triệt để ở giai đoạn tiền xử lý, toàn bộ 425 sự kiện ngập và 24 quận huyện đều được nạp thành công 100%, không phát sinh lỗi runtime, do đó bảng `stg.ETL_Error` ghi nhận 0 dòng dữ liệu lỗi, minh chứng cho độ ổn định tuyệt đối của hệ thống ETL.
 
 ---
 
