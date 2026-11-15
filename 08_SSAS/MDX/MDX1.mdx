@@ -1,0 +1,15 @@
+/* ========================================================================
+   Truy vấn 1: Thống kê số sự kiện ngập gom theo 12 Tháng trong năm
+   - Trục Cột (Trục 0 / COLUMNS): Thước đo số lần quan sát ngập lụt
+   - Trục Dòng (Trục 1 / ROWS)   : Cấp độ Tháng (Month) của Dim_Time
+   - Khối đa chiều (FROM)       : Flood_DSS_Cube
+   ======================================================================== */
+SELECT 
+    -- 1. TRỤC CỘT: Đo lường tổng số sự kiện ngập lụt ghi nhận
+    [Measures].[Observation Count] ON COLUMNS,
+
+    -- 2. TRỤC DÒNG: Lấy danh sách toàn bộ các thành viên thuộc thuộc tính Tháng (Tháng 1 -> 12)
+    -- NON EMPTY: Tự động loại bỏ những tháng không có dữ liệu ngập
+    NON EMPTY [Dim Time].[Month].[Month].MEMBERS ON ROWS
+
+FROM [Flood_DSS_Cube];

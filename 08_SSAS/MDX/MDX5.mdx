@@ -1,0 +1,20 @@
+/* ========================================================================
+   Truy vấn 5: Phân tích ma trận Loại vị trí x Nguyên nhân ngập lụt
+   - Kỹ thuật: Crossjoin (Toán tử * hoặc hàm CROSSJOIN) đa chiều
+   - Trục Cột (COLUMNS): Số vụ ngập và Độ sâu trung bình
+   - Trục Dòng (ROWS)   : Tích Đề-các giữa [Location Type] và [Cause Name]
+   - Khối dữ liệu      : Flood_DSS_Cube
+   ======================================================================== */
+SELECT 
+    -- 1. TRỤC CỘT: Các thước đo đánh giá tần suất và độ sâu ảnh hưởng
+    { 
+        [Measures].[Observation Count], -- Số sự kiện ngập ghi nhận
+        [Measures].[Avg Depth Cm]       -- Độ sâu ngập trung bình (cm)
+    } ON COLUMNS,
+    -- 2. TRỤC DÒNG: Kết hợp chéo từng loại vị trí hạ tầng với từng nhóm nguyên nhân
+    -- NON EMPTY: Loại bỏ các giao điểm không có dữ liệu phát sinh
+    NON EMPTY CROSSJOIN(
+        [Dim Location].[Location Type].[Location Type].MEMBERS,
+        [Dim Cause].[Cause Name].[Cause Name].MEMBERS
+    ) ON ROWS
+FROM [Flood_DSS_Cube];

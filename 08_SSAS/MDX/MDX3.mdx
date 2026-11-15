@@ -1,0 +1,18 @@
+/* ========================================================================
+   Truy vấn 3: Đối chiếu số sự kiện ngập với Dân số và Mật độ dân cư
+   - Kỹ thuật: Drill-across (kết hợp đồng thời độ đo từ 2 bảng Fact)
+   - Trục Cột (COLUMNS): Số vụ ngập (Fact ngập) + Dân số & Mật độ (Fact dân số)
+   - Trục Dòng (ROWS)   : Chiều dùng chung Conformed Dimension [Dim Area]
+   ======================================================================== */
+SELECT 
+    -- 1. TRỤC CỘT: Kết hợp các độ đo từ 2 bảng Fact khác nhau
+    { 
+        [Measures].[Observation Count],     -- Từ Fact_FloodObservation: Số sự kiện ngập
+        [Measures].[Population],            -- Từ Fact_Population: Tổng dân số quận/huyện
+        [Measures].[Population Density]     -- Từ Fact_Population: Mật độ dân cư (người/km2)
+    } ON COLUMNS,
+
+    -- 2. TRỤC DÒNG: Hiển thị phân rã theo từng đơn vị hành chính cấp Quận/Huyện
+    NON EMPTY [Dim Area].[Area Name].[Area Name].MEMBERS ON ROWS
+
+FROM [Flood_DSS_Cube];

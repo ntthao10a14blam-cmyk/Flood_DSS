@@ -1,0 +1,21 @@
+/* ========================================================================
+   Truy vấn 2: Độ sâu và thời lượng ngập do Triều cường theo từng Quận/Huyện
+   - Trục Cột (COLUMNS): Tập hợp 3 chỉ số đo lường mức độ ngập
+   - Trục Dòng (ROWS)   : Danh sách Quận/Huyện từ Dim_Area
+   - Cắt lát (WHERE)   : Cố định nguyên nhân ngập là "Triều cường"
+   ======================================================================== */
+SELECT 
+    -- 1. TRỤC CỘT: Tập hợp 3 thước đo phản ánh mức độ nghiêm trọng của đợt ngập
+    { 
+        [Measures].[Avg Depth Cm],      -- Độ sâu ngập trung bình (cm)
+        [Measures].[Max Depth Cm],      -- Độ sâu ngập lớn nhất từng ghi nhận (cm)
+        [Measures].[Duration Hours]     -- Tổng thời lượng nước ngập duy trì (giờ)
+    } ON COLUMNS,
+
+    -- 2. TRỤC DÒNG: Danh sách tên các đơn vị hành chính cấp Quận/Huyện
+    NON EMPTY [Dim Area].[Area Name].[Area Name].MEMBERS ON ROWS
+
+FROM [Flood_DSS_Cube]
+
+-- 3. MỆNH ĐỀ CẮT LÁT (SLICE): Lọc riêng các bản ghi do Triều cường (4)
+WHERE ([Dim Cause].[Cause Name].[Cause Name].&[4]);

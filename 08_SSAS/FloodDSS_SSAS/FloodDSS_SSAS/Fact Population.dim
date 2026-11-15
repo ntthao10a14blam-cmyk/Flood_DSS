@@ -1,4 +1,4 @@
-﻿<Dimension xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ddl2="http://schemas.microsoft.com/analysisservices/2003/engine/2" xmlns:ddl2_2="http://schemas.microsoft.com/analysisservices/2003/engine/2/2" xmlns:ddl100_100="http://schemas.microsoft.com/analysisservices/2008/engine/100/100" xmlns:ddl200="http://schemas.microsoft.com/analysisservices/2010/engine/200" xmlns:ddl200_200="http://schemas.microsoft.com/analysisservices/2010/engine/200/200" xmlns:ddl300="http://schemas.microsoft.com/analysisservices/2011/engine/300" xmlns:ddl300_300="http://schemas.microsoft.com/analysisservices/2011/engine/300/300" xmlns:ddl400="http://schemas.microsoft.com/analysisservices/2012/engine/400" xmlns:ddl400_400="http://schemas.microsoft.com/analysisservices/2012/engine/400/400" xmlns:ddl500="http://schemas.microsoft.com/analysisservices/2013/engine/500" xmlns:ddl500_500="http://schemas.microsoft.com/analysisservices/2013/engine/500/500" xmlns:dwd="http://schemas.microsoft.com/DataWarehouse/Designer/1.0" dwd:design-time-name="ca21a7df-f178-4df3-b149-3e321fb051c1" xmlns="http://schemas.microsoft.com/analysisservices/2003/engine">
+﻿<Dimension xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ddl2="http://schemas.microsoft.com/analysisservices/2003/engine/2" xmlns:ddl2_2="http://schemas.microsoft.com/analysisservices/2003/engine/2/2" xmlns:ddl100_100="http://schemas.microsoft.com/analysisservices/2008/engine/100/100" xmlns:ddl200="http://schemas.microsoft.com/analysisservices/2010/engine/200" xmlns:ddl200_200="http://schemas.microsoft.com/analysisservices/2010/engine/200/200" xmlns:ddl300="http://schemas.microsoft.com/analysisservices/2011/engine/300" xmlns:ddl300_300="http://schemas.microsoft.com/analysisservices/2011/engine/300/300" xmlns:ddl400="http://schemas.microsoft.com/analysisservices/2012/engine/400" xmlns:ddl400_400="http://schemas.microsoft.com/analysisservices/2012/engine/400/400" xmlns:ddl500="http://schemas.microsoft.com/analysisservices/2013/engine/500" xmlns:ddl500_500="http://schemas.microsoft.com/analysisservices/2013/engine/500/500" xmlns:dwd="http://schemas.microsoft.com/DataWarehouse/Designer/1.0" dwd:design-time-name="3ccf6650-5d2a-4692-b1a1-2f5c8112afe6" xmlns="http://schemas.microsoft.com/analysisservices/2003/engine">
   <ID>Fact Population</ID>
   <Name>Fact Population</Name>
   <CreatedTimestamp>0001-01-01T00:00:00Z</CreatedTimestamp>
@@ -6,6 +6,32 @@
   <Annotations>
     <Annotation>
       <Name>http://schemas.microsoft.com/DataWarehouse/Designer/1.0:DiagramLayout</Name>
+      <Value>
+        <dds xmlns="">
+          <diagram fontclsid="{0BE35203-8F91-11CE-9DE3-00AA004BB851}" mouseiconclsid="{0BE35204-8F91-11CE-9DE3-00AA004BB851}" defaultlayout="MSDDS.Rectilinear" defaultlineroute="MSDDS.Rectilinear" version="7" nextobject="2" scale="100" pagebreakanchorx="0" pagebreakanchory="0" pagebreaksizex="0" pagebreaksizey="0" scrollleft="73" scrolltop="-10699" gridx="150" gridy="150" marginx="5000" marginy="5000" zoom="75" x="2985" y="19304" backcolor="16119285" defaultpersistence="2" PrintPageNumbersMode="3" PrintMarginTop="0" PrintMarginBottom="635" PrintMarginLeft="0" PrintMarginRight="0" marqueeselectionmode="0" mousepointer="0" snaptogrid="0" autotypeannotation="1" showscrollbars="1" viewpagebreaks="0" donotforceconnectorsbehindshapes="1" backpictureclsid="{00000000-0000-0000-0000-000000000000}">
+            <font>
+              <ddsxmlobjectstreamwrapper binary="010000009001b0300100065461686f6d61" />
+            </font>
+            <mouseicon>
+              <ddsxmlobjectstreamwrapper binary="6c74000000000000" />
+            </mouseicon>
+          </diagram>
+          <layoutmanager>
+            <ddsxmlobj />
+          </layoutmanager>
+          <ddscontrol controlprogid="DdsShapes.DdsObjectManagedBridge" tooltip="Fact_Population" left="20" top="0" logicalid="1" controlid="1" masterid="0" hint1="0" hint2="0" width="3493" height="3747" noresize="0" nomove="0" nodefaultattachpoints="0" autodrag="1" usedefaultiddshape="1" selectable="1" showselectionhandles="1" allownudging="1" isannotation="0" dontautolayout="0" groupcollapsed="0" tabstop="1" visible="1" snaptogrid="0">
+            <control>
+              <ddsxmlobjectstreaminitwrapper binary="000e0000a50d0000a30e0000" />
+            </control>
+            <layoutobject>
+              <ddsxmlobj>
+                <property name="LogicalObject" value="dw_Fact_Population" vartype="8" />
+              </ddsxmlobj>
+            </layoutobject>
+            <shape groupshapeid="0" groupnode="0" />
+          </ddscontrol>
+        </dds>
+      </Value>
     </Annotation>
     <Annotation>
       <Name>http://schemas.microsoft.com/DataWarehouse/Designer/1.0:ShowFriendlyNames</Name>
@@ -21,15 +47,15 @@
     </Annotation>
     <Annotation>
       <Name>http://schemas.microsoft.com/DataWarehouse/Designer/1.0:DiagramViewPortLeft</Name>
-      <Value>0</Value>
+      <Value>73</Value>
     </Annotation>
     <Annotation>
       <Name>http://schemas.microsoft.com/DataWarehouse/Designer/1.0:DiagramViewPortTop</Name>
-      <Value>0</Value>
+      <Value>-10699</Value>
     </Annotation>
     <Annotation>
       <Name>http://schemas.microsoft.com/DataWarehouse/Designer/1.0:DiagramBoundingLeft</Name>
-      <Value>0</Value>
+      <Value>20</Value>
     </Annotation>
     <Annotation>
       <Name>http://schemas.microsoft.com/DataWarehouse/Designer/1.0:DiagramBoundingTop</Name>
@@ -37,40 +63,40 @@
     </Annotation>
     <Annotation>
       <Name>http://schemas.microsoft.com/DataWarehouse/Designer/1.0:DiagramZoom</Name>
-      <Value>100</Value>
+      <Value>75</Value>
     </Annotation>
   </Annotations>
   <LastProcessed>0001-01-01T00:00:00Z</LastProcessed>
   <State>Unprocessed</State>
-  <Source xsi:type="DataSourceViewBinding" dwd:design-time-name="cb3094a4-c855-4459-8193-13afadff9a50">
+  <Source xsi:type="DataSourceViewBinding" dwd:design-time-name="f1f561c0-6f45-49e7-9975-3f4e0588359f">
     <DataSourceViewID>DSV_FloodDSS</DataSourceViewID>
   </Source>
-  <ErrorConfiguration dwd:design-time-name="50658526-5289-4d0c-8bd5-7ec24207502f">
+  <ErrorConfiguration dwd:design-time-name="5ade066a-f8c9-4cfe-8bde-0010237d993f">
     <KeyNotFound>ReportAndStop</KeyNotFound>
     <KeyDuplicate>ReportAndStop</KeyDuplicate>
     <NullKeyNotAllowed>ReportAndStop</NullKeyNotAllowed>
   </ErrorConfiguration>
   <CurrentStorageMode>Molap</CurrentStorageMode>
   <Attributes>
-    <Attribute dwd:design-time-name="707aab11-aae3-4c51-af65-66ca7f9e7585">
+    <Attribute dwd:design-time-name="0c415cec-cb26-4ee0-ac78-34c779edc6d7">
       <ID>Population Key</ID>
       <Name>Population Key</Name>
       <Usage>Key</Usage>
       <KeyColumns>
-        <KeyColumn dwd:design-time-name="fde8e94b-0129-4b44-8f80-30966a066783">
+        <KeyColumn dwd:design-time-name="5cdc62ab-f491-49c9-bec2-d9a8be784a6a">
           <DataType>BigInt</DataType>
-          <Source xsi:type="ColumnBinding" dwd:design-time-name="361571a4-32eb-4251-b1d6-cfb4430b92ce">
+          <Source xsi:type="ColumnBinding" dwd:design-time-name="a7440bce-1f72-4d5d-8fa1-4e3e80225ed7">
             <TableID>dw_Fact_Population</TableID>
             <ColumnID>PopulationKey</ColumnID>
           </Source>
         </KeyColumn>
       </KeyColumns>
       <AttributeRelationships>
-        <AttributeRelationship dwd:design-time-name="5b059a90-9785-4947-92b4-3cd4dee2c304">
+        <AttributeRelationship dwd:design-time-name="76e0a73d-4917-4139-b815-044670ae1c93">
           <AttributeID>Area Key</AttributeID>
           <Name>Area Key</Name>
         </AttributeRelationship>
-        <AttributeRelationship dwd:design-time-name="53df2765-9d7a-4b56-a571-865c182c8b13">
+        <AttributeRelationship dwd:design-time-name="43aba837-a5dc-4b42-81c4-a6b25a1e07a2">
           <AttributeID>Source Key</AttributeID>
           <Name>Source Key</Name>
         </AttributeRelationship>
@@ -79,13 +105,13 @@
       <ddl200:ProcessingState>Unprocessed</ddl200:ProcessingState>
       <ddl300:AttributeHierarchyProcessingState>Unprocessed</ddl300:AttributeHierarchyProcessingState>
     </Attribute>
-    <Attribute dwd:design-time-name="ceba866f-51d0-4bc3-bf51-691d97a2d9a2">
+    <Attribute dwd:design-time-name="1ee028e7-8274-4103-adac-0baef34d021f">
       <ID>Area Key</ID>
       <Name>Area Key</Name>
       <KeyColumns>
-        <KeyColumn dwd:design-time-name="5f8810b2-d04a-4f1e-a369-2b50438d3f01">
+        <KeyColumn dwd:design-time-name="2031a7fa-bd5a-4472-9ef1-3f5ddc413fcd">
           <DataType>Integer</DataType>
-          <Source xsi:type="ColumnBinding" dwd:design-time-name="d3d7858e-b4c7-444b-9397-d7ab90634358">
+          <Source xsi:type="ColumnBinding" dwd:design-time-name="84dc464d-b9ce-450d-9131-9e4c749f0539">
             <TableID>dw_Fact_Population</TableID>
             <ColumnID>AreaKey</ColumnID>
           </Source>
@@ -96,15 +122,15 @@
       <ddl200:ProcessingState>Unprocessed</ddl200:ProcessingState>
       <ddl300:AttributeHierarchyProcessingState>Unprocessed</ddl300:AttributeHierarchyProcessingState>
     </Attribute>
-    <Attribute dwd:design-time-name="a539d77d-d475-4ccb-9fc5-b55f06cc66a9">
+    <Attribute dwd:design-time-name="e8af348b-2657-4982-9a8e-13cb1efdbf78">
       <ID>Source Key</ID>
       <Name>Source Key</Name>
       <KeyColumns>
-        <KeyColumn dwd:design-time-name="6093c968-50b3-44dd-b3d0-338d0f28d9df">
-          <DataType>Integer</DataType>
-          <Source xsi:type="ColumnBinding" dwd:design-time-name="425fc05f-779b-46d0-b39f-e18527f601a5">
+        <KeyColumn dwd:design-time-name="0049e0e2-46a0-4e58-92e8-740ea6736aba">
+          <DataType>BigInt</DataType>
+          <Source xsi:type="ColumnBinding" dwd:design-time-name="c39dbaa3-689b-440e-8cc6-9cd24239c4cc">
             <TableID>dw_Fact_Population</TableID>
-            <ColumnID>SourceKey</ColumnID>
+            <ColumnID>PopulationKey</ColumnID>
           </Source>
         </KeyColumn>
       </KeyColumns>

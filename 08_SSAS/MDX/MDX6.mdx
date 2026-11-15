@@ -1,0 +1,18 @@
+/* ========================================================================
+   Truy vấn 6: Khảo sát xu hướng ngập theo Năm và Quý (Time Hierarchy)
+   - Kỹ thuật: Drill-down thứ bậc Thời gian đa cấp (Year -> Quarter)
+   - Trục Cột (COLUMNS): Tổng thời lượng ngập (giờ) & Số đợt quan sát
+   - Trục Dòng (ROWS)   : Phối hợp Năm và Quý theo trình tự thời gian
+   ======================================================================== */
+SELECT 
+    -- 1. TRỤC CỘT: Đo lường thời lượng duy trì và số đợt ngập
+    { 
+        [Measures].[Duration Hours],    -- Tổng số giờ ngập nước duy trì
+        [Measures].[Observation Count]  -- Tần suất số lần ngập lụt
+    } ON COLUMNS,
+    -- 2. TRỤC DÒNG: Ghép cấp Năm và cấp Quý theo trình tự thời gian tăng dần
+    NON EMPTY (
+        [Dim Time].[Year].[Year].MEMBERS * 
+        [Dim Time].[Quarter].[Quarter].MEMBERS
+    ) ON ROWS
+FROM [Flood_DSS_Cube];

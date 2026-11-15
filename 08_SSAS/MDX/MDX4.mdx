@@ -1,0 +1,22 @@
+/* ========================================================================
+   Truy vấn 4: Xếp hạng Top 5 Quận/Huyện có độ sâu ngập đỉnh lớn nhất
+   - Hàm MDX: TOPCOUNT(Set, Count, Numeric_Expression)
+   - Trục Cột (COLUMNS): Max Depth, Avg Depth, Observation Count
+   - Trục Dòng (ROWS)   : 5 Quận/Huyện đứng đầu theo tiêu chí [Max Depth Cm]
+   ======================================================================== */
+SELECT 
+    -- 1. TRỤC CỘT: Các chỉ số phản ánh mức độ nghiêm trọng
+    { 
+        [Measures].[Max Depth Cm],      -- Tiêu chí xếp hạng chính
+        [Measures].[Avg Depth Cm],      -- Độ sâu trung bình bổ trợ
+        [Measures].[Observation Count]  -- Tổng số vụ ngập bổ trợ
+    } ON COLUMNS,
+
+    -- 2. TRỤC DÒNG: Hàm TOPCOUNT tự động sắp xếp giảm dần và lấy đúng 5 quận đứng đầu
+    TOPCOUNT(
+        [Dim Area].[Area Name].[Area Name].MEMBERS, -- Tập hợp các Quận/Huyện xét duyệt
+        5,                                          -- Số lượng phần tử trích xuất (Top 5)
+        [Measures].[Max Depth Cm]                   -- Độ đo dùng làm căn cứ sắp xếp giảm dần
+    ) ON ROWS
+
+FROM [Flood_DSS_Cube];
