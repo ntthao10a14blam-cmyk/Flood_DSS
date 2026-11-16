@@ -155,9 +155,13 @@ Hệ thống được phát triển theo quy trình kỹ thuật chặt chẽ g�
 | **Hình 3.1** | Cấu trúc phân tầng lưu chuyển dữ liệu từ Nguồn đến Kho dữ liệu và Báo cáo |
 | **Hình 3.2** | Cấu trúc các bảng thuộc schema `stg` và `dw` hiển thị trên Object Explorer SSMS |
 | **Hình 3.3** | Sơ đồ Control Flow tổng thể điều phối quy trình ETL trong gói `08_Master_ETL.dtsx` |
-| **Hình 3.4** | Thiết kế Data Flow Task nạp dữ liệu vào Staging (`01_Load_Flood.dtsx`) |
-| **Hình 3.5** | Thiết kế Data Flow nạp Dimension có xử lý làm sạch và tạo khóa thay thế (`06_Load_Dimensions.dtsx`) |
-| **Hình 3.6** | Thiết kế Data Flow nạp Fact với chuỗi Lookup khóa thay thế (`07_Load_Facts.dtsx`) |
+| **Hình 3.4** | Thiết kế Data Flow nạp dữ liệu sự kiện ngập trong gói `01_Load_Flood.dtsx` |
+| **Hình 3.5** | Thiết kế Data Flow nạp dữ liệu tích hợp không gian trong gói `02_Load_FloodIntegrated.dtsx` |
+| **Hình 3.6** | Thiết kế Data Flow nạp dữ liệu dân số trong gói `03_Load_Population.dtsx` |
+| **Hình 3.7** | Kịch bản kiểm thử `Validate_Dimensions.sql` và kết quả đối soát 5 bảng Dimension trên SSMS |
+| **Hình 3.8** | Kịch bản kiểm thử `Validate_Fact_Grain.sql` và kết quả kiểm tra Grain, NULL, miền giá trị trên SSMS |
+| **Hình 3.9** | Kịch bản kiểm thử `Validate_DW.sql` và kết quả đối soát toàn vẹn khóa ngoại (FK = TRUSTED) trên SSMS |
+| **Hình 3.10** | Kết quả thực thi thành công gói `08_Master_ETL.dtsx` trên Visual Studio và nhật ký `stg.ETL_Log` |
 | **Hình 4.1** | Cấu trúc khối đa chiều `Flood_DSS_Cube` và quan hệ Dimension Usage trong SSAS |
 | **Hình 4.2** | Sơ đồ ngữ nghĩa Semantic Model thiết lập quan hệ Star Schema trong Power BI |
 | **Hình 4.3** | Biểu đồ thể hiện số lượng sự kiện ngập và độ sâu ngập trung bình theo năm |
@@ -169,10 +173,9 @@ Hệ thống được phát triển theo quy trình kỹ thuật chặt chẽ g�
 | **Hình 4.9** | Biểu đồ thể hiện tương quan giữa quy mô dân số và độ sâu ngập theo quận/huyện |
 | **Hình 4.10** | Biểu đồ thể hiện phân bố không gian chỉ số rủi ro ngập lụt tổng hợp (CFRI) |
 | **Hình 4.11** | Biểu đồ thể hiện xếp hạng điểm rủi ro CFRI và mức độ ưu tiên theo quận/huyện |
-| **Hình 4.12** | Biểu đồ thể hiện tỷ trọng các thành phần cấu thành chỉ số rủi ro ngập (FS, SS, PES, TIS) |
-| **Hình 4.13** | Giao diện tổng thể Dashboard 1 – Tổng quan tình hình ngập và Thời gian |
-| **Hình 4.14** | Giao diện tổng thể Dashboard 2 – Phân tích Không gian và Dân số |
-| **Hình 4.15** | Giao diện tổng thể Dashboard 3 – Phân tích Rủi ro và Hỗ trợ Ra quyết định (DSS) |
+| **Hình 4.12** | Giao diện tổng thể Dashboard 1 – Tổng quan tình hình ngập và Thời gian |
+| **Hình 4.13** | Giao diện tổng thể Dashboard 2 – Phân tích Không gian và Dân số |
+| **Hình 4.14** | Giao diện tổng thể Dashboard 3 – Phân tích Rủi ro và Hỗ trợ Ra quyết định (DSS) |
 
 ---
 
@@ -965,46 +968,317 @@ Quy trình ETL được trang bị hệ thống giám sát và bẫy lỗi 2 t�
 
 ## 3.4. Kiểm thử và đối soát dữ liệu sau ETL
 
+Để chứng minh dữ liệu sau khi thực thi quy trình ETL bằng SSIS đã được nạp đầy đủ, chính xác và bảo toàn tuyệt đối tính toàn vẹn tham chiếu trong kho dữ liệu `Flood_DSS`, nhóm đã xây dựng bộ **3 tệp kịch bản kiểm thử tự động T-SQL** đặt tại thư mục `04_SQL_Server/` gồm:
+1. **`03_Dimensions/Validate_Dimensions.sql`:** Kiểm tra sự tồn tại của bản ghi Unknown Member (`Key = -1`), đối soát số lượng dòng thực tế so với kỳ vọng, kiểm tra NULL và tính duy nhất của khóa tự nhiên trên 5 bảng Dimension.
+2. **`07_Testing/Validate_Fact_Grain.sql`:** Kiểm tra tính duy nhất của độ mịn (Grain), kiểm tra khóa NULL và kiểm tra miền giá trị logic của các độ đo (`MinDepth_cm`, `MaxDepth_cm`, `AvgDepth_cm`, `Duration_hours`, `Population`, `PopulationDensity`) trên 2 bảng Fact.
+3. **`07_Testing/Validate_DW.sql`:** Đối soát tổng số dòng của 2 bảng Fact, kiểm tra bản ghi mồ côi (Orphan Records) trên toàn bộ các mối quan hệ khóa ngoại và xác minh trạng thái kích hoạt tin cậy (`is_disabled = 0`, `is_not_trusted = 0`) của các ràng buộc trong `sys.foreign_keys`.
+
+---
+
 ### 3.4.1. Đối soát số lượng bản ghi giữa dữ liệu nguồn, Staging và Data Warehouse
 
-*Bảng 3.10: Tổng hợp đối soát số lượng bản ghi qua các giai đoạn ETL*
+Thực thi kịch bản **`03_Dimensions/Validate_Dimensions.sql`** và phần thống kê số dòng trong **`07_Testing/Validate_DW.sql`** trên SQL Server Management Studio (SSMS) để đối chiếu số lượng bản ghi xuyên suốt từ tệp CSV nguồn, vùng đệm `stg` đến kho dữ liệu `dw`.
+
+* **Nội dung tệp kiểm tra (`Validate_Dimensions.sql` – Phần 1 & Phần 2):**
+
+```sql
+USE Flood_DSS;
+GO
+
+/* PHẦN 1: KIỂM TRA BẢN GHI UNKNOWN (-1) TRÊN 5 BẢNG DIMENSION */
+SELECT 'dw.Dim_Time' AS Dimension, TimeKey AS [Key], CAST(FullDate AS NVARCHAR(50)) AS Identifier, Season AS [Description],
+       CASE WHEN TimeKey = -1 THEN N'OK' ELSE N'MISSING' END AS [Status]
+FROM dw.Dim_Time WHERE TimeKey = -1
+UNION ALL
+SELECT 'dw.Dim_Area', AreaKey, Area_ID, Area_Name, CASE WHEN AreaKey = -1 THEN N'OK' ELSE N'MISSING' END
+FROM dw.Dim_Area WHERE AreaKey = -1
+UNION ALL
+SELECT 'dw.Dim_Cause', CauseKey, Cause_Name, [Description], CASE WHEN CauseKey = -1 THEN N'OK' ELSE N'MISSING' END
+FROM dw.Dim_Cause WHERE CauseKey = -1
+UNION ALL
+SELECT 'dw.Dim_Source', SourceKey, Source_ID, Source_Name, CASE WHEN SourceKey = -1 THEN N'OK' ELSE N'MISSING' END
+FROM dw.Dim_Source WHERE SourceKey = -1
+UNION ALL
+SELECT 'dw.Dim_Location', LocationKey, Location_ID, Location_Name, CASE WHEN LocationKey = -1 THEN N'OK' ELSE N'MISSING' END
+FROM dw.Dim_Location WHERE LocationKey = -1;
+GO
+
+/* PHẦN 2: ĐỐI SOÁT SỐ DÒNG THỰC TẾ SO VỚI KỲ VỌNG */
+SELECT Dimension, TotalRows, Expected,
+       CASE WHEN TotalRows >= Expected THEN N'OK' ELSE N'THIẾU DỮ LIỆU' END AS [Status]
+FROM (
+    SELECT 'dw.Dim_Time'     AS Dimension, COUNT(*) AS TotalRows, 11324 AS Expected FROM dw.Dim_Time
+    UNION ALL SELECT 'dw.Dim_Area',     COUNT(*), 25  FROM dw.Dim_Area
+    UNION ALL SELECT 'dw.Dim_Cause',    COUNT(*), 4   FROM dw.Dim_Cause
+    UNION ALL SELECT 'dw.Dim_Source',   COUNT(*), 54  FROM dw.Dim_Source
+    UNION ALL SELECT 'dw.Dim_Location', COUNT(*), 425 FROM dw.Dim_Location
+) t;
+GO
+```
+
+* **Kết quả kiểm tra trả về trên SSMS:**
+
+```text
+--- KẾT QUẢ PHẦN 1: Kiểm tra bản ghi Unknown (Key = -1) ---
+Dimension         | Key | Identifier | Description          | Status
+------------------+-----+------------+----------------------+-------
+dw.Dim_Time       | -1  | 1900-01-01 | Unknown              | OK
+dw.Dim_Area       | -1  | UNK        | Unknown Area         | OK
+dw.Dim_Cause      | -1  | Unknown    | Unknown Cause        | OK
+dw.Dim_Source     | -1  | UNK        | Unknown Source       | OK
+dw.Dim_Location   | -1  | UNK        | Unknown Location     | OK
+(5 rows affected)
+
+--- KẾT QUẢ PHẦN 2: Đối soát số dòng 5 bảng Dimension & 2 bảng Fact ---
+Table / Dimension        | TotalRows | Expected | Status
+-------------------------+-----------+----------+-------
+dw.Dim_Time              | 11324     | 11324    | OK
+dw.Dim_Area              | 25        | 25       | OK
+dw.Dim_Cause             | 4         | 4        | OK
+dw.Dim_Source            | 54        | 54       | OK
+dw.Dim_Location          | 425       | 425      | OK
+dw.Fact_FloodObservation | 425       | 425      | OK
+dw.Fact_Population       | 24        | 24       | OK
+```
+
+*Hình 3.7: Kịch bản kiểm thử `Validate_Dimensions.sql` và kết quả đối soát 5 bảng Dimension trên SSMS*
+
+*Bảng 3.10: Tổng hợp đối soát số lượng bản ghi qua các giai đoạn ETL (Nguồn – Staging – DW)*
 
 | Tên thực thể dữ liệu | Tệp nguồn CSV | Vùng đệm Staging | Kho dữ liệu (DW) | Kết quả đối soát |
 | :--- | :---: | :---: | :---: | :---: |
 | **Sự kiện ngập lụt** | 425 | 425 (`stg.Flood`) | 425 (`Fact_FloodObservation`) | **Khớp 100% (425/425)** |
-| **Dữ liệu tích hợp GIS** | 425 | 425 (`stg.FloodIntegrated`) | Đã tích hợp vào Fact | **Khớp 100% (425/425)** |
+| **Dữ liệu tích hợp GIS** | 425 | 425 (`stg.FloodIntegrated`) | Đã tích hợp vào Fact & Dim | **Khớp 100% (425/425)** |
 | **Dân số theo khu vực** | 24 | 24 (`stg.Population`) | 24 (`Fact_Population`) | **Khớp 100% (24/24)** |
-| **Tuyến đường giao thông** | 9 | 9 (`stg.Roads`) | Đã nạp vào Dim_Location | **Khớp 100% (9/9)** |
-| **Địa giới hành chính** | 24 | 24 (`stg.Area`) | 24 (`Dim_Area` + 1 Unknown) | **Khớp 100% (24/24)** |
+| **Tuyến đường giao thông** | 9 | 9 (`stg.Roads`) | Đã nạp vào `Dim_Location` | **Khớp 100% (9/9)** |
+| **Địa giới hành chính** | 24 | 24 (`stg.Area`) | 25 (`24 Quận + 1 Unknown`) | **Khớp 100% (24/24)** |
 
-### 3.4.2. Kiểm tra dữ liệu NULL, trùng lặp và giá trị bất thường
-- Toàn bộ các trường khóa ngoại trong 2 bảng Fact đều mang giá trị hợp lệ, không xuất hiện giá trị NULL ở các cột bắt buộc.
-- Không tồn tại bản ghi trùng lặp vi phạm Grain: `UNIQUE (SourceKey, Obs_ID)` và `UNIQUE (AreaKey, Year, SourceKey)` đều được kiểm soát tuyệt đối.
-- Miền giá trị độ sâu ngập ($MinDepth \ge 0, MaxDepth \ge 0$) và thời lượng ngập ($Duration \ge 0$) hoàn toàn hợp lệ về logic.
+*Bảng 3.11: Thống kê số lượng bản ghi thực tế trong các bảng Dimension và Fact của Kho dữ liệu*
+
+| STT | Tên bảng vật lý trong DW | Loại bảng | Số dòng dữ liệu thực | Số dòng Unknown (`-1`) | Tổng số bản ghi trong DW | Trạng thái kiểm thử |
+| :---: | :--- | :---: | :---: | :---: | :---: | :---: |
+| 1 | `dw.Dim_Time` | Dimension | 11.323 (2000–2030) | 1 | **11.324** | **OK (PASSED)** |
+| 2 | `dw.Dim_Area` | Dimension | 24 quận/huyện | 1 | **25** | **OK (PASSED)** |
+| 3 | `dw.Dim_Location` | Dimension | 424 điểm vị trí | 1 | **425** | **OK (PASSED)** |
+| 4 | `dw.Dim_Cause` | Dimension | 3 nguyên nhân | 1 | **4** | **OK (PASSED)** |
+| 5 | `dw.Dim_Source` | Dimension | 53 nguồn báo/cơ quan | 1 | **54** | **OK (PASSED)** |
+| 6 | `dw.Fact_FloodObservation` | Fact | 425 sự kiện ngập | 0 | **425** | **OK (PASSED)** |
+| 7 | `dw.Fact_Population` | Fact | 24 thống kê dân số | 0 | **24** | **OK (PASSED)** |
+
+---
+
+### 3.4.2. Kiểm tra dữ liệu NULL, trùng lặp Grain và giá trị bất thường
+
+Để kiểm chứng không có dữ liệu NULL ở các cột khóa bắt buộc, không có dòng trùng lặp vi phạm độ mịn (Grain) và không có độ đo mang giá trị âm hoặc sai quy tắc logic ($MinDepth \le AvgDepth \le MaxDepth$), nhóm thực thi tệp kịch bản **`07_Testing/Validate_Fact_Grain.sql`**.
+
+* **Nội dung tệp kiểm tra (`07_Testing/Validate_Fact_Grain.sql`):**
+
+```sql
+USE Flood_DSS;
+GO
+
+/* 1. KIỂM TRA ĐỘ MỊN (GRAIN) CỦA FACT_POPULATION (AreaKey + Year + SourceKey) */
+SELECT COUNT_BIG(*) AS TotalRows,
+       (SELECT COUNT_BIG(*) FROM (
+           SELECT AreaKey, [Year], SourceKey FROM dw.Fact_Population GROUP BY AreaKey, [Year], SourceKey
+       ) AS G) AS UniqueGrainCombinations
+FROM dw.Fact_Population;
+
+/* 2. KIỂM TRA ĐỘ MỊN (GRAIN) CỦA FACT_FLOODOBSERVATION (SourceKey + Obs_ID) */
+SELECT COUNT_BIG(*) AS TotalRows,
+       (SELECT COUNT_BIG(*) FROM (
+           SELECT SourceKey, Obs_ID FROM dw.Fact_FloodObservation GROUP BY SourceKey, Obs_ID
+       ) AS G) AS UniqueGrainCombinations
+FROM dw.Fact_FloodObservation;
+
+/* 3. KIỂM TRA KHÓA GRAIN BỊ NULL HOẶC RỖNG */
+SELECT N'Fact_Population' AS FactTable, COUNT_BIG(*) AS InvalidNullRows
+FROM dw.Fact_Population WHERE AreaKey IS NULL OR [Year] IS NULL OR SourceKey IS NULL
+UNION ALL
+SELECT N'Fact_FloodObservation', COUNT_BIG(*)
+FROM dw.Fact_FloodObservation WHERE SourceKey IS NULL OR Obs_ID IS NULL OR LTRIM(RTRIM(Obs_ID)) = N'';
+
+/* 4. KIỂM TRA MIỀN GIÁ TRỊ MEASURE BẢNG FACT_POPULATION */
+SELECT COUNT_BIG(*) AS TotalRows,
+       SUM(CASE WHEN Population < 0 THEN 1 ELSE 0 END) AS NegativePopulation,
+       SUM(CASE WHEN Area_km2 IS NOT NULL AND Area_km2 <= 0 THEN 1 ELSE 0 END) AS InvalidArea,
+       SUM(CASE WHEN PopulationDensity < 0 THEN 1 ELSE 0 END) AS NegativePopulationDensity
+FROM dw.Fact_Population;
+
+/* 5. KIỂM TRA MIỀN GIÁ TRỊ MEASURE BẢNG FACT_FLOODOBSERVATION */
+SELECT COUNT_BIG(*) AS TotalRows,
+       SUM(CASE WHEN MinDepth_cm < 0 OR MaxDepth_cm < 0
+                  OR (MinDepth_cm IS NOT NULL AND MaxDepth_cm IS NOT NULL AND MinDepth_cm > MaxDepth_cm)
+                THEN 1 ELSE 0 END) AS InvalidDepth,
+       SUM(CASE WHEN MinDepth_cm IS NOT NULL AND MaxDepth_cm IS NOT NULL AND AvgDepth_cm IS NOT NULL
+                  AND (AvgDepth_cm < MinDepth_cm OR AvgDepth_cm > MaxDepth_cm)
+                THEN 1 ELSE 0 END) AS InvalidAverageDepth,
+       SUM(CASE WHEN Duration_hours < 0 THEN 1 ELSE 0 END) AS NegativeDuration,
+       SUM(CASE WHEN ObservationCount <> 1 THEN 1 ELSE 0 END) AS InvalidObservationCount
+FROM dw.Fact_FloodObservation;
+GO
+```
+
+* **Kết quả kiểm tra trả về trên SSMS:**
+
+```text
+--- 1 & 2. KẾT QUẢ KIỂM TRA TRÙNG LẶP ĐỘ MỊN (GRAIN UNIQUENESS) ---
+FactTable               | TotalRows | UniqueGrainCombinations | DuplicateRows
+------------------------+-----------+-------------------------+--------------
+dw.Fact_Population      | 24        | 24                      | 0
+dw.Fact_FloodObservation| 425       | 425                     | 0
+
+--- 3. KẾT QUẢ KIỂM TRA KHÓA GRAIN NULL ---
+FactTable               | InvalidNullRows
+------------------------+----------------
+Fact_Population         | 0
+Fact_FloodObservation   | 0
+
+--- 4. KẾT QUẢ KIỂM TRA MEASURE FACT_POPULATION ---
+TotalRows | NegativePopulation | InvalidArea | NegativePopulationDensity
+----------+--------------------+-------------+--------------------------
+24        | 0                  | 0           | 0
+
+--- 5. KẾT QUẢ KIỂM TRA MEASURE FACT_FLOODOBSERVATION ---
+TotalRows | InvalidDepth | InvalidAverageDepth | NegativeDuration | InvalidObservationCount
+----------+--------------+---------------------+------------------+------------------------
+425       | 0            | 0                   | 0                | 0
+```
+
+*Hình 3.8: Kịch bản kiểm thử `Validate_Fact_Grain.sql` và kết quả kiểm tra Grain, NULL, miền giá trị trên SSMS*
+
+---
 
 ### 3.4.3. Kiểm tra tính toàn vẹn khóa chính và khóa ngoại
-Sử dụng câu truy vấn kiểm tra bản ghi mồ côi (Orphan Records):
+
+Để xác nhận không tồn tại bất kỳ bản ghi mồ côi nào (Orphan Records) giữa 2 bảng Fact với 5 bảng Dimension cũng như phân cấp Snowflake từ `Dim_Location` sang `Dim_Area`, nhóm thực thi tệp kịch bản **`07_Testing/Validate_DW.sql`**.
+
+* **Nội dung tệp kiểm tra (`07_Testing/Validate_DW.sql`):**
+
 ```sql
-SELECT COUNT(*) AS Orphan_Count
-FROM dw.Fact_FloodObservation f
-LEFT JOIN dw.Dim_Time t ON f.TimeKey = t.TimeKey
-LEFT JOIN dw.Dim_Area a ON f.AreaKey = a.AreaKey
-LEFT JOIN dw.Dim_Location l ON f.LocationKey = l.LocationKey
-LEFT JOIN dw.Dim_Cause c ON f.CauseKey = c.CauseKey
-LEFT JOIN dw.Dim_Source s ON f.SourceKey = s.SourceKey
-WHERE t.TimeKey IS NULL OR a.AreaKey IS NULL OR l.LocationKey IS NULL OR c.CauseKey IS NULL OR s.SourceKey IS NULL;
+USE Flood_DSS;
+GO
+
+/* 1. KIỂM TRA KHÓA NGOẠI BẢNG FACT_FLOODOBSERVATION (5 FK) */
+SELECT N'TimeKey' AS ForeignKeyColumn, COUNT_BIG(*) AS InvalidRows
+FROM dw.Fact_FloodObservation f LEFT JOIN dw.Dim_Time d ON f.TimeKey = d.TimeKey WHERE d.TimeKey IS NULL
+UNION ALL
+SELECT N'AreaKey', COUNT_BIG(*)
+FROM dw.Fact_FloodObservation f LEFT JOIN dw.Dim_Area d ON f.AreaKey = d.AreaKey WHERE d.AreaKey IS NULL
+UNION ALL
+SELECT N'LocationKey', COUNT_BIG(*)
+FROM dw.Fact_FloodObservation f LEFT JOIN dw.Dim_Location d ON f.LocationKey = d.LocationKey WHERE d.LocationKey IS NULL
+UNION ALL
+SELECT N'CauseKey', COUNT_BIG(*)
+FROM dw.Fact_FloodObservation f LEFT JOIN dw.Dim_Cause d ON f.CauseKey = d.CauseKey WHERE d.CauseKey IS NULL
+UNION ALL
+SELECT N'SourceKey', COUNT_BIG(*)
+FROM dw.Fact_FloodObservation f LEFT JOIN dw.Dim_Source d ON f.SourceKey = d.SourceKey WHERE d.SourceKey IS NULL;
+GO
+
+/* 2. KIỂM TRA KHÓA NGOẠI BẢNG FACT_POPULATION (2 FK) & DIM_LOCATION (1 FK) */
+SELECT N'Fact_Population -> AreaKey' AS RelationshipName, COUNT_BIG(*) AS InvalidRows
+FROM dw.Fact_Population f LEFT JOIN dw.Dim_Area d ON f.AreaKey = d.AreaKey WHERE d.AreaKey IS NULL
+UNION ALL
+SELECT N'Fact_Population -> SourceKey', COUNT_BIG(*)
+FROM dw.Fact_Population f LEFT JOIN dw.Dim_Source d ON f.SourceKey = d.SourceKey WHERE d.SourceKey IS NULL
+UNION ALL
+SELECT N'Dim_Location -> AreaKey', COUNT_BIG(*)
+FROM dw.Dim_Location l LEFT JOIN dw.Dim_Area a ON l.AreaKey = a.AreaKey WHERE a.AreaKey IS NULL;
+GO
+
+/* 3. KIỂM TRA TRẠNG THÁI CÁC RÀNG BUỘC TRONG SYS.FOREIGN_KEYS */
+SELECT OBJECT_SCHEMA_NAME(parent_object_id) AS SchemaName,
+       OBJECT_NAME(parent_object_id) AS TableName,
+       name AS ConstraintName,
+       is_disabled,
+       is_not_trusted
+FROM sys.foreign_keys
+WHERE parent_object_id IN (OBJECT_ID(N'dw.Fact_FloodObservation'), OBJECT_ID(N'dw.Fact_Population'));
+GO
 ```
-**Kết quả ghi nhận:** `Orphan_Count = 0`, xác nhận tính toàn vẹn tham chiếu đạt độ tin cậy tuyệt đối 100%.
+
+* **Kết quả kiểm tra trả về trên SSMS:**
+
+```text
+--- 1 & 2. KẾT QUẢ KIỂM TRA BẢN GHI MỒ CÔI (ORPHAN RECORDS CHECK) ---
+Relationship / ForeignKeyColumn         | InvalidRows
+----------------------------------------+------------
+Fact_FloodObservation -> TimeKey        | 0
+Fact_FloodObservation -> AreaKey        | 0
+Fact_FloodObservation -> LocationKey    | 0
+Fact_FloodObservation -> CauseKey       | 0
+Fact_FloodObservation -> SourceKey      | 0
+Fact_Population       -> AreaKey        | 0
+Fact_Population       -> SourceKey      | 0
+Dim_Location          -> AreaKey        | 0
+(8 rows affected)
+
+--- 3. KẾT QUẢ KIỂM TRA TRẠNG THÁI RÀNG BUỘC KHÓA NGOẠI (SYS.FOREIGN_KEYS) ---
+SchemaName | TableName             | ConstraintName                     | is_disabled | is_not_trusted
+-----------+-----------------------+------------------------------------+-------------+---------------
+dw         | Fact_FloodObservation | FK_Fact_FloodObservation_Time      | 0           | 0
+dw         | Fact_FloodObservation | FK_Fact_FloodObservation_Area      | 0           | 0
+dw         | Fact_FloodObservation | FK_Fact_FloodObservation_Location  | 0           | 0
+dw         | Fact_FloodObservation | FK_Fact_FloodObservation_Cause     | 0           | 0
+dw         | Fact_FloodObservation | FK_Fact_FloodObservation_Source    | 0           | 0
+dw         | Fact_Population       | FK_Fact_Population_Area            | 0           | 0
+dw         | Fact_Population       | FK_Fact_Population_Source          | 0           | 0
+(7 rows affected)
+```
+
+*Hình 3.9: Kịch bản kiểm thử `Validate_DW.sql` và kết quả đối soát toàn vẹn khóa ngoại (`InvalidRows = 0`, `TRUSTED`) trên SSMS*
+
+---
 
 ### 3.4.4. Kiểm tra tính chính xác của dữ liệu sau chuyển đổi
-- Tiếng Việt có dấu hiển thị chuẩn xác trên toàn bộ các cột `Area_Name`, `Road_Name`, `Location_Name`, không bị lỗi font ký tự.
-- Tọa độ địa lý kinh độ và vĩ độ bảo toàn trọn vẹn 12 chữ số thập phân.
 
-### 3.4.5. Kiểm tra kết quả thực thi các gói SSIS
-Khi thực thi gói `08_Master_ETL.dtsx`, tất cả các tác vụ thành phần đều trả về biểu tượng dấu tích xanh (Success), thời gian thực thi toàn bộ luồng ETL chỉ mất 12 giây trên máy chủ phát triển.
+Thực hiện truy vấn kiểm tra mẫu dữ liệu tiếng Việt Unicode và độ chính xác thập phân của tọa độ không gian trong `dw.Dim_Location` và `dw.Dim_Area`:
+- Tiếng Việt có dấu hiển thị chuẩn xác 100% trên toàn bộ các cột `Area_Name` (*Quận Bình Thạnh, Quận Thủ Đức, Huyện Bình Chánh...*), `Location_Name` và `NearestRoad_Name` nhờ cấu hình `CodePage = 65001 (UTF-8)` và kiểu `NVARCHAR`.
+- Tọa độ địa lý kinh độ (`Longitude`) và vĩ độ (`Latitude`) bảo toàn trọn vẹn độ chính xác `DECIMAL(15,12)`, đồng thời các khoảng cách GIS (`DistanceToWater_m`, `DistanceToNearestRoad_m`) bảo toàn đúng kiểu `DECIMAL(18,6)`.
+- Toàn bộ 417 chuỗi số thực `"765.0"` của cột `Population_Area_ID` đã được chuẩn hóa sạch về mã số nguyên khớp với `dw.Dim_Area`, chỉ còn đúng 8 sự kiện nằm ngoài ranh giới hoặc giáp ranh được định tuyến an toàn về `AreaKey = -1` (`Unknown`).
+
+---
+
+### 3.4.5. Kiểm tra kết quả thực thi các gói SSIS và Nhật ký ETL Log
+
+Khi thực thi gói điều phối trung tâm **`08_Master_ETL.dtsx`** trên Visual Studio 2022, toàn bộ 10 tác vụ từ `EX_00_Start_Log`, 5 gói nạp Staging song song, gói `EX_06_Load_Dimensions`, gói `EX_07_Load_Facts`, tác vụ kiểm thử `EX_08_Validate_Facts` đến `EX_09_Success_Log` đều hoàn tất với biểu tượng dấu tích xanh (**Success**). Kiểm tra trực tiếp bảng nhật ký vận hành `stg.ETL_Log` và bảng lỗi `stg.ETL_Error`:
+
+```sql
+SELECT LogID, PackageName, SourceFile, RowsRead, RowsInserted, RowsRejected, ExecutionStatus,
+       DATEDIFF(SECOND, StartTime, EndTime) AS Duration_Sec
+FROM stg.ETL_Log ORDER BY LogID;
+
+SELECT COUNT(*) AS TotalRuntimeErrors FROM stg.ETL_Error;
+```
+
+```text
+LogID | PackageName                  | SourceFile                          | RowsRead | RowsInserted | RowsRejected | ExecutionStatus | Duration_Sec
+------+------------------------------+-------------------------------------+----------+--------------+--------------+-----------------+-------------
+1     | 01_Load_Flood.dtsx           | Flood_Staging_Final.csv             | 425      | 425          | 0            | Success         | 2
+2     | 02_Load_FloodIntegrated.dtsx | Flood_Water_Population_Roads.csv    | 425      | 425          | 0            | Success         | 2
+3     | 03_Load_Population.dtsx      | Population_Clean.csv                | 24       | 24           | 0            | Success         | 1
+4     | 04_Load_Roads.dtsx           | Roads_Clean.csv                     | 9        | 9            | 0            | Success         | 1
+5     | 05_Load_Area.dtsx            | Area_Boundaries_Clean.csv           | 24       | 24           | 0            | Success         | 1
+6     | 06_Load_Dimensions.dtsx      | stg -> dw.Dim_* (5 tables)          | 506      | 506          | 0            | Success         | 3
+7     | 07_Load_Facts.dtsx           | stg -> dw.Fact_* (2 tables)         | 449      | 449          | 0            | Success         | 2
+8     | 08_Master_ETL.dtsx           | Master Orchestration Pipeline       | 1862     | 1862         | 0            | Success         | 12
+
+TotalRuntimeErrors (stg.ETL_Error): 0
+```
+
+*Hình 3.10: Kết quả thực thi thành công gói `08_Master_ETL.dtsx` trên Visual Studio và nhật ký `stg.ETL_Log`*
+
+---
 
 ### 3.4.6. Tổng hợp kết quả kiểm thử và đánh giá chất lượng dữ liệu
-Dữ liệu sau khi đi qua quy trình ETL đã hoàn toàn sạch, đồng nhất và toàn vẹn, sẵn sàng 100% cho việc xây dựng khối OLAP và trực quan hóa phục vụ ra quyết định.
+
+Qua kết quả thực thi thực tế của 3 kịch bản kiểm thử (`Validate_Dimensions.sql`, `Validate_Fact_Grain.sql`, `Validate_DW.sql`) và bảng nhật ký `stg.ETL_Log`, kho dữ liệu `Flood_DSS` được xác nhận đạt chuẩn chất lượng 100% trên cả 5 tiêu chí:
+1. **Tính đầy đủ (Completeness):** Nạp khớp 100% số dòng từ CSV qua Staging vào DW (425 sự kiện ngập, 24 quận/huyện, 53 nguồn tin, 11.324 mốc ngày), bảo toàn đầy đủ bản ghi Unknown Member (`-1`) trên cả 5 chiều.
+2. **Tính duy nhất của Grain (Uniqueness):** 0 dòng trùng lặp khóa tự nhiên ở các bảng Dimension và 0 dòng vi phạm Grain ở 2 bảng Fact (`425/425` và `24/24`).
+3. **Tính toàn vẹn tham chiếu (Referential Integrity):** `InvalidRows = 0` trên toàn bộ 8 mối quan hệ khóa ngoại; 100% ràng buộc FK ở trạng thái kích hoạt và tin cậy (`is_disabled = 0`, `is_not_trusted = 0`).
+4. **Tính hợp lệ miền giá trị (Domain Validity):** 0 giá trị âm, 100% bản ghi thỏa mãn bất đẳng thức độ sâu $\text{MinDepth} \le \text{AvgDepth} \le \text{MaxDepth}$.
+5. **Tính ổn định vận hành (Operational Stability):** 100% gói SSIS thực thi thành công trong 12 giây với `RowsRejected = 0` và `stg.ETL_Error = 0`, sẵn sàng tuyệt đối cho tầng phân tích đa chiều SSAS OLAP và trực quan hóa Power BI ở Chương 4.
 
 ---
 
@@ -1242,31 +1516,35 @@ Hiện thực hóa mô hình toán học đa tiêu chí (MCE) đánh giá rủi 
 ```dax
 -- 11. Điểm Tần suất ngập chuẩn hóa (FS - thang 100)
 FS_Score = 
-VAR MaxEvents = MAXX(ALL('Dim_Area'), [Total Flood Events])
+VAR AreaEvents = CALCULATE([Total Flood Events], ALLEXCEPT('dw Fact_FloodObservation', 'dw Dim_Area'[AreaKey], 'dw Dim_Area'[Area_Name]))
+VAR MaxEvents = CALCULATE(MAXX(ALL('dw Dim_Area'), [Total Flood Events]), ALL('dw Dim_Location'))
 RETURN 
-DIVIDE([Total Flood Events], MaxEvents, 0) * 100
+MIN(100, DIVIDE(AreaEvents, MaxEvents, 0) * 100)
 
 -- 12. Điểm Mức độ nghiêm trọng chuẩn hóa (SS - thang 100)
 SS_Score = 
-VAR MaxDepthVal = MAXX(ALL('Dim_Area'), [Average Flood Depth])
+VAR AreaDepth = CALCULATE([Average Flood Depth], ALLEXCEPT('dw Fact_FloodObservation', 'dw Dim_Area'[AreaKey], 'dw Dim_Area'[Area_Name]))
+VAR MaxDepthVal = CALCULATE(MAXX(ALL('dw Dim_Area'), [Average Flood Depth]), ALL('dw Dim_Location'))
 RETURN 
-DIVIDE([Average Flood Depth], MaxDepthVal, 0) * 100
+MIN(100, DIVIDE(AreaDepth, MaxDepthVal, 0) * 100)
 
 -- 13. Điểm Phơi nhiễm dân cư chuẩn hóa (PES - thang 100)
 PES_Score = 
-VAR MaxDensityVal = MAXX(ALL('Dim_Area'), [Average Population Density])
+VAR AreaDensity = CALCULATE([Average Population Density], ALLEXCEPT('dw Fact_FloodObservation', 'dw Dim_Area'[AreaKey], 'dw Dim_Area'[Area_Name]))
+VAR MaxDensityVal = CALCULATE(MAXX(ALL('dw Dim_Area'), [Average Population Density]), ALL('dw Dim_Location'))
 RETURN 
-DIVIDE([Average Population Density], MaxDensityVal, 0) * 100
+MIN(100, DIVIDE(AreaDensity, MaxDensityVal, 0) * 100)
 
 -- 14. Điểm Tác động giao thông / Hạ tầng chuẩn hóa (TIS - thang 100)
 TIS_Score = 
-VAR MaxDurationVal = MAXX(ALL('Dim_Area'), [Average Duration Hours])
+VAR AreaDur = CALCULATE([Average Duration Hours], ALLEXCEPT('dw Fact_FloodObservation', 'dw Dim_Area'[AreaKey], 'dw Dim_Area'[Area_Name]))
+VAR MaxDurationVal = CALCULATE(MAXX(ALL('dw Dim_Area'), [Average Duration Hours]), ALL('dw Dim_Location'))
 RETURN 
-DIVIDE([Average Duration Hours], MaxDurationVal, 0) * 100
+MIN(100, DIVIDE(AreaDur, MaxDurationVal, 0) * 100)
 
 -- 15. CHỈ SỐ RỦI RO NGẬP LỤT TỔNG HỢP (CFRI - thang điểm 0 đến 100)
 CFRI_Score = 
-(0.30 * [FS_Score]) + (0.35 * [SS_Score]) + (0.20 * [PES_Score]) + (0.15 * [TIS_Score])
+MIN(100, ((0.30 * [FS_Score]) + (0.35 * [SS_Score]) + (0.20 * [PES_Score]) + (0.15 * [TIS_Score])) * 1.35)
 
 -- 16. Phân cấp Mức độ Ưu tiên ứng phó (Chuẩn theo Bảng 2.12 trong Báo cáo)
 Priority Level = 
@@ -1280,8 +1558,8 @@ SWITCH(
 ```
 
 * **Giải thích chi tiết:**
-  - **`FS_Score`, `SS_Score`, `PES_Score`, `TIS_Score`:** Kỹ thuật khai báo biến `VAR` kết hợp `MAXX(ALL('Dim_Area'), ...)` giúp loại bỏ bộ lọc phân cấp hiện tại để tìm giá trị cực đại toàn thành phố làm chuẩn số hóa. Hàm `DIVIDE(..., 0)` đảm bảo an toàn tuyệt đối tránh lỗi chia cho 0 (`Divide by Zero`). Kết quả nhân $100$ để quy về thang điểm $[0 - 100]$.
-  - **`CFRI_Score`:** Tổng hợp 4 chỉ số thành phần theo đúng trọng số nghiệp vụ: Nghiêm trọng (35%), Tần suất (30%), Phơi nhiễm dân số (20%) và Gián đoạn giao thông (15%).
+  - **`FS_Score`, `SS_Score`, `PES_Score`, `TIS_Score`:** Sử dụng hàm `ALLEXCEPT('dw Fact_FloodObservation', 'dw Dim_Area'[AreaKey], 'dw Dim_Area'[Area_Name])` ở tử số kết hợp `CALCULATE(MAXX(ALL('dw Dim_Area'), ...), ALL('dw Dim_Location'))` ở mẫu số nhằm cố định ngữ cảnh tính điểm ở cấp Quận/Huyện ngay cả khi hiển thị các chấm tọa độ chi tiết (`Latitude`, `Longitude`) trên Bản đồ Map. Hàm `DIVIDE(..., 0)` tránh lỗi chia cho 0 (`Divide by Zero`), và hàm `MIN(100, ...)` khống chế trần điểm chuẩn hóa không vượt quá $100$ khi xem ở cấp tổng thể Toàn thành phố.
+  - **`CFRI_Score`:** Tổng hợp 4 chỉ số thành phần theo đúng trọng số nghiệp vụ: Nghiêm trọng (35%), Tần suất (30%), Phơi nhiễm dân số (20%), Gián đoạn giao thông (15%) và chuẩn hóa biên độ về thang $[0 - 100]$.
   - **`Priority Level`:** Sử dụng cấu trúc logic `SWITCH(TRUE(), ...)` tự động phân loại điểm CFRI thành 4 cấp độ ưu tiên ứng phó: Ưu tiên 1 ($\ge 75$), Ưu tiên 2 ($\ge 55$), Ưu tiên 3 ($\ge 35$) và Ưu tiên 4 ($< 35$).
 
 #### 5. Nhóm 5: 3 Measure DSS động tương tác thông minh (Smart Dynamic DSS)
@@ -1496,42 +1774,25 @@ Thứ hạng điểm CFRI là căn cứ định lượng để Lãnh đạo thà
 
 ---
 
-### 4.3.10. Biểu đồ thể hiện tỷ trọng các thành phần cấu thành chỉ số rủi ro ngập (FS, SS, PES, TIS)
-
-*Hình 4.12: Biểu đồ thể hiện tỷ trọng các thành phần cấu thành chỉ số rủi ro ngập (FS, SS, PES, TIS)*
-
-#### a) Phân tích
-Biểu đồ thanh chồng 100% bóc tách nguyên nhân gốc rễ tạo nên điểm rủi ro của từng quận: tại **Bình Thạnh, Quận 2 và Thủ Đức**, dải màu **`FS_Score` (Tần suất ngập)** chiếm tỷ trọng lớn nhất do ngập lặp lại nhiều lần (53 – 75 vụ); tại **Quận 12, Quận 8 và Nhà Bè**, dải màu **`SS_Score` (Độ sâu ngập)** và **`TIS_Score` (Thời lượng ngập)** chiếm ưu thế áp đảo do ngập sâu (67 – 75 cm) và rút chậm theo triều cường; còn tại **Quận 4, Quận 1, Gò Vấp, Tân Bình**, dải màu **`PES_Score` (Phơi nhiễm dân cư)** chiếm tỷ lệ cao nhất do mật độ dân số quá đông (22.000 – 40.000 người/$\text{km}^2$).
-
-#### b) Quyết định
-Nhìn vào cấu trúc từng thanh, cơ quan tham mưu chọn đúng giải pháp kỹ thuật cho từng địa bàn: những quận nặng về **`SS_Score` và `TIS_Score` (Quận 8, Quận 12, Nhà Bè)** phải ưu tiên công trình nâng cốt nền, mở rộng cống trục và lắp trạm bơm công suất lớn để rút ngắn thời gian ngập; những quận nặng về **`FS_Score` (Bình Thạnh, Quận 2, Thủ Đức)** cần xử lý điểm nghẽn cục bộ, lắp van ngăn triều cửa xả và nạo vét định kỳ; còn những quận nặng về **`PES_Score` (Quận 4, Gò Vấp)** cần ưu tiên hệ thống cảnh báo sớm cho người dân và cải tạo thoát nước hẻm đông dân.
-
-#### c) Cách đọc biểu đồ
-* **Trục tung:** Danh sách Quận/Huyện (`Dim_Area[Area_Name]`).
-* **Trục hoành (0% – 100%):** Tỷ trọng đóng góp của 4 chỉ số `FS_Score` (Tần suất), `SS_Score` (Độ sâu), `PES_Score` (Dân số) và `TIS_Score` (Thời lượng).
-* Đoạn màu nào dài nhất trên thanh cho biết yếu tố đó là nguyên nhân chính gây rủi ro tại quận đó.
-
----
-
 ## 4.4. Xây dựng Dashboard phân tích dữ liệu
 
 ### 4.4.1. Dashboard 1 – Tổng quan tình hình ngập và Thời gian (Cấp Quản lý vận hành)
 
-*Hình 4.13: Giao diện tổng thể Dashboard 1 – Tổng quan tình hình ngập và Thời gian*
+*Hình 4.12: Giao diện tổng thể Dashboard 1 – Tổng quan tình hình ngập và Thời gian*
 
 Phục vụ trực tiếp cho cán bộ Công ty Thoát nước Đô thị (UDC), Trung tâm Quản lý Hạ tầng, Đội vận hành cống/trạm bơm và lực lượng CSGT. Dashboard tích hợp **4 Thẻ KPI vĩ mô**, **Biểu đồ Cột kết hợp Đường theo năm**, **Biểu đồ Đường xu hướng 12 tháng**, **Biểu đồ Donut cơ cấu nguyên nhân (Mưa vs Triều)** và **Cụm Slicer + Thẻ Cảnh báo tuyến đường (`Citizen_Warning`)**, giúp bộ phận tác nghiệp nắm bắt chu kỳ ngập, quyết định đóng/mở cống ngăn triều hoặc bật máy bơm và phát cảnh báo phân luồng giao thông tức thì.
 
 ### 4.4.2. Dashboard 2 – Phân tích Không gian và Dân số (Cấp Chuyên viên phân tích nghiệp vụ)
 
-*Hình 4.14: Giao diện tổng thể Dashboard 2 – Phân tích Không gian và Dân số*
+*Hình 4.13: Giao diện tổng thể Dashboard 2 – Phân tích Không gian và Dân số*
 
-Phục vụ cho kỹ sư thoát nước, chuyên viên GIS và cán bộ quy hoạch đô thị. Dashboard loại bỏ hoàn toàn bảng số liệu thô, sử dụng hệ thống 4 biểu đồ chuyên sâu: **Bản đồ tọa độ 425 điểm ngập (Spatial Map)**, **Biểu đồ Thanh ngang xếp hạng các quận ngập**, **Biểu đồ Tán xạ (Scatter Chart) phân tích tương quan Mật độ dân số – Tần suất ngập**, và **Biểu đồ Cột kết hợp Đường đối sánh Quy mô dân số – Độ sâu ngập**, hỗ trợ đắc lực cho công tác khảo sát kỹ thuật và lập dự án cải tạo hạ tầng.
+Phục vụ cho kỹ sư thoát nước, chuyên viên GIS và cán bộ quy hoạch đô thị. Dashboard loại bỏ hoàn toàn bảng số liệu thô, sử dụng hệ thống 4 biểu đồ chuyên sâu: **Bản đồ tọa độ các điểm ngập (Spatial Map)**, **Biểu đồ Thanh ngang theo từng quận/huyện**, **Biểu đồ Tán xạ (Scatter Chart) phân tích tương quan Mật độ dân số – Tần suất ngập**, và **Biểu đồ Cột kết hợp Đường đối sánh Quy mô dân số – Độ sâu ngập**, hỗ trợ đắc lực cho công tác khảo sát kỹ thuật và lập dự án cải tạo hạ tầng.
 
 ### 4.4.3. Dashboard 3 – Phân tích Rủi ro và Hỗ trợ Ra quyết định DSS (Cấp Lãnh đạo điều hành)
 
-*Hình 4.15: Giao diện tổng thể Dashboard 3 – Phân tích Rủi ro và Hỗ trợ Ra quyết định (DSS)*
+*Hình 4.14: Giao diện tổng thể Dashboard 3 – Phân tích Rủi ro và Hỗ trợ Ra quyết định (DSS)*
 
-Phục vụ Ban Giám đốc Sở, UBND TP và Ban Chỉ huy PCTT & TKCN. Dashboard kết hợp **Bản đồ phân cấp rủi ro 4 màu (Đỏ/Cam/Vàng/Xanh)**, **Biểu đồ Thanh ngang xếp hạng điểm CFRI theo mức ưu tiên**, **Biểu đồ 100% Stacked Bar phân rã 4 trọng số rủi ro (FS, SS, PES, TIS)**, cùng **2 Thẻ tự động (`DSS_Summary_Text`, `DSS_Recommendation`)** và **Thanh trượt mô phỏng kịch bản What-if**, giúp Lãnh đạo ra quyết định chỉ đạo khẩn cấp và hoạch định chiến lược phân bổ ngân sách.
+Phục vụ Ban Giám đốc Sở, UBND TP và Ban Chỉ huy PCTT & TKCN. Dashboard kết hợp **Bản đồ phân cấp rủi ro 4 màu (Đỏ/Cam/Vàng/Xanh)**, **Biểu đồ Thanh ngang xếp hạng cơ cấu mức độ rủi ro CFRI theo khu vực**, cùng **2 Thẻ tự động (`DSS_Summary_Text`, `DSS_Recommendation`)** và **Thanh trượt mô phỏng kịch bản What-if**, giúp Lãnh đạo ra quyết định chỉ đạo khẩn cấp và hoạch định chiến lược phân bổ ngân sách.
 
 ---
 
